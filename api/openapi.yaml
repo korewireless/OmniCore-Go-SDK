@@ -1,0 +1,2265 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@korewireless.com
+    name: API Support
+    url: http://www.korewireless.com
+  description: This is an OmniCore Model and State Management server.
+  title: OmniCore Model and State Management API
+  version: "1.0"
+servers:
+- url: https://demo-api.omnicore.cloud.korewireless.com/model-state-management
+security:
+- bearerAuth: []
+paths:
+  /subscriptions/{subscriptionId}/registries:
+    get:
+      description: Get all registries under a subscription
+      operationId: getRegistries
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page Number
+        explode: true
+        in: query
+        name: pageNumber
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Page Size
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDeviceRegistriesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - registry
+    post:
+      description: Create a registry
+      operationId: createRegistry
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewRegistry'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceRegistry'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - registry
+      x-codegen-request-body-name: Registry
+  /subscriptions/{subscriptionId}/registries/{registryId}:
+    delete:
+      description: Delete a registry
+      operationId: deleteRegistry
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - registry
+    get:
+      description: Get a registry
+      operationId: getRegistry
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceRegistry'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - registry
+    patch:
+      description: Update a registry
+      operationId: updateRegistry
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials"
+        explode: true
+        in: query
+        name: updateMask
+        required: true
+        schema:
+          enum:
+          - eventNotificationConfigs
+          - stateNotificationConfig.pubsub_topic_name
+          - logNotificationConfig.pubsub_topic_name
+          - mqttConfig.mqtt_enabled_state
+          - httpConfig.http_enabled_state
+          - logLevel
+          - credentials
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRegistry'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceRegistry'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - registry
+      x-codegen-request-body-name: Registry
+  /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway:
+    post:
+      description: Bind  a device to a gateway under a registry
+      operationId: bindDevice
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bindRequest'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway:
+    post:
+      description: Bind devices to a gateway under a registry
+      operationId: bindDevices
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bindRequestIdsGateway'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionId}/registries/{registryId}/devices:
+    get:
+      description: Get all devices under a registry
+      operationId: getDevices
+      parameters:
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page Number
+        explode: true
+        in: query
+        name: pageNumber
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "The maximum number of devices to return in the response. If\
+          \ this value is zero, the service will select a default size. "
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "The fields of the Device resource to be returned to the response.\
+          \ The fields id and numId are always returned, along with any other fields\
+          \ specified. A comma-separated list of fully qualified names of fields.\
+          \ Example: "
+        explode: true
+        in: query
+        name: fieldMask
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "A list of device string IDs. For example, ['device0', 'device12'].\
+          \ If empty, this field is ignored. Maximum IDs: 10,000"
+        explode: false
+        in: query
+        name: deviceIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "A list of device numeric IDs. If empty, this field is ignored.\
+          \ Maximum IDs: 10,000."
+        explode: false
+        in: query
+        name: deviceNumIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "If set, returns only the gateways with which the specified device\
+          \ is associated. The device ID can be numeric (num_id) or the user-defined\
+          \ string (id). For example, if 456 is specified, returns only the gateways\
+          \ to which the device with num_id 456 is bound."
+        explode: true
+        in: query
+        name: gatewayListOptions.associationsDeviceId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "If set, only devices associated with the specified gateway are\
+          \ returned. The gateway ID can be numeric (num_id) or the user-defined string\
+          \ (id). For example, if 123 is specified, only devices bound to the gateway\
+          \ with num_id 123 are returned"
+        explode: true
+        in: query
+        name: gatewayListOptions.associationsGatewayId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "If GATEWAY is specified, only gateways are returned. If NON_GATEWAY\
+          \ is specified, only non-gateway devices are returned. If GATEWAY_TYPE_UNSPECIFIED\
+          \ is specified, all devices are returned."
+        explode: true
+        in: query
+        name: gatewayListOptions.gatewayType
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDevicesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+    post:
+      description: Create a device under a registry
+      operationId: createDevice
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewDevice'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}:
+    delete:
+      description: Delete a device under a registry
+      operationId: deleteDevice
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+    get:
+      description: Get a device under a registry
+      operationId: getDevice
+      parameters:
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+    patch:
+      description: Modify device under a registry
+      operationId: updateDevice
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Required. Only updates the device fields indicated by this mask.\
+          \ The field mask must not be empty, and it must not contain fields that\
+          \ are immutable or only set by the server. Mutable top-level fields: credentials,log_level,\
+          \ blocked, and metadata"
+        explode: true
+        in: query
+        name: updateMask
+        required: true
+        schema:
+          enum:
+          - logLevel
+          - blocked
+          - metadata
+          - credentials
+          - gatewayConfig.gatewayAuthMethod
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDevice'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway:
+    post:
+      description: UnBind  a device from a gateway under a registry
+      operationId: unBindDevice
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bindRequest'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway:
+    post:
+      description: UnBind devices from a gateway under a registry
+      operationId: unBindDevices
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bindRequestIdsGateway'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication:
+    put:
+      description: Blocks All Communication From A Device
+      operationId: blockDeviceCommuncation
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockCommunicationBody'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericEmptyResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions:
+    get:
+      description: Get Configs Of Devices
+      operationId: getConfig
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: true
+        in: query
+        name: numVersions
+        required: true
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDeviceConfigVersionsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice:
+    post:
+      description: Send A Config To A Device
+      operationId: sendConfigurationToDevice
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceConfiguration'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceConfig'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice:
+    post:
+      description: Send A Command To A Device
+      operationId: sendCommandToDevice
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceCommand'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericEmptyResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states:
+    get:
+      description: Get States Of Devices
+      operationId: getStates
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The number of states to list. States are listed in descending\
+          \ order of update time. The maximum number of states retained is 10. If\
+          \ this value is zero, it will return all the states available."
+        explode: true
+        in: query
+        name: numStates
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDeviceStatesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+components:
+  schemas:
+    BlockCommunicationBody:
+      example:
+        isblocked: true
+      properties:
+        isblocked:
+          type: boolean
+      type: object
+    DeviceCommand:
+      example:
+        binaryData: binaryData
+        subfolder: subfolder
+      properties:
+        binaryData:
+          description: Base64 Encoded Command String
+          type: string
+        subfolder:
+          type: string
+      required:
+      - binaryData
+      type: object
+    DeviceConfiguration:
+      example:
+        binaryData: binaryData
+        subfolder: subfolder
+        versionToUpdate: versionToUpdate
+      properties:
+        binaryData:
+          description: Base64 Encoded Config String
+          type: string
+        subfolder:
+          type: string
+        versionToUpdate:
+          type: string
+      required:
+      - binaryData
+      type: object
+    Device:
+      example:
+        parent: parent
+        metadata:
+          key: metadata
+        subscriptions:
+        - subscriptions
+        - subscriptions
+        numId: numId
+        credentials:
+        - expirationTime: expirationTime
+          publicKey:
+            format: RSA_PEM
+            key: key
+        - expirationTime: expirationTime
+          publicKey:
+            format: RSA_PEM
+            key: key
+        lastConfigSendTime: lastConfigSendTime
+        lastErrorStatus:
+          code: 0
+          details: details
+          message: message
+        subscription: subscription
+        capresent: true
+        createdOn: createdOn
+        deviceErrors: deviceErrors
+        clientOnline: true
+        lastErrorTime: lastErrorTime
+        isGateway: true
+        blocked: true
+        logLevel: null
+        lastHeartbeatTime: lastHeartbeatTime
+        id: id
+        state:
+          binaryData: binaryData
+          updateTime: updateTime
+        gatewayConfig:
+          gatewayType: NON_GATEWAY
+          gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+        registry: registry
+        updatedOn: updatedOn
+        lastConfigAckTime: lastConfigAckTime
+        name: name
+        lastEventTime: lastEventTime
+        config:
+          acknowledged: true
+          cloudUpdateTime: cloudUpdateTime
+          binaryData: binaryData
+          deviceAckTime: deviceAckTime
+          version: 6
+        gateway:
+        - gateway
+        - gateway
+        lastStateTime: lastStateTime
+      properties:
+        id:
+          maxLength: 256
+          minLength: 3
+          type: string
+        name:
+          type: string
+        numId:
+          type: string
+        parent:
+          type: string
+        registry:
+          type: string
+        blocked:
+          type: boolean
+        capresent:
+          type: boolean
+        subscription:
+          type: string
+        createdOn:
+          type: string
+        updatedOn:
+          type: string
+        credentials:
+          items:
+            $ref: '#/components/schemas/DeviceCredential'
+          type: array
+        gateway:
+          items:
+            type: string
+          type: array
+        gatewayConfig:
+          $ref: '#/components/schemas/GatewayConfig'
+        isGateway:
+          type: boolean
+        deviceErrors:
+          type: string
+        clientOnline:
+          type: boolean
+        lastConfigAckTime:
+          type: string
+        lastConfigSendTime:
+          type: string
+        lastErrorStatus:
+          $ref: '#/components/schemas/ErrorStatus'
+        lastErrorTime:
+          type: string
+        lastEventTime:
+          type: string
+        lastHeartbeatTime:
+          type: string
+        lastStateTime:
+          type: string
+        logLevel:
+          $ref: '#/components/schemas/LogLevel'
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        config:
+          $ref: '#/components/schemas/DeviceConfig'
+        state:
+          $ref: '#/components/schemas/DeviceState'
+        subscriptions:
+          items:
+            type: string
+          type: array
+      required:
+      - id
+      - parent
+      - registry
+      - subscription
+      type: object
+    DeviceCertificate:
+      properties:
+        credentials:
+          $ref: '#/components/schemas/DeviceCredential'
+      required:
+      - credentials
+      type: object
+    DeviceConfig:
+      example:
+        acknowledged: true
+        cloudUpdateTime: cloudUpdateTime
+        binaryData: binaryData
+        deviceAckTime: deviceAckTime
+        version: 6
+      properties:
+        acknowledged:
+          type: boolean
+        binaryData:
+          description: Base64 Encoded Comnfig String
+          type: string
+        cloudUpdateTime:
+          type: string
+        deviceAckTime:
+          type: string
+        version:
+          type: integer
+      type: object
+    DeviceCredential:
+      example:
+        expirationTime: expirationTime
+        publicKey:
+          format: RSA_PEM
+          key: key
+      properties:
+        expirationTime:
+          description: |-
+            ExpirationTime: [Optional] The time at which this credential becomes
+            invalid. This credential will be ignored for new client
+            authentication requests after this timestamp; however, it will not be
+            automatically deleted.
+          type: string
+        publicKey:
+          $ref: '#/components/schemas/PublicKeyCredential'
+      type: object
+    DeviceRegistry:
+      example:
+        parent: parent
+        logNotificationConfig:
+          pubsubTopicName: pubsubTopicName
+        credentials:
+        - publicKeyCertificate:
+            certificate: certificate
+            format: X509_CERTIFICATE_PEM
+            x509Details:
+              subject: subject
+              expiryTime: expiryTime
+              startTime: startTime
+              issuer: issuer
+              signatureAlgorithm: signatureAlgorithm
+              publicKeyType: publicKeyType
+        - publicKeyCertificate:
+            certificate: certificate
+            format: X509_CERTIFICATE_PEM
+            x509Details:
+              subject: subject
+              expiryTime: expiryTime
+              startTime: startTime
+              issuer: issuer
+              signatureAlgorithm: signatureAlgorithm
+              publicKeyType: publicKeyType
+        stateNotificationConfig:
+          pubsubTopicName: pubsubTopicName
+        updatedOn: updatedOn
+        createdOn: createdOn
+        httpConfig:
+          httpEnabledState: HTTP_ENABLED
+        logLevel: null
+        eventNotificationConfigs:
+        - subfolderMatches: subfolderMatches
+          pubsubTopicName: pubsubTopicName
+        - subfolderMatches: subfolderMatches
+          pubsubTopicName: pubsubTopicName
+        name: name
+        id: id
+        numberOfDevices: 0
+        numberOfGateways: 6
+        mqttConfig:
+          mqttEnabledState: MQTT_ENABLED
+      properties:
+        id:
+          maxLength: 256
+          minLength: 3
+          type: string
+        name:
+          type: string
+        parent:
+          type: string
+        createdOn:
+          type: string
+        updatedOn:
+          type: string
+        credentials:
+          items:
+            $ref: '#/components/schemas/RegistryCredential'
+          type: array
+        httpConfig:
+          $ref: '#/components/schemas/HttpConfig'
+        mqttConfig:
+          $ref: '#/components/schemas/MqttConfig'
+        logLevel:
+          $ref: '#/components/schemas/LogLevel'
+        eventNotificationConfigs:
+          items:
+            $ref: '#/components/schemas/EventNotificationConfig'
+          type: array
+        logNotificationConfig:
+          $ref: '#/components/schemas/NotificationConfig'
+        stateNotificationConfig:
+          $ref: '#/components/schemas/NotificationConfig'
+        numberOfDevices:
+          type: integer
+        numberOfGateways:
+          type: integer
+      required:
+      - id
+      - parent
+      type: object
+    DeviceState:
+      example:
+        binaryData: binaryData
+        updateTime: updateTime
+      properties:
+        binaryData:
+          description: Base64 Encoded State String
+          type: string
+        updateTime:
+          type: string
+      type: object
+    ErrorFrame:
+      properties:
+        code:
+          type: integer
+        details:
+          type: string
+        message:
+          type: string
+        status:
+          type: string
+      required:
+      - code
+      - details
+      - message
+      - status
+      type: object
+    ErrorStatus:
+      example:
+        code: 0
+        details: details
+        message: message
+      properties:
+        code:
+          type: integer
+        details:
+          type: string
+        message:
+          type: string
+      type: object
+    EventNotificationConfig:
+      example:
+        subfolderMatches: subfolderMatches
+        pubsubTopicName: pubsubTopicName
+      properties:
+        pubsubTopicName:
+          description: |-
+            PubsubTopicName: A Cloud Pub/Sub topic name. For example,
+            `projects/myProject/topics/deviceEvents`.
+          type: string
+        subfolderMatches:
+          description: |-
+            SubfolderMatches: If the subfolder name matches this string exactly,
+            this configuration will be used. The string must not include the
+            leading '/' character. If empty, all strings are matched. This field
+            is used only for telemetry events; subfolders are not supported for
+            state changes.
+          type: string
+      type: object
+    GatewayConfig:
+      example:
+        gatewayType: NON_GATEWAY
+        gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+      properties:
+        gatewayAuthMethod:
+          enum:
+          - GATEWAY_AUTH_METHOD_UNSPECIFIED
+          - ASSOCIATION_ONLY
+          - DEVICE_AUTH_TOKEN_ONLY
+          - ASSOCIATION_AND_DEVICE_AUTH_TOKEN
+          type: string
+        gatewayType:
+          enum:
+          - NON_GATEWAY
+          - GATEWAY
+          type: string
+      type: object
+    GenericEmptyResponse:
+      type: object
+    GenericErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorFrame'
+      required:
+      - error
+      type: object
+    HttpConfig:
+      example:
+        httpEnabledState: HTTP_ENABLED
+      properties:
+        httpEnabledState:
+          description: |-
+            HttpEnabledState: If enabled, allows devices to use DeviceService via
+            the HTTP protocol. Otherwise, any requests to DeviceService will fail
+            for this registry.
+
+            Possible values:
+              "HTTP_STATE_UNSPECIFIED" - No HTTP state specified. If not
+            specified, DeviceService will be enabled by default.
+              "HTTP_ENABLED" - Enables DeviceService (HTTP) service for the
+            registry.
+              "HTTP_DISABLED" - Disables DeviceService (HTTP) service for the
+            registry.
+          enum:
+          - HTTP_ENABLED
+          - HTTP_DISABLED
+          - HTTP_STATE_UNSPECIFIED
+          type: string
+      type: object
+    Info:
+      example:
+        info: info
+      properties:
+        info:
+          type: string
+      type: object
+    ListDeviceConfigVersionsResponse:
+      example:
+        deviceConfigs:
+        - acknowledged: true
+          cloudUpdateTime: cloudUpdateTime
+          binaryData: binaryData
+          deviceAckTime: deviceAckTime
+          version: 6
+        - acknowledged: true
+          cloudUpdateTime: cloudUpdateTime
+          binaryData: binaryData
+          deviceAckTime: deviceAckTime
+          version: 6
+      properties:
+        deviceConfigs:
+          items:
+            $ref: '#/components/schemas/DeviceConfig'
+          type: array
+      type: object
+    ListDeviceRegistriesResponse:
+      example:
+        pageNumber: 1
+        deviceRegistries:
+        - parent: parent
+          logNotificationConfig:
+            pubsubTopicName: pubsubTopicName
+          credentials:
+          - publicKeyCertificate:
+              certificate: certificate
+              format: X509_CERTIFICATE_PEM
+              x509Details:
+                subject: subject
+                expiryTime: expiryTime
+                startTime: startTime
+                issuer: issuer
+                signatureAlgorithm: signatureAlgorithm
+                publicKeyType: publicKeyType
+          - publicKeyCertificate:
+              certificate: certificate
+              format: X509_CERTIFICATE_PEM
+              x509Details:
+                subject: subject
+                expiryTime: expiryTime
+                startTime: startTime
+                issuer: issuer
+                signatureAlgorithm: signatureAlgorithm
+                publicKeyType: publicKeyType
+          stateNotificationConfig:
+            pubsubTopicName: pubsubTopicName
+          updatedOn: updatedOn
+          createdOn: createdOn
+          httpConfig:
+            httpEnabledState: HTTP_ENABLED
+          logLevel: null
+          eventNotificationConfigs:
+          - subfolderMatches: subfolderMatches
+            pubsubTopicName: pubsubTopicName
+          - subfolderMatches: subfolderMatches
+            pubsubTopicName: pubsubTopicName
+          name: name
+          id: id
+          numberOfDevices: 0
+          numberOfGateways: 6
+          mqttConfig:
+            mqttEnabledState: MQTT_ENABLED
+        - parent: parent
+          logNotificationConfig:
+            pubsubTopicName: pubsubTopicName
+          credentials:
+          - publicKeyCertificate:
+              certificate: certificate
+              format: X509_CERTIFICATE_PEM
+              x509Details:
+                subject: subject
+                expiryTime: expiryTime
+                startTime: startTime
+                issuer: issuer
+                signatureAlgorithm: signatureAlgorithm
+                publicKeyType: publicKeyType
+          - publicKeyCertificate:
+              certificate: certificate
+              format: X509_CERTIFICATE_PEM
+              x509Details:
+                subject: subject
+                expiryTime: expiryTime
+                startTime: startTime
+                issuer: issuer
+                signatureAlgorithm: signatureAlgorithm
+                publicKeyType: publicKeyType
+          stateNotificationConfig:
+            pubsubTopicName: pubsubTopicName
+          updatedOn: updatedOn
+          createdOn: createdOn
+          httpConfig:
+            httpEnabledState: HTTP_ENABLED
+          logLevel: null
+          eventNotificationConfigs:
+          - subfolderMatches: subfolderMatches
+            pubsubTopicName: pubsubTopicName
+          - subfolderMatches: subfolderMatches
+            pubsubTopicName: pubsubTopicName
+          name: name
+          id: id
+          numberOfDevices: 0
+          numberOfGateways: 6
+          mqttConfig:
+            mqttEnabledState: MQTT_ENABLED
+        pageSize: 5
+        totalCount: 5
+      properties:
+        deviceRegistries:
+          items:
+            $ref: '#/components/schemas/DeviceRegistry'
+          type: array
+        pageNumber:
+          type: integer
+        pageSize:
+          type: integer
+        totalCount:
+          type: integer
+      required:
+      - deviceRegistries
+      type: object
+    ListDeviceStatesResponse:
+      example:
+        deviceStates:
+        - binaryData: binaryData
+          updateTime: updateTime
+        - binaryData: binaryData
+          updateTime: updateTime
+      properties:
+        deviceStates:
+          items:
+            $ref: '#/components/schemas/DeviceState'
+          type: array
+      type: object
+    ListDevicesResponse:
+      example:
+        pageNumber: 1
+        devices:
+        - parent: parent
+          metadata:
+            key: metadata
+          subscriptions:
+          - subscriptions
+          - subscriptions
+          numId: numId
+          credentials:
+          - expirationTime: expirationTime
+            publicKey:
+              format: RSA_PEM
+              key: key
+          - expirationTime: expirationTime
+            publicKey:
+              format: RSA_PEM
+              key: key
+          lastConfigSendTime: lastConfigSendTime
+          lastErrorStatus:
+            code: 0
+            details: details
+            message: message
+          subscription: subscription
+          capresent: true
+          createdOn: createdOn
+          deviceErrors: deviceErrors
+          clientOnline: true
+          lastErrorTime: lastErrorTime
+          isGateway: true
+          blocked: true
+          logLevel: null
+          lastHeartbeatTime: lastHeartbeatTime
+          id: id
+          state:
+            binaryData: binaryData
+            updateTime: updateTime
+          gatewayConfig:
+            gatewayType: NON_GATEWAY
+            gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+          registry: registry
+          updatedOn: updatedOn
+          lastConfigAckTime: lastConfigAckTime
+          name: name
+          lastEventTime: lastEventTime
+          config:
+            acknowledged: true
+            cloudUpdateTime: cloudUpdateTime
+            binaryData: binaryData
+            deviceAckTime: deviceAckTime
+            version: 6
+          gateway:
+          - gateway
+          - gateway
+          lastStateTime: lastStateTime
+        - parent: parent
+          metadata:
+            key: metadata
+          subscriptions:
+          - subscriptions
+          - subscriptions
+          numId: numId
+          credentials:
+          - expirationTime: expirationTime
+            publicKey:
+              format: RSA_PEM
+              key: key
+          - expirationTime: expirationTime
+            publicKey:
+              format: RSA_PEM
+              key: key
+          lastConfigSendTime: lastConfigSendTime
+          lastErrorStatus:
+            code: 0
+            details: details
+            message: message
+          subscription: subscription
+          capresent: true
+          createdOn: createdOn
+          deviceErrors: deviceErrors
+          clientOnline: true
+          lastErrorTime: lastErrorTime
+          isGateway: true
+          blocked: true
+          logLevel: null
+          lastHeartbeatTime: lastHeartbeatTime
+          id: id
+          state:
+            binaryData: binaryData
+            updateTime: updateTime
+          gatewayConfig:
+            gatewayType: NON_GATEWAY
+            gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+          registry: registry
+          updatedOn: updatedOn
+          lastConfigAckTime: lastConfigAckTime
+          name: name
+          lastEventTime: lastEventTime
+          config:
+            acknowledged: true
+            cloudUpdateTime: cloudUpdateTime
+            binaryData: binaryData
+            deviceAckTime: deviceAckTime
+            version: 6
+          gateway:
+          - gateway
+          - gateway
+          lastStateTime: lastStateTime
+        pageSize: 5
+        totalCount: 5
+      properties:
+        devices:
+          items:
+            $ref: '#/components/schemas/Device'
+          type: array
+        pageNumber:
+          type: integer
+        pageSize:
+          type: integer
+        totalCount:
+          type: integer
+      required:
+      - devices
+      type: object
+    MqttConfig:
+      example:
+        mqttEnabledState: MQTT_ENABLED
+      properties:
+        mqttEnabledState:
+          description: |-
+            MqttEnabledState: If enabled, allows connections using the MQTT
+            protocol. Otherwise, MQTT connections to this registry will fail.
+
+            Possible values:
+              "MQTT_STATE_UNSPECIFIED" - No MQTT state specified. If not
+            specified, MQTT will be enabled by default.
+              "MQTT_ENABLED" - Enables a MQTT connection.
+              "MQTT_DISABLED" - Disables a MQTT connection.
+          enum:
+          - MQTT_ENABLED
+          - MQTT_DISABLED
+          - MQTT_STATE_UNSPECIFIED
+          type: string
+      type: object
+    NewDevice:
+      example:
+        metadata:
+          key: metadata
+        blocked: true
+        logLevel: null
+        credentials:
+        - expirationTime: expirationTime
+          publicKey:
+            format: RSA_PEM
+            key: key
+        - expirationTime: expirationTime
+          publicKey:
+            format: RSA_PEM
+            key: key
+        id: id
+        config:
+          acknowledged: true
+          cloudUpdateTime: cloudUpdateTime
+          binaryData: binaryData
+          deviceAckTime: deviceAckTime
+          version: 6
+        gatewayConfig:
+          gatewayType: NON_GATEWAY
+          gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+      properties:
+        id:
+          maxLength: 256
+          minLength: 3
+          type: string
+        blocked:
+          type: boolean
+        credentials:
+          items:
+            $ref: '#/components/schemas/DeviceCredential'
+          type: array
+        gatewayConfig:
+          $ref: '#/components/schemas/GatewayConfig'
+        config:
+          $ref: '#/components/schemas/DeviceConfig'
+        logLevel:
+          $ref: '#/components/schemas/LogLevel'
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+      - id
+      type: object
+    NewRegistry:
+      example:
+        httpConfig:
+          httpEnabledState: HTTP_ENABLED
+        logLevel: null
+        logNotificationConfig:
+          pubsubTopicName: pubsubTopicName
+        credentials:
+        - publicKeyCertificate:
+            certificate: certificate
+            format: X509_CERTIFICATE_PEM
+            x509Details:
+              subject: subject
+              expiryTime: expiryTime
+              startTime: startTime
+              issuer: issuer
+              signatureAlgorithm: signatureAlgorithm
+              publicKeyType: publicKeyType
+        - publicKeyCertificate:
+            certificate: certificate
+            format: X509_CERTIFICATE_PEM
+            x509Details:
+              subject: subject
+              expiryTime: expiryTime
+              startTime: startTime
+              issuer: issuer
+              signatureAlgorithm: signatureAlgorithm
+              publicKeyType: publicKeyType
+        eventNotificationConfigs:
+        - subfolderMatches: subfolderMatches
+          pubsubTopicName: pubsubTopicName
+        - subfolderMatches: subfolderMatches
+          pubsubTopicName: pubsubTopicName
+        stateNotificationConfig:
+          pubsubTopicName: pubsubTopicName
+        id: id
+        mqttConfig:
+          mqttEnabledState: MQTT_ENABLED
+      properties:
+        id:
+          maxLength: 256
+          minLength: 3
+          type: string
+        credentials:
+          items:
+            $ref: '#/components/schemas/RegistryCredential'
+          type: array
+        httpConfig:
+          $ref: '#/components/schemas/HttpConfig'
+        mqttConfig:
+          $ref: '#/components/schemas/MqttConfig'
+        logLevel:
+          $ref: '#/components/schemas/LogLevel'
+        eventNotificationConfigs:
+          items:
+            $ref: '#/components/schemas/EventNotificationConfig'
+          type: array
+        logNotificationConfig:
+          $ref: '#/components/schemas/NotificationConfig'
+        stateNotificationConfig:
+          $ref: '#/components/schemas/NotificationConfig'
+      required:
+      - id
+      type: object
+    PublicKeyCertificate:
+      example:
+        certificate: certificate
+        format: X509_CERTIFICATE_PEM
+        x509Details:
+          subject: subject
+          expiryTime: expiryTime
+          startTime: startTime
+          issuer: issuer
+          signatureAlgorithm: signatureAlgorithm
+          publicKeyType: publicKeyType
+      properties:
+        certificate:
+          description: "Certificate: The certificate data."
+          type: string
+        format:
+          description: |-
+            Format: The certificate format.
+
+            Possible values:
+              "UNSPECIFIED_PUBLIC_KEY_CERTIFICATE_FORMAT" - The format has not
+            been specified. This is an invalid default value and must not be
+            used.
+              "X509_CERTIFICATE_PEM" - An X.509v3 certificate
+            ([RFC5280](https://www.ietf.org/rfc/rfc5280.txt)), encoded in base64,
+            and wrapped by `-----BEGIN CERTIFICATE-----` and `-----END
+            CERTIFICATE-----`.
+          enum:
+          - X509_CERTIFICATE_PEM
+          type: string
+        x509Details:
+          $ref: '#/components/schemas/X509CertificateDetails'
+      type: object
+    PublicKeyCredential:
+      example:
+        format: RSA_PEM
+        key: key
+      properties:
+        format:
+          description: |-
+            Format: The format of the key.
+
+            Possible values:
+              "UNSPECIFIED_PUBLIC_KEY_FORMAT" - The format has not been
+            specified. This is an invalid default value and must not be used.
+              "RSA_PEM" - An RSA public key encoded in base64, and wrapped by
+            `-----BEGIN PUBLIC KEY-----` and `-----END PUBLIC KEY-----`. This can
+            be used to verify `RS256` signatures in JWT tokens ([RFC7518](
+            https://www.ietf.org/rfc/rfc7518.txt)).
+              "RSA_X509_PEM" - As RSA_PEM, but wrapped in an X.509v3 certificate
+            ([RFC5280]( https://www.ietf.org/rfc/rfc5280.txt)), encoded in
+            base64, and wrapped by `-----BEGIN CERTIFICATE-----` and `-----END
+            CERTIFICATE-----`.
+              "ES256_PEM" - Public key for the ECDSA algorithm using P-256 and
+            SHA-256, encoded in base64, and wrapped by `-----BEGIN PUBLIC
+            KEY-----` and `-----END PUBLIC KEY-----`. This can be used to verify
+            JWT tokens with the `ES256` algorithm
+            ([RFC7518](https://www.ietf.org/rfc/rfc7518.txt)). This curve is
+            defined in [OpenSSL](https://www.openssl.org/) as the `prime256v1`
+            curve.
+              "ES256_X509_PEM" - As ES256_PEM, but wrapped in an X.509v3
+            certificate ([RFC5280]( https://www.ietf.org/rfc/rfc5280.txt)),
+            encoded in base64, and wrapped by `-----BEGIN CERTIFICATE-----` and
+            `-----END CERTIFICATE-----`.
+          enum:
+          - RSA_PEM
+          - ES256_PEM
+          - RSA_X509_PEM
+          - ES256_X509_PEM
+          type: string
+        key:
+          description: "Key: The key data."
+          type: string
+      required:
+      - format
+      type: object
+    RegistryCertificate:
+      properties:
+        credentials:
+          $ref: '#/components/schemas/RegistryCredential'
+      required:
+      - credentials
+      type: object
+    RegistryCredential:
+      example:
+        publicKeyCertificate:
+          certificate: certificate
+          format: X509_CERTIFICATE_PEM
+          x509Details:
+            subject: subject
+            expiryTime: expiryTime
+            startTime: startTime
+            issuer: issuer
+            signatureAlgorithm: signatureAlgorithm
+            publicKeyType: publicKeyType
+      properties:
+        publicKeyCertificate:
+          $ref: '#/components/schemas/PublicKeyCertificate'
+      type: object
+    NotificationConfig:
+      example:
+        pubsubTopicName: pubsubTopicName
+      properties:
+        pubsubTopicName:
+          description: |-
+            PubsubTopicName: A Cloud Pub/Sub topic name. For example,
+            `projects/myProject/topics/deviceEvents`.
+          type: string
+      type: object
+    UpdateDevice:
+      example:
+        metadata:
+          key: metadata
+        blocked: true
+        logLevel: null
+        credentials:
+        - expirationTime: expirationTime
+          publicKey:
+            format: RSA_PEM
+            key: key
+        - expirationTime: expirationTime
+          publicKey:
+            format: RSA_PEM
+            key: key
+      properties:
+        blocked:
+          type: boolean
+        credentials:
+          items:
+            $ref: '#/components/schemas/DeviceCredential'
+          type: array
+        logLevel:
+          $ref: '#/components/schemas/LogLevel'
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    UpdateRegistry:
+      example:
+        httpConfig:
+          httpEnabledState: HTTP_ENABLED
+        logLevel: null
+        logNotificationConfig:
+          pubsubTopicName: pubsubTopicName
+        credentials:
+        - publicKeyCertificate:
+            certificate: certificate
+            format: X509_CERTIFICATE_PEM
+            x509Details:
+              subject: subject
+              expiryTime: expiryTime
+              startTime: startTime
+              issuer: issuer
+              signatureAlgorithm: signatureAlgorithm
+              publicKeyType: publicKeyType
+        - publicKeyCertificate:
+            certificate: certificate
+            format: X509_CERTIFICATE_PEM
+            x509Details:
+              subject: subject
+              expiryTime: expiryTime
+              startTime: startTime
+              issuer: issuer
+              signatureAlgorithm: signatureAlgorithm
+              publicKeyType: publicKeyType
+        eventNotificationConfigs:
+        - subfolderMatches: subfolderMatches
+          pubsubTopicName: pubsubTopicName
+        - subfolderMatches: subfolderMatches
+          pubsubTopicName: pubsubTopicName
+        stateNotificationConfig:
+          pubsubTopicName: pubsubTopicName
+        mqttConfig:
+          mqttEnabledState: MQTT_ENABLED
+      properties:
+        credentials:
+          items:
+            $ref: '#/components/schemas/RegistryCredential'
+          type: array
+        httpConfig:
+          $ref: '#/components/schemas/HttpConfig'
+        mqttConfig:
+          $ref: '#/components/schemas/MqttConfig'
+        logLevel:
+          $ref: '#/components/schemas/LogLevel'
+        eventNotificationConfigs:
+          items:
+            $ref: '#/components/schemas/EventNotificationConfig'
+          type: array
+        logNotificationConfig:
+          $ref: '#/components/schemas/NotificationConfig'
+        stateNotificationConfig:
+          $ref: '#/components/schemas/NotificationConfig'
+      type: object
+    X509CertificateDetails:
+      example:
+        subject: subject
+        expiryTime: expiryTime
+        startTime: startTime
+        issuer: issuer
+        signatureAlgorithm: signatureAlgorithm
+        publicKeyType: publicKeyType
+      properties:
+        expiryTime:
+          description: "ExpiryTime: The time the certificate becomes invalid."
+          type: string
+        issuer:
+          description: "Issuer: The entity that signed the certificate."
+          type: string
+        publicKeyType:
+          description: "PublicKeyType: The type of public key in the certificate."
+          type: string
+        signatureAlgorithm:
+          description: "SignatureAlgorithm: The algorithm used to sign the certificate."
+          type: string
+        startTime:
+          description: "StartTime: The time the certificate becomes valid."
+          type: string
+        subject:
+          description: "Subject: The entity the certificate and public key belong\
+            \ to."
+          type: string
+      type: object
+    bindRequest:
+      properties:
+        deviceId:
+          type: string
+        gatewayId:
+          type: string
+      required:
+      - deviceId
+      - gatewayId
+      type: object
+    bindRequestIdsGateway:
+      properties:
+        deviceIds:
+          items:
+            type: string
+          type: array
+        gatewayId:
+          type: string
+      required:
+      - deviceIds
+      - gatewayId
+      type: object
+    LogLevel:
+      enum:
+      - INFO
+      - ERROR
+      type: string
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
