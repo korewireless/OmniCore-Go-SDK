@@ -547,7 +547,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewDevice'
+              $ref: '#/components/schemas/CreateNewDevice'
         description: application/json
         required: true
       responses:
@@ -1009,10 +1009,10 @@ paths:
           description: Internal Server Error
       tags:
       - device
-  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice:
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice:
     post:
-      description: Send A Config To A Device
-      operationId: sendConfigurationToDevice
+      description: Update A Configuration Of A Device
+      operationId: updateConfigurationToDevice
       parameters:
       - description: Subscription ID
         explode: false
@@ -1894,7 +1894,7 @@ components:
           - MQTT_STATE_UNSPECIFIED
           type: string
       type: object
-    NewDevice:
+    CreateNewDevice:
       example:
         metadata:
           key: metadata

@@ -87,9 +87,9 @@ Class | Method | HTTP request | Description
 *DeviceApi* | [**GetDevices**](docs/DeviceApi.md#getdevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
 *DeviceApi* | [**GetStates**](docs/DeviceApi.md#getstates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
 *DeviceApi* | [**SendCommandToDevice**](docs/DeviceApi.md#sendcommandtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
-*DeviceApi* | [**SendConfigurationToDevice**](docs/DeviceApi.md#sendconfigurationtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice | 
 *DeviceApi* | [**UnBindDevice**](docs/DeviceApi.md#unbinddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
 *DeviceApi* | [**UnBindDevices**](docs/DeviceApi.md#unbinddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
+*DeviceApi* | [**UpdateConfigurationToDevice**](docs/DeviceApi.md#updateconfigurationtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice | 
 *DeviceApi* | [**UpdateDevice**](docs/DeviceApi.md#updatedevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
 *RegistryApi* | [**CreateRegistry**](docs/RegistryApi.md#createregistry) | **Post** /subscriptions/{subscriptionId}/registries | 
 *RegistryApi* | [**DeleteRegistry**](docs/RegistryApi.md#deleteregistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | 
@@ -103,6 +103,7 @@ Class | Method | HTTP request | Description
  - [BindRequest](docs/BindRequest.md)
  - [BindRequestIdsGateway](docs/BindRequestIdsGateway.md)
  - [BlockCommunicationBody](docs/BlockCommunicationBody.md)
+ - [CreateNewDevice](docs/CreateNewDevice.md)
  - [Device](docs/Device.md)
  - [DeviceCertificate](docs/DeviceCertificate.md)
  - [DeviceCommand](docs/DeviceCommand.md)
@@ -124,7 +125,6 @@ Class | Method | HTTP request | Description
  - [ListDevicesResponse](docs/ListDevicesResponse.md)
  - [LogLevel](docs/LogLevel.md)
  - [MqttConfig](docs/MqttConfig.md)
- - [NewDevice](docs/NewDevice.md)
  - [NewRegistry](docs/NewRegistry.md)
  - [NotificationConfig](docs/NotificationConfig.md)
  - [PublicKeyCertificate](docs/PublicKeyCertificate.md)
