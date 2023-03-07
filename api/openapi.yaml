@@ -4,13 +4,11 @@ info:
     email: support@korewireless.com
     name: API Support
     url: http://www.korewireless.com
-  description: This is an OmniCore Model and State Management server.
-  title: OmniCore Model and State Management API
+  description: This is an Omnicore Model and State Management server.
+  title: Omnicore Model and State Management API
   version: "1.0"
 servers:
 - url: https://demo-api.omnicore.cloud.korewireless.com/model-state-management
-security:
-- bearerAuth: []
 paths:
   /subscriptions/{subscriptionId}/registries:
     get:
@@ -18,54 +16,47 @@ paths:
       operationId: getRegistries
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Page Number
-        explode: true
         in: query
         name: pageNumber
-        required: false
         schema:
           type: integer
-        style: form
       - description: Page Size
-        explode: true
         in: query
         name: pageSize
-        required: false
         schema:
           type: integer
-        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListDeviceRegistries'
+                $ref: '#/components/schemas/omnicore.ListDeviceRegistriesResponse'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Get All Registries
       tags:
       - registry
     post:
@@ -73,44 +64,44 @@ paths:
       operationId: createRegistry
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/createRegistry_request'
         description: application/json
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createRegistry_200_response'
+                $ref: '#/components/schemas/omnicore.DeviceRegistry'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Add New Registry
       tags:
       - registry
       x-codegen-request-body-name: Registry
@@ -120,46 +111,43 @@ paths:
       operationId: deleteRegistry
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: '#/components/schemas/omnicore.Info'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Remove Registry
       tags:
       - registry
     get:
@@ -167,46 +155,43 @@ paths:
       operationId: getRegistry
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeviceRegistry'
+                $ref: '#/components/schemas/omnicore.DeviceRegistry'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Get Registry
       tags:
       - registry
     patch:
@@ -214,23 +199,18 @@ paths:
       operationId: updateRegistry
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: "values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials"
-        explode: true
         in: query
         name: updateMask
         required: true
@@ -244,38 +224,39 @@ paths:
           - logLevel
           - credentials
           type: string
-        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateRegistry_request'
+              $ref: '#/components/schemas/omnicore.UpdateRegistry'
         description: application/json
+        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createRegistry_200_response'
+                $ref: '#/components/schemas/omnicore.DeviceRegistry'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Modify Registry
       tags:
       - registry
       x-codegen-request-body-name: Registry
@@ -285,26 +266,22 @@ paths:
       operationId: bindDevice
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/bindRequest'
+              $ref: '#/components/schemas/omnicore.bindRequest'
         description: application/json
         required: true
       responses:
@@ -312,26 +289,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: '#/components/schemas/omnicore.Info'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Gateway - Bind a Device to Gateway
       tags:
       - device
       x-codegen-request-body-name: Device
@@ -341,26 +319,22 @@ paths:
       operationId: bindDevices
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/bindRequestIdsGateway'
+              $ref: '#/components/schemas/omnicore.bindRequestIdsGateway'
         description: application/json
         required: true
       responses:
@@ -368,26 +342,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: '#/components/schemas/omnicore.Info'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Gateway - Bind Devices to Gateway
       tags:
       - device
       x-codegen-request-body-name: Device
@@ -397,55 +372,41 @@ paths:
       operationId: getDevices
       parameters:
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Page Number
-        explode: true
         in: query
         name: pageNumber
-        required: false
         schema:
           type: integer
-        style: form
       - description: "The maximum number of devices to return in the response. If\
           \ this value is zero, the service will select a default size. "
-        explode: true
         in: query
         name: pageSize
-        required: false
         schema:
           type: integer
-        style: form
       - description: "The fields of the Device resource to be returned to the response.\
           \ The fields id and numId are always returned, along with any other fields\
           \ specified. A comma-separated list of fully qualified names of fields.\
           \ Example: "
-        explode: true
         in: query
         name: fieldMask
-        required: false
         schema:
           type: string
-        style: form
       - description: "A list of device string IDs. For example, ['device0', 'device12'].\
           \ If empty, this field is ignored. Maximum IDs: 10,000"
         explode: false
         in: query
         name: deviceIds
-        required: false
         schema:
           items:
             type: string
@@ -456,7 +417,6 @@ paths:
         explode: false
         in: query
         name: deviceNumIds
-        required: false
         schema:
           items:
             type: string
@@ -466,59 +426,51 @@ paths:
           \ is associated. The device ID can be numeric (num_id) or the user-defined\
           \ string (id). For example, if 456 is specified, returns only the gateways\
           \ to which the device with num_id 456 is bound."
-        explode: true
         in: query
         name: gatewayListOptions.associationsDeviceId
-        required: false
         schema:
           type: string
-        style: form
       - description: "If set, only devices associated with the specified gateway are\
           \ returned. The gateway ID can be numeric (num_id) or the user-defined string\
           \ (id). For example, if 123 is specified, only devices bound to the gateway\
           \ with num_id 123 are returned"
-        explode: true
         in: query
         name: gatewayListOptions.associationsGatewayId
-        required: false
         schema:
           type: string
-        style: form
       - description: "If GATEWAY is specified, only gateways are returned. If NON_GATEWAY\
           \ is specified, only non-gateway devices are returned. If GATEWAY_TYPE_UNSPECIFIED\
           \ is specified, all devices are returned."
-        explode: true
         in: query
         name: gatewayListOptions.gatewayType
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListDevicesResponse'
+                $ref: '#/components/schemas/omnicore.ListDevicesResponse'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Get All Devices
       tags:
       - device
     post:
@@ -526,26 +478,22 @@ paths:
       operationId: createDevice
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateNewDevice'
+              $ref: '#/components/schemas/omnicore.NewDevice'
         description: application/json
         required: true
       responses:
@@ -553,26 +501,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Device'
+                $ref: '#/components/schemas/omnicore.Device'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Add New Device
       tags:
       - device
       x-codegen-request-body-name: Device
@@ -582,54 +531,49 @@ paths:
       operationId: deleteDevice
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: Device ID
-        explode: false
         in: path
         name: deviceId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: '#/components/schemas/omnicore.Info'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Remove Device
       tags:
       - device
     get:
@@ -637,54 +581,49 @@ paths:
       operationId: getDevice
       parameters:
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Device ID
-        explode: false
         in: path
         name: deviceId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Device'
+                $ref: '#/components/schemas/omnicore.Device'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Get Device
       tags:
       - device
     patch:
@@ -692,34 +631,27 @@ paths:
       operationId: updateDevice
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: Device ID
-        explode: false
         in: path
         name: deviceId
         required: true
         schema:
           type: string
-        style: simple
       - description: "Required. Only updates the device fields indicated by this mask.\
           \ The field mask must not be empty, and it must not contain fields that\
           \ are immutable or only set by the server. Mutable top-level fields: credentials,log_level,\
           \ blocked, and metadata"
-        explode: true
         in: query
         name: updateMask
         required: true
@@ -731,12 +663,11 @@ paths:
           - credentials
           - gatewayConfig.gatewayAuthMethod
           type: string
-        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateDevice'
+              $ref: '#/components/schemas/omnicore.UpdateDevice'
         description: application/json
         required: true
       responses:
@@ -744,26 +675,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Device'
+                $ref: '#/components/schemas/omnicore.Device'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Modify Device
       tags:
       - device
       x-codegen-request-body-name: Device
@@ -773,26 +705,22 @@ paths:
       operationId: unBindDevice
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/bindRequest'
+              $ref: '#/components/schemas/omnicore.bindRequest'
         description: application/json
         required: true
       responses:
@@ -800,26 +728,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: '#/components/schemas/omnicore.Info'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Gateway - UnBind a Device from Gateway
       tags:
       - device
       x-codegen-request-body-name: Device
@@ -829,26 +758,22 @@ paths:
       operationId: unBindDevices
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionId
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/bindRequestIdsGateway'
+              $ref: '#/components/schemas/omnicore.bindRequestIdsGateway'
         description: application/json
         required: true
       responses:
@@ -856,26 +781,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: '#/components/schemas/omnicore.Info'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Gateway - UnBind Devices from Gateway
       tags:
       - device
       x-codegen-request-body-name: Device
@@ -885,34 +811,28 @@ paths:
       operationId: blockDeviceCommuncation
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionid
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: Device ID
-        explode: false
         in: path
         name: deviceId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BlockCommunicationBody'
+              $ref: '#/components/schemas/omnicore.BlockCommunicationBody'
         description: application/json
         required: true
       responses:
@@ -920,26 +840,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericEmptyResponse'
+                $ref: '#/components/schemas/omnicore.GenericEmptyResponse'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Block Device Communication
       tags:
       - device
       x-codegen-request-body-name: Device
@@ -949,162 +870,85 @@ paths:
       operationId: getConfig
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionid
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: Device ID
-        explode: false
         in: path
         name: deviceId
         required: true
         schema:
           type: string
-        style: simple
       - description: Device ID
-        explode: true
         in: query
         name: numVersions
         required: true
         schema:
           type: integer
-        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListDeviceConfigVersionsResponse'
+                $ref: '#/components/schemas/omnicore.ListDeviceConfigVersionsResponse'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Get Config
       tags:
       - device
-  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice:
-    post:
-      description: Update A Configuration Of A Device
-      operationId: updateConfigurationToDevice
-      parameters:
-      - description: Subscription ID
-        explode: false
-        in: path
-        name: subscriptionid
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Registry ID
-        explode: false
-        in: path
-        name: registryId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Device ID
-        explode: false
-        in: path
-        name: deviceId
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DeviceConfiguration'
-        description: application/json
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeviceConfig'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
-          description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
-          description: Internal Server Error
-      tags:
-      - device
-      x-codegen-request-body-name: Device
   /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice:
     post:
       description: Send A Command To A Device
       operationId: sendCommandToDevice
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionid
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: Device ID
-        explode: false
         in: path
         name: deviceId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DeviceCommand'
+              $ref: '#/components/schemas/omnicore.Command'
         description: application/json
         required: true
       responses:
@@ -1112,26 +956,86 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericEmptyResponse'
+                $ref: '#/components/schemas/omnicore.GenericEmptyResponse'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Send Command
+      tags:
+      - device
+      x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice:
+    post:
+      description: Send A Config To A Device
+      operationId: sendConfigurationToDevice
+      parameters:
+      - description: Subscription ID
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+      - description: Registry ID
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+      - description: Device ID
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/omnicore.Config'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/omnicore.DeviceConfig'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
+          description: Internal Server Error
+      summary: Send Config
       tags:
       - device
       x-codegen-request-body-name: Device
@@ -1141,96 +1045,77 @@ paths:
       operationId: getStates
       parameters:
       - description: Subscription ID
-        explode: false
         in: path
         name: subscriptionid
         required: true
         schema:
           type: string
-        style: simple
       - description: Registry ID
-        explode: false
         in: path
         name: registryId
         required: true
         schema:
           type: string
-        style: simple
       - description: Device ID
-        explode: false
         in: path
         name: deviceId
         required: true
         schema:
           type: string
-        style: simple
       - description: "The number of states to list. States are listed in descending\
           \ order of update time. The maximum number of states retained is 10. If\
           \ this value is zero, it will return all the states available."
-        explode: true
         in: query
         name: numStates
-        required: false
         schema:
           type: integer
-        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListDeviceStatesResponse'
+                $ref: '#/components/schemas/omnicore.ListDeviceStatesResponse'
           description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Bad Request
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Not Found
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
+                $ref: '#/components/schemas/omnicore.GenericErrorResponse'
           description: Internal Server Error
+      summary: Get States
       tags:
       - device
 components:
   schemas:
-    BlockCommunicationBody:
-      example:
-        isblocked: true
+    omnicore.BlockCommunicationBody:
       properties:
         isblocked:
           type: boolean
       type: object
-    DeviceCommand:
-      example:
-        binaryData: binaryData
-        subfolder: subfolder
+    omnicore.Command:
       properties:
         binaryData:
-          description: Base64 Encoded Command String
           type: string
         subfolder:
           type: string
       required:
       - binaryData
       type: object
-    DeviceConfiguration:
-      example:
-        binaryData: binaryData
-        subfolder: subfolder
-        versionToUpdate: versionToUpdate
+    omnicore.Config:
       properties:
         binaryData:
-          description: Base64 Encoded Config String
           type: string
         subfolder:
           type: string
@@ -1239,7 +1124,7 @@ components:
       required:
       - binaryData
       type: object
-    Device:
+    omnicore.Device:
       example:
         parent: parent
         metadata:
@@ -1247,30 +1132,32 @@ components:
         subscriptions:
         - subscriptions
         - subscriptions
-        numId: numId
         credentials:
         - expirationTime: expirationTime
+          id: id
           publicKey:
             format: RSA_PEM
             key: key
         - expirationTime: expirationTime
+          id: id
           publicKey:
             format: RSA_PEM
             key: key
         lastConfigSendTime: lastConfigSendTime
+        numId: numId
         lastErrorStatus:
-          code: 0
+          code: 6
           details: details
           message: message
         subscription: subscription
         capresent: true
         createdOn: createdOn
-        deviceErrors: deviceErrors
         clientOnline: true
+        deviceErrors: deviceErrors
         lastErrorTime: lastErrorTime
         isGateway: true
         blocked: true
-        logLevel: null
+        logLevel: INFO
         lastHeartbeatTime: lastHeartbeatTime
         id: id
         state:
@@ -1289,56 +1176,46 @@ components:
           cloudUpdateTime: cloudUpdateTime
           binaryData: binaryData
           deviceAckTime: deviceAckTime
-          version: 6
+          version: 0
         gateway:
         - gateway
         - gateway
         lastStateTime: lastStateTime
       properties:
-        id:
-          maxLength: 256
-          minLength: 3
-          type: string
-        name:
-          type: string
-        numId:
-          type: string
-        parent:
-          type: string
-        registry:
-          type: string
         blocked:
           type: boolean
         capresent:
           type: boolean
-        subscription:
-          type: string
+        clientOnline:
+          type: boolean
+        config:
+          $ref: '#/components/schemas/omnicore.DeviceConfig'
         createdOn:
-          type: string
-        updatedOn:
           type: string
         credentials:
           items:
-            $ref: '#/components/schemas/DeviceCredential'
+            $ref: '#/components/schemas/omnicore.DeviceCredential'
           type: array
+        deviceErrors:
+          type: string
         gateway:
           items:
             type: string
           type: array
         gatewayConfig:
-          $ref: '#/components/schemas/GatewayConfig'
-        isGateway:
-          type: boolean
-        deviceErrors:
+          $ref: '#/components/schemas/omnicore.GatewayConfig'
+        id:
+          maxLength: 256
+          minLength: 3
           type: string
-        clientOnline:
+        isGateway:
           type: boolean
         lastConfigAckTime:
           type: string
         lastConfigSendTime:
           type: string
         lastErrorStatus:
-          $ref: '#/components/schemas/ErrorStatus'
+          $ref: '#/components/schemas/omnicore.ErrorStatus'
         lastErrorTime:
           type: string
         lastEventTime:
@@ -1348,44 +1225,49 @@ components:
         lastStateTime:
           type: string
         logLevel:
-          $ref: '#/components/schemas/LogLevel'
+          enum:
+          - INFO
+          - ERROR
+          type: string
         metadata:
           additionalProperties:
             type: string
           type: object
-        config:
-          $ref: '#/components/schemas/DeviceConfig'
+        name:
+          type: string
+        numId:
+          type: string
+        parent:
+          type: string
+        registry:
+          type: string
         state:
-          $ref: '#/components/schemas/DeviceState'
+          $ref: '#/components/schemas/omnicore.DeviceState'
+        subscription:
+          type: string
         subscriptions:
           items:
             type: string
           type: array
+        updatedOn:
+          type: string
       required:
       - id
       - parent
       - registry
       - subscription
       type: object
-    DeviceCertificate:
-      properties:
-        credentials:
-          $ref: '#/components/schemas/DeviceCredential'
-      required:
-      - credentials
-      type: object
-    DeviceConfig:
+    omnicore.DeviceConfig:
       example:
         acknowledged: true
         cloudUpdateTime: cloudUpdateTime
         binaryData: binaryData
         deviceAckTime: deviceAckTime
-        version: 6
+        version: 0
       properties:
         acknowledged:
           type: boolean
         binaryData:
-          description: Base64 Encoded Comnfig String
           type: string
         cloudUpdateTime:
           type: string
@@ -1394,9 +1276,10 @@ components:
         version:
           type: integer
       type: object
-    DeviceCredential:
+    omnicore.DeviceCredential:
       example:
         expirationTime: expirationTime
+        id: id
         publicKey:
           format: RSA_PEM
           key: key
@@ -1408,10 +1291,12 @@ components:
             authentication requests after this timestamp; however, it will not be
             automatically deleted.
           type: string
+        id:
+          type: string
         publicKey:
-          $ref: '#/components/schemas/PublicKeyCredential'
+          $ref: '#/components/schemas/omnicore.PublicKeyCredential'
       type: object
-    DeviceRegistry:
+    omnicore.DeviceRegistry:
       example:
         parent: parent
         logNotificationConfig:
@@ -1427,6 +1312,7 @@ components:
               issuer: issuer
               signatureAlgorithm: signatureAlgorithm
               publicKeyType: publicKeyType
+          id: id
         - publicKeyCertificate:
             certificate: certificate
             format: X509_CERTIFICATE_PEM
@@ -1437,13 +1323,14 @@ components:
               issuer: issuer
               signatureAlgorithm: signatureAlgorithm
               publicKeyType: publicKeyType
+          id: id
         stateNotificationConfig:
           pubsubTopicName: pubsubTopicName
         updatedOn: updatedOn
         createdOn: createdOn
         httpConfig:
           httpEnabledState: HTTP_ENABLED
-        logLevel: null
+        logLevel: INFO
         eventNotificationConfigs:
         - subfolderMatches: subfolderMatches
           pubsubTopicName: pubsubTopicName
@@ -1456,56 +1343,58 @@ components:
         mqttConfig:
           mqttEnabledState: MQTT_ENABLED
       properties:
+        createdOn:
+          type: string
+        credentials:
+          items:
+            $ref: '#/components/schemas/omnicore.RegistryCredential'
+          type: array
+        eventNotificationConfigs:
+          items:
+            $ref: '#/components/schemas/omnicore.EventNotificationConfig'
+          type: array
+        httpConfig:
+          $ref: '#/components/schemas/omnicore.HttpConfig'
         id:
           maxLength: 256
           minLength: 3
           type: string
+        logLevel:
+          enum:
+          - INFO
+          - ERROR
+          type: string
+        logNotificationConfig:
+          $ref: '#/components/schemas/omnicore.StateNotificationConfig'
+        mqttConfig:
+          $ref: '#/components/schemas/omnicore.MqttConfig'
         name:
           type: string
-        parent:
-          type: string
-        createdOn:
-          type: string
-        updatedOn:
-          type: string
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
-        logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
         numberOfDevices:
           type: integer
         numberOfGateways:
           type: integer
+        parent:
+          type: string
+        stateNotificationConfig:
+          $ref: '#/components/schemas/omnicore.StateNotificationConfig'
+        updatedOn:
+          type: string
       required:
       - id
       - parent
       type: object
-    DeviceState:
+    omnicore.DeviceState:
       example:
         binaryData: binaryData
         updateTime: updateTime
       properties:
         binaryData:
-          description: Base64 Encoded State String
           type: string
         updateTime:
           type: string
       type: object
-    ErrorFrame:
+    omnicore.ErrorFrame:
       properties:
         code:
           type: integer
@@ -1521,9 +1410,9 @@ components:
       - message
       - status
       type: object
-    ErrorStatus:
+    omnicore.ErrorStatus:
       example:
-        code: 0
+        code: 6
         details: details
         message: message
       properties:
@@ -1534,7 +1423,7 @@ components:
         message:
           type: string
       type: object
-    EventNotificationConfig:
+    omnicore.EventNotificationConfig:
       example:
         subfolderMatches: subfolderMatches
         pubsubTopicName: pubsubTopicName
@@ -1553,7 +1442,7 @@ components:
             state changes.
           type: string
       type: object
-    GatewayConfig:
+    omnicore.GatewayConfig:
       example:
         gatewayType: NON_GATEWAY
         gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
@@ -1571,16 +1460,16 @@ components:
           - GATEWAY
           type: string
       type: object
-    GenericEmptyResponse:
+    omnicore.GenericEmptyResponse:
       type: object
-    GenericErrorResponse:
+    omnicore.GenericErrorResponse:
       properties:
         error:
-          $ref: '#/components/schemas/ErrorFrame'
+          $ref: '#/components/schemas/omnicore.ErrorFrame'
       required:
       - error
       type: object
-    HttpConfig:
+    omnicore.HttpConfig:
       example:
         httpEnabledState: HTTP_ENABLED
       properties:
@@ -1603,33 +1492,33 @@ components:
           - HTTP_STATE_UNSPECIFIED
           type: string
       type: object
-    Info:
+    omnicore.Info:
       example:
         info: info
       properties:
         info:
           type: string
       type: object
-    ListDeviceConfigVersionsResponse:
+    omnicore.ListDeviceConfigVersionsResponse:
       example:
         deviceConfigs:
         - acknowledged: true
           cloudUpdateTime: cloudUpdateTime
           binaryData: binaryData
           deviceAckTime: deviceAckTime
-          version: 6
+          version: 0
         - acknowledged: true
           cloudUpdateTime: cloudUpdateTime
           binaryData: binaryData
           deviceAckTime: deviceAckTime
-          version: 6
+          version: 0
       properties:
         deviceConfigs:
           items:
-            $ref: '#/components/schemas/DeviceConfig'
+            $ref: '#/components/schemas/omnicore.DeviceConfig'
           type: array
       type: object
-    ListDeviceRegistries:
+    omnicore.ListDeviceRegistriesResponse:
       example:
         pageNumber: 1
         deviceRegistries:
@@ -1647,6 +1536,7 @@ components:
                 issuer: issuer
                 signatureAlgorithm: signatureAlgorithm
                 publicKeyType: publicKeyType
+            id: id
           - publicKeyCertificate:
               certificate: certificate
               format: X509_CERTIFICATE_PEM
@@ -1657,13 +1547,14 @@ components:
                 issuer: issuer
                 signatureAlgorithm: signatureAlgorithm
                 publicKeyType: publicKeyType
+            id: id
           stateNotificationConfig:
             pubsubTopicName: pubsubTopicName
           updatedOn: updatedOn
           createdOn: createdOn
           httpConfig:
             httpEnabledState: HTTP_ENABLED
-          logLevel: null
+          logLevel: INFO
           eventNotificationConfigs:
           - subfolderMatches: subfolderMatches
             pubsubTopicName: pubsubTopicName
@@ -1689,6 +1580,7 @@ components:
                 issuer: issuer
                 signatureAlgorithm: signatureAlgorithm
                 publicKeyType: publicKeyType
+            id: id
           - publicKeyCertificate:
               certificate: certificate
               format: X509_CERTIFICATE_PEM
@@ -1699,13 +1591,14 @@ components:
                 issuer: issuer
                 signatureAlgorithm: signatureAlgorithm
                 publicKeyType: publicKeyType
+            id: id
           stateNotificationConfig:
             pubsubTopicName: pubsubTopicName
           updatedOn: updatedOn
           createdOn: createdOn
           httpConfig:
             httpEnabledState: HTTP_ENABLED
-          logLevel: null
+          logLevel: INFO
           eventNotificationConfigs:
           - subfolderMatches: subfolderMatches
             pubsubTopicName: pubsubTopicName
@@ -1722,7 +1615,7 @@ components:
       properties:
         deviceRegistries:
           items:
-            $ref: '#/components/schemas/DeviceRegistry'
+            $ref: '#/components/schemas/omnicore.DeviceRegistry'
           type: array
         pageNumber:
           type: integer
@@ -1733,7 +1626,7 @@ components:
       required:
       - deviceRegistries
       type: object
-    ListDeviceStatesResponse:
+    omnicore.ListDeviceStatesResponse:
       example:
         deviceStates:
         - binaryData: binaryData
@@ -1743,10 +1636,10 @@ components:
       properties:
         deviceStates:
           items:
-            $ref: '#/components/schemas/DeviceState'
+            $ref: '#/components/schemas/omnicore.DeviceState'
           type: array
       type: object
-    ListDevicesResponse:
+    omnicore.ListDevicesResponse:
       example:
         pageNumber: 1
         devices:
@@ -1756,30 +1649,32 @@ components:
           subscriptions:
           - subscriptions
           - subscriptions
-          numId: numId
           credentials:
           - expirationTime: expirationTime
+            id: id
             publicKey:
               format: RSA_PEM
               key: key
           - expirationTime: expirationTime
+            id: id
             publicKey:
               format: RSA_PEM
               key: key
           lastConfigSendTime: lastConfigSendTime
+          numId: numId
           lastErrorStatus:
-            code: 0
+            code: 6
             details: details
             message: message
           subscription: subscription
           capresent: true
           createdOn: createdOn
-          deviceErrors: deviceErrors
           clientOnline: true
+          deviceErrors: deviceErrors
           lastErrorTime: lastErrorTime
           isGateway: true
           blocked: true
-          logLevel: null
+          logLevel: INFO
           lastHeartbeatTime: lastHeartbeatTime
           id: id
           state:
@@ -1798,7 +1693,7 @@ components:
             cloudUpdateTime: cloudUpdateTime
             binaryData: binaryData
             deviceAckTime: deviceAckTime
-            version: 6
+            version: 0
           gateway:
           - gateway
           - gateway
@@ -1809,30 +1704,32 @@ components:
           subscriptions:
           - subscriptions
           - subscriptions
-          numId: numId
           credentials:
           - expirationTime: expirationTime
+            id: id
             publicKey:
               format: RSA_PEM
               key: key
           - expirationTime: expirationTime
+            id: id
             publicKey:
               format: RSA_PEM
               key: key
           lastConfigSendTime: lastConfigSendTime
+          numId: numId
           lastErrorStatus:
-            code: 0
+            code: 6
             details: details
             message: message
           subscription: subscription
           capresent: true
           createdOn: createdOn
-          deviceErrors: deviceErrors
           clientOnline: true
+          deviceErrors: deviceErrors
           lastErrorTime: lastErrorTime
           isGateway: true
           blocked: true
-          logLevel: null
+          logLevel: INFO
           lastHeartbeatTime: lastHeartbeatTime
           id: id
           state:
@@ -1851,7 +1748,7 @@ components:
             cloudUpdateTime: cloudUpdateTime
             binaryData: binaryData
             deviceAckTime: deviceAckTime
-            version: 6
+            version: 0
           gateway:
           - gateway
           - gateway
@@ -1861,7 +1758,7 @@ components:
       properties:
         devices:
           items:
-            $ref: '#/components/schemas/Device'
+            $ref: '#/components/schemas/omnicore.Device'
           type: array
         pageNumber:
           type: integer
@@ -1872,7 +1769,7 @@ components:
       required:
       - devices
       type: object
-    MqttConfig:
+    omnicore.MqttConfig:
       example:
         mqttEnabledState: MQTT_ENABLED
       properties:
@@ -1892,48 +1789,27 @@ components:
           - MQTT_STATE_UNSPECIFIED
           type: string
       type: object
-    CreateNewDevice:
-      example:
-        metadata:
-          key: metadata
-        blocked: true
-        logLevel: null
-        credentials:
-        - expirationTime: expirationTime
-          publicKey:
-            format: RSA_PEM
-            key: key
-        - expirationTime: expirationTime
-          publicKey:
-            format: RSA_PEM
-            key: key
-        id: id
-        config:
-          acknowledged: true
-          cloudUpdateTime: cloudUpdateTime
-          binaryData: binaryData
-          deviceAckTime: deviceAckTime
-          version: 6
-        gatewayConfig:
-          gatewayType: NON_GATEWAY
-          gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+    omnicore.NewDevice:
       properties:
+        blocked:
+          type: boolean
+        config:
+          $ref: '#/components/schemas/omnicore.DeviceConfig'
+        credentials:
+          items:
+            $ref: '#/components/schemas/omnicore.DeviceCredential'
+          type: array
+        gatewayConfig:
+          $ref: '#/components/schemas/omnicore.GatewayConfig'
         id:
           maxLength: 256
           minLength: 3
           type: string
-        blocked:
-          type: boolean
-        credentials:
-          items:
-            $ref: '#/components/schemas/DeviceCredential'
-          type: array
-        gatewayConfig:
-          $ref: '#/components/schemas/GatewayConfig'
-        config:
-          $ref: '#/components/schemas/DeviceConfig'
         logLevel:
-          $ref: '#/components/schemas/LogLevel'
+          enum:
+          - INFO
+          - ERROR
+          type: string
         metadata:
           additionalProperties:
             type: string
@@ -1941,34 +1817,37 @@ components:
       required:
       - id
       type: object
-    NewRegistry:
+    omnicore.NewRegistry:
       properties:
+        credentials:
+          items:
+            $ref: '#/components/schemas/omnicore.RegistryCredential'
+          type: array
+        eventNotificationConfigs:
+          items:
+            $ref: '#/components/schemas/omnicore.EventNotificationConfig'
+          type: array
+        httpConfig:
+          $ref: '#/components/schemas/omnicore.HttpConfig'
         id:
           maxLength: 256
           minLength: 3
           type: string
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
         logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
+          enum:
+          - INFO
+          - ERROR
+          type: string
         logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
+          $ref: '#/components/schemas/omnicore.StateNotificationConfig'
+        mqttConfig:
+          $ref: '#/components/schemas/omnicore.MqttConfig'
         stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
+          $ref: '#/components/schemas/omnicore.StateNotificationConfig'
       required:
       - id
       type: object
-    PublicKeyCertificate:
+    omnicore.PublicKeyCertificate:
       example:
         certificate: certificate
         format: X509_CERTIFICATE_PEM
@@ -1999,9 +1878,9 @@ components:
           - X509_CERTIFICATE_PEM
           type: string
         x509Details:
-          $ref: '#/components/schemas/X509CertificateDetails'
+          $ref: '#/components/schemas/omnicore.X509CertificateDetails'
       type: object
-    PublicKeyCredential:
+    omnicore.PublicKeyCredential:
       example:
         format: RSA_PEM
         key: key
@@ -2044,14 +1923,7 @@ components:
       required:
       - format
       type: object
-    RegistryCertificate:
-      properties:
-        credentials:
-          $ref: '#/components/schemas/RegistryCredential'
-      required:
-      - credentials
-      type: object
-    RegistryCredential:
+    omnicore.RegistryCredential:
       example:
         publicKeyCertificate:
           certificate: certificate
@@ -2063,11 +1935,14 @@ components:
             issuer: issuer
             signatureAlgorithm: signatureAlgorithm
             publicKeyType: publicKeyType
+        id: id
       properties:
+        id:
+          type: string
         publicKeyCertificate:
-          $ref: '#/components/schemas/PublicKeyCertificate'
+          $ref: '#/components/schemas/omnicore.PublicKeyCertificate'
       type: object
-    NotificationConfig:
+    omnicore.StateNotificationConfig:
       example:
         pubsubTopicName: pubsubTopicName
       properties:
@@ -2077,57 +1952,49 @@ components:
             `projects/myProject/topics/deviceEvents`.
           type: string
       type: object
-    UpdateDevice:
-      example:
-        metadata:
-          key: metadata
-        blocked: true
-        logLevel: null
-        credentials:
-        - expirationTime: expirationTime
-          publicKey:
-            format: RSA_PEM
-            key: key
-        - expirationTime: expirationTime
-          publicKey:
-            format: RSA_PEM
-            key: key
+    omnicore.UpdateDevice:
       properties:
         blocked:
           type: boolean
         credentials:
           items:
-            $ref: '#/components/schemas/DeviceCredential'
+            $ref: '#/components/schemas/omnicore.DeviceCredential'
           type: array
         logLevel:
-          $ref: '#/components/schemas/LogLevel'
+          enum:
+          - INFO
+          - ERROR
+          type: string
         metadata:
           additionalProperties:
             type: string
           type: object
       type: object
-    UpdateRegistry:
+    omnicore.UpdateRegistry:
       properties:
         credentials:
           items:
-            $ref: '#/components/schemas/RegistryCredential'
+            $ref: '#/components/schemas/omnicore.RegistryCredential'
           type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
         eventNotificationConfigs:
           items:
-            $ref: '#/components/schemas/EventNotificationConfig'
+            $ref: '#/components/schemas/omnicore.EventNotificationConfig'
           type: array
+        httpConfig:
+          $ref: '#/components/schemas/omnicore.HttpConfig'
+        logLevel:
+          enum:
+          - INFO
+          - ERROR
+          type: string
         logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
+          $ref: '#/components/schemas/omnicore.StateNotificationConfig'
+        mqttConfig:
+          $ref: '#/components/schemas/omnicore.MqttConfig'
         stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
+          $ref: '#/components/schemas/omnicore.StateNotificationConfig'
       type: object
-    X509CertificateDetails:
+    omnicore.X509CertificateDetails:
       example:
         subject: subject
         expiryTime: expiryTime
@@ -2156,7 +2023,7 @@ components:
             \ to."
           type: string
       type: object
-    bindRequest:
+    omnicore.bindRequest:
       properties:
         deviceId:
           type: string
@@ -2166,7 +2033,7 @@ components:
       - deviceId
       - gatewayId
       type: object
-    bindRequestIdsGateway:
+    omnicore.bindRequestIdsGateway:
       properties:
         deviceIds:
           items:
@@ -2178,144 +2045,34 @@ components:
       - deviceIds
       - gatewayId
       type: object
-    LogLevel:
-      enum:
-      - INFO
-      - ERROR
-      type: string
     createRegistry_request:
       properties:
+        credentials:
+          items:
+            $ref: '#/components/schemas/omnicore.RegistryCredential'
+          type: array
+        eventNotificationConfigs:
+          items:
+            $ref: '#/components/schemas/omnicore.EventNotificationConfig'
+          type: array
+        httpConfig:
+          $ref: '#/components/schemas/omnicore.HttpConfig'
         id:
           maxLength: 256
           minLength: 3
           type: string
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
         logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
+          enum:
+          - INFO
+          - ERROR
+          type: string
         logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
+          $ref: '#/components/schemas/omnicore.StateNotificationConfig'
+        mqttConfig:
+          $ref: '#/components/schemas/omnicore.MqttConfig'
         stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
+          $ref: '#/components/schemas/omnicore.StateNotificationConfig'
       required:
       - id
       type: object
-    createRegistry_200_response:
-      example:
-        parent: parent
-        logNotificationConfig:
-          pubsubTopicName: pubsubTopicName
-        credentials:
-        - publicKeyCertificate:
-            certificate: certificate
-            format: X509_CERTIFICATE_PEM
-            x509Details:
-              subject: subject
-              expiryTime: expiryTime
-              startTime: startTime
-              issuer: issuer
-              signatureAlgorithm: signatureAlgorithm
-              publicKeyType: publicKeyType
-        - publicKeyCertificate:
-            certificate: certificate
-            format: X509_CERTIFICATE_PEM
-            x509Details:
-              subject: subject
-              expiryTime: expiryTime
-              startTime: startTime
-              issuer: issuer
-              signatureAlgorithm: signatureAlgorithm
-              publicKeyType: publicKeyType
-        stateNotificationConfig:
-          pubsubTopicName: pubsubTopicName
-        updatedOn: updatedOn
-        createdOn: createdOn
-        httpConfig:
-          httpEnabledState: HTTP_ENABLED
-        logLevel: null
-        eventNotificationConfigs:
-        - subfolderMatches: subfolderMatches
-          pubsubTopicName: pubsubTopicName
-        - subfolderMatches: subfolderMatches
-          pubsubTopicName: pubsubTopicName
-        name: name
-        id: id
-        numberOfDevices: 0
-        numberOfGateways: 6
-        mqttConfig:
-          mqttEnabledState: MQTT_ENABLED
-      properties:
-        id:
-          maxLength: 256
-          minLength: 3
-          type: string
-        name:
-          type: string
-        parent:
-          type: string
-        createdOn:
-          type: string
-        updatedOn:
-          type: string
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
-        logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        numberOfDevices:
-          type: integer
-        numberOfGateways:
-          type: integer
-      required:
-      - id
-      - parent
-      type: object
-    updateRegistry_request:
-      properties:
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
-        logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-      type: object
-  securitySchemes:
-    bearerAuth:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
+x-original-swagger-version: "2.0"

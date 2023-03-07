@@ -43,12 +43,12 @@ func (r ApiCreateRegistryRequest) Registry(registry CreateRegistryRequest) ApiCr
 	return r
 }
 
-func (r ApiCreateRegistryRequest) Execute() (*CreateRegistry200Response, *http.Response, error) {
+func (r ApiCreateRegistryRequest) Execute() (*OmnicoreDeviceRegistry, *http.Response, error) {
 	return r.ApiService.CreateRegistryExecute(r)
 }
 
 /*
-CreateRegistry Method for CreateRegistry
+CreateRegistry Add New Registry
 
 Create a registry
 
@@ -65,13 +65,13 @@ func (a *RegistryApiService) CreateRegistry(ctx context.Context, subscriptionId 
 }
 
 // Execute executes the request
-//  @return CreateRegistry200Response
-func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (*CreateRegistry200Response, *http.Response, error) {
+//  @return OmnicoreDeviceRegistry
+func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (*OmnicoreDeviceRegistry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateRegistry200Response
+		localVarReturnValue  *OmnicoreDeviceRegistry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegistryApiService.CreateRegistry")
@@ -85,6 +85,9 @@ func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.registry == nil {
+		return localVarReturnValue, nil, reportError("registry is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -128,7 +131,7 @@ func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -139,7 +142,7 @@ func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -150,7 +153,7 @@ func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,12 +184,12 @@ type ApiDeleteRegistryRequest struct {
 	registryId string
 }
 
-func (r ApiDeleteRegistryRequest) Execute() (*Info, *http.Response, error) {
+func (r ApiDeleteRegistryRequest) Execute() (*OmnicoreInfo, *http.Response, error) {
 	return r.ApiService.DeleteRegistryExecute(r)
 }
 
 /*
-DeleteRegistry Method for DeleteRegistry
+DeleteRegistry Remove Registry
 
 Delete a registry
 
@@ -205,13 +208,13 @@ func (a *RegistryApiService) DeleteRegistry(ctx context.Context, subscriptionId 
 }
 
 // Execute executes the request
-//  @return Info
-func (a *RegistryApiService) DeleteRegistryExecute(r ApiDeleteRegistryRequest) (*Info, *http.Response, error) {
+//  @return OmnicoreInfo
+func (a *RegistryApiService) DeleteRegistryExecute(r ApiDeleteRegistryRequest) (*OmnicoreInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Info
+		localVarReturnValue  *OmnicoreInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegistryApiService.DeleteRegistry")
@@ -267,7 +270,7 @@ func (a *RegistryApiService) DeleteRegistryExecute(r ApiDeleteRegistryRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -278,7 +281,7 @@ func (a *RegistryApiService) DeleteRegistryExecute(r ApiDeleteRegistryRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -289,7 +292,7 @@ func (a *RegistryApiService) DeleteRegistryExecute(r ApiDeleteRegistryRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -333,12 +336,12 @@ func (r ApiGetRegistriesRequest) PageSize(pageSize int32) ApiGetRegistriesReques
 	return r
 }
 
-func (r ApiGetRegistriesRequest) Execute() (*ListDeviceRegistries, *http.Response, error) {
+func (r ApiGetRegistriesRequest) Execute() (*OmnicoreListDeviceRegistriesResponse, *http.Response, error) {
 	return r.ApiService.GetRegistriesExecute(r)
 }
 
 /*
-GetRegistries Method for GetRegistries
+GetRegistries Get All Registries
 
 Get all registries under a subscription
 
@@ -355,13 +358,13 @@ func (a *RegistryApiService) GetRegistries(ctx context.Context, subscriptionId s
 }
 
 // Execute executes the request
-//  @return ListDeviceRegistries
-func (a *RegistryApiService) GetRegistriesExecute(r ApiGetRegistriesRequest) (*ListDeviceRegistries, *http.Response, error) {
+//  @return OmnicoreListDeviceRegistriesResponse
+func (a *RegistryApiService) GetRegistriesExecute(r ApiGetRegistriesRequest) (*OmnicoreListDeviceRegistriesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDeviceRegistries
+		localVarReturnValue  *OmnicoreListDeviceRegistriesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegistryApiService.GetRegistries")
@@ -422,7 +425,7 @@ func (a *RegistryApiService) GetRegistriesExecute(r ApiGetRegistriesRequest) (*L
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -433,7 +436,7 @@ func (a *RegistryApiService) GetRegistriesExecute(r ApiGetRegistriesRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -444,7 +447,7 @@ func (a *RegistryApiService) GetRegistriesExecute(r ApiGetRegistriesRequest) (*L
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -475,12 +478,12 @@ type ApiGetRegistryRequest struct {
 	registryId string
 }
 
-func (r ApiGetRegistryRequest) Execute() (*DeviceRegistry, *http.Response, error) {
+func (r ApiGetRegistryRequest) Execute() (*OmnicoreDeviceRegistry, *http.Response, error) {
 	return r.ApiService.GetRegistryExecute(r)
 }
 
 /*
-GetRegistry Method for GetRegistry
+GetRegistry Get Registry
 
 Get a registry
 
@@ -499,13 +502,13 @@ func (a *RegistryApiService) GetRegistry(ctx context.Context, subscriptionId str
 }
 
 // Execute executes the request
-//  @return DeviceRegistry
-func (a *RegistryApiService) GetRegistryExecute(r ApiGetRegistryRequest) (*DeviceRegistry, *http.Response, error) {
+//  @return OmnicoreDeviceRegistry
+func (a *RegistryApiService) GetRegistryExecute(r ApiGetRegistryRequest) (*OmnicoreDeviceRegistry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeviceRegistry
+		localVarReturnValue  *OmnicoreDeviceRegistry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegistryApiService.GetRegistry")
@@ -561,7 +564,7 @@ func (a *RegistryApiService) GetRegistryExecute(r ApiGetRegistryRequest) (*Devic
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -572,7 +575,7 @@ func (a *RegistryApiService) GetRegistryExecute(r ApiGetRegistryRequest) (*Devic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -583,7 +586,7 @@ func (a *RegistryApiService) GetRegistryExecute(r ApiGetRegistryRequest) (*Devic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -613,7 +616,7 @@ type ApiUpdateRegistryRequest struct {
 	subscriptionId string
 	registryId string
 	updateMask *string
-	registry *UpdateRegistryRequest
+	registry *OmnicoreUpdateRegistry
 }
 
 // values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials
@@ -623,17 +626,17 @@ func (r ApiUpdateRegistryRequest) UpdateMask(updateMask string) ApiUpdateRegistr
 }
 
 // application/json
-func (r ApiUpdateRegistryRequest) Registry(registry UpdateRegistryRequest) ApiUpdateRegistryRequest {
+func (r ApiUpdateRegistryRequest) Registry(registry OmnicoreUpdateRegistry) ApiUpdateRegistryRequest {
 	r.registry = &registry
 	return r
 }
 
-func (r ApiUpdateRegistryRequest) Execute() (*CreateRegistry200Response, *http.Response, error) {
+func (r ApiUpdateRegistryRequest) Execute() (*OmnicoreDeviceRegistry, *http.Response, error) {
 	return r.ApiService.UpdateRegistryExecute(r)
 }
 
 /*
-UpdateRegistry Method for UpdateRegistry
+UpdateRegistry Modify Registry
 
 Update a registry
 
@@ -652,13 +655,13 @@ func (a *RegistryApiService) UpdateRegistry(ctx context.Context, subscriptionId 
 }
 
 // Execute executes the request
-//  @return CreateRegistry200Response
-func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (*CreateRegistry200Response, *http.Response, error) {
+//  @return OmnicoreDeviceRegistry
+func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (*OmnicoreDeviceRegistry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateRegistry200Response
+		localVarReturnValue  *OmnicoreDeviceRegistry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegistryApiService.UpdateRegistry")
@@ -675,6 +678,9 @@ func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (
 	localVarFormParams := url.Values{}
 	if r.updateMask == nil {
 		return localVarReturnValue, nil, reportError("updateMask is required and must be specified")
+	}
+	if r.registry == nil {
+		return localVarReturnValue, nil, reportError("registry is required and must be specified")
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "updateMask", r.updateMask, "")
@@ -720,7 +726,7 @@ func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -731,7 +737,7 @@ func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -742,7 +748,7 @@ func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

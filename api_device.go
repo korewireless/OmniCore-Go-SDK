@@ -35,21 +35,21 @@ type ApiBindDeviceRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *BindRequest
+	device *OmnicoreBindRequest
 }
 
 // application/json
-func (r ApiBindDeviceRequest) Device(device BindRequest) ApiBindDeviceRequest {
+func (r ApiBindDeviceRequest) Device(device OmnicoreBindRequest) ApiBindDeviceRequest {
 	r.device = &device
 	return r
 }
 
-func (r ApiBindDeviceRequest) Execute() (*Info, *http.Response, error) {
+func (r ApiBindDeviceRequest) Execute() (*OmnicoreInfo, *http.Response, error) {
 	return r.ApiService.BindDeviceExecute(r)
 }
 
 /*
-BindDevice Method for BindDevice
+BindDevice Gateway - Bind a Device to Gateway
 
 Bind  a device to a gateway under a registry
 
@@ -68,13 +68,13 @@ func (a *DeviceApiService) BindDevice(ctx context.Context, subscriptionId string
 }
 
 // Execute executes the request
-//  @return Info
-func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*Info, *http.Response, error) {
+//  @return OmnicoreInfo
+func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*OmnicoreInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Info
+		localVarReturnValue  *OmnicoreInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.BindDevice")
@@ -135,7 +135,7 @@ func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*Info, *ht
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -146,7 +146,7 @@ func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*Info, *ht
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -157,7 +157,7 @@ func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*Info, *ht
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -186,21 +186,21 @@ type ApiBindDevicesRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *BindRequestIdsGateway
+	device *OmnicoreBindRequestIdsGateway
 }
 
 // application/json
-func (r ApiBindDevicesRequest) Device(device BindRequestIdsGateway) ApiBindDevicesRequest {
+func (r ApiBindDevicesRequest) Device(device OmnicoreBindRequestIdsGateway) ApiBindDevicesRequest {
 	r.device = &device
 	return r
 }
 
-func (r ApiBindDevicesRequest) Execute() (*Info, *http.Response, error) {
+func (r ApiBindDevicesRequest) Execute() (*OmnicoreInfo, *http.Response, error) {
 	return r.ApiService.BindDevicesExecute(r)
 }
 
 /*
-BindDevices Method for BindDevices
+BindDevices Gateway - Bind Devices to Gateway
 
 Bind devices to a gateway under a registry
 
@@ -219,13 +219,13 @@ func (a *DeviceApiService) BindDevices(ctx context.Context, subscriptionId strin
 }
 
 // Execute executes the request
-//  @return Info
-func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*Info, *http.Response, error) {
+//  @return OmnicoreInfo
+func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*OmnicoreInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Info
+		localVarReturnValue  *OmnicoreInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.BindDevices")
@@ -286,7 +286,7 @@ func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*Info, *
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -297,7 +297,7 @@ func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*Info, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -308,7 +308,7 @@ func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*Info, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -338,11 +338,11 @@ type ApiBlockDeviceCommuncationRequest struct {
 	subscriptionid string
 	registryId string
 	deviceId string
-	device *BlockCommunicationBody
+	device *OmnicoreBlockCommunicationBody
 }
 
 // application/json
-func (r ApiBlockDeviceCommuncationRequest) Device(device BlockCommunicationBody) ApiBlockDeviceCommuncationRequest {
+func (r ApiBlockDeviceCommuncationRequest) Device(device OmnicoreBlockCommunicationBody) ApiBlockDeviceCommuncationRequest {
 	r.device = &device
 	return r
 }
@@ -352,7 +352,7 @@ func (r ApiBlockDeviceCommuncationRequest) Execute() (map[string]interface{}, *h
 }
 
 /*
-BlockDeviceCommuncation Method for BlockDeviceCommuncation
+BlockDeviceCommuncation Block Device Communication
 
 Blocks All Communication From A Device
 
@@ -441,7 +441,7 @@ func (a *DeviceApiService) BlockDeviceCommuncationExecute(r ApiBlockDeviceCommun
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -452,7 +452,7 @@ func (a *DeviceApiService) BlockDeviceCommuncationExecute(r ApiBlockDeviceCommun
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -463,7 +463,7 @@ func (a *DeviceApiService) BlockDeviceCommuncationExecute(r ApiBlockDeviceCommun
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -492,21 +492,21 @@ type ApiCreateDeviceRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *CreateNewDevice
+	device *OmnicoreNewDevice
 }
 
 // application/json
-func (r ApiCreateDeviceRequest) Device(device CreateNewDevice) ApiCreateDeviceRequest {
+func (r ApiCreateDeviceRequest) Device(device OmnicoreNewDevice) ApiCreateDeviceRequest {
 	r.device = &device
 	return r
 }
 
-func (r ApiCreateDeviceRequest) Execute() (*Device, *http.Response, error) {
+func (r ApiCreateDeviceRequest) Execute() (*OmnicoreDevice, *http.Response, error) {
 	return r.ApiService.CreateDeviceExecute(r)
 }
 
 /*
-CreateDevice Method for CreateDevice
+CreateDevice Add New Device
 
 Create a device under a registry
 
@@ -525,13 +525,13 @@ func (a *DeviceApiService) CreateDevice(ctx context.Context, subscriptionId stri
 }
 
 // Execute executes the request
-//  @return Device
-func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Device, *http.Response, error) {
+//  @return OmnicoreDevice
+func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*OmnicoreDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Device
+		localVarReturnValue  *OmnicoreDevice
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.CreateDevice")
@@ -592,7 +592,7 @@ func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Devic
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -603,7 +603,7 @@ func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Devic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -614,7 +614,7 @@ func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Devic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -646,12 +646,12 @@ type ApiDeleteDeviceRequest struct {
 	deviceId string
 }
 
-func (r ApiDeleteDeviceRequest) Execute() (*Info, *http.Response, error) {
+func (r ApiDeleteDeviceRequest) Execute() (*OmnicoreInfo, *http.Response, error) {
 	return r.ApiService.DeleteDeviceExecute(r)
 }
 
 /*
-DeleteDevice Method for DeleteDevice
+DeleteDevice Remove Device
 
 Delete a device under a registry
 
@@ -672,13 +672,13 @@ func (a *DeviceApiService) DeleteDevice(ctx context.Context, subscriptionId stri
 }
 
 // Execute executes the request
-//  @return Info
-func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*Info, *http.Response, error) {
+//  @return OmnicoreInfo
+func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*OmnicoreInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Info
+		localVarReturnValue  *OmnicoreInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.DeleteDevice")
@@ -735,7 +735,7 @@ func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*Info,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -746,7 +746,7 @@ func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*Info,
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -757,7 +757,7 @@ func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*Info,
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -796,12 +796,12 @@ func (r ApiGetConfigRequest) NumVersions(numVersions int32) ApiGetConfigRequest 
 	return r
 }
 
-func (r ApiGetConfigRequest) Execute() (*ListDeviceConfigVersionsResponse, *http.Response, error) {
+func (r ApiGetConfigRequest) Execute() (*OmnicoreListDeviceConfigVersionsResponse, *http.Response, error) {
 	return r.ApiService.GetConfigExecute(r)
 }
 
 /*
-GetConfig Method for GetConfig
+GetConfig Get Config
 
 Get Configs Of Devices
 
@@ -822,13 +822,13 @@ func (a *DeviceApiService) GetConfig(ctx context.Context, subscriptionid string,
 }
 
 // Execute executes the request
-//  @return ListDeviceConfigVersionsResponse
-func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceConfigVersionsResponse, *http.Response, error) {
+//  @return OmnicoreListDeviceConfigVersionsResponse
+func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*OmnicoreListDeviceConfigVersionsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDeviceConfigVersionsResponse
+		localVarReturnValue  *OmnicoreListDeviceConfigVersionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetConfig")
@@ -889,7 +889,7 @@ func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -900,7 +900,7 @@ func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -911,7 +911,7 @@ func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -943,12 +943,12 @@ type ApiGetDeviceRequest struct {
 	deviceId string
 }
 
-func (r ApiGetDeviceRequest) Execute() (*Device, *http.Response, error) {
+func (r ApiGetDeviceRequest) Execute() (*OmnicoreDevice, *http.Response, error) {
 	return r.ApiService.GetDeviceExecute(r)
 }
 
 /*
-GetDevice Method for GetDevice
+GetDevice Get Device
 
 Get a device under a registry
 
@@ -969,13 +969,13 @@ func (a *DeviceApiService) GetDevice(ctx context.Context, registryId string, sub
 }
 
 // Execute executes the request
-//  @return Device
-func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *http.Response, error) {
+//  @return OmnicoreDevice
+func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*OmnicoreDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Device
+		localVarReturnValue  *OmnicoreDevice
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetDevice")
@@ -1032,7 +1032,7 @@ func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *ht
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1043,7 +1043,7 @@ func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *ht
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1054,7 +1054,7 @@ func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *ht
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1141,12 +1141,12 @@ func (r ApiGetDevicesRequest) GatewayListOptionsGatewayType(gatewayListOptionsGa
 	return r
 }
 
-func (r ApiGetDevicesRequest) Execute() (*ListDevicesResponse, *http.Response, error) {
+func (r ApiGetDevicesRequest) Execute() (*OmnicoreListDevicesResponse, *http.Response, error) {
 	return r.ApiService.GetDevicesExecute(r)
 }
 
 /*
-GetDevices Method for GetDevices
+GetDevices Get All Devices
 
 Get all devices under a registry
 
@@ -1165,13 +1165,13 @@ func (a *DeviceApiService) GetDevices(ctx context.Context, registryId string, su
 }
 
 // Execute executes the request
-//  @return ListDevicesResponse
-func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevicesResponse, *http.Response, error) {
+//  @return OmnicoreListDevicesResponse
+func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*OmnicoreListDevicesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDevicesResponse
+		localVarReturnValue  *OmnicoreListDevicesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetDevices")
@@ -1251,7 +1251,7 @@ func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevic
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1262,7 +1262,7 @@ func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1273,7 +1273,7 @@ func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1312,12 +1312,12 @@ func (r ApiGetStatesRequest) NumStates(numStates int32) ApiGetStatesRequest {
 	return r
 }
 
-func (r ApiGetStatesRequest) Execute() (*ListDeviceStatesResponse, *http.Response, error) {
+func (r ApiGetStatesRequest) Execute() (*OmnicoreListDeviceStatesResponse, *http.Response, error) {
 	return r.ApiService.GetStatesExecute(r)
 }
 
 /*
-GetStates Method for GetStates
+GetStates Get States
 
 Get States Of Devices
 
@@ -1338,13 +1338,13 @@ func (a *DeviceApiService) GetStates(ctx context.Context, subscriptionid string,
 }
 
 // Execute executes the request
-//  @return ListDeviceStatesResponse
-func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceStatesResponse, *http.Response, error) {
+//  @return OmnicoreListDeviceStatesResponse
+func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*OmnicoreListDeviceStatesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDeviceStatesResponse
+		localVarReturnValue  *OmnicoreListDeviceStatesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetStates")
@@ -1404,7 +1404,7 @@ func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceS
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1415,7 +1415,7 @@ func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1426,7 +1426,7 @@ func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1456,11 +1456,11 @@ type ApiSendCommandToDeviceRequest struct {
 	subscriptionid string
 	registryId string
 	deviceId string
-	device *DeviceCommand
+	device *OmnicoreCommand
 }
 
 // application/json
-func (r ApiSendCommandToDeviceRequest) Device(device DeviceCommand) ApiSendCommandToDeviceRequest {
+func (r ApiSendCommandToDeviceRequest) Device(device OmnicoreCommand) ApiSendCommandToDeviceRequest {
 	r.device = &device
 	return r
 }
@@ -1470,7 +1470,7 @@ func (r ApiSendCommandToDeviceRequest) Execute() (map[string]interface{}, *http.
 }
 
 /*
-SendCommandToDevice Method for SendCommandToDevice
+SendCommandToDevice Send Command
 
 Send A Command To A Device
 
@@ -1559,7 +1559,7 @@ func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1570,7 +1570,7 @@ func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1581,7 +1581,162 @@ func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSendConfigurationToDeviceRequest struct {
+	ctx context.Context
+	ApiService *DeviceApiService
+	subscriptionid string
+	registryId string
+	deviceId string
+	device *OmnicoreConfig
+}
+
+// application/json
+func (r ApiSendConfigurationToDeviceRequest) Device(device OmnicoreConfig) ApiSendConfigurationToDeviceRequest {
+	r.device = &device
+	return r
+}
+
+func (r ApiSendConfigurationToDeviceRequest) Execute() (*OmnicoreDeviceConfig, *http.Response, error) {
+	return r.ApiService.SendConfigurationToDeviceExecute(r)
+}
+
+/*
+SendConfigurationToDevice Send Config
+
+Send A Config To A Device
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionid Subscription ID
+ @param registryId Registry ID
+ @param deviceId Device ID
+ @return ApiSendConfigurationToDeviceRequest
+*/
+func (a *DeviceApiService) SendConfigurationToDevice(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiSendConfigurationToDeviceRequest {
+	return ApiSendConfigurationToDeviceRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionid: subscriptionid,
+		registryId: registryId,
+		deviceId: deviceId,
+	}
+}
+
+// Execute executes the request
+//  @return OmnicoreDeviceConfig
+func (a *DeviceApiService) SendConfigurationToDeviceExecute(r ApiSendConfigurationToDeviceRequest) (*OmnicoreDeviceConfig, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OmnicoreDeviceConfig
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.SendConfigurationToDevice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.device == nil {
+		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.device
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v OmnicoreGenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v OmnicoreGenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1610,21 +1765,21 @@ type ApiUnBindDeviceRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *BindRequest
+	device *OmnicoreBindRequest
 }
 
 // application/json
-func (r ApiUnBindDeviceRequest) Device(device BindRequest) ApiUnBindDeviceRequest {
+func (r ApiUnBindDeviceRequest) Device(device OmnicoreBindRequest) ApiUnBindDeviceRequest {
 	r.device = &device
 	return r
 }
 
-func (r ApiUnBindDeviceRequest) Execute() (*Info, *http.Response, error) {
+func (r ApiUnBindDeviceRequest) Execute() (*OmnicoreInfo, *http.Response, error) {
 	return r.ApiService.UnBindDeviceExecute(r)
 }
 
 /*
-UnBindDevice Method for UnBindDevice
+UnBindDevice Gateway - UnBind a Device from Gateway
 
 UnBind  a device from a gateway under a registry
 
@@ -1643,13 +1798,13 @@ func (a *DeviceApiService) UnBindDevice(ctx context.Context, subscriptionId stri
 }
 
 // Execute executes the request
-//  @return Info
-func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*Info, *http.Response, error) {
+//  @return OmnicoreInfo
+func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*OmnicoreInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Info
+		localVarReturnValue  *OmnicoreInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UnBindDevice")
@@ -1710,7 +1865,7 @@ func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*Info,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1721,7 +1876,7 @@ func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*Info,
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1732,7 +1887,7 @@ func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*Info,
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1761,21 +1916,21 @@ type ApiUnBindDevicesRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *BindRequestIdsGateway
+	device *OmnicoreBindRequestIdsGateway
 }
 
 // application/json
-func (r ApiUnBindDevicesRequest) Device(device BindRequestIdsGateway) ApiUnBindDevicesRequest {
+func (r ApiUnBindDevicesRequest) Device(device OmnicoreBindRequestIdsGateway) ApiUnBindDevicesRequest {
 	r.device = &device
 	return r
 }
 
-func (r ApiUnBindDevicesRequest) Execute() (*Info, *http.Response, error) {
+func (r ApiUnBindDevicesRequest) Execute() (*OmnicoreInfo, *http.Response, error) {
 	return r.ApiService.UnBindDevicesExecute(r)
 }
 
 /*
-UnBindDevices Method for UnBindDevices
+UnBindDevices Gateway - UnBind Devices from Gateway
 
 UnBind devices from a gateway under a registry
 
@@ -1794,13 +1949,13 @@ func (a *DeviceApiService) UnBindDevices(ctx context.Context, subscriptionId str
 }
 
 // Execute executes the request
-//  @return Info
-func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*Info, *http.Response, error) {
+//  @return OmnicoreInfo
+func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*OmnicoreInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Info
+		localVarReturnValue  *OmnicoreInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UnBindDevices")
@@ -1861,7 +2016,7 @@ func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*Inf
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1872,7 +2027,7 @@ func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*Inf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1883,162 +2038,7 @@ func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*Inf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateConfigurationToDeviceRequest struct {
-	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionid string
-	registryId string
-	deviceId string
-	device *DeviceConfiguration
-}
-
-// application/json
-func (r ApiUpdateConfigurationToDeviceRequest) Device(device DeviceConfiguration) ApiUpdateConfigurationToDeviceRequest {
-	r.device = &device
-	return r
-}
-
-func (r ApiUpdateConfigurationToDeviceRequest) Execute() (*DeviceConfig, *http.Response, error) {
-	return r.ApiService.UpdateConfigurationToDeviceExecute(r)
-}
-
-/*
-UpdateConfigurationToDevice Method for UpdateConfigurationToDevice
-
-Update A Configuration Of A Device
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionid Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiUpdateConfigurationToDeviceRequest
-*/
-func (a *DeviceApiService) UpdateConfigurationToDevice(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiUpdateConfigurationToDeviceRequest {
-	return ApiUpdateConfigurationToDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		subscriptionid: subscriptionid,
-		registryId: registryId,
-		deviceId: deviceId,
-	}
-}
-
-// Execute executes the request
-//  @return DeviceConfig
-func (a *DeviceApiService) UpdateConfigurationToDeviceExecute(r ApiUpdateConfigurationToDeviceRequest) (*DeviceConfig, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DeviceConfig
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UpdateConfigurationToDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.device
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2069,7 +2069,7 @@ type ApiUpdateDeviceRequest struct {
 	registryId string
 	deviceId string
 	updateMask *string
-	device *UpdateDevice
+	device *OmnicoreUpdateDevice
 }
 
 // Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,log_level, blocked, and metadata
@@ -2079,17 +2079,17 @@ func (r ApiUpdateDeviceRequest) UpdateMask(updateMask string) ApiUpdateDeviceReq
 }
 
 // application/json
-func (r ApiUpdateDeviceRequest) Device(device UpdateDevice) ApiUpdateDeviceRequest {
+func (r ApiUpdateDeviceRequest) Device(device OmnicoreUpdateDevice) ApiUpdateDeviceRequest {
 	r.device = &device
 	return r
 }
 
-func (r ApiUpdateDeviceRequest) Execute() (*Device, *http.Response, error) {
+func (r ApiUpdateDeviceRequest) Execute() (*OmnicoreDevice, *http.Response, error) {
 	return r.ApiService.UpdateDeviceExecute(r)
 }
 
 /*
-UpdateDevice Method for UpdateDevice
+UpdateDevice Modify Device
 
 Modify device under a registry
 
@@ -2110,13 +2110,13 @@ func (a *DeviceApiService) UpdateDevice(ctx context.Context, subscriptionId stri
 }
 
 // Execute executes the request
-//  @return Device
-func (a *DeviceApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Device, *http.Response, error) {
+//  @return OmnicoreDevice
+func (a *DeviceApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*OmnicoreDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Device
+		localVarReturnValue  *OmnicoreDevice
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UpdateDevice")
@@ -2182,7 +2182,7 @@ func (a *DeviceApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Devic
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2193,7 +2193,7 @@ func (a *DeviceApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Devic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2204,7 +2204,7 @@ func (a *DeviceApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Devic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
+			var v OmnicoreGenericErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

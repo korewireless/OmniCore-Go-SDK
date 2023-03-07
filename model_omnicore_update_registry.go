@@ -21,41 +21,39 @@ import (
 	"encoding/json"
 )
 
-// checks if the CreateRegistryRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateRegistryRequest{}
+// checks if the OmnicoreUpdateRegistry type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OmnicoreUpdateRegistry{}
 
-// CreateRegistryRequest struct for CreateRegistryRequest
-type CreateRegistryRequest struct {
+// OmnicoreUpdateRegistry struct for OmnicoreUpdateRegistry
+type OmnicoreUpdateRegistry struct {
 	Credentials []OmnicoreRegistryCredential `json:"credentials,omitempty"`
 	EventNotificationConfigs []OmnicoreEventNotificationConfig `json:"eventNotificationConfigs,omitempty"`
 	HttpConfig *OmnicoreHttpConfig `json:"httpConfig,omitempty"`
-	Id string `json:"id"`
 	LogLevel *string `json:"logLevel,omitempty"`
 	LogNotificationConfig *OmnicoreStateNotificationConfig `json:"logNotificationConfig,omitempty"`
 	MqttConfig *OmnicoreMqttConfig `json:"mqttConfig,omitempty"`
 	StateNotificationConfig *OmnicoreStateNotificationConfig `json:"stateNotificationConfig,omitempty"`
 }
 
-// NewCreateRegistryRequest instantiates a new CreateRegistryRequest object
+// NewOmnicoreUpdateRegistry instantiates a new OmnicoreUpdateRegistry object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateRegistryRequest(id string) *CreateRegistryRequest {
-	this := CreateRegistryRequest{}
-	this.Id = id
+func NewOmnicoreUpdateRegistry() *OmnicoreUpdateRegistry {
+	this := OmnicoreUpdateRegistry{}
 	return &this
 }
 
-// NewCreateRegistryRequestWithDefaults instantiates a new CreateRegistryRequest object
+// NewOmnicoreUpdateRegistryWithDefaults instantiates a new OmnicoreUpdateRegistry object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateRegistryRequestWithDefaults() *CreateRegistryRequest {
-	this := CreateRegistryRequest{}
+func NewOmnicoreUpdateRegistryWithDefaults() *OmnicoreUpdateRegistry {
+	this := OmnicoreUpdateRegistry{}
 	return &this
 }
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
-func (o *CreateRegistryRequest) GetCredentials() []OmnicoreRegistryCredential {
+func (o *OmnicoreUpdateRegistry) GetCredentials() []OmnicoreRegistryCredential {
 	if o == nil || IsNil(o.Credentials) {
 		var ret []OmnicoreRegistryCredential
 		return ret
@@ -65,7 +63,7 @@ func (o *CreateRegistryRequest) GetCredentials() []OmnicoreRegistryCredential {
 
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRegistryRequest) GetCredentialsOk() ([]OmnicoreRegistryCredential, bool) {
+func (o *OmnicoreUpdateRegistry) GetCredentialsOk() ([]OmnicoreRegistryCredential, bool) {
 	if o == nil || IsNil(o.Credentials) {
 		return nil, false
 	}
@@ -73,7 +71,7 @@ func (o *CreateRegistryRequest) GetCredentialsOk() ([]OmnicoreRegistryCredential
 }
 
 // HasCredentials returns a boolean if a field has been set.
-func (o *CreateRegistryRequest) HasCredentials() bool {
+func (o *OmnicoreUpdateRegistry) HasCredentials() bool {
 	if o != nil && !IsNil(o.Credentials) {
 		return true
 	}
@@ -82,12 +80,12 @@ func (o *CreateRegistryRequest) HasCredentials() bool {
 }
 
 // SetCredentials gets a reference to the given []OmnicoreRegistryCredential and assigns it to the Credentials field.
-func (o *CreateRegistryRequest) SetCredentials(v []OmnicoreRegistryCredential) {
+func (o *OmnicoreUpdateRegistry) SetCredentials(v []OmnicoreRegistryCredential) {
 	o.Credentials = v
 }
 
 // GetEventNotificationConfigs returns the EventNotificationConfigs field value if set, zero value otherwise.
-func (o *CreateRegistryRequest) GetEventNotificationConfigs() []OmnicoreEventNotificationConfig {
+func (o *OmnicoreUpdateRegistry) GetEventNotificationConfigs() []OmnicoreEventNotificationConfig {
 	if o == nil || IsNil(o.EventNotificationConfigs) {
 		var ret []OmnicoreEventNotificationConfig
 		return ret
@@ -97,7 +95,7 @@ func (o *CreateRegistryRequest) GetEventNotificationConfigs() []OmnicoreEventNot
 
 // GetEventNotificationConfigsOk returns a tuple with the EventNotificationConfigs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRegistryRequest) GetEventNotificationConfigsOk() ([]OmnicoreEventNotificationConfig, bool) {
+func (o *OmnicoreUpdateRegistry) GetEventNotificationConfigsOk() ([]OmnicoreEventNotificationConfig, bool) {
 	if o == nil || IsNil(o.EventNotificationConfigs) {
 		return nil, false
 	}
@@ -105,7 +103,7 @@ func (o *CreateRegistryRequest) GetEventNotificationConfigsOk() ([]OmnicoreEvent
 }
 
 // HasEventNotificationConfigs returns a boolean if a field has been set.
-func (o *CreateRegistryRequest) HasEventNotificationConfigs() bool {
+func (o *OmnicoreUpdateRegistry) HasEventNotificationConfigs() bool {
 	if o != nil && !IsNil(o.EventNotificationConfigs) {
 		return true
 	}
@@ -114,12 +112,12 @@ func (o *CreateRegistryRequest) HasEventNotificationConfigs() bool {
 }
 
 // SetEventNotificationConfigs gets a reference to the given []OmnicoreEventNotificationConfig and assigns it to the EventNotificationConfigs field.
-func (o *CreateRegistryRequest) SetEventNotificationConfigs(v []OmnicoreEventNotificationConfig) {
+func (o *OmnicoreUpdateRegistry) SetEventNotificationConfigs(v []OmnicoreEventNotificationConfig) {
 	o.EventNotificationConfigs = v
 }
 
 // GetHttpConfig returns the HttpConfig field value if set, zero value otherwise.
-func (o *CreateRegistryRequest) GetHttpConfig() OmnicoreHttpConfig {
+func (o *OmnicoreUpdateRegistry) GetHttpConfig() OmnicoreHttpConfig {
 	if o == nil || IsNil(o.HttpConfig) {
 		var ret OmnicoreHttpConfig
 		return ret
@@ -129,7 +127,7 @@ func (o *CreateRegistryRequest) GetHttpConfig() OmnicoreHttpConfig {
 
 // GetHttpConfigOk returns a tuple with the HttpConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRegistryRequest) GetHttpConfigOk() (*OmnicoreHttpConfig, bool) {
+func (o *OmnicoreUpdateRegistry) GetHttpConfigOk() (*OmnicoreHttpConfig, bool) {
 	if o == nil || IsNil(o.HttpConfig) {
 		return nil, false
 	}
@@ -137,7 +135,7 @@ func (o *CreateRegistryRequest) GetHttpConfigOk() (*OmnicoreHttpConfig, bool) {
 }
 
 // HasHttpConfig returns a boolean if a field has been set.
-func (o *CreateRegistryRequest) HasHttpConfig() bool {
+func (o *OmnicoreUpdateRegistry) HasHttpConfig() bool {
 	if o != nil && !IsNil(o.HttpConfig) {
 		return true
 	}
@@ -146,36 +144,12 @@ func (o *CreateRegistryRequest) HasHttpConfig() bool {
 }
 
 // SetHttpConfig gets a reference to the given OmnicoreHttpConfig and assigns it to the HttpConfig field.
-func (o *CreateRegistryRequest) SetHttpConfig(v OmnicoreHttpConfig) {
+func (o *OmnicoreUpdateRegistry) SetHttpConfig(v OmnicoreHttpConfig) {
 	o.HttpConfig = &v
 }
 
-// GetId returns the Id field value
-func (o *CreateRegistryRequest) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CreateRegistryRequest) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *CreateRegistryRequest) SetId(v string) {
-	o.Id = v
-}
-
 // GetLogLevel returns the LogLevel field value if set, zero value otherwise.
-func (o *CreateRegistryRequest) GetLogLevel() string {
+func (o *OmnicoreUpdateRegistry) GetLogLevel() string {
 	if o == nil || IsNil(o.LogLevel) {
 		var ret string
 		return ret
@@ -185,7 +159,7 @@ func (o *CreateRegistryRequest) GetLogLevel() string {
 
 // GetLogLevelOk returns a tuple with the LogLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRegistryRequest) GetLogLevelOk() (*string, bool) {
+func (o *OmnicoreUpdateRegistry) GetLogLevelOk() (*string, bool) {
 	if o == nil || IsNil(o.LogLevel) {
 		return nil, false
 	}
@@ -193,7 +167,7 @@ func (o *CreateRegistryRequest) GetLogLevelOk() (*string, bool) {
 }
 
 // HasLogLevel returns a boolean if a field has been set.
-func (o *CreateRegistryRequest) HasLogLevel() bool {
+func (o *OmnicoreUpdateRegistry) HasLogLevel() bool {
 	if o != nil && !IsNil(o.LogLevel) {
 		return true
 	}
@@ -202,12 +176,12 @@ func (o *CreateRegistryRequest) HasLogLevel() bool {
 }
 
 // SetLogLevel gets a reference to the given string and assigns it to the LogLevel field.
-func (o *CreateRegistryRequest) SetLogLevel(v string) {
+func (o *OmnicoreUpdateRegistry) SetLogLevel(v string) {
 	o.LogLevel = &v
 }
 
 // GetLogNotificationConfig returns the LogNotificationConfig field value if set, zero value otherwise.
-func (o *CreateRegistryRequest) GetLogNotificationConfig() OmnicoreStateNotificationConfig {
+func (o *OmnicoreUpdateRegistry) GetLogNotificationConfig() OmnicoreStateNotificationConfig {
 	if o == nil || IsNil(o.LogNotificationConfig) {
 		var ret OmnicoreStateNotificationConfig
 		return ret
@@ -217,7 +191,7 @@ func (o *CreateRegistryRequest) GetLogNotificationConfig() OmnicoreStateNotifica
 
 // GetLogNotificationConfigOk returns a tuple with the LogNotificationConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRegistryRequest) GetLogNotificationConfigOk() (*OmnicoreStateNotificationConfig, bool) {
+func (o *OmnicoreUpdateRegistry) GetLogNotificationConfigOk() (*OmnicoreStateNotificationConfig, bool) {
 	if o == nil || IsNil(o.LogNotificationConfig) {
 		return nil, false
 	}
@@ -225,7 +199,7 @@ func (o *CreateRegistryRequest) GetLogNotificationConfigOk() (*OmnicoreStateNoti
 }
 
 // HasLogNotificationConfig returns a boolean if a field has been set.
-func (o *CreateRegistryRequest) HasLogNotificationConfig() bool {
+func (o *OmnicoreUpdateRegistry) HasLogNotificationConfig() bool {
 	if o != nil && !IsNil(o.LogNotificationConfig) {
 		return true
 	}
@@ -234,12 +208,12 @@ func (o *CreateRegistryRequest) HasLogNotificationConfig() bool {
 }
 
 // SetLogNotificationConfig gets a reference to the given OmnicoreStateNotificationConfig and assigns it to the LogNotificationConfig field.
-func (o *CreateRegistryRequest) SetLogNotificationConfig(v OmnicoreStateNotificationConfig) {
+func (o *OmnicoreUpdateRegistry) SetLogNotificationConfig(v OmnicoreStateNotificationConfig) {
 	o.LogNotificationConfig = &v
 }
 
 // GetMqttConfig returns the MqttConfig field value if set, zero value otherwise.
-func (o *CreateRegistryRequest) GetMqttConfig() OmnicoreMqttConfig {
+func (o *OmnicoreUpdateRegistry) GetMqttConfig() OmnicoreMqttConfig {
 	if o == nil || IsNil(o.MqttConfig) {
 		var ret OmnicoreMqttConfig
 		return ret
@@ -249,7 +223,7 @@ func (o *CreateRegistryRequest) GetMqttConfig() OmnicoreMqttConfig {
 
 // GetMqttConfigOk returns a tuple with the MqttConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRegistryRequest) GetMqttConfigOk() (*OmnicoreMqttConfig, bool) {
+func (o *OmnicoreUpdateRegistry) GetMqttConfigOk() (*OmnicoreMqttConfig, bool) {
 	if o == nil || IsNil(o.MqttConfig) {
 		return nil, false
 	}
@@ -257,7 +231,7 @@ func (o *CreateRegistryRequest) GetMqttConfigOk() (*OmnicoreMqttConfig, bool) {
 }
 
 // HasMqttConfig returns a boolean if a field has been set.
-func (o *CreateRegistryRequest) HasMqttConfig() bool {
+func (o *OmnicoreUpdateRegistry) HasMqttConfig() bool {
 	if o != nil && !IsNil(o.MqttConfig) {
 		return true
 	}
@@ -266,12 +240,12 @@ func (o *CreateRegistryRequest) HasMqttConfig() bool {
 }
 
 // SetMqttConfig gets a reference to the given OmnicoreMqttConfig and assigns it to the MqttConfig field.
-func (o *CreateRegistryRequest) SetMqttConfig(v OmnicoreMqttConfig) {
+func (o *OmnicoreUpdateRegistry) SetMqttConfig(v OmnicoreMqttConfig) {
 	o.MqttConfig = &v
 }
 
 // GetStateNotificationConfig returns the StateNotificationConfig field value if set, zero value otherwise.
-func (o *CreateRegistryRequest) GetStateNotificationConfig() OmnicoreStateNotificationConfig {
+func (o *OmnicoreUpdateRegistry) GetStateNotificationConfig() OmnicoreStateNotificationConfig {
 	if o == nil || IsNil(o.StateNotificationConfig) {
 		var ret OmnicoreStateNotificationConfig
 		return ret
@@ -281,7 +255,7 @@ func (o *CreateRegistryRequest) GetStateNotificationConfig() OmnicoreStateNotifi
 
 // GetStateNotificationConfigOk returns a tuple with the StateNotificationConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateRegistryRequest) GetStateNotificationConfigOk() (*OmnicoreStateNotificationConfig, bool) {
+func (o *OmnicoreUpdateRegistry) GetStateNotificationConfigOk() (*OmnicoreStateNotificationConfig, bool) {
 	if o == nil || IsNil(o.StateNotificationConfig) {
 		return nil, false
 	}
@@ -289,7 +263,7 @@ func (o *CreateRegistryRequest) GetStateNotificationConfigOk() (*OmnicoreStateNo
 }
 
 // HasStateNotificationConfig returns a boolean if a field has been set.
-func (o *CreateRegistryRequest) HasStateNotificationConfig() bool {
+func (o *OmnicoreUpdateRegistry) HasStateNotificationConfig() bool {
 	if o != nil && !IsNil(o.StateNotificationConfig) {
 		return true
 	}
@@ -298,11 +272,11 @@ func (o *CreateRegistryRequest) HasStateNotificationConfig() bool {
 }
 
 // SetStateNotificationConfig gets a reference to the given OmnicoreStateNotificationConfig and assigns it to the StateNotificationConfig field.
-func (o *CreateRegistryRequest) SetStateNotificationConfig(v OmnicoreStateNotificationConfig) {
+func (o *OmnicoreUpdateRegistry) SetStateNotificationConfig(v OmnicoreStateNotificationConfig) {
 	o.StateNotificationConfig = &v
 }
 
-func (o CreateRegistryRequest) MarshalJSON() ([]byte, error) {
+func (o OmnicoreUpdateRegistry) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -310,7 +284,7 @@ func (o CreateRegistryRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateRegistryRequest) ToMap() (map[string]interface{}, error) {
+func (o OmnicoreUpdateRegistry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Credentials) {
 		toSerialize["credentials"] = o.Credentials
@@ -321,7 +295,6 @@ func (o CreateRegistryRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HttpConfig) {
 		toSerialize["httpConfig"] = o.HttpConfig
 	}
-	toSerialize["id"] = o.Id
 	if !IsNil(o.LogLevel) {
 		toSerialize["logLevel"] = o.LogLevel
 	}
@@ -337,38 +310,38 @@ func (o CreateRegistryRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableCreateRegistryRequest struct {
-	value *CreateRegistryRequest
+type NullableOmnicoreUpdateRegistry struct {
+	value *OmnicoreUpdateRegistry
 	isSet bool
 }
 
-func (v NullableCreateRegistryRequest) Get() *CreateRegistryRequest {
+func (v NullableOmnicoreUpdateRegistry) Get() *OmnicoreUpdateRegistry {
 	return v.value
 }
 
-func (v *NullableCreateRegistryRequest) Set(val *CreateRegistryRequest) {
+func (v *NullableOmnicoreUpdateRegistry) Set(val *OmnicoreUpdateRegistry) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateRegistryRequest) IsSet() bool {
+func (v NullableOmnicoreUpdateRegistry) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateRegistryRequest) Unset() {
+func (v *NullableOmnicoreUpdateRegistry) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateRegistryRequest(val *CreateRegistryRequest) *NullableCreateRegistryRequest {
-	return &NullableCreateRegistryRequest{value: val, isSet: true}
+func NewNullableOmnicoreUpdateRegistry(val *OmnicoreUpdateRegistry) *NullableOmnicoreUpdateRegistry {
+	return &NullableOmnicoreUpdateRegistry{value: val, isSet: true}
 }
 
-func (v NullableCreateRegistryRequest) MarshalJSON() ([]byte, error) {
+func (v NullableOmnicoreUpdateRegistry) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateRegistryRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableOmnicoreUpdateRegistry) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

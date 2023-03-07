@@ -4,19 +4,19 @@ All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com/model
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateRegistry**](RegistryApi.md#CreateRegistry) | **Post** /subscriptions/{subscriptionId}/registries | 
-[**DeleteRegistry**](RegistryApi.md#DeleteRegistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | 
-[**GetRegistries**](RegistryApi.md#GetRegistries) | **Get** /subscriptions/{subscriptionId}/registries | 
-[**GetRegistry**](RegistryApi.md#GetRegistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | 
-[**UpdateRegistry**](RegistryApi.md#UpdateRegistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | 
+[**CreateRegistry**](RegistryApi.md#CreateRegistry) | **Post** /subscriptions/{subscriptionId}/registries | Add New Registry
+[**DeleteRegistry**](RegistryApi.md#DeleteRegistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | Remove Registry
+[**GetRegistries**](RegistryApi.md#GetRegistries) | **Get** /subscriptions/{subscriptionId}/registries | Get All Registries
+[**GetRegistry**](RegistryApi.md#GetRegistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | Get Registry
+[**UpdateRegistry**](RegistryApi.md#UpdateRegistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | Modify Registry
 
 
 
 ## CreateRegistry
 
-> CreateRegistry200Response CreateRegistry(ctx, subscriptionId).Registry(registry).Execute()
+> OmnicoreDeviceRegistry CreateRegistry(ctx, subscriptionId).Registry(registry).Execute()
 
-
+Add New Registry
 
 
 
@@ -34,7 +34,7 @@ import (
 
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
-    registry := *openapiclient.NewCreateRegistryRequest("Id_example") // CreateRegistryRequest | application/json (optional)
+    registry := *openapiclient.NewCreateRegistryRequest("Id_example") // CreateRegistryRequest | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -43,7 +43,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RegistryApi.CreateRegistry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateRegistry`: CreateRegistry200Response
+    // response from `CreateRegistry`: OmnicoreDeviceRegistry
     fmt.Fprintf(os.Stdout, "Response from `RegistryApi.CreateRegistry`: %v\n", resp)
 }
 ```
@@ -68,11 +68,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateRegistry200Response**](CreateRegistry200Response.md)
+[**OmnicoreDeviceRegistry**](OmnicoreDeviceRegistry.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -86,9 +86,9 @@ Name | Type | Description  | Notes
 
 ## DeleteRegistry
 
-> Info DeleteRegistry(ctx, subscriptionId, registryId).Execute()
+> OmnicoreInfo DeleteRegistry(ctx, subscriptionId, registryId).Execute()
 
-
+Remove Registry
 
 
 
@@ -115,7 +115,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RegistryApi.DeleteRegistry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteRegistry`: Info
+    // response from `DeleteRegistry`: OmnicoreInfo
     fmt.Fprintf(os.Stdout, "Response from `RegistryApi.DeleteRegistry`: %v\n", resp)
 }
 ```
@@ -141,11 +141,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Info**](Info.md)
+[**OmnicoreInfo**](OmnicoreInfo.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -159,9 +159,9 @@ Name | Type | Description  | Notes
 
 ## GetRegistries
 
-> ListDeviceRegistries GetRegistries(ctx, subscriptionId).PageNumber(pageNumber).PageSize(pageSize).Execute()
+> OmnicoreListDeviceRegistriesResponse GetRegistries(ctx, subscriptionId).PageNumber(pageNumber).PageSize(pageSize).Execute()
 
-
+Get All Registries
 
 
 
@@ -189,7 +189,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RegistryApi.GetRegistries``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetRegistries`: ListDeviceRegistries
+    // response from `GetRegistries`: OmnicoreListDeviceRegistriesResponse
     fmt.Fprintf(os.Stdout, "Response from `RegistryApi.GetRegistries`: %v\n", resp)
 }
 ```
@@ -215,11 +215,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListDeviceRegistries**](ListDeviceRegistries.md)
+[**OmnicoreListDeviceRegistriesResponse**](OmnicoreListDeviceRegistriesResponse.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -233,9 +233,9 @@ Name | Type | Description  | Notes
 
 ## GetRegistry
 
-> DeviceRegistry GetRegistry(ctx, subscriptionId, registryId).Execute()
+> OmnicoreDeviceRegistry GetRegistry(ctx, subscriptionId, registryId).Execute()
 
-
+Get Registry
 
 
 
@@ -262,7 +262,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RegistryApi.GetRegistry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetRegistry`: DeviceRegistry
+    // response from `GetRegistry`: OmnicoreDeviceRegistry
     fmt.Fprintf(os.Stdout, "Response from `RegistryApi.GetRegistry`: %v\n", resp)
 }
 ```
@@ -288,11 +288,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeviceRegistry**](DeviceRegistry.md)
+[**OmnicoreDeviceRegistry**](OmnicoreDeviceRegistry.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -306,9 +306,9 @@ Name | Type | Description  | Notes
 
 ## UpdateRegistry
 
-> CreateRegistry200Response UpdateRegistry(ctx, subscriptionId, registryId).UpdateMask(updateMask).Registry(registry).Execute()
+> OmnicoreDeviceRegistry UpdateRegistry(ctx, subscriptionId, registryId).UpdateMask(updateMask).Registry(registry).Execute()
 
-
+Modify Registry
 
 
 
@@ -328,7 +328,7 @@ func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     updateMask := "updateMask_example" // string | values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials
-    registry := *openapiclient.NewUpdateRegistryRequest() // UpdateRegistryRequest | application/json (optional)
+    registry := *openapiclient.NewOmnicoreUpdateRegistry() // OmnicoreUpdateRegistry | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -337,7 +337,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RegistryApi.UpdateRegistry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateRegistry`: CreateRegistry200Response
+    // response from `UpdateRegistry`: OmnicoreDeviceRegistry
     fmt.Fprintf(os.Stdout, "Response from `RegistryApi.UpdateRegistry`: %v\n", resp)
 }
 ```
@@ -361,15 +361,15 @@ Name | Type | Description  | Notes
 
 
  **updateMask** | **string** | values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials | 
- **registry** | [**UpdateRegistryRequest**](UpdateRegistryRequest.md) | application/json | 
+ **registry** | [**OmnicoreUpdateRegistry**](OmnicoreUpdateRegistry.md) | application/json | 
 
 ### Return type
 
-[**CreateRegistry200Response**](CreateRegistry200Response.md)
+[**OmnicoreDeviceRegistry**](OmnicoreDeviceRegistry.md)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
