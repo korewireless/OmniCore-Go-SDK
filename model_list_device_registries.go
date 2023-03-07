@@ -21,37 +21,37 @@ import (
 	"encoding/json"
 )
 
-// checks if the ListDeviceRegistriesResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListDeviceRegistriesResponse{}
+// checks if the ListDeviceRegistries type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListDeviceRegistries{}
 
-// ListDeviceRegistriesResponse struct for ListDeviceRegistriesResponse
-type ListDeviceRegistriesResponse struct {
+// ListDeviceRegistries struct for ListDeviceRegistries
+type ListDeviceRegistries struct {
 	DeviceRegistries []DeviceRegistry `json:"deviceRegistries"`
 	PageNumber *int32 `json:"pageNumber,omitempty"`
 	PageSize *int32 `json:"pageSize,omitempty"`
 	TotalCount *int32 `json:"totalCount,omitempty"`
 }
 
-// NewListDeviceRegistriesResponse instantiates a new ListDeviceRegistriesResponse object
+// NewListDeviceRegistries instantiates a new ListDeviceRegistries object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListDeviceRegistriesResponse(deviceRegistries []DeviceRegistry) *ListDeviceRegistriesResponse {
-	this := ListDeviceRegistriesResponse{}
+func NewListDeviceRegistries(deviceRegistries []DeviceRegistry) *ListDeviceRegistries {
+	this := ListDeviceRegistries{}
 	this.DeviceRegistries = deviceRegistries
 	return &this
 }
 
-// NewListDeviceRegistriesResponseWithDefaults instantiates a new ListDeviceRegistriesResponse object
+// NewListDeviceRegistriesWithDefaults instantiates a new ListDeviceRegistries object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListDeviceRegistriesResponseWithDefaults() *ListDeviceRegistriesResponse {
-	this := ListDeviceRegistriesResponse{}
+func NewListDeviceRegistriesWithDefaults() *ListDeviceRegistries {
+	this := ListDeviceRegistries{}
 	return &this
 }
 
 // GetDeviceRegistries returns the DeviceRegistries field value
-func (o *ListDeviceRegistriesResponse) GetDeviceRegistries() []DeviceRegistry {
+func (o *ListDeviceRegistries) GetDeviceRegistries() []DeviceRegistry {
 	if o == nil {
 		var ret []DeviceRegistry
 		return ret
@@ -62,7 +62,7 @@ func (o *ListDeviceRegistriesResponse) GetDeviceRegistries() []DeviceRegistry {
 
 // GetDeviceRegistriesOk returns a tuple with the DeviceRegistries field value
 // and a boolean to check if the value has been set.
-func (o *ListDeviceRegistriesResponse) GetDeviceRegistriesOk() ([]DeviceRegistry, bool) {
+func (o *ListDeviceRegistries) GetDeviceRegistriesOk() ([]DeviceRegistry, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,12 +70,12 @@ func (o *ListDeviceRegistriesResponse) GetDeviceRegistriesOk() ([]DeviceRegistry
 }
 
 // SetDeviceRegistries sets field value
-func (o *ListDeviceRegistriesResponse) SetDeviceRegistries(v []DeviceRegistry) {
+func (o *ListDeviceRegistries) SetDeviceRegistries(v []DeviceRegistry) {
 	o.DeviceRegistries = v
 }
 
 // GetPageNumber returns the PageNumber field value if set, zero value otherwise.
-func (o *ListDeviceRegistriesResponse) GetPageNumber() int32 {
+func (o *ListDeviceRegistries) GetPageNumber() int32 {
 	if o == nil || IsNil(o.PageNumber) {
 		var ret int32
 		return ret
@@ -85,7 +85,7 @@ func (o *ListDeviceRegistriesResponse) GetPageNumber() int32 {
 
 // GetPageNumberOk returns a tuple with the PageNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDeviceRegistriesResponse) GetPageNumberOk() (*int32, bool) {
+func (o *ListDeviceRegistries) GetPageNumberOk() (*int32, bool) {
 	if o == nil || IsNil(o.PageNumber) {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *ListDeviceRegistriesResponse) GetPageNumberOk() (*int32, bool) {
 }
 
 // HasPageNumber returns a boolean if a field has been set.
-func (o *ListDeviceRegistriesResponse) HasPageNumber() bool {
+func (o *ListDeviceRegistries) HasPageNumber() bool {
 	if o != nil && !IsNil(o.PageNumber) {
 		return true
 	}
@@ -102,12 +102,12 @@ func (o *ListDeviceRegistriesResponse) HasPageNumber() bool {
 }
 
 // SetPageNumber gets a reference to the given int32 and assigns it to the PageNumber field.
-func (o *ListDeviceRegistriesResponse) SetPageNumber(v int32) {
+func (o *ListDeviceRegistries) SetPageNumber(v int32) {
 	o.PageNumber = &v
 }
 
 // GetPageSize returns the PageSize field value if set, zero value otherwise.
-func (o *ListDeviceRegistriesResponse) GetPageSize() int32 {
+func (o *ListDeviceRegistries) GetPageSize() int32 {
 	if o == nil || IsNil(o.PageSize) {
 		var ret int32
 		return ret
@@ -117,7 +117,7 @@ func (o *ListDeviceRegistriesResponse) GetPageSize() int32 {
 
 // GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDeviceRegistriesResponse) GetPageSizeOk() (*int32, bool) {
+func (o *ListDeviceRegistries) GetPageSizeOk() (*int32, bool) {
 	if o == nil || IsNil(o.PageSize) {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *ListDeviceRegistriesResponse) GetPageSizeOk() (*int32, bool) {
 }
 
 // HasPageSize returns a boolean if a field has been set.
-func (o *ListDeviceRegistriesResponse) HasPageSize() bool {
+func (o *ListDeviceRegistries) HasPageSize() bool {
 	if o != nil && !IsNil(o.PageSize) {
 		return true
 	}
@@ -134,12 +134,12 @@ func (o *ListDeviceRegistriesResponse) HasPageSize() bool {
 }
 
 // SetPageSize gets a reference to the given int32 and assigns it to the PageSize field.
-func (o *ListDeviceRegistriesResponse) SetPageSize(v int32) {
+func (o *ListDeviceRegistries) SetPageSize(v int32) {
 	o.PageSize = &v
 }
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
-func (o *ListDeviceRegistriesResponse) GetTotalCount() int32 {
+func (o *ListDeviceRegistries) GetTotalCount() int32 {
 	if o == nil || IsNil(o.TotalCount) {
 		var ret int32
 		return ret
@@ -149,7 +149,7 @@ func (o *ListDeviceRegistriesResponse) GetTotalCount() int32 {
 
 // GetTotalCountOk returns a tuple with the TotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDeviceRegistriesResponse) GetTotalCountOk() (*int32, bool) {
+func (o *ListDeviceRegistries) GetTotalCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.TotalCount) {
 		return nil, false
 	}
@@ -157,7 +157,7 @@ func (o *ListDeviceRegistriesResponse) GetTotalCountOk() (*int32, bool) {
 }
 
 // HasTotalCount returns a boolean if a field has been set.
-func (o *ListDeviceRegistriesResponse) HasTotalCount() bool {
+func (o *ListDeviceRegistries) HasTotalCount() bool {
 	if o != nil && !IsNil(o.TotalCount) {
 		return true
 	}
@@ -166,11 +166,11 @@ func (o *ListDeviceRegistriesResponse) HasTotalCount() bool {
 }
 
 // SetTotalCount gets a reference to the given int32 and assigns it to the TotalCount field.
-func (o *ListDeviceRegistriesResponse) SetTotalCount(v int32) {
+func (o *ListDeviceRegistries) SetTotalCount(v int32) {
 	o.TotalCount = &v
 }
 
-func (o ListDeviceRegistriesResponse) MarshalJSON() ([]byte, error) {
+func (o ListDeviceRegistries) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -178,7 +178,7 @@ func (o ListDeviceRegistriesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ListDeviceRegistriesResponse) ToMap() (map[string]interface{}, error) {
+func (o ListDeviceRegistries) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["deviceRegistries"] = o.DeviceRegistries
 	if !IsNil(o.PageNumber) {
@@ -193,38 +193,38 @@ func (o ListDeviceRegistriesResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableListDeviceRegistriesResponse struct {
-	value *ListDeviceRegistriesResponse
+type NullableListDeviceRegistries struct {
+	value *ListDeviceRegistries
 	isSet bool
 }
 
-func (v NullableListDeviceRegistriesResponse) Get() *ListDeviceRegistriesResponse {
+func (v NullableListDeviceRegistries) Get() *ListDeviceRegistries {
 	return v.value
 }
 
-func (v *NullableListDeviceRegistriesResponse) Set(val *ListDeviceRegistriesResponse) {
+func (v *NullableListDeviceRegistries) Set(val *ListDeviceRegistries) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListDeviceRegistriesResponse) IsSet() bool {
+func (v NullableListDeviceRegistries) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListDeviceRegistriesResponse) Unset() {
+func (v *NullableListDeviceRegistries) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListDeviceRegistriesResponse(val *ListDeviceRegistriesResponse) *NullableListDeviceRegistriesResponse {
-	return &NullableListDeviceRegistriesResponse{value: val, isSet: true}
+func NewNullableListDeviceRegistries(val *ListDeviceRegistries) *NullableListDeviceRegistries {
+	return &NullableListDeviceRegistries{value: val, isSet: true}
 }
 
-func (v NullableListDeviceRegistriesResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListDeviceRegistries) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListDeviceRegistriesResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListDeviceRegistries) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

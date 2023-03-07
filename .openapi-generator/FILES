@@ -10,7 +10,9 @@ configuration.go
 docs/BindRequest.md
 docs/BindRequestIdsGateway.md
 docs/BlockCommunicationBody.md
-docs/CreateDevice.md
+docs/CreateNewDevice.md
+docs/CreateRegistry200Response.md
+docs/CreateRegistryRequest.md
 docs/Device.md
 docs/DeviceApi.md
 docs/DeviceCertificate.md
@@ -28,7 +30,7 @@ docs/GenericErrorResponse.md
 docs/HttpConfig.md
 docs/Info.md
 docs/ListDeviceConfigVersionsResponse.md
-docs/ListDeviceRegistriesResponse.md
+docs/ListDeviceRegistries.md
 docs/ListDeviceStatesResponse.md
 docs/ListDevicesResponse.md
 docs/LogLevel.md
@@ -42,6 +44,7 @@ docs/RegistryCertificate.md
 docs/RegistryCredential.md
 docs/UpdateDevice.md
 docs/UpdateRegistry.md
+docs/UpdateRegistryRequest.md
 docs/X509CertificateDetails.md
 git_push.sh
 go.mod
@@ -49,7 +52,9 @@ go.sum
 model_bind_request.go
 model_bind_request_ids_gateway.go
 model_block_communication_body.go
-model_create_device.go
+model_create_new_device.go
+model_create_registry_200_response.go
+model_create_registry_request.go
 model_device.go
 model_device_certificate.go
 model_device_command.go
@@ -66,7 +71,7 @@ model_generic_error_response.go
 model_http_config.go
 model_info.go
 model_list_device_config_versions_response.go
-model_list_device_registries_response.go
+model_list_device_registries.go
 model_list_device_states_response.go
 model_list_devices_response.go
 model_log_level.go
@@ -79,6 +84,7 @@ model_registry_certificate.go
 model_registry_credential.go
 model_update_device.go
 model_update_registry.go
+model_update_registry_request.go
 model_x509_certificate_details.go
 response.go
 test/api_device_test.go

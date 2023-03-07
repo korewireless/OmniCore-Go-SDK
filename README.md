@@ -103,7 +103,9 @@ Class | Method | HTTP request | Description
  - [BindRequest](docs/BindRequest.md)
  - [BindRequestIdsGateway](docs/BindRequestIdsGateway.md)
  - [BlockCommunicationBody](docs/BlockCommunicationBody.md)
- - [CreateDevice](docs/CreateDevice.md)
+ - [CreateNewDevice](docs/CreateNewDevice.md)
+ - [CreateRegistry200Response](docs/CreateRegistry200Response.md)
+ - [CreateRegistryRequest](docs/CreateRegistryRequest.md)
  - [Device](docs/Device.md)
  - [DeviceCertificate](docs/DeviceCertificate.md)
  - [DeviceCommand](docs/DeviceCommand.md)
@@ -120,7 +122,7 @@ Class | Method | HTTP request | Description
  - [HttpConfig](docs/HttpConfig.md)
  - [Info](docs/Info.md)
  - [ListDeviceConfigVersionsResponse](docs/ListDeviceConfigVersionsResponse.md)
- - [ListDeviceRegistriesResponse](docs/ListDeviceRegistriesResponse.md)
+ - [ListDeviceRegistries](docs/ListDeviceRegistries.md)
  - [ListDeviceStatesResponse](docs/ListDeviceStatesResponse.md)
  - [ListDevicesResponse](docs/ListDevicesResponse.md)
  - [LogLevel](docs/LogLevel.md)
@@ -133,6 +135,7 @@ Class | Method | HTTP request | Description
  - [RegistryCredential](docs/RegistryCredential.md)
  - [UpdateDevice](docs/UpdateDevice.md)
  - [UpdateRegistry](docs/UpdateRegistry.md)
+ - [UpdateRegistryRequest](docs/UpdateRegistryRequest.md)
  - [X509CertificateDetails](docs/X509CertificateDetails.md)
 
 
