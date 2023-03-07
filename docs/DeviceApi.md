@@ -2,22 +2,22 @@
 
 All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com/model-state-management*
 
-| Method                                                                  | HTTP request                                                                                                  | Description |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------- |
-| [**BindDevice**](DeviceApi.md#BindDevice)                               | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway                          |
-| [**BindDevices**](DeviceApi.md#BindDevices)                             | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway                         |
-| [**BlockDeviceCommuncation**](DeviceApi.md#BlockDeviceCommuncation)     | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication              |
-| [**CreateDevice**](DeviceApi.md#CreateDevice)                           | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices                                      |
-| [**DeleteDevice**](DeviceApi.md#DeleteDevice)                           | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}                         |
-| [**GetConfig**](DeviceApi.md#GetConfig)                                 | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions             |
-| [**GetDevice**](DeviceApi.md#GetDevice)                                 | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}                            |
-| [**GetDevices**](DeviceApi.md#GetDevices)                               | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices                                       |
-| [**GetStates**](DeviceApi.md#GetStates)                                 | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states                     |
-| [**SendCommandToDevice**](DeviceApi.md#SendCommandToDevice)             | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice       |
-| [**SendConfigurationToDevice**](DeviceApi.md#SendConfigurationToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice |
-| [**UnBindDevice**](DeviceApi.md#UnBindDevice)                           | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway                      |
-| [**UnBindDevices**](DeviceApi.md#UnBindDevices)                         | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway                     |
-| [**UpdateDevice**](DeviceApi.md#UpdateDevice)                           | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}                          |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**BindDevice**](DeviceApi.md#BindDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
+[**BindDevices**](DeviceApi.md#BindDevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
+[**BlockDeviceCommuncation**](DeviceApi.md#BlockDeviceCommuncation) | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
+[**CreateDevice**](DeviceApi.md#CreateDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+[**DeleteDevice**](DeviceApi.md#DeleteDevice) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+[**GetConfig**](DeviceApi.md#GetConfig) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
+[**GetDevice**](DeviceApi.md#GetDevice) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+[**GetDevices**](DeviceApi.md#GetDevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+[**GetStates**](DeviceApi.md#GetStates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
+[**SendCommandToDevice**](DeviceApi.md#SendCommandToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
+[**SendConfigurationToDevice**](DeviceApi.md#SendConfigurationToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice | 
+[**UnBindDevice**](DeviceApi.md#UnBindDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
+[**UnBindDevices**](DeviceApi.md#UnBindDevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
+[**UpdateDevice**](DeviceApi.md#UpdateDevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
 
 
 
@@ -61,19 +61,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiBindDeviceRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
  **device** | [**BindRequest**](BindRequest.md) | application/json | 
@@ -136,19 +136,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiBindDevicesRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
  **device** | [**BindRequestIdsGateway**](BindRequestIdsGateway.md) | application/json | 
@@ -212,20 +212,20 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionid** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **deviceId**       | **string**          | Device ID                                                                   |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiBlockDeviceCommuncationRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -289,19 +289,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCreateDeviceRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
  **device** | [**NewDevice**](NewDevice.md) | application/json | 
@@ -364,20 +364,20 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **deviceId**       | **string**          | Device ID                                                                   |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteDeviceRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -441,20 +441,20 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionid** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **deviceId**       | **string**          | Device ID                                                                   |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetConfigRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -518,20 +518,20 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **deviceId**       | **string**          | Device ID                                                                   |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryId** | **string** | Registry ID | 
+**subscriptionId** | **string** | Subscription ID | 
+**deviceId** | **string** | Device ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetDeviceRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -601,19 +601,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**registryId** | **string** | Registry ID | 
+**subscriptionId** | **string** | Subscription ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetDevicesRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
  **pageNumber** | **int32** | Page Number | 
@@ -684,20 +684,20 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionid** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **deviceId**       | **string**          | Device ID                                                                   |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetStatesRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -762,20 +762,20 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionid** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **deviceId**       | **string**          | Device ID                                                                   |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiSendCommandToDeviceRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -840,20 +840,20 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionid** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **deviceId**       | **string**          | Device ID                                                                   |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiSendConfigurationToDeviceRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -917,19 +917,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiUnBindDeviceRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
  **device** | [**BindRequest**](BindRequest.md) | application/json | 
@@ -992,19 +992,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiUnBindDevicesRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
  **device** | [**BindRequestIdsGateway**](BindRequestIdsGateway.md) | application/json | 
@@ -1069,20 +1069,20 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
-| **deviceId**       | **string**          | Device ID                                                                   |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiUpdateDeviceRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 

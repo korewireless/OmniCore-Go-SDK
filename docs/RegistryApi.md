@@ -2,13 +2,13 @@
 
 All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com/model-state-management*
 
-| Method                                              | HTTP request                                                       | Description |
-| --------------------------------------------------- | ------------------------------------------------------------------ | ----------- |
-| [**CreateRegistry**](RegistryApi.md#CreateRegistry) | **Post** /subscriptions/{subscriptionId}/registries                |
-| [**DeleteRegistry**](RegistryApi.md#DeleteRegistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} |
-| [**GetRegistries**](RegistryApi.md#GetRegistries)   | **Get** /subscriptions/{subscriptionId}/registries                 |
-| [**GetRegistry**](RegistryApi.md#GetRegistry)       | **Get** /subscriptions/{subscriptionId}/registries/{registryId}    |
-| [**UpdateRegistry**](RegistryApi.md#UpdateRegistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}  |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**CreateRegistry**](RegistryApi.md#CreateRegistry) | **Post** /subscriptions/{subscriptionId}/registries | 
+[**DeleteRegistry**](RegistryApi.md#DeleteRegistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | 
+[**GetRegistries**](RegistryApi.md#GetRegistries) | **Get** /subscriptions/{subscriptionId}/registries | 
+[**GetRegistry**](RegistryApi.md#GetRegistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | 
+[**UpdateRegistry**](RegistryApi.md#UpdateRegistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | 
 
 
 
@@ -51,18 +51,18 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCreateRegistryRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
  **registry** | [**NewRegistry**](NewRegistry.md) | application/json | 
 
@@ -123,19 +123,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteRegistryRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -197,18 +197,18 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetRegistriesRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
  **pageNumber** | **int32** | Page Number | 
  **pageSize** | **int32** | Page Size | 
@@ -270,19 +270,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetRegistryRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
 
@@ -345,19 +345,19 @@ func main() {
 ### Path Parameters
 
 
-| Name               | Type                | Description                                                                 | Notes |
-| ------------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
-| **ctx**            | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **subscriptionId** | **string**          | Subscription ID                                                             |
-| **registryId**     | **string**          | Registry ID                                                                 |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiUpdateRegistryRequest struct via the builder pattern
 
 
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
 
 
  **updateMask** | **string** | values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials | 
