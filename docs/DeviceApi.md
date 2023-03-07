@@ -4,28 +4,28 @@ All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com/model
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BindDevice**](DeviceApi.md#BindDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | Gateway - Bind a Device to Gateway
-[**BindDevices**](DeviceApi.md#BindDevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | Gateway - Bind Devices to Gateway
-[**BlockDeviceCommuncation**](DeviceApi.md#BlockDeviceCommuncation) | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | Block Device Communication
-[**CreateDevice**](DeviceApi.md#CreateDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices | Add New Device
-[**DeleteDevice**](DeviceApi.md#DeleteDevice) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | Remove Device
-[**GetConfig**](DeviceApi.md#GetConfig) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | Get Config
-[**GetDevice**](DeviceApi.md#GetDevice) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | Get Device
-[**GetDevices**](DeviceApi.md#GetDevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | Get All Devices
-[**GetStates**](DeviceApi.md#GetStates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | Get States
-[**SendCommandToDevice**](DeviceApi.md#SendCommandToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | Send Command
-[**SendConfigurationToDevice**](DeviceApi.md#SendConfigurationToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice | Send Config
-[**UnBindDevice**](DeviceApi.md#UnBindDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | Gateway - UnBind a Device from Gateway
-[**UnBindDevices**](DeviceApi.md#UnBindDevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | Gateway - UnBind Devices from Gateway
-[**UpdateDevice**](DeviceApi.md#UpdateDevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | Modify Device
+[**BindDevice**](DeviceApi.md#BindDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
+[**BindDevices**](DeviceApi.md#BindDevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
+[**BlockDeviceCommuncation**](DeviceApi.md#BlockDeviceCommuncation) | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
+[**CreateDevice**](DeviceApi.md#CreateDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+[**DeleteDevice**](DeviceApi.md#DeleteDevice) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+[**GetConfig**](DeviceApi.md#GetConfig) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
+[**GetDevice**](DeviceApi.md#GetDevice) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+[**GetDevices**](DeviceApi.md#GetDevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+[**GetStates**](DeviceApi.md#GetStates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
+[**SendCommandToDevice**](DeviceApi.md#SendCommandToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
+[**UnBindDevice**](DeviceApi.md#UnBindDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
+[**UnBindDevices**](DeviceApi.md#UnBindDevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
+[**UpdateConfigurationToDevice**](DeviceApi.md#UpdateConfigurationToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice | 
+[**UpdateDevice**](DeviceApi.md#UpdateDevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
 
 
 
 ## BindDevice
 
-> OmnicoreInfo BindDevice(ctx, subscriptionId, registryId).Device(device).Execute()
+> Info BindDevice(ctx, subscriptionId, registryId).Device(device).Execute()
 
-Gateway - Bind a Device to Gateway
+
 
 
 
@@ -44,7 +44,7 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewOmnicoreBindRequest("DeviceId_example", "GatewayId_example") // OmnicoreBindRequest | application/json
+    device := *openapiclient.NewBindRequest("DeviceId_example", "GatewayId_example") // BindRequest | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -53,7 +53,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.BindDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `BindDevice`: OmnicoreInfo
+    // response from `BindDevice`: Info
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.BindDevice`: %v\n", resp)
 }
 ```
@@ -76,15 +76,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**OmnicoreBindRequest**](OmnicoreBindRequest.md) | application/json | 
+ **device** | [**BindRequest**](BindRequest.md) | application/json | 
 
 ### Return type
 
-[**OmnicoreInfo**](OmnicoreInfo.md)
+[**Info**](Info.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -98,9 +98,9 @@ No authorization required
 
 ## BindDevices
 
-> OmnicoreInfo BindDevices(ctx, subscriptionId, registryId).Device(device).Execute()
+> Info BindDevices(ctx, subscriptionId, registryId).Device(device).Execute()
 
-Gateway - Bind Devices to Gateway
+
 
 
 
@@ -119,7 +119,7 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewOmnicoreBindRequestIdsGateway([]string{"DeviceIds_example"}, "GatewayId_example") // OmnicoreBindRequestIdsGateway | application/json
+    device := *openapiclient.NewBindRequestIdsGateway([]string{"DeviceIds_example"}, "GatewayId_example") // BindRequestIdsGateway | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -128,7 +128,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.BindDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `BindDevices`: OmnicoreInfo
+    // response from `BindDevices`: Info
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.BindDevices`: %v\n", resp)
 }
 ```
@@ -151,15 +151,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**OmnicoreBindRequestIdsGateway**](OmnicoreBindRequestIdsGateway.md) | application/json | 
+ **device** | [**BindRequestIdsGateway**](BindRequestIdsGateway.md) | application/json | 
 
 ### Return type
 
-[**OmnicoreInfo**](OmnicoreInfo.md)
+[**Info**](Info.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -175,7 +175,7 @@ No authorization required
 
 > map[string]interface{} BlockDeviceCommuncation(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
 
-Block Device Communication
+
 
 
 
@@ -195,7 +195,7 @@ func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    device := *openapiclient.NewOmnicoreBlockCommunicationBody() // OmnicoreBlockCommunicationBody | application/json
+    device := *openapiclient.NewBlockCommunicationBody() // BlockCommunicationBody | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 
 
- **device** | [**OmnicoreBlockCommunicationBody**](OmnicoreBlockCommunicationBody.md) | application/json | 
+ **device** | [**BlockCommunicationBody**](BlockCommunicationBody.md) | application/json | 
 
 ### Return type
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -251,9 +251,9 @@ No authorization required
 
 ## CreateDevice
 
-> OmnicoreDevice CreateDevice(ctx, subscriptionId, registryId).Device(device).Execute()
+> Device CreateDevice(ctx, subscriptionId, registryId).Device(device).Execute()
 
-Add New Device
+
 
 
 
@@ -272,7 +272,7 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewOmnicoreNewDevice("Id_example") // OmnicoreNewDevice | application/json
+    device := *openapiclient.NewCreateNewDevice("Id_example") // CreateNewDevice | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -281,7 +281,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.CreateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDevice`: OmnicoreDevice
+    // response from `CreateDevice`: Device
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.CreateDevice`: %v\n", resp)
 }
 ```
@@ -304,15 +304,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**OmnicoreNewDevice**](OmnicoreNewDevice.md) | application/json | 
+ **device** | [**CreateNewDevice**](CreateNewDevice.md) | application/json | 
 
 ### Return type
 
-[**OmnicoreDevice**](OmnicoreDevice.md)
+[**Device**](Device.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -326,9 +326,9 @@ No authorization required
 
 ## DeleteDevice
 
-> OmnicoreInfo DeleteDevice(ctx, subscriptionId, registryId, deviceId).Execute()
+> Info DeleteDevice(ctx, subscriptionId, registryId, deviceId).Execute()
 
-Remove Device
+
 
 
 
@@ -356,7 +356,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.DeleteDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteDevice`: OmnicoreInfo
+    // response from `DeleteDevice`: Info
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.DeleteDevice`: %v\n", resp)
 }
 ```
@@ -384,11 +384,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OmnicoreInfo**](OmnicoreInfo.md)
+[**Info**](Info.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -402,9 +402,9 @@ No authorization required
 
 ## GetConfig
 
-> OmnicoreListDeviceConfigVersionsResponse GetConfig(ctx, subscriptionid, registryId, deviceId).NumVersions(numVersions).Execute()
+> ListDeviceConfigVersionsResponse GetConfig(ctx, subscriptionid, registryId, deviceId).NumVersions(numVersions).Execute()
 
-Get Config
+
 
 
 
@@ -433,7 +433,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.GetConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetConfig`: OmnicoreListDeviceConfigVersionsResponse
+    // response from `GetConfig`: ListDeviceConfigVersionsResponse
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.GetConfig`: %v\n", resp)
 }
 ```
@@ -462,11 +462,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OmnicoreListDeviceConfigVersionsResponse**](OmnicoreListDeviceConfigVersionsResponse.md)
+[**ListDeviceConfigVersionsResponse**](ListDeviceConfigVersionsResponse.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -480,9 +480,9 @@ No authorization required
 
 ## GetDevice
 
-> OmnicoreDevice GetDevice(ctx, registryId, subscriptionId, deviceId).Execute()
+> Device GetDevice(ctx, registryId, subscriptionId, deviceId).Execute()
 
-Get Device
+
 
 
 
@@ -510,7 +510,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.GetDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDevice`: OmnicoreDevice
+    // response from `GetDevice`: Device
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.GetDevice`: %v\n", resp)
 }
 ```
@@ -538,11 +538,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OmnicoreDevice**](OmnicoreDevice.md)
+[**Device**](Device.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -556,9 +556,9 @@ No authorization required
 
 ## GetDevices
 
-> OmnicoreListDevicesResponse GetDevices(ctx, registryId, subscriptionId).PageNumber(pageNumber).PageSize(pageSize).FieldMask(fieldMask).DeviceIds(deviceIds).DeviceNumIds(deviceNumIds).GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId).GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId).GatewayListOptionsGatewayType(gatewayListOptionsGatewayType).Execute()
+> ListDevicesResponse GetDevices(ctx, registryId, subscriptionId).PageNumber(pageNumber).PageSize(pageSize).FieldMask(fieldMask).DeviceIds(deviceIds).DeviceNumIds(deviceNumIds).GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId).GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId).GatewayListOptionsGatewayType(gatewayListOptionsGatewayType).Execute()
 
-Get All Devices
+
 
 
 
@@ -593,7 +593,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.GetDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetDevices`: OmnicoreListDevicesResponse
+    // response from `GetDevices`: ListDevicesResponse
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.GetDevices`: %v\n", resp)
 }
 ```
@@ -627,11 +627,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OmnicoreListDevicesResponse**](OmnicoreListDevicesResponse.md)
+[**ListDevicesResponse**](ListDevicesResponse.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -645,9 +645,9 @@ No authorization required
 
 ## GetStates
 
-> OmnicoreListDeviceStatesResponse GetStates(ctx, subscriptionid, registryId, deviceId).NumStates(numStates).Execute()
+> ListDeviceStatesResponse GetStates(ctx, subscriptionid, registryId, deviceId).NumStates(numStates).Execute()
 
-Get States
+
 
 
 
@@ -676,7 +676,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.GetStates``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetStates`: OmnicoreListDeviceStatesResponse
+    // response from `GetStates`: ListDeviceStatesResponse
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.GetStates`: %v\n", resp)
 }
 ```
@@ -705,11 +705,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OmnicoreListDeviceStatesResponse**](OmnicoreListDeviceStatesResponse.md)
+[**ListDeviceStatesResponse**](ListDeviceStatesResponse.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -725,7 +725,7 @@ No authorization required
 
 > map[string]interface{} SendCommandToDevice(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
 
-Send Command
+
 
 
 
@@ -745,7 +745,7 @@ func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    device := *openapiclient.NewOmnicoreCommand("BinaryData_example") // OmnicoreCommand | application/json
+    device := *openapiclient.NewDeviceCommand("BinaryData_example") // DeviceCommand | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -779,7 +779,7 @@ Name | Type | Description  | Notes
 
 
 
- **device** | [**OmnicoreCommand**](OmnicoreCommand.md) | application/json | 
+ **device** | [**DeviceCommand**](DeviceCommand.md) | application/json | 
 
 ### Return type
 
@@ -787,85 +787,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## SendConfigurationToDevice
-
-> OmnicoreDeviceConfig SendConfigurationToDevice(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
-
-Send Config
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
-)
-
-func main() {
-    subscriptionid := "subscriptionid_example" // string | Subscription ID
-    registryId := "registryId_example" // string | Registry ID
-    deviceId := "deviceId_example" // string | Device ID
-    device := *openapiclient.NewOmnicoreConfig("BinaryData_example") // OmnicoreConfig | application/json
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.SendConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Device(device).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.SendConfigurationToDevice``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SendConfigurationToDevice`: OmnicoreDeviceConfig
-    fmt.Fprintf(os.Stdout, "Response from `DeviceApi.SendConfigurationToDevice`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subscriptionid** | **string** | Subscription ID | 
-**registryId** | **string** | Registry ID | 
-**deviceId** | **string** | Device ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSendConfigurationToDeviceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **device** | [**OmnicoreConfig**](OmnicoreConfig.md) | application/json | 
-
-### Return type
-
-[**OmnicoreDeviceConfig**](OmnicoreDeviceConfig.md)
-
-### Authorization
-
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -879,9 +801,9 @@ No authorization required
 
 ## UnBindDevice
 
-> OmnicoreInfo UnBindDevice(ctx, subscriptionId, registryId).Device(device).Execute()
+> Info UnBindDevice(ctx, subscriptionId, registryId).Device(device).Execute()
 
-Gateway - UnBind a Device from Gateway
+
 
 
 
@@ -900,7 +822,7 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewOmnicoreBindRequest("DeviceId_example", "GatewayId_example") // OmnicoreBindRequest | application/json
+    device := *openapiclient.NewBindRequest("DeviceId_example", "GatewayId_example") // BindRequest | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -909,7 +831,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UnBindDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UnBindDevice`: OmnicoreInfo
+    // response from `UnBindDevice`: Info
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.UnBindDevice`: %v\n", resp)
 }
 ```
@@ -932,15 +854,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**OmnicoreBindRequest**](OmnicoreBindRequest.md) | application/json | 
+ **device** | [**BindRequest**](BindRequest.md) | application/json | 
 
 ### Return type
 
-[**OmnicoreInfo**](OmnicoreInfo.md)
+[**Info**](Info.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -954,9 +876,9 @@ No authorization required
 
 ## UnBindDevices
 
-> OmnicoreInfo UnBindDevices(ctx, subscriptionId, registryId).Device(device).Execute()
+> Info UnBindDevices(ctx, subscriptionId, registryId).Device(device).Execute()
 
-Gateway - UnBind Devices from Gateway
+
 
 
 
@@ -975,7 +897,7 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewOmnicoreBindRequestIdsGateway([]string{"DeviceIds_example"}, "GatewayId_example") // OmnicoreBindRequestIdsGateway | application/json
+    device := *openapiclient.NewBindRequestIdsGateway([]string{"DeviceIds_example"}, "GatewayId_example") // BindRequestIdsGateway | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -984,7 +906,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UnBindDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UnBindDevices`: OmnicoreInfo
+    // response from `UnBindDevices`: Info
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.UnBindDevices`: %v\n", resp)
 }
 ```
@@ -1007,15 +929,93 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**OmnicoreBindRequestIdsGateway**](OmnicoreBindRequestIdsGateway.md) | application/json | 
+ **device** | [**BindRequestIdsGateway**](BindRequestIdsGateway.md) | application/json | 
 
 ### Return type
 
-[**OmnicoreInfo**](OmnicoreInfo.md)
+[**Info**](Info.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateConfigurationToDevice
+
+> DeviceConfig UpdateConfigurationToDevice(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
+)
+
+func main() {
+    subscriptionid := "subscriptionid_example" // string | Subscription ID
+    registryId := "registryId_example" // string | Registry ID
+    deviceId := "deviceId_example" // string | Device ID
+    device := *openapiclient.NewDeviceConfiguration("BinaryData_example") // DeviceConfiguration | application/json
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DeviceApi.UpdateConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Device(device).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UpdateConfigurationToDevice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateConfigurationToDevice`: DeviceConfig
+    fmt.Fprintf(os.Stdout, "Response from `DeviceApi.UpdateConfigurationToDevice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateConfigurationToDeviceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **device** | [**DeviceConfiguration**](DeviceConfiguration.md) | application/json | 
+
+### Return type
+
+[**DeviceConfig**](DeviceConfig.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -1029,9 +1029,9 @@ No authorization required
 
 ## UpdateDevice
 
-> OmnicoreDevice UpdateDevice(ctx, subscriptionId, registryId, deviceId).UpdateMask(updateMask).Device(device).Execute()
+> Device UpdateDevice(ctx, subscriptionId, registryId, deviceId).UpdateMask(updateMask).Device(device).Execute()
 
-Modify Device
+
 
 
 
@@ -1052,7 +1052,7 @@ func main() {
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
     updateMask := "updateMask_example" // string | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,log_level, blocked, and metadata
-    device := *openapiclient.NewOmnicoreUpdateDevice() // OmnicoreUpdateDevice | application/json
+    device := *openapiclient.NewUpdateDevice() // UpdateDevice | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1061,7 +1061,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UpdateDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateDevice`: OmnicoreDevice
+    // response from `UpdateDevice`: Device
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.UpdateDevice`: %v\n", resp)
 }
 ```
@@ -1087,15 +1087,15 @@ Name | Type | Description  | Notes
 
 
  **updateMask** | **string** | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,log_level, blocked, and metadata | 
- **device** | [**OmnicoreUpdateDevice**](OmnicoreUpdateDevice.md) | application/json | 
+ **device** | [**UpdateDevice**](UpdateDevice.md) | application/json | 
 
 ### Return type
 
-[**OmnicoreDevice**](OmnicoreDevice.md)
+[**Device**](Device.md)
 
 ### Authorization
 
-No authorization required
+[bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

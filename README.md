@@ -1,6 +1,6 @@
 # Go API client for OmniCore
 
-This is an Omnicore Model and State Management server.
+This is an OmniCore Model and State Management server.
 
 ## Overview
 
@@ -77,66 +77,82 @@ All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com/model
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DeviceApi* | [**BindDevice**](docs/DeviceApi.md#binddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | Gateway - Bind a Device to Gateway
-*DeviceApi* | [**BindDevices**](docs/DeviceApi.md#binddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | Gateway - Bind Devices to Gateway
-*DeviceApi* | [**BlockDeviceCommuncation**](docs/DeviceApi.md#blockdevicecommuncation) | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | Block Device Communication
-*DeviceApi* | [**CreateDevice**](docs/DeviceApi.md#createdevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices | Add New Device
-*DeviceApi* | [**DeleteDevice**](docs/DeviceApi.md#deletedevice) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | Remove Device
-*DeviceApi* | [**GetConfig**](docs/DeviceApi.md#getconfig) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | Get Config
-*DeviceApi* | [**GetDevice**](docs/DeviceApi.md#getdevice) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | Get Device
-*DeviceApi* | [**GetDevices**](docs/DeviceApi.md#getdevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | Get All Devices
-*DeviceApi* | [**GetStates**](docs/DeviceApi.md#getstates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | Get States
-*DeviceApi* | [**SendCommandToDevice**](docs/DeviceApi.md#sendcommandtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | Send Command
-*DeviceApi* | [**SendConfigurationToDevice**](docs/DeviceApi.md#sendconfigurationtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice | Send Config
-*DeviceApi* | [**UnBindDevice**](docs/DeviceApi.md#unbinddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | Gateway - UnBind a Device from Gateway
-*DeviceApi* | [**UnBindDevices**](docs/DeviceApi.md#unbinddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | Gateway - UnBind Devices from Gateway
-*DeviceApi* | [**UpdateDevice**](docs/DeviceApi.md#updatedevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | Modify Device
-*RegistryApi* | [**CreateRegistry**](docs/RegistryApi.md#createregistry) | **Post** /subscriptions/{subscriptionId}/registries | Add New Registry
-*RegistryApi* | [**DeleteRegistry**](docs/RegistryApi.md#deleteregistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | Remove Registry
-*RegistryApi* | [**GetRegistries**](docs/RegistryApi.md#getregistries) | **Get** /subscriptions/{subscriptionId}/registries | Get All Registries
-*RegistryApi* | [**GetRegistry**](docs/RegistryApi.md#getregistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | Get Registry
-*RegistryApi* | [**UpdateRegistry**](docs/RegistryApi.md#updateregistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | Modify Registry
+*DeviceApi* | [**BindDevice**](docs/DeviceApi.md#binddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
+*DeviceApi* | [**BindDevices**](docs/DeviceApi.md#binddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
+*DeviceApi* | [**BlockDeviceCommuncation**](docs/DeviceApi.md#blockdevicecommuncation) | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
+*DeviceApi* | [**CreateDevice**](docs/DeviceApi.md#createdevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+*DeviceApi* | [**DeleteDevice**](docs/DeviceApi.md#deletedevice) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*DeviceApi* | [**GetConfig**](docs/DeviceApi.md#getconfig) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
+*DeviceApi* | [**GetDevice**](docs/DeviceApi.md#getdevice) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*DeviceApi* | [**GetDevices**](docs/DeviceApi.md#getdevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+*DeviceApi* | [**GetStates**](docs/DeviceApi.md#getstates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
+*DeviceApi* | [**SendCommandToDevice**](docs/DeviceApi.md#sendcommandtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
+*DeviceApi* | [**UnBindDevice**](docs/DeviceApi.md#unbinddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
+*DeviceApi* | [**UnBindDevices**](docs/DeviceApi.md#unbinddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
+*DeviceApi* | [**UpdateConfigurationToDevice**](docs/DeviceApi.md#updateconfigurationtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice | 
+*DeviceApi* | [**UpdateDevice**](docs/DeviceApi.md#updatedevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*RegistryApi* | [**CreateRegistry**](docs/RegistryApi.md#createregistry) | **Post** /subscriptions/{subscriptionId}/registries | 
+*RegistryApi* | [**DeleteRegistry**](docs/RegistryApi.md#deleteregistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | 
+*RegistryApi* | [**GetRegistries**](docs/RegistryApi.md#getregistries) | **Get** /subscriptions/{subscriptionId}/registries | 
+*RegistryApi* | [**GetRegistry**](docs/RegistryApi.md#getregistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | 
+*RegistryApi* | [**UpdateRegistry**](docs/RegistryApi.md#updateregistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | 
 
 
 ## Documentation For Models
 
+ - [BindRequest](docs/BindRequest.md)
+ - [BindRequestIdsGateway](docs/BindRequestIdsGateway.md)
+ - [BlockCommunicationBody](docs/BlockCommunicationBody.md)
+ - [CreateNewDevice](docs/CreateNewDevice.md)
+ - [CreateRegistry200Response](docs/CreateRegistry200Response.md)
  - [CreateRegistryRequest](docs/CreateRegistryRequest.md)
- - [OmnicoreBindRequest](docs/OmnicoreBindRequest.md)
- - [OmnicoreBindRequestIdsGateway](docs/OmnicoreBindRequestIdsGateway.md)
- - [OmnicoreBlockCommunicationBody](docs/OmnicoreBlockCommunicationBody.md)
- - [OmnicoreCommand](docs/OmnicoreCommand.md)
- - [OmnicoreConfig](docs/OmnicoreConfig.md)
- - [OmnicoreDevice](docs/OmnicoreDevice.md)
- - [OmnicoreDeviceConfig](docs/OmnicoreDeviceConfig.md)
- - [OmnicoreDeviceCredential](docs/OmnicoreDeviceCredential.md)
- - [OmnicoreDeviceRegistry](docs/OmnicoreDeviceRegistry.md)
- - [OmnicoreDeviceState](docs/OmnicoreDeviceState.md)
- - [OmnicoreErrorFrame](docs/OmnicoreErrorFrame.md)
- - [OmnicoreErrorStatus](docs/OmnicoreErrorStatus.md)
- - [OmnicoreEventNotificationConfig](docs/OmnicoreEventNotificationConfig.md)
- - [OmnicoreGatewayConfig](docs/OmnicoreGatewayConfig.md)
- - [OmnicoreGenericErrorResponse](docs/OmnicoreGenericErrorResponse.md)
- - [OmnicoreHttpConfig](docs/OmnicoreHttpConfig.md)
- - [OmnicoreInfo](docs/OmnicoreInfo.md)
- - [OmnicoreListDeviceConfigVersionsResponse](docs/OmnicoreListDeviceConfigVersionsResponse.md)
- - [OmnicoreListDeviceRegistriesResponse](docs/OmnicoreListDeviceRegistriesResponse.md)
- - [OmnicoreListDeviceStatesResponse](docs/OmnicoreListDeviceStatesResponse.md)
- - [OmnicoreListDevicesResponse](docs/OmnicoreListDevicesResponse.md)
- - [OmnicoreMqttConfig](docs/OmnicoreMqttConfig.md)
- - [OmnicoreNewDevice](docs/OmnicoreNewDevice.md)
- - [OmnicoreNewRegistry](docs/OmnicoreNewRegistry.md)
- - [OmnicorePublicKeyCertificate](docs/OmnicorePublicKeyCertificate.md)
- - [OmnicorePublicKeyCredential](docs/OmnicorePublicKeyCredential.md)
- - [OmnicoreRegistryCredential](docs/OmnicoreRegistryCredential.md)
- - [OmnicoreStateNotificationConfig](docs/OmnicoreStateNotificationConfig.md)
- - [OmnicoreUpdateDevice](docs/OmnicoreUpdateDevice.md)
- - [OmnicoreUpdateRegistry](docs/OmnicoreUpdateRegistry.md)
- - [OmnicoreX509CertificateDetails](docs/OmnicoreX509CertificateDetails.md)
+ - [Device](docs/Device.md)
+ - [DeviceCertificate](docs/DeviceCertificate.md)
+ - [DeviceCommand](docs/DeviceCommand.md)
+ - [DeviceConfig](docs/DeviceConfig.md)
+ - [DeviceConfiguration](docs/DeviceConfiguration.md)
+ - [DeviceCredential](docs/DeviceCredential.md)
+ - [DeviceRegistry](docs/DeviceRegistry.md)
+ - [DeviceState](docs/DeviceState.md)
+ - [ErrorFrame](docs/ErrorFrame.md)
+ - [ErrorStatus](docs/ErrorStatus.md)
+ - [EventNotificationConfig](docs/EventNotificationConfig.md)
+ - [GatewayConfig](docs/GatewayConfig.md)
+ - [GenericErrorResponse](docs/GenericErrorResponse.md)
+ - [HttpConfig](docs/HttpConfig.md)
+ - [Info](docs/Info.md)
+ - [ListDeviceConfigVersionsResponse](docs/ListDeviceConfigVersionsResponse.md)
+ - [ListDeviceRegistries](docs/ListDeviceRegistries.md)
+ - [ListDeviceStatesResponse](docs/ListDeviceStatesResponse.md)
+ - [ListDevicesResponse](docs/ListDevicesResponse.md)
+ - [LogLevel](docs/LogLevel.md)
+ - [MqttConfig](docs/MqttConfig.md)
+ - [NewRegistry](docs/NewRegistry.md)
+ - [NotificationConfig](docs/NotificationConfig.md)
+ - [PublicKeyCertificate](docs/PublicKeyCertificate.md)
+ - [PublicKeyCredential](docs/PublicKeyCredential.md)
+ - [RegistryCertificate](docs/RegistryCertificate.md)
+ - [RegistryCredential](docs/RegistryCredential.md)
+ - [UpdateDevice](docs/UpdateDevice.md)
+ - [UpdateRegistry](docs/UpdateRegistry.md)
+ - [UpdateRegistryRequest](docs/UpdateRegistryRequest.md)
+ - [X509CertificateDetails](docs/X509CertificateDetails.md)
 
 
 ## Documentation For Authorization
 
- Endpoints do not require authorization.
+
+
+### bearerAuth
+
+- **Type**: HTTP Bearer token authentication
+
+Example
+
+```golang
+auth := context.WithValue(context.Background(), sw.ContextAccessToken, "BEARER_TOKEN_STRING")
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ## Documentation for Utility Methods

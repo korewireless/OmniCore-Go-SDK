@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Credentials** | Pointer to [**[]OmnicoreRegistryCredential**](OmnicoreRegistryCredential.md) |  | [optional] 
-**EventNotificationConfigs** | Pointer to [**[]OmnicoreEventNotificationConfig**](OmnicoreEventNotificationConfig.md) |  | [optional] 
-**HttpConfig** | Pointer to [**OmnicoreHttpConfig**](OmnicoreHttpConfig.md) |  | [optional] 
 **Id** | **string** |  | 
-**LogLevel** | Pointer to **string** |  | [optional] 
-**LogNotificationConfig** | Pointer to [**OmnicoreStateNotificationConfig**](OmnicoreStateNotificationConfig.md) |  | [optional] 
-**MqttConfig** | Pointer to [**OmnicoreMqttConfig**](OmnicoreMqttConfig.md) |  | [optional] 
-**StateNotificationConfig** | Pointer to [**OmnicoreStateNotificationConfig**](OmnicoreStateNotificationConfig.md) |  | [optional] 
+**Credentials** | Pointer to [**[]RegistryCredential**](RegistryCredential.md) |  | [optional] 
+**HttpConfig** | Pointer to [**HttpConfig**](HttpConfig.md) |  | [optional] 
+**MqttConfig** | Pointer to [**MqttConfig**](MqttConfig.md) |  | [optional] 
+**LogLevel** | Pointer to [**LogLevel**](LogLevel.md) |  | [optional] 
+**EventNotificationConfigs** | Pointer to [**[]EventNotificationConfig**](EventNotificationConfig.md) |  | [optional] 
+**LogNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
+**StateNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
 
 ## Methods
 
@@ -31,81 +31,6 @@ will change when the set of required properties is changed
 NewCreateRegistryRequestWithDefaults instantiates a new CreateRegistryRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetCredentials
-
-`func (o *CreateRegistryRequest) GetCredentials() []OmnicoreRegistryCredential`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *CreateRegistryRequest) GetCredentialsOk() (*[]OmnicoreRegistryCredential, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *CreateRegistryRequest) SetCredentials(v []OmnicoreRegistryCredential)`
-
-SetCredentials sets Credentials field to given value.
-
-### HasCredentials
-
-`func (o *CreateRegistryRequest) HasCredentials() bool`
-
-HasCredentials returns a boolean if a field has been set.
-
-### GetEventNotificationConfigs
-
-`func (o *CreateRegistryRequest) GetEventNotificationConfigs() []OmnicoreEventNotificationConfig`
-
-GetEventNotificationConfigs returns the EventNotificationConfigs field if non-nil, zero value otherwise.
-
-### GetEventNotificationConfigsOk
-
-`func (o *CreateRegistryRequest) GetEventNotificationConfigsOk() (*[]OmnicoreEventNotificationConfig, bool)`
-
-GetEventNotificationConfigsOk returns a tuple with the EventNotificationConfigs field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEventNotificationConfigs
-
-`func (o *CreateRegistryRequest) SetEventNotificationConfigs(v []OmnicoreEventNotificationConfig)`
-
-SetEventNotificationConfigs sets EventNotificationConfigs field to given value.
-
-### HasEventNotificationConfigs
-
-`func (o *CreateRegistryRequest) HasEventNotificationConfigs() bool`
-
-HasEventNotificationConfigs returns a boolean if a field has been set.
-
-### GetHttpConfig
-
-`func (o *CreateRegistryRequest) GetHttpConfig() OmnicoreHttpConfig`
-
-GetHttpConfig returns the HttpConfig field if non-nil, zero value otherwise.
-
-### GetHttpConfigOk
-
-`func (o *CreateRegistryRequest) GetHttpConfigOk() (*OmnicoreHttpConfig, bool)`
-
-GetHttpConfigOk returns a tuple with the HttpConfig field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHttpConfig
-
-`func (o *CreateRegistryRequest) SetHttpConfig(v OmnicoreHttpConfig)`
-
-SetHttpConfig sets HttpConfig field to given value.
-
-### HasHttpConfig
-
-`func (o *CreateRegistryRequest) HasHttpConfig() bool`
-
-HasHttpConfig returns a boolean if a field has been set.
 
 ### GetId
 
@@ -127,72 +52,72 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetLogLevel
+### GetCredentials
 
-`func (o *CreateRegistryRequest) GetLogLevel() string`
+`func (o *CreateRegistryRequest) GetCredentials() []RegistryCredential`
 
-GetLogLevel returns the LogLevel field if non-nil, zero value otherwise.
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
 
-### GetLogLevelOk
+### GetCredentialsOk
 
-`func (o *CreateRegistryRequest) GetLogLevelOk() (*string, bool)`
+`func (o *CreateRegistryRequest) GetCredentialsOk() (*[]RegistryCredential, bool)`
 
-GetLogLevelOk returns a tuple with the LogLevel field if it's non-nil, zero value otherwise
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLogLevel
+### SetCredentials
 
-`func (o *CreateRegistryRequest) SetLogLevel(v string)`
+`func (o *CreateRegistryRequest) SetCredentials(v []RegistryCredential)`
 
-SetLogLevel sets LogLevel field to given value.
+SetCredentials sets Credentials field to given value.
 
-### HasLogLevel
+### HasCredentials
 
-`func (o *CreateRegistryRequest) HasLogLevel() bool`
+`func (o *CreateRegistryRequest) HasCredentials() bool`
 
-HasLogLevel returns a boolean if a field has been set.
+HasCredentials returns a boolean if a field has been set.
 
-### GetLogNotificationConfig
+### GetHttpConfig
 
-`func (o *CreateRegistryRequest) GetLogNotificationConfig() OmnicoreStateNotificationConfig`
+`func (o *CreateRegistryRequest) GetHttpConfig() HttpConfig`
 
-GetLogNotificationConfig returns the LogNotificationConfig field if non-nil, zero value otherwise.
+GetHttpConfig returns the HttpConfig field if non-nil, zero value otherwise.
 
-### GetLogNotificationConfigOk
+### GetHttpConfigOk
 
-`func (o *CreateRegistryRequest) GetLogNotificationConfigOk() (*OmnicoreStateNotificationConfig, bool)`
+`func (o *CreateRegistryRequest) GetHttpConfigOk() (*HttpConfig, bool)`
 
-GetLogNotificationConfigOk returns a tuple with the LogNotificationConfig field if it's non-nil, zero value otherwise
+GetHttpConfigOk returns a tuple with the HttpConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLogNotificationConfig
+### SetHttpConfig
 
-`func (o *CreateRegistryRequest) SetLogNotificationConfig(v OmnicoreStateNotificationConfig)`
+`func (o *CreateRegistryRequest) SetHttpConfig(v HttpConfig)`
 
-SetLogNotificationConfig sets LogNotificationConfig field to given value.
+SetHttpConfig sets HttpConfig field to given value.
 
-### HasLogNotificationConfig
+### HasHttpConfig
 
-`func (o *CreateRegistryRequest) HasLogNotificationConfig() bool`
+`func (o *CreateRegistryRequest) HasHttpConfig() bool`
 
-HasLogNotificationConfig returns a boolean if a field has been set.
+HasHttpConfig returns a boolean if a field has been set.
 
 ### GetMqttConfig
 
-`func (o *CreateRegistryRequest) GetMqttConfig() OmnicoreMqttConfig`
+`func (o *CreateRegistryRequest) GetMqttConfig() MqttConfig`
 
 GetMqttConfig returns the MqttConfig field if non-nil, zero value otherwise.
 
 ### GetMqttConfigOk
 
-`func (o *CreateRegistryRequest) GetMqttConfigOk() (*OmnicoreMqttConfig, bool)`
+`func (o *CreateRegistryRequest) GetMqttConfigOk() (*MqttConfig, bool)`
 
 GetMqttConfigOk returns a tuple with the MqttConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMqttConfig
 
-`func (o *CreateRegistryRequest) SetMqttConfig(v OmnicoreMqttConfig)`
+`func (o *CreateRegistryRequest) SetMqttConfig(v MqttConfig)`
 
 SetMqttConfig sets MqttConfig field to given value.
 
@@ -202,22 +127,97 @@ SetMqttConfig sets MqttConfig field to given value.
 
 HasMqttConfig returns a boolean if a field has been set.
 
+### GetLogLevel
+
+`func (o *CreateRegistryRequest) GetLogLevel() LogLevel`
+
+GetLogLevel returns the LogLevel field if non-nil, zero value otherwise.
+
+### GetLogLevelOk
+
+`func (o *CreateRegistryRequest) GetLogLevelOk() (*LogLevel, bool)`
+
+GetLogLevelOk returns a tuple with the LogLevel field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogLevel
+
+`func (o *CreateRegistryRequest) SetLogLevel(v LogLevel)`
+
+SetLogLevel sets LogLevel field to given value.
+
+### HasLogLevel
+
+`func (o *CreateRegistryRequest) HasLogLevel() bool`
+
+HasLogLevel returns a boolean if a field has been set.
+
+### GetEventNotificationConfigs
+
+`func (o *CreateRegistryRequest) GetEventNotificationConfigs() []EventNotificationConfig`
+
+GetEventNotificationConfigs returns the EventNotificationConfigs field if non-nil, zero value otherwise.
+
+### GetEventNotificationConfigsOk
+
+`func (o *CreateRegistryRequest) GetEventNotificationConfigsOk() (*[]EventNotificationConfig, bool)`
+
+GetEventNotificationConfigsOk returns a tuple with the EventNotificationConfigs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEventNotificationConfigs
+
+`func (o *CreateRegistryRequest) SetEventNotificationConfigs(v []EventNotificationConfig)`
+
+SetEventNotificationConfigs sets EventNotificationConfigs field to given value.
+
+### HasEventNotificationConfigs
+
+`func (o *CreateRegistryRequest) HasEventNotificationConfigs() bool`
+
+HasEventNotificationConfigs returns a boolean if a field has been set.
+
+### GetLogNotificationConfig
+
+`func (o *CreateRegistryRequest) GetLogNotificationConfig() NotificationConfig`
+
+GetLogNotificationConfig returns the LogNotificationConfig field if non-nil, zero value otherwise.
+
+### GetLogNotificationConfigOk
+
+`func (o *CreateRegistryRequest) GetLogNotificationConfigOk() (*NotificationConfig, bool)`
+
+GetLogNotificationConfigOk returns a tuple with the LogNotificationConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogNotificationConfig
+
+`func (o *CreateRegistryRequest) SetLogNotificationConfig(v NotificationConfig)`
+
+SetLogNotificationConfig sets LogNotificationConfig field to given value.
+
+### HasLogNotificationConfig
+
+`func (o *CreateRegistryRequest) HasLogNotificationConfig() bool`
+
+HasLogNotificationConfig returns a boolean if a field has been set.
+
 ### GetStateNotificationConfig
 
-`func (o *CreateRegistryRequest) GetStateNotificationConfig() OmnicoreStateNotificationConfig`
+`func (o *CreateRegistryRequest) GetStateNotificationConfig() NotificationConfig`
 
 GetStateNotificationConfig returns the StateNotificationConfig field if non-nil, zero value otherwise.
 
 ### GetStateNotificationConfigOk
 
-`func (o *CreateRegistryRequest) GetStateNotificationConfigOk() (*OmnicoreStateNotificationConfig, bool)`
+`func (o *CreateRegistryRequest) GetStateNotificationConfigOk() (*NotificationConfig, bool)`
 
 GetStateNotificationConfigOk returns a tuple with the StateNotificationConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStateNotificationConfig
 
-`func (o *CreateRegistryRequest) SetStateNotificationConfig(v OmnicoreStateNotificationConfig)`
+`func (o *CreateRegistryRequest) SetStateNotificationConfig(v NotificationConfig)`
 
 SetStateNotificationConfig sets StateNotificationConfig field to given value.
 
