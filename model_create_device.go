@@ -21,11 +21,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the CreateNewDevice type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateNewDevice{}
+// checks if the CreateDevice type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateDevice{}
 
-// CreateNewDevice struct for CreateNewDevice
-type CreateNewDevice struct {
+// CreateDevice struct for CreateDevice
+type CreateDevice struct {
 	Id string `json:"id"`
 	Blocked *bool `json:"blocked,omitempty"`
 	Credentials []DeviceCredential `json:"credentials,omitempty"`
@@ -35,26 +35,26 @@ type CreateNewDevice struct {
 	Metadata *map[string]string `json:"metadata,omitempty"`
 }
 
-// NewCreateNewDevice instantiates a new CreateNewDevice object
+// NewCreateDevice instantiates a new CreateDevice object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateNewDevice(id string) *CreateNewDevice {
-	this := CreateNewDevice{}
+func NewCreateDevice(id string) *CreateDevice {
+	this := CreateDevice{}
 	this.Id = id
 	return &this
 }
 
-// NewCreateNewDeviceWithDefaults instantiates a new CreateNewDevice object
+// NewCreateDeviceWithDefaults instantiates a new CreateDevice object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateNewDeviceWithDefaults() *CreateNewDevice {
-	this := CreateNewDevice{}
+func NewCreateDeviceWithDefaults() *CreateDevice {
+	this := CreateDevice{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *CreateNewDevice) GetId() string {
+func (o *CreateDevice) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -65,7 +65,7 @@ func (o *CreateNewDevice) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CreateNewDevice) GetIdOk() (*string, bool) {
+func (o *CreateDevice) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,12 +73,12 @@ func (o *CreateNewDevice) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *CreateNewDevice) SetId(v string) {
+func (o *CreateDevice) SetId(v string) {
 	o.Id = v
 }
 
 // GetBlocked returns the Blocked field value if set, zero value otherwise.
-func (o *CreateNewDevice) GetBlocked() bool {
+func (o *CreateDevice) GetBlocked() bool {
 	if o == nil || IsNil(o.Blocked) {
 		var ret bool
 		return ret
@@ -88,7 +88,7 @@ func (o *CreateNewDevice) GetBlocked() bool {
 
 // GetBlockedOk returns a tuple with the Blocked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNewDevice) GetBlockedOk() (*bool, bool) {
+func (o *CreateDevice) GetBlockedOk() (*bool, bool) {
 	if o == nil || IsNil(o.Blocked) {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *CreateNewDevice) GetBlockedOk() (*bool, bool) {
 }
 
 // HasBlocked returns a boolean if a field has been set.
-func (o *CreateNewDevice) HasBlocked() bool {
+func (o *CreateDevice) HasBlocked() bool {
 	if o != nil && !IsNil(o.Blocked) {
 		return true
 	}
@@ -105,12 +105,12 @@ func (o *CreateNewDevice) HasBlocked() bool {
 }
 
 // SetBlocked gets a reference to the given bool and assigns it to the Blocked field.
-func (o *CreateNewDevice) SetBlocked(v bool) {
+func (o *CreateDevice) SetBlocked(v bool) {
 	o.Blocked = &v
 }
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
-func (o *CreateNewDevice) GetCredentials() []DeviceCredential {
+func (o *CreateDevice) GetCredentials() []DeviceCredential {
 	if o == nil || IsNil(o.Credentials) {
 		var ret []DeviceCredential
 		return ret
@@ -120,7 +120,7 @@ func (o *CreateNewDevice) GetCredentials() []DeviceCredential {
 
 // GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNewDevice) GetCredentialsOk() ([]DeviceCredential, bool) {
+func (o *CreateDevice) GetCredentialsOk() ([]DeviceCredential, bool) {
 	if o == nil || IsNil(o.Credentials) {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *CreateNewDevice) GetCredentialsOk() ([]DeviceCredential, bool) {
 }
 
 // HasCredentials returns a boolean if a field has been set.
-func (o *CreateNewDevice) HasCredentials() bool {
+func (o *CreateDevice) HasCredentials() bool {
 	if o != nil && !IsNil(o.Credentials) {
 		return true
 	}
@@ -137,12 +137,12 @@ func (o *CreateNewDevice) HasCredentials() bool {
 }
 
 // SetCredentials gets a reference to the given []DeviceCredential and assigns it to the Credentials field.
-func (o *CreateNewDevice) SetCredentials(v []DeviceCredential) {
+func (o *CreateDevice) SetCredentials(v []DeviceCredential) {
 	o.Credentials = v
 }
 
 // GetGatewayConfig returns the GatewayConfig field value if set, zero value otherwise.
-func (o *CreateNewDevice) GetGatewayConfig() GatewayConfig {
+func (o *CreateDevice) GetGatewayConfig() GatewayConfig {
 	if o == nil || IsNil(o.GatewayConfig) {
 		var ret GatewayConfig
 		return ret
@@ -152,7 +152,7 @@ func (o *CreateNewDevice) GetGatewayConfig() GatewayConfig {
 
 // GetGatewayConfigOk returns a tuple with the GatewayConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNewDevice) GetGatewayConfigOk() (*GatewayConfig, bool) {
+func (o *CreateDevice) GetGatewayConfigOk() (*GatewayConfig, bool) {
 	if o == nil || IsNil(o.GatewayConfig) {
 		return nil, false
 	}
@@ -160,7 +160,7 @@ func (o *CreateNewDevice) GetGatewayConfigOk() (*GatewayConfig, bool) {
 }
 
 // HasGatewayConfig returns a boolean if a field has been set.
-func (o *CreateNewDevice) HasGatewayConfig() bool {
+func (o *CreateDevice) HasGatewayConfig() bool {
 	if o != nil && !IsNil(o.GatewayConfig) {
 		return true
 	}
@@ -169,12 +169,12 @@ func (o *CreateNewDevice) HasGatewayConfig() bool {
 }
 
 // SetGatewayConfig gets a reference to the given GatewayConfig and assigns it to the GatewayConfig field.
-func (o *CreateNewDevice) SetGatewayConfig(v GatewayConfig) {
+func (o *CreateDevice) SetGatewayConfig(v GatewayConfig) {
 	o.GatewayConfig = &v
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
-func (o *CreateNewDevice) GetConfig() DeviceConfig {
+func (o *CreateDevice) GetConfig() DeviceConfig {
 	if o == nil || IsNil(o.Config) {
 		var ret DeviceConfig
 		return ret
@@ -184,7 +184,7 @@ func (o *CreateNewDevice) GetConfig() DeviceConfig {
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNewDevice) GetConfigOk() (*DeviceConfig, bool) {
+func (o *CreateDevice) GetConfigOk() (*DeviceConfig, bool) {
 	if o == nil || IsNil(o.Config) {
 		return nil, false
 	}
@@ -192,7 +192,7 @@ func (o *CreateNewDevice) GetConfigOk() (*DeviceConfig, bool) {
 }
 
 // HasConfig returns a boolean if a field has been set.
-func (o *CreateNewDevice) HasConfig() bool {
+func (o *CreateDevice) HasConfig() bool {
 	if o != nil && !IsNil(o.Config) {
 		return true
 	}
@@ -201,12 +201,12 @@ func (o *CreateNewDevice) HasConfig() bool {
 }
 
 // SetConfig gets a reference to the given DeviceConfig and assigns it to the Config field.
-func (o *CreateNewDevice) SetConfig(v DeviceConfig) {
+func (o *CreateDevice) SetConfig(v DeviceConfig) {
 	o.Config = &v
 }
 
 // GetLogLevel returns the LogLevel field value if set, zero value otherwise.
-func (o *CreateNewDevice) GetLogLevel() LogLevel {
+func (o *CreateDevice) GetLogLevel() LogLevel {
 	if o == nil || IsNil(o.LogLevel) {
 		var ret LogLevel
 		return ret
@@ -216,7 +216,7 @@ func (o *CreateNewDevice) GetLogLevel() LogLevel {
 
 // GetLogLevelOk returns a tuple with the LogLevel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNewDevice) GetLogLevelOk() (*LogLevel, bool) {
+func (o *CreateDevice) GetLogLevelOk() (*LogLevel, bool) {
 	if o == nil || IsNil(o.LogLevel) {
 		return nil, false
 	}
@@ -224,7 +224,7 @@ func (o *CreateNewDevice) GetLogLevelOk() (*LogLevel, bool) {
 }
 
 // HasLogLevel returns a boolean if a field has been set.
-func (o *CreateNewDevice) HasLogLevel() bool {
+func (o *CreateDevice) HasLogLevel() bool {
 	if o != nil && !IsNil(o.LogLevel) {
 		return true
 	}
@@ -233,12 +233,12 @@ func (o *CreateNewDevice) HasLogLevel() bool {
 }
 
 // SetLogLevel gets a reference to the given LogLevel and assigns it to the LogLevel field.
-func (o *CreateNewDevice) SetLogLevel(v LogLevel) {
+func (o *CreateDevice) SetLogLevel(v LogLevel) {
 	o.LogLevel = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *CreateNewDevice) GetMetadata() map[string]string {
+func (o *CreateDevice) GetMetadata() map[string]string {
 	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]string
 		return ret
@@ -248,7 +248,7 @@ func (o *CreateNewDevice) GetMetadata() map[string]string {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateNewDevice) GetMetadataOk() (*map[string]string, bool) {
+func (o *CreateDevice) GetMetadataOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
@@ -256,7 +256,7 @@ func (o *CreateNewDevice) GetMetadataOk() (*map[string]string, bool) {
 }
 
 // HasMetadata returns a boolean if a field has been set.
-func (o *CreateNewDevice) HasMetadata() bool {
+func (o *CreateDevice) HasMetadata() bool {
 	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
@@ -265,11 +265,11 @@ func (o *CreateNewDevice) HasMetadata() bool {
 }
 
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
-func (o *CreateNewDevice) SetMetadata(v map[string]string) {
+func (o *CreateDevice) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
-func (o CreateNewDevice) MarshalJSON() ([]byte, error) {
+func (o CreateDevice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -277,7 +277,7 @@ func (o CreateNewDevice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateNewDevice) ToMap() (map[string]interface{}, error) {
+func (o CreateDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	if !IsNil(o.Blocked) {
@@ -301,38 +301,38 @@ func (o CreateNewDevice) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableCreateNewDevice struct {
-	value *CreateNewDevice
+type NullableCreateDevice struct {
+	value *CreateDevice
 	isSet bool
 }
 
-func (v NullableCreateNewDevice) Get() *CreateNewDevice {
+func (v NullableCreateDevice) Get() *CreateDevice {
 	return v.value
 }
 
-func (v *NullableCreateNewDevice) Set(val *CreateNewDevice) {
+func (v *NullableCreateDevice) Set(val *CreateDevice) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateNewDevice) IsSet() bool {
+func (v NullableCreateDevice) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateNewDevice) Unset() {
+func (v *NullableCreateDevice) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateNewDevice(val *CreateNewDevice) *NullableCreateNewDevice {
-	return &NullableCreateNewDevice{value: val, isSet: true}
+func NewNullableCreateDevice(val *CreateDevice) *NullableCreateDevice {
+	return &NullableCreateDevice{value: val, isSet: true}
 }
 
-func (v NullableCreateNewDevice) MarshalJSON() ([]byte, error) {
+func (v NullableCreateDevice) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateNewDevice) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateDevice) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -492,11 +492,11 @@ type ApiCreateDeviceRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *CreateNewDevice
+	device *CreateDevice
 }
 
 // application/json
-func (r ApiCreateDeviceRequest) Device(device CreateNewDevice) ApiCreateDeviceRequest {
+func (r ApiCreateDeviceRequest) Device(device CreateDevice) ApiCreateDeviceRequest {
 	r.device = &device
 	return r
 }

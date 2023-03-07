@@ -547,7 +547,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateNewDevice'
+              $ref: '#/components/schemas/CreateDevice'
         description: application/json
         required: true
       responses:
@@ -1894,7 +1894,7 @@ components:
           - MQTT_STATE_UNSPECIFIED
           type: string
       type: object
-    CreateNewDevice:
+    CreateDevice:
       example:
         metadata:
           key: metadata

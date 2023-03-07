@@ -10,7 +10,7 @@ configuration.go
 docs/BindRequest.md
 docs/BindRequestIdsGateway.md
 docs/BlockCommunicationBody.md
-docs/CreateNewDevice.md
+docs/CreateDevice.md
 docs/Device.md
 docs/DeviceApi.md
 docs/DeviceCertificate.md
@@ -49,7 +49,7 @@ go.sum
 model_bind_request.go
 model_bind_request_ids_gateway.go
 model_block_communication_body.go
-model_create_new_device.go
+model_create_device.go
 model_device.go
 model_device_certificate.go
 model_device_command.go

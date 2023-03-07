@@ -272,7 +272,7 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewCreateNewDevice("Id_example") // CreateNewDevice | application/json
+    device := *openapiclient.NewCreateDevice("Id_example") // CreateDevice | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**CreateNewDevice**](CreateNewDevice.md) | application/json | 
+ **device** | [**CreateDevice**](CreateDevice.md) | application/json | 
 
 ### Return type
 
