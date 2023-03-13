@@ -1007,10 +1007,10 @@ paths:
           description: Internal Server Error
       tags:
       - device
-  /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice:
+  /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice:
     post:
-      description: Send A Configuration Of A Device
-      operationId: sendConfigurationToDevice
+      description: Update A Configuration Of A Device
+      operationId: updateConfigurationToDevice
       parameters:
       - description: Subscription ID
         explode: false
