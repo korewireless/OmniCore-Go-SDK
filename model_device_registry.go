@@ -28,7 +28,7 @@ var _ MappedNullable = &DeviceRegistry{}
 type DeviceRegistry struct {
 	Id string `json:"id"`
 	Name *string `json:"name,omitempty"`
-	Parent string `json:"parent"`
+	Parent *string `json:"parent,omitempty"`
 	CreatedOn *string `json:"createdOn,omitempty"`
 	UpdatedOn *string `json:"updatedOn,omitempty"`
 	Credentials []RegistryCredential `json:"credentials,omitempty"`
@@ -46,10 +46,9 @@ type DeviceRegistry struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceRegistry(id string, parent string) *DeviceRegistry {
+func NewDeviceRegistry(id string) *DeviceRegistry {
 	this := DeviceRegistry{}
 	this.Id = id
-	this.Parent = parent
 	return &this
 }
 
@@ -117,28 +116,36 @@ func (o *DeviceRegistry) SetName(v string) {
 	o.Name = &v
 }
 
-// GetParent returns the Parent field value
+// GetParent returns the Parent field value if set, zero value otherwise.
 func (o *DeviceRegistry) GetParent() string {
-	if o == nil {
+	if o == nil || IsNil(o.Parent) {
 		var ret string
 		return ret
 	}
-
-	return o.Parent
+	return *o.Parent
 }
 
-// GetParentOk returns a tuple with the Parent field value
+// GetParentOk returns a tuple with the Parent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceRegistry) GetParentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Parent) {
 		return nil, false
 	}
-	return &o.Parent, true
+	return o.Parent, true
 }
 
-// SetParent sets field value
+// HasParent returns a boolean if a field has been set.
+func (o *DeviceRegistry) HasParent() bool {
+	if o != nil && !IsNil(o.Parent) {
+		return true
+	}
+
+	return false
+}
+
+// SetParent gets a reference to the given string and assigns it to the Parent field.
 func (o *DeviceRegistry) SetParent(v string) {
-	o.Parent = v
+	o.Parent = &v
 }
 
 // GetCreatedOn returns the CreatedOn field value if set, zero value otherwise.
@@ -504,16 +511,10 @@ func (o DeviceRegistry) MarshalJSON() ([]byte, error) {
 func (o DeviceRegistry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	toSerialize["parent"] = o.Parent
-	if !IsNil(o.CreatedOn) {
-		toSerialize["createdOn"] = o.CreatedOn
-	}
-	if !IsNil(o.UpdatedOn) {
-		toSerialize["updatedOn"] = o.UpdatedOn
-	}
+	// skip: name is readOnly
+	// skip: parent is readOnly
+	// skip: createdOn is readOnly
+	// skip: updatedOn is readOnly
 	if !IsNil(o.Credentials) {
 		toSerialize["credentials"] = o.Credentials
 	}
@@ -535,12 +536,8 @@ func (o DeviceRegistry) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StateNotificationConfig) {
 		toSerialize["stateNotificationConfig"] = o.StateNotificationConfig
 	}
-	if !IsNil(o.NumberOfDevices) {
-		toSerialize["numberOfDevices"] = o.NumberOfDevices
-	}
-	if !IsNil(o.NumberOfGateways) {
-		toSerialize["numberOfGateways"] = o.NumberOfGateways
-	}
+	// skip: numberOfDevices is readOnly
+	// skip: numberOfGateways is readOnly
 	return toSerialize, nil
 }
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateRegistry
 
-> CreateRegistry200Response CreateRegistry(ctx, subscriptionId).Registry(registry).Execute()
+> DeviceRegistry CreateRegistry(ctx, subscriptionId).Registry(registry).Execute()
 
 
 
@@ -34,7 +34,7 @@ import (
 
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
-    registry := *openapiclient.NewCreateRegistryRequest("Id_example") // CreateRegistryRequest | application/json (optional)
+    registry := *openapiclient.NewDeviceRegistry("Id_example") // DeviceRegistry | application/json (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -43,7 +43,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RegistryApi.CreateRegistry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateRegistry`: CreateRegistry200Response
+    // response from `CreateRegistry`: DeviceRegistry
     fmt.Fprintf(os.Stdout, "Response from `RegistryApi.CreateRegistry`: %v\n", resp)
 }
 ```
@@ -64,11 +64,11 @@ Other parameters are passed through a pointer to a apiCreateRegistryRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **registry** | [**CreateRegistryRequest**](CreateRegistryRequest.md) | application/json | 
+ **registry** | [**DeviceRegistry**](DeviceRegistry.md) | application/json | 
 
 ### Return type
 
-[**CreateRegistry200Response**](CreateRegistry200Response.md)
+[**DeviceRegistry**](DeviceRegistry.md)
 
 ### Authorization
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ## UpdateRegistry
 
-> CreateRegistry200Response UpdateRegistry(ctx, subscriptionId, registryId).UpdateMask(updateMask).Registry(registry).Execute()
+> DeviceRegistry UpdateRegistry(ctx, subscriptionId, registryId).UpdateMask(updateMask).Registry(registry).Execute()
 
 
 
@@ -328,7 +328,7 @@ func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     updateMask := "updateMask_example" // string | values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials
-    registry := *openapiclient.NewUpdateRegistryRequest() // UpdateRegistryRequest | application/json (optional)
+    registry := *openapiclient.NewDeviceRegistry("Id_example") // DeviceRegistry | application/json (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -337,7 +337,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RegistryApi.UpdateRegistry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateRegistry`: CreateRegistry200Response
+    // response from `UpdateRegistry`: DeviceRegistry
     fmt.Fprintf(os.Stdout, "Response from `RegistryApi.UpdateRegistry`: %v\n", resp)
 }
 ```
@@ -361,11 +361,11 @@ Name | Type | Description  | Notes
 
 
  **updateMask** | **string** | values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials | 
- **registry** | [**UpdateRegistryRequest**](UpdateRegistryRequest.md) | application/json | 
+ **registry** | [**DeviceRegistry**](DeviceRegistry.md) | application/json | 
 
 ### Return type
 
-[**CreateRegistry200Response**](CreateRegistry200Response.md)
+[**DeviceRegistry**](DeviceRegistry.md)
 
 ### Authorization
 

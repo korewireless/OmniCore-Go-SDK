@@ -34,16 +34,16 @@ type ApiCreateRegistryRequest struct {
 	ctx context.Context
 	ApiService *RegistryApiService
 	subscriptionId string
-	registry *CreateRegistryRequest
+	registry *DeviceRegistry
 }
 
 // application/json
-func (r ApiCreateRegistryRequest) Registry(registry CreateRegistryRequest) ApiCreateRegistryRequest {
+func (r ApiCreateRegistryRequest) Registry(registry DeviceRegistry) ApiCreateRegistryRequest {
 	r.registry = &registry
 	return r
 }
 
-func (r ApiCreateRegistryRequest) Execute() (*CreateRegistry200Response, *http.Response, error) {
+func (r ApiCreateRegistryRequest) Execute() (*DeviceRegistry, *http.Response, error) {
 	return r.ApiService.CreateRegistryExecute(r)
 }
 
@@ -65,13 +65,13 @@ func (a *RegistryApiService) CreateRegistry(ctx context.Context, subscriptionId 
 }
 
 // Execute executes the request
-//  @return CreateRegistry200Response
-func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (*CreateRegistry200Response, *http.Response, error) {
+//  @return DeviceRegistry
+func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (*DeviceRegistry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateRegistry200Response
+		localVarReturnValue  *DeviceRegistry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegistryApiService.CreateRegistry")
@@ -613,7 +613,7 @@ type ApiUpdateRegistryRequest struct {
 	subscriptionId string
 	registryId string
 	updateMask *string
-	registry *UpdateRegistryRequest
+	registry *DeviceRegistry
 }
 
 // values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials
@@ -623,12 +623,12 @@ func (r ApiUpdateRegistryRequest) UpdateMask(updateMask string) ApiUpdateRegistr
 }
 
 // application/json
-func (r ApiUpdateRegistryRequest) Registry(registry UpdateRegistryRequest) ApiUpdateRegistryRequest {
+func (r ApiUpdateRegistryRequest) Registry(registry DeviceRegistry) ApiUpdateRegistryRequest {
 	r.registry = &registry
 	return r
 }
 
-func (r ApiUpdateRegistryRequest) Execute() (*CreateRegistry200Response, *http.Response, error) {
+func (r ApiUpdateRegistryRequest) Execute() (*DeviceRegistry, *http.Response, error) {
 	return r.ApiService.UpdateRegistryExecute(r)
 }
 
@@ -652,13 +652,13 @@ func (a *RegistryApiService) UpdateRegistry(ctx context.Context, subscriptionId 
 }
 
 // Execute executes the request
-//  @return CreateRegistry200Response
-func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (*CreateRegistry200Response, *http.Response, error) {
+//  @return DeviceRegistry
+func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (*DeviceRegistry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CreateRegistry200Response
+		localVarReturnValue  *DeviceRegistry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegistryApiService.UpdateRegistry")

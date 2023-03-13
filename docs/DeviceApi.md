@@ -272,7 +272,7 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewCreateNewDevice("Id_example") // CreateNewDevice | application/json
+    device := *openapiclient.NewDevice("Id_example") // Device | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**CreateNewDevice**](CreateNewDevice.md) | application/json | 
+ **device** | [**Device**](Device.md) | application/json | 
 
 ### Return type
 
@@ -1051,8 +1051,8 @@ func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    updateMask := "updateMask_example" // string | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,log_level, blocked, and metadata
-    device := *openapiclient.NewUpdateDevice() // UpdateDevice | application/json
+    updateMask := "updateMask_example" // string | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked, and metadata
+    device := *openapiclient.NewDevice("Id_example") // Device | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -1086,8 +1086,8 @@ Name | Type | Description  | Notes
 
 
 
- **updateMask** | **string** | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,log_level, blocked, and metadata | 
- **device** | [**UpdateDevice**](UpdateDevice.md) | application/json | 
+ **updateMask** | **string** | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked, and metadata | 
+ **device** | [**Device**](Device.md) | application/json | 
 
 ### Return type
 

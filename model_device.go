@@ -29,11 +29,11 @@ type Device struct {
 	Id string `json:"id"`
 	Name *string `json:"name,omitempty"`
 	NumId *string `json:"numId,omitempty"`
-	Parent string `json:"parent"`
-	Registry string `json:"registry"`
+	Parent *string `json:"parent,omitempty"`
+	Registry *string `json:"registry,omitempty"`
 	Blocked *bool `json:"blocked,omitempty"`
 	Capresent *bool `json:"capresent,omitempty"`
-	Subscription string `json:"subscription"`
+	Subscription *string `json:"subscription,omitempty"`
 	CreatedOn *string `json:"createdOn,omitempty"`
 	UpdatedOn *string `json:"updatedOn,omitempty"`
 	Credentials []DeviceCredential `json:"credentials,omitempty"`
@@ -53,19 +53,15 @@ type Device struct {
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Config *DeviceConfig `json:"config,omitempty"`
 	State *DeviceState `json:"state,omitempty"`
-	Subscriptions []string `json:"subscriptions,omitempty"`
 }
 
 // NewDevice instantiates a new Device object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDevice(id string, parent string, registry string, subscription string) *Device {
+func NewDevice(id string) *Device {
 	this := Device{}
 	this.Id = id
-	this.Parent = parent
-	this.Registry = registry
-	this.Subscription = subscription
 	return &this
 }
 
@@ -165,52 +161,68 @@ func (o *Device) SetNumId(v string) {
 	o.NumId = &v
 }
 
-// GetParent returns the Parent field value
+// GetParent returns the Parent field value if set, zero value otherwise.
 func (o *Device) GetParent() string {
-	if o == nil {
+	if o == nil || IsNil(o.Parent) {
 		var ret string
 		return ret
 	}
-
-	return o.Parent
+	return *o.Parent
 }
 
-// GetParentOk returns a tuple with the Parent field value
+// GetParentOk returns a tuple with the Parent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetParentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Parent) {
 		return nil, false
 	}
-	return &o.Parent, true
+	return o.Parent, true
 }
 
-// SetParent sets field value
+// HasParent returns a boolean if a field has been set.
+func (o *Device) HasParent() bool {
+	if o != nil && !IsNil(o.Parent) {
+		return true
+	}
+
+	return false
+}
+
+// SetParent gets a reference to the given string and assigns it to the Parent field.
 func (o *Device) SetParent(v string) {
-	o.Parent = v
+	o.Parent = &v
 }
 
-// GetRegistry returns the Registry field value
+// GetRegistry returns the Registry field value if set, zero value otherwise.
 func (o *Device) GetRegistry() string {
-	if o == nil {
+	if o == nil || IsNil(o.Registry) {
 		var ret string
 		return ret
 	}
-
-	return o.Registry
+	return *o.Registry
 }
 
-// GetRegistryOk returns a tuple with the Registry field value
+// GetRegistryOk returns a tuple with the Registry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetRegistryOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Registry) {
 		return nil, false
 	}
-	return &o.Registry, true
+	return o.Registry, true
 }
 
-// SetRegistry sets field value
+// HasRegistry returns a boolean if a field has been set.
+func (o *Device) HasRegistry() bool {
+	if o != nil && !IsNil(o.Registry) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistry gets a reference to the given string and assigns it to the Registry field.
 func (o *Device) SetRegistry(v string) {
-	o.Registry = v
+	o.Registry = &v
 }
 
 // GetBlocked returns the Blocked field value if set, zero value otherwise.
@@ -277,28 +289,36 @@ func (o *Device) SetCapresent(v bool) {
 	o.Capresent = &v
 }
 
-// GetSubscription returns the Subscription field value
+// GetSubscription returns the Subscription field value if set, zero value otherwise.
 func (o *Device) GetSubscription() string {
-	if o == nil {
+	if o == nil || IsNil(o.Subscription) {
 		var ret string
 		return ret
 	}
-
-	return o.Subscription
+	return *o.Subscription
 }
 
-// GetSubscriptionOk returns a tuple with the Subscription field value
+// GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Device) GetSubscriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Subscription) {
 		return nil, false
 	}
-	return &o.Subscription, true
+	return o.Subscription, true
 }
 
-// SetSubscription sets field value
+// HasSubscription returns a boolean if a field has been set.
+func (o *Device) HasSubscription() bool {
+	if o != nil && !IsNil(o.Subscription) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscription gets a reference to the given string and assigns it to the Subscription field.
 func (o *Device) SetSubscription(v string) {
-	o.Subscription = v
+	o.Subscription = &v
 }
 
 // GetCreatedOn returns the CreatedOn field value if set, zero value otherwise.
@@ -909,38 +929,6 @@ func (o *Device) SetState(v DeviceState) {
 	o.State = &v
 }
 
-// GetSubscriptions returns the Subscriptions field value if set, zero value otherwise.
-func (o *Device) GetSubscriptions() []string {
-	if o == nil || IsNil(o.Subscriptions) {
-		var ret []string
-		return ret
-	}
-	return o.Subscriptions
-}
-
-// GetSubscriptionsOk returns a tuple with the Subscriptions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Device) GetSubscriptionsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Subscriptions) {
-		return nil, false
-	}
-	return o.Subscriptions, true
-}
-
-// HasSubscriptions returns a boolean if a field has been set.
-func (o *Device) HasSubscriptions() bool {
-	if o != nil && !IsNil(o.Subscriptions) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubscriptions gets a reference to the given []string and assigns it to the Subscriptions field.
-func (o *Device) SetSubscriptions(v []string) {
-	o.Subscriptions = v
-}
-
 func (o Device) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -952,27 +940,17 @@ func (o Device) MarshalJSON() ([]byte, error) {
 func (o Device) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.NumId) {
-		toSerialize["numId"] = o.NumId
-	}
-	toSerialize["parent"] = o.Parent
-	toSerialize["registry"] = o.Registry
+	// skip: name is readOnly
+	// skip: numId is readOnly
+	// skip: parent is readOnly
+	// skip: registry is readOnly
 	if !IsNil(o.Blocked) {
 		toSerialize["blocked"] = o.Blocked
 	}
-	if !IsNil(o.Capresent) {
-		toSerialize["capresent"] = o.Capresent
-	}
-	toSerialize["subscription"] = o.Subscription
-	if !IsNil(o.CreatedOn) {
-		toSerialize["createdOn"] = o.CreatedOn
-	}
-	if !IsNil(o.UpdatedOn) {
-		toSerialize["updatedOn"] = o.UpdatedOn
-	}
+	// skip: capresent is readOnly
+	// skip: subscription is readOnly
+	// skip: createdOn is readOnly
+	// skip: updatedOn is readOnly
 	if !IsNil(o.Credentials) {
 		toSerialize["credentials"] = o.Credentials
 	}
@@ -985,33 +963,17 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsGateway) {
 		toSerialize["isGateway"] = o.IsGateway
 	}
-	if !IsNil(o.DeviceErrors) {
-		toSerialize["deviceErrors"] = o.DeviceErrors
-	}
-	if !IsNil(o.ClientOnline) {
-		toSerialize["clientOnline"] = o.ClientOnline
-	}
-	if !IsNil(o.LastConfigAckTime) {
-		toSerialize["lastConfigAckTime"] = o.LastConfigAckTime
-	}
-	if !IsNil(o.LastConfigSendTime) {
-		toSerialize["lastConfigSendTime"] = o.LastConfigSendTime
-	}
+	// skip: deviceErrors is readOnly
+	// skip: clientOnline is readOnly
+	// skip: lastConfigAckTime is readOnly
+	// skip: lastConfigSendTime is readOnly
 	if !IsNil(o.LastErrorStatus) {
 		toSerialize["lastErrorStatus"] = o.LastErrorStatus
 	}
-	if !IsNil(o.LastErrorTime) {
-		toSerialize["lastErrorTime"] = o.LastErrorTime
-	}
-	if !IsNil(o.LastEventTime) {
-		toSerialize["lastEventTime"] = o.LastEventTime
-	}
-	if !IsNil(o.LastHeartbeatTime) {
-		toSerialize["lastHeartbeatTime"] = o.LastHeartbeatTime
-	}
-	if !IsNil(o.LastStateTime) {
-		toSerialize["lastStateTime"] = o.LastStateTime
-	}
+	// skip: lastErrorTime is readOnly
+	// skip: lastEventTime is readOnly
+	// skip: lastHeartbeatTime is readOnly
+	// skip: lastStateTime is readOnly
 	if !IsNil(o.LogLevel) {
 		toSerialize["logLevel"] = o.LogLevel
 	}
@@ -1023,9 +985,6 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
-	}
-	if !IsNil(o.Subscriptions) {
-		toSerialize["subscriptions"] = o.Subscriptions
 	}
 	return toSerialize, nil
 }

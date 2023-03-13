@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**Name** | Pointer to **string** |  | [optional] 
-**Parent** | **string** |  | 
-**CreatedOn** | Pointer to **string** |  | [optional] 
-**UpdatedOn** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] [readonly] 
+**Parent** | Pointer to **string** |  | [optional] [readonly] 
+**CreatedOn** | Pointer to **string** |  | [optional] [readonly] 
+**UpdatedOn** | Pointer to **string** |  | [optional] [readonly] 
 **Credentials** | Pointer to [**[]RegistryCredential**](RegistryCredential.md) |  | [optional] 
 **HttpConfig** | Pointer to [**HttpConfig**](HttpConfig.md) |  | [optional] 
 **MqttConfig** | Pointer to [**MqttConfig**](MqttConfig.md) |  | [optional] 
@@ -16,14 +16,14 @@ Name | Type | Description | Notes
 **EventNotificationConfigs** | Pointer to [**[]EventNotificationConfig**](EventNotificationConfig.md) |  | [optional] 
 **LogNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
 **StateNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
-**NumberOfDevices** | Pointer to **int32** |  | [optional] 
-**NumberOfGateways** | Pointer to **int32** |  | [optional] 
+**NumberOfDevices** | Pointer to **int32** |  | [optional] [readonly] 
+**NumberOfGateways** | Pointer to **int32** |  | [optional] [readonly] 
 
 ## Methods
 
 ### NewDeviceRegistry
 
-`func NewDeviceRegistry(id string, parent string, ) *DeviceRegistry`
+`func NewDeviceRegistry(id string, ) *DeviceRegistry`
 
 NewDeviceRegistry instantiates a new DeviceRegistry object
 This constructor will assign default values to properties that have it defined,
@@ -102,6 +102,11 @@ and a boolean to check if the value has been set.
 
 SetParent sets Parent field to given value.
 
+### HasParent
+
+`func (o *DeviceRegistry) HasParent() bool`
+
+HasParent returns a boolean if a field has been set.
 
 ### GetCreatedOn
 

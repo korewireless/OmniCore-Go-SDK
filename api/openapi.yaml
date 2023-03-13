@@ -84,14 +84,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createRegistry_request'
+              $ref: '#/components/schemas/DeviceRegistry'
         description: application/json
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createRegistry_200_response'
+                $ref: '#/components/schemas/DeviceRegistry'
           description: OK
         "400":
           content:
@@ -249,14 +249,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateRegistry_request'
+              $ref: '#/components/schemas/DeviceRegistry'
         description: application/json
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createRegistry_200_response'
+                $ref: '#/components/schemas/DeviceRegistry'
           description: OK
         "400":
           content:
@@ -545,7 +545,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateNewDevice'
+              $ref: '#/components/schemas/Device'
         description: application/json
         required: true
       responses:
@@ -717,7 +717,7 @@ paths:
         style: simple
       - description: "Required. Only updates the device fields indicated by this mask.\
           \ The field mask must not be empty, and it must not contain fields that\
-          \ are immutable or only set by the server. Mutable top-level fields: credentials,log_level,\
+          \ are immutable or only set by the server. Mutable top-level fields: credentials,logLevel,\
           \ blocked, and metadata"
         explode: true
         in: query
@@ -736,7 +736,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateDevice'
+              $ref: '#/components/schemas/Device'
         description: application/json
         required: true
       responses:
@@ -1244,9 +1244,6 @@ components:
         parent: parent
         metadata:
           key: metadata
-        subscriptions:
-        - subscriptions
-        - subscriptions
         numId: numId
         credentials:
         - expirationTime: expirationTime
@@ -1300,22 +1297,30 @@ components:
           minLength: 3
           type: string
         name:
+          readOnly: true
           type: string
         numId:
+          readOnly: true
           type: string
         parent:
+          readOnly: true
           type: string
         registry:
+          readOnly: true
           type: string
         blocked:
           type: boolean
         capresent:
+          readOnly: true
           type: boolean
         subscription:
+          readOnly: true
           type: string
         createdOn:
+          readOnly: true
           type: string
         updatedOn:
+          readOnly: true
           type: string
         credentials:
           items:
@@ -1330,22 +1335,30 @@ components:
         isGateway:
           type: boolean
         deviceErrors:
+          readOnly: true
           type: string
         clientOnline:
+          readOnly: true
           type: boolean
         lastConfigAckTime:
+          readOnly: true
           type: string
         lastConfigSendTime:
+          readOnly: true
           type: string
         lastErrorStatus:
           $ref: '#/components/schemas/ErrorStatus'
         lastErrorTime:
+          readOnly: true
           type: string
         lastEventTime:
+          readOnly: true
           type: string
         lastHeartbeatTime:
+          readOnly: true
           type: string
         lastStateTime:
+          readOnly: true
           type: string
         logLevel:
           $ref: '#/components/schemas/LogLevel'
@@ -1357,15 +1370,8 @@ components:
           $ref: '#/components/schemas/DeviceConfig'
         state:
           $ref: '#/components/schemas/DeviceState'
-        subscriptions:
-          items:
-            type: string
-          type: array
       required:
       - id
-      - parent
-      - registry
-      - subscription
       type: object
     DeviceCertificate:
       properties:
@@ -1461,12 +1467,16 @@ components:
           minLength: 3
           type: string
         name:
+          readOnly: true
           type: string
         parent:
+          readOnly: true
           type: string
         createdOn:
+          readOnly: true
           type: string
         updatedOn:
+          readOnly: true
           type: string
         credentials:
           items:
@@ -1487,12 +1497,13 @@ components:
         stateNotificationConfig:
           $ref: '#/components/schemas/NotificationConfig'
         numberOfDevices:
+          readOnly: true
           type: integer
         numberOfGateways:
+          readOnly: true
           type: integer
       required:
       - id
-      - parent
       type: object
     DeviceState:
       example:
@@ -1533,6 +1544,7 @@ components:
           type: string
         message:
           type: string
+      readOnly: true
       type: object
     EventNotificationConfig:
       example:
@@ -1753,9 +1765,6 @@ components:
         - parent: parent
           metadata:
             key: metadata
-          subscriptions:
-          - subscriptions
-          - subscriptions
           numId: numId
           credentials:
           - expirationTime: expirationTime
@@ -1806,9 +1815,6 @@ components:
         - parent: parent
           metadata:
             key: metadata
-          subscriptions:
-          - subscriptions
-          - subscriptions
           numId: numId
           credentials:
           - expirationTime: expirationTime
@@ -1891,82 +1897,6 @@ components:
           - MQTT_DISABLED
           - MQTT_STATE_UNSPECIFIED
           type: string
-      type: object
-    CreateNewDevice:
-      example:
-        metadata:
-          key: metadata
-        blocked: true
-        logLevel: null
-        credentials:
-        - expirationTime: expirationTime
-          publicKey:
-            format: RSA_PEM
-            key: key
-        - expirationTime: expirationTime
-          publicKey:
-            format: RSA_PEM
-            key: key
-        id: id
-        config:
-          acknowledged: true
-          cloudUpdateTime: cloudUpdateTime
-          binaryData: binaryData
-          deviceAckTime: deviceAckTime
-          version: 6
-        gatewayConfig:
-          gatewayType: NON_GATEWAY
-          gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
-      properties:
-        id:
-          maxLength: 256
-          minLength: 3
-          type: string
-        blocked:
-          type: boolean
-        credentials:
-          items:
-            $ref: '#/components/schemas/DeviceCredential'
-          type: array
-        gatewayConfig:
-          $ref: '#/components/schemas/GatewayConfig'
-        config:
-          $ref: '#/components/schemas/DeviceConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-      required:
-      - id
-      type: object
-    NewRegistry:
-      properties:
-        id:
-          maxLength: 256
-          minLength: 3
-          type: string
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
-        logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-      required:
-      - id
       type: object
     PublicKeyCertificate:
       example:
@@ -2077,56 +2007,6 @@ components:
             `projects/myProject/topics/deviceEvents`.
           type: string
       type: object
-    UpdateDevice:
-      example:
-        metadata:
-          key: metadata
-        blocked: true
-        logLevel: null
-        credentials:
-        - expirationTime: expirationTime
-          publicKey:
-            format: RSA_PEM
-            key: key
-        - expirationTime: expirationTime
-          publicKey:
-            format: RSA_PEM
-            key: key
-      properties:
-        blocked:
-          type: boolean
-        credentials:
-          items:
-            $ref: '#/components/schemas/DeviceCredential'
-          type: array
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-      type: object
-    UpdateRegistry:
-      properties:
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
-        logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-      type: object
     X509CertificateDetails:
       example:
         subject: subject
@@ -2183,137 +2063,6 @@ components:
       - INFO
       - ERROR
       type: string
-    createRegistry_request:
-      properties:
-        id:
-          maxLength: 256
-          minLength: 3
-          type: string
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
-        logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-      required:
-      - id
-      type: object
-    createRegistry_200_response:
-      example:
-        parent: parent
-        logNotificationConfig:
-          pubsubTopicName: pubsubTopicName
-        credentials:
-        - publicKeyCertificate:
-            certificate: certificate
-            format: X509_CERTIFICATE_PEM
-            x509Details:
-              subject: subject
-              expiryTime: expiryTime
-              startTime: startTime
-              issuer: issuer
-              signatureAlgorithm: signatureAlgorithm
-              publicKeyType: publicKeyType
-        - publicKeyCertificate:
-            certificate: certificate
-            format: X509_CERTIFICATE_PEM
-            x509Details:
-              subject: subject
-              expiryTime: expiryTime
-              startTime: startTime
-              issuer: issuer
-              signatureAlgorithm: signatureAlgorithm
-              publicKeyType: publicKeyType
-        stateNotificationConfig:
-          pubsubTopicName: pubsubTopicName
-        updatedOn: updatedOn
-        createdOn: createdOn
-        httpConfig:
-          httpEnabledState: HTTP_ENABLED
-        logLevel: null
-        eventNotificationConfigs:
-        - subfolderMatches: subfolderMatches
-          pubsubTopicName: pubsubTopicName
-        - subfolderMatches: subfolderMatches
-          pubsubTopicName: pubsubTopicName
-        name: name
-        id: id
-        numberOfDevices: 0
-        numberOfGateways: 6
-        mqttConfig:
-          mqttEnabledState: MQTT_ENABLED
-      properties:
-        id:
-          maxLength: 256
-          minLength: 3
-          type: string
-        name:
-          type: string
-        parent:
-          type: string
-        createdOn:
-          type: string
-        updatedOn:
-          type: string
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
-        logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        numberOfDevices:
-          type: integer
-        numberOfGateways:
-          type: integer
-      required:
-      - id
-      - parent
-      type: object
-    updateRegistry_request:
-      properties:
-        credentials:
-          items:
-            $ref: '#/components/schemas/RegistryCredential'
-          type: array
-        httpConfig:
-          $ref: '#/components/schemas/HttpConfig'
-        mqttConfig:
-          $ref: '#/components/schemas/MqttConfig'
-        logLevel:
-          $ref: '#/components/schemas/LogLevel'
-        eventNotificationConfigs:
-          items:
-            $ref: '#/components/schemas/EventNotificationConfig'
-          type: array
-        logNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-        stateNotificationConfig:
-          $ref: '#/components/schemas/NotificationConfig'
-      type: object
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

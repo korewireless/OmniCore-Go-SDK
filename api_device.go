@@ -492,11 +492,11 @@ type ApiCreateDeviceRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *CreateNewDevice
+	device *Device
 }
 
 // application/json
-func (r ApiCreateDeviceRequest) Device(device CreateNewDevice) ApiCreateDeviceRequest {
+func (r ApiCreateDeviceRequest) Device(device Device) ApiCreateDeviceRequest {
 	r.device = &device
 	return r
 }
@@ -2069,17 +2069,17 @@ type ApiUpdateDeviceRequest struct {
 	registryId string
 	deviceId string
 	updateMask *string
-	device *UpdateDevice
+	device *Device
 }
 
-// Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,log_level, blocked, and metadata
+// Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked, and metadata
 func (r ApiUpdateDeviceRequest) UpdateMask(updateMask string) ApiUpdateDeviceRequest {
 	r.updateMask = &updateMask
 	return r
 }
 
 // application/json
-func (r ApiUpdateDeviceRequest) Device(device UpdateDevice) ApiUpdateDeviceRequest {
+func (r ApiUpdateDeviceRequest) Device(device Device) ApiUpdateDeviceRequest {
 	r.device = &device
 	return r
 }

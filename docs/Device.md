@@ -5,39 +5,38 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
-**Name** | Pointer to **string** |  | [optional] 
-**NumId** | Pointer to **string** |  | [optional] 
-**Parent** | **string** |  | 
-**Registry** | **string** |  | 
+**Name** | Pointer to **string** |  | [optional] [readonly] 
+**NumId** | Pointer to **string** |  | [optional] [readonly] 
+**Parent** | Pointer to **string** |  | [optional] [readonly] 
+**Registry** | Pointer to **string** |  | [optional] [readonly] 
 **Blocked** | Pointer to **bool** |  | [optional] 
-**Capresent** | Pointer to **bool** |  | [optional] 
-**Subscription** | **string** |  | 
-**CreatedOn** | Pointer to **string** |  | [optional] 
-**UpdatedOn** | Pointer to **string** |  | [optional] 
+**Capresent** | Pointer to **bool** |  | [optional] [readonly] 
+**Subscription** | Pointer to **string** |  | [optional] [readonly] 
+**CreatedOn** | Pointer to **string** |  | [optional] [readonly] 
+**UpdatedOn** | Pointer to **string** |  | [optional] [readonly] 
 **Credentials** | Pointer to [**[]DeviceCredential**](DeviceCredential.md) |  | [optional] 
 **Gateway** | Pointer to **[]string** |  | [optional] 
 **GatewayConfig** | Pointer to [**GatewayConfig**](GatewayConfig.md) |  | [optional] 
 **IsGateway** | Pointer to **bool** |  | [optional] 
-**DeviceErrors** | Pointer to **string** |  | [optional] 
-**ClientOnline** | Pointer to **bool** |  | [optional] 
-**LastConfigAckTime** | Pointer to **string** |  | [optional] 
-**LastConfigSendTime** | Pointer to **string** |  | [optional] 
+**DeviceErrors** | Pointer to **string** |  | [optional] [readonly] 
+**ClientOnline** | Pointer to **bool** |  | [optional] [readonly] 
+**LastConfigAckTime** | Pointer to **string** |  | [optional] [readonly] 
+**LastConfigSendTime** | Pointer to **string** |  | [optional] [readonly] 
 **LastErrorStatus** | Pointer to [**ErrorStatus**](ErrorStatus.md) |  | [optional] 
-**LastErrorTime** | Pointer to **string** |  | [optional] 
-**LastEventTime** | Pointer to **string** |  | [optional] 
-**LastHeartbeatTime** | Pointer to **string** |  | [optional] 
-**LastStateTime** | Pointer to **string** |  | [optional] 
+**LastErrorTime** | Pointer to **string** |  | [optional] [readonly] 
+**LastEventTime** | Pointer to **string** |  | [optional] [readonly] 
+**LastHeartbeatTime** | Pointer to **string** |  | [optional] [readonly] 
+**LastStateTime** | Pointer to **string** |  | [optional] [readonly] 
 **LogLevel** | Pointer to [**LogLevel**](LogLevel.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Config** | Pointer to [**DeviceConfig**](DeviceConfig.md) |  | [optional] 
 **State** | Pointer to [**DeviceState**](DeviceState.md) |  | [optional] 
-**Subscriptions** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewDevice
 
-`func NewDevice(id string, parent string, registry string, subscription string, ) *Device`
+`func NewDevice(id string, ) *Device`
 
 NewDevice instantiates a new Device object
 This constructor will assign default values to properties that have it defined,
@@ -141,6 +140,11 @@ and a boolean to check if the value has been set.
 
 SetParent sets Parent field to given value.
 
+### HasParent
+
+`func (o *Device) HasParent() bool`
+
+HasParent returns a boolean if a field has been set.
 
 ### GetRegistry
 
@@ -161,6 +165,11 @@ and a boolean to check if the value has been set.
 
 SetRegistry sets Registry field to given value.
 
+### HasRegistry
+
+`func (o *Device) HasRegistry() bool`
+
+HasRegistry returns a boolean if a field has been set.
 
 ### GetBlocked
 
@@ -231,6 +240,11 @@ and a boolean to check if the value has been set.
 
 SetSubscription sets Subscription field to given value.
 
+### HasSubscription
+
+`func (o *Device) HasSubscription() bool`
+
+HasSubscription returns a boolean if a field has been set.
 
 ### GetCreatedOn
 
@@ -706,31 +720,6 @@ SetState sets State field to given value.
 `func (o *Device) HasState() bool`
 
 HasState returns a boolean if a field has been set.
-
-### GetSubscriptions
-
-`func (o *Device) GetSubscriptions() []string`
-
-GetSubscriptions returns the Subscriptions field if non-nil, zero value otherwise.
-
-### GetSubscriptionsOk
-
-`func (o *Device) GetSubscriptionsOk() (*[]string, bool)`
-
-GetSubscriptionsOk returns a tuple with the Subscriptions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptions
-
-`func (o *Device) SetSubscriptions(v []string)`
-
-SetSubscriptions sets Subscriptions field to given value.
-
-### HasSubscriptions
-
-`func (o *Device) HasSubscriptions() bool`
-
-HasSubscriptions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
