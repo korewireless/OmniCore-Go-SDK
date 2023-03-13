@@ -1,23 +1,23 @@
 # \DeviceApi
 
-All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com/model-state-management*
+All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BindDevice**](DeviceApi.md#BindDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
-[**BindDevices**](DeviceApi.md#BindDevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
-[**BlockDeviceCommuncation**](DeviceApi.md#BlockDeviceCommuncation) | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
-[**CreateDevice**](DeviceApi.md#CreateDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
-[**DeleteDevice**](DeviceApi.md#DeleteDevice) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
-[**GetConfig**](DeviceApi.md#GetConfig) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
-[**GetDevice**](DeviceApi.md#GetDevice) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
-[**GetDevices**](DeviceApi.md#GetDevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
-[**GetStates**](DeviceApi.md#GetStates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
-[**SendCommandToDevice**](DeviceApi.md#SendCommandToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
-[**UnBindDevice**](DeviceApi.md#UnBindDevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
-[**UnBindDevices**](DeviceApi.md#UnBindDevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
-[**UpdateConfigurationToDevice**](DeviceApi.md#UpdateConfigurationToDevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice | 
-[**UpdateDevice**](DeviceApi.md#UpdateDevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+[**BindDevice**](DeviceApi.md#BindDevice) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
+[**BindDevices**](DeviceApi.md#BindDevices) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
+[**BlockDeviceCommuncation**](DeviceApi.md#BlockDeviceCommuncation) | **Put** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
+[**CreateDevice**](DeviceApi.md#CreateDevice) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+[**DeleteDevice**](DeviceApi.md#DeleteDevice) | **Delete** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+[**GetConfig**](DeviceApi.md#GetConfig) | **Get** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
+[**GetDevice**](DeviceApi.md#GetDevice) | **Get** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+[**GetDevices**](DeviceApi.md#GetDevices) | **Get** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+[**GetStates**](DeviceApi.md#GetStates) | **Get** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
+[**SendCommandToDevice**](DeviceApi.md#SendCommandToDevice) | **Post** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
+[**SendConfigurationToDevice**](DeviceApi.md#SendConfigurationToDevice) | **Post** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice | 
+[**UnBindDevice**](DeviceApi.md#UnBindDevice) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
+[**UnBindDevices**](DeviceApi.md#UnBindDevices) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
+[**UpdateDevice**](DeviceApi.md#UpdateDevice) | **Patch** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
 
 
 
@@ -799,6 +799,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SendConfigurationToDevice
+
+> DeviceConfig SendConfigurationToDevice(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
+)
+
+func main() {
+    subscriptionid := "subscriptionid_example" // string | Subscription ID
+    registryId := "registryId_example" // string | Registry ID
+    deviceId := "deviceId_example" // string | Device ID
+    device := *openapiclient.NewDeviceConfiguration("BinaryData_example") // DeviceConfiguration | application/json
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DeviceApi.SendConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Device(device).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.SendConfigurationToDevice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SendConfigurationToDevice`: DeviceConfig
+    fmt.Fprintf(os.Stdout, "Response from `DeviceApi.SendConfigurationToDevice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
+**deviceId** | **string** | Device ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSendConfigurationToDeviceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **device** | [**DeviceConfiguration**](DeviceConfiguration.md) | application/json | 
+
+### Return type
+
+[**DeviceConfig**](DeviceConfig.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UnBindDevice
 
 > Info UnBindDevice(ctx, subscriptionId, registryId).Device(device).Execute()
@@ -934,84 +1012,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Info**](Info.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UpdateConfigurationToDevice
-
-> DeviceConfig UpdateConfigurationToDevice(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
-
-
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
-)
-
-func main() {
-    subscriptionid := "subscriptionid_example" // string | Subscription ID
-    registryId := "registryId_example" // string | Registry ID
-    deviceId := "deviceId_example" // string | Device ID
-    device := *openapiclient.NewDeviceConfiguration("BinaryData_example") // DeviceConfiguration | application/json
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.UpdateConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Device(device).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UpdateConfigurationToDevice``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateConfigurationToDevice`: DeviceConfig
-    fmt.Fprintf(os.Stdout, "Response from `DeviceApi.UpdateConfigurationToDevice`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**subscriptionid** | **string** | Subscription ID | 
-**registryId** | **string** | Registry ID | 
-**deviceId** | **string** | Device ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateConfigurationToDeviceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **device** | [**DeviceConfiguration**](DeviceConfiguration.md) | application/json | 
-
-### Return type
-
-[**DeviceConfig**](DeviceConfig.md)
 
 ### Authorization
 

@@ -100,7 +100,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://demo-api.omnicore.cloud.korewireless.com/model-state-management",
+				URL: "https://demo-api.omnicore.cloud.korewireless.com",
 				Description: "No description provided",
 			},
 		},

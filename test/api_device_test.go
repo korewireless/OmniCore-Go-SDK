@@ -178,6 +178,22 @@ func Test_OmniCore_DeviceApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test DeviceApiService SendConfigurationToDevice", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionid string
+		var registryId string
+		var deviceId string
+
+		resp, httpRes, err := apiClient.DeviceApi.SendConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DeviceApiService UnBindDevice", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -201,22 +217,6 @@ func Test_OmniCore_DeviceApiService(t *testing.T) {
 		var registryId string
 
 		resp, httpRes, err := apiClient.DeviceApi.UnBindDevices(context.Background(), subscriptionId, registryId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test DeviceApiService UpdateConfigurationToDevice", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var subscriptionid string
-		var registryId string
-		var deviceId string
-
-		resp, httpRes, err := apiClient.DeviceApi.UpdateConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

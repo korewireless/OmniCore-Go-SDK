@@ -79,7 +79,7 @@ func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries"
+	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -219,7 +219,7 @@ func (a *RegistryApiService) DeleteRegistryExecute(r ApiDeleteRegistryRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}"
+	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -369,7 +369,7 @@ func (a *RegistryApiService) GetRegistriesExecute(r ApiGetRegistriesRequest) (*L
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries"
+	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -513,7 +513,7 @@ func (a *RegistryApiService) GetRegistryExecute(r ApiGetRegistryRequest) (*Devic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}"
+	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -666,7 +666,7 @@ func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}"
+	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 

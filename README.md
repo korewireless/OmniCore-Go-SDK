@@ -73,29 +73,29 @@ ctx = context.WithValue(context.Background(), OmniCore.ContextOperationServerVar
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com/model-state-management*
+All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DeviceApi* | [**BindDevice**](docs/DeviceApi.md#binddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
-*DeviceApi* | [**BindDevices**](docs/DeviceApi.md#binddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
-*DeviceApi* | [**BlockDeviceCommuncation**](docs/DeviceApi.md#blockdevicecommuncation) | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
-*DeviceApi* | [**CreateDevice**](docs/DeviceApi.md#createdevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
-*DeviceApi* | [**DeleteDevice**](docs/DeviceApi.md#deletedevice) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
-*DeviceApi* | [**GetConfig**](docs/DeviceApi.md#getconfig) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
-*DeviceApi* | [**GetDevice**](docs/DeviceApi.md#getdevice) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
-*DeviceApi* | [**GetDevices**](docs/DeviceApi.md#getdevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
-*DeviceApi* | [**GetStates**](docs/DeviceApi.md#getstates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
-*DeviceApi* | [**SendCommandToDevice**](docs/DeviceApi.md#sendcommandtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
-*DeviceApi* | [**UnBindDevice**](docs/DeviceApi.md#unbinddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
-*DeviceApi* | [**UnBindDevices**](docs/DeviceApi.md#unbinddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
-*DeviceApi* | [**UpdateConfigurationToDevice**](docs/DeviceApi.md#updateconfigurationtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice | 
-*DeviceApi* | [**UpdateDevice**](docs/DeviceApi.md#updatedevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
-*RegistryApi* | [**CreateRegistry**](docs/RegistryApi.md#createregistry) | **Post** /subscriptions/{subscriptionId}/registries | 
-*RegistryApi* | [**DeleteRegistry**](docs/RegistryApi.md#deleteregistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | 
-*RegistryApi* | [**GetRegistries**](docs/RegistryApi.md#getregistries) | **Get** /subscriptions/{subscriptionId}/registries | 
-*RegistryApi* | [**GetRegistry**](docs/RegistryApi.md#getregistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | 
-*RegistryApi* | [**UpdateRegistry**](docs/RegistryApi.md#updateregistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | 
+*DeviceApi* | [**BindDevice**](docs/DeviceApi.md#binddevice) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
+*DeviceApi* | [**BindDevices**](docs/DeviceApi.md#binddevices) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
+*DeviceApi* | [**BlockDeviceCommuncation**](docs/DeviceApi.md#blockdevicecommuncation) | **Put** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
+*DeviceApi* | [**CreateDevice**](docs/DeviceApi.md#createdevice) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+*DeviceApi* | [**DeleteDevice**](docs/DeviceApi.md#deletedevice) | **Delete** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*DeviceApi* | [**GetConfig**](docs/DeviceApi.md#getconfig) | **Get** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
+*DeviceApi* | [**GetDevice**](docs/DeviceApi.md#getdevice) | **Get** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*DeviceApi* | [**GetDevices**](docs/DeviceApi.md#getdevices) | **Get** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+*DeviceApi* | [**GetStates**](docs/DeviceApi.md#getstates) | **Get** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
+*DeviceApi* | [**SendCommandToDevice**](docs/DeviceApi.md#sendcommandtodevice) | **Post** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
+*DeviceApi* | [**SendConfigurationToDevice**](docs/DeviceApi.md#sendconfigurationtodevice) | **Post** /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendConfigurationToDevice | 
+*DeviceApi* | [**UnBindDevice**](docs/DeviceApi.md#unbinddevice) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
+*DeviceApi* | [**UnBindDevices**](docs/DeviceApi.md#unbinddevices) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
+*DeviceApi* | [**UpdateDevice**](docs/DeviceApi.md#updatedevice) | **Patch** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*RegistryApi* | [**CreateRegistry**](docs/RegistryApi.md#createregistry) | **Post** /model-state-management/subscriptions/{subscriptionId}/registries | 
+*RegistryApi* | [**DeleteRegistry**](docs/RegistryApi.md#deleteregistry) | **Delete** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId} | 
+*RegistryApi* | [**GetRegistries**](docs/RegistryApi.md#getregistries) | **Get** /model-state-management/subscriptions/{subscriptionId}/registries | 
+*RegistryApi* | [**GetRegistry**](docs/RegistryApi.md#getregistry) | **Get** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId} | 
+*RegistryApi* | [**UpdateRegistry**](docs/RegistryApi.md#updateregistry) | **Patch** /model-state-management/subscriptions/{subscriptionId}/registries/{registryId} | 
 
 
 ## Documentation For Models
@@ -104,7 +104,6 @@ Class | Method | HTTP request | Description
  - [BindRequestIdsGateway](docs/BindRequestIdsGateway.md)
  - [BlockCommunicationBody](docs/BlockCommunicationBody.md)
  - [Device](docs/Device.md)
- - [DeviceCertificate](docs/DeviceCertificate.md)
  - [DeviceCommand](docs/DeviceCommand.md)
  - [DeviceConfig](docs/DeviceConfig.md)
  - [DeviceConfiguration](docs/DeviceConfiguration.md)
@@ -127,7 +126,6 @@ Class | Method | HTTP request | Description
  - [NotificationConfig](docs/NotificationConfig.md)
  - [PublicKeyCertificate](docs/PublicKeyCertificate.md)
  - [PublicKeyCredential](docs/PublicKeyCredential.md)
- - [RegistryCertificate](docs/RegistryCertificate.md)
  - [RegistryCredential](docs/RegistryCredential.md)
  - [X509CertificateDetails](docs/X509CertificateDetails.md)
 
