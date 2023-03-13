@@ -1539,10 +1539,13 @@ components:
         message: message
       properties:
         code:
+          readOnly: true
           type: integer
         details:
+          readOnly: true
           type: string
         message:
+          readOnly: true
           type: string
       readOnly: true
       type: object

@@ -154,15 +154,9 @@ func (o ErrorStatus) MarshalJSON() ([]byte, error) {
 
 func (o ErrorStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Code) {
-		toSerialize["code"] = o.Code
-	}
-	if !IsNil(o.Details) {
-		toSerialize["details"] = o.Details
-	}
-	if !IsNil(o.Message) {
-		toSerialize["message"] = o.Message
-	}
+	// skip: code is readOnly
+	// skip: details is readOnly
+	// skip: message is readOnly
 	return toSerialize, nil
 }
 
