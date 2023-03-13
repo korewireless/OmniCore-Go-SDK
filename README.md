@@ -146,6 +146,15 @@ r, err := client.Service.Operation(auth, args)
 ```
 
 
+### apiKey
+
+- **Type**: API key
+- **API key parameter name**: x-api-key
+- **Location**: HTTP header
+
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: x-api-key and passed in as the auth context for each request.
+
+
 ## Documentation for Utility Methods
 
 Due to the fact that model structure members are all pointers, this package contains

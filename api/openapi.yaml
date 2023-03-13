@@ -11,6 +11,7 @@ servers:
 - url: https://demo-api.omnicore.cloud.korewireless.com
 security:
 - bearerAuth: []
+  apiKey: []
 paths:
   /model-state-management/subscriptions/{subscriptionId}/registries:
     get:
@@ -2057,3 +2058,7 @@ components:
       bearerFormat: JWT
       scheme: bearer
       type: http
+    apiKey:
+      in: header
+      name: x-api-key
+      type: apiKey
