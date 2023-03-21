@@ -73,7 +73,7 @@ ctx = context.WithValue(context.Background(), OmniCore.ContextOperationServerVar
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com*
+All URIs are relative to *https://api.omnicore.korewireless.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

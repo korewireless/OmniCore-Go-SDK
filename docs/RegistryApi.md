@@ -1,6 +1,6 @@
 # \RegistryApi
 
-All URIs are relative to *https://demo-api.omnicore.cloud.korewireless.com*
+All URIs are relative to *https://api.omnicore.korewireless.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

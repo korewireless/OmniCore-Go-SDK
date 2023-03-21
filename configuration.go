@@ -103,8 +103,12 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
+				URL: "https://api.omnicore.korewireless.com",
+				Description: "Production Server",
+			},
+			{
 				URL: "https://demo-api.omnicore.cloud.korewireless.com",
-				Description: "No description provided",
+				Description: "Demo Server",
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{

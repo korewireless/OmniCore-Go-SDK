@@ -8,7 +8,10 @@ info:
   title: OmniCore Model and State Management API
   version: "1.0"
 servers:
-- url: https://demo-api.omnicore.cloud.korewireless.com
+- description: Production Server
+  url: https://api.omnicore.korewireless.com
+- description: Demo Server
+  url: https://demo-api.omnicore.cloud.korewireless.com
 security:
 - bearerAuth: []
   apiKey: []
