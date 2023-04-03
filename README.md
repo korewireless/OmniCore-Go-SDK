@@ -124,6 +124,7 @@ Class | Method | HTTP request | Description
  - [LogLevel](docs/LogLevel.md)
  - [MqttConfig](docs/MqttConfig.md)
  - [NotificationConfig](docs/NotificationConfig.md)
+ - [Policy](docs/Policy.md)
  - [PublicKeyCertificate](docs/PublicKeyCertificate.md)
  - [PublicKeyCredential](docs/PublicKeyCredential.md)
  - [RegistryCredential](docs/RegistryCredential.md)

@@ -722,7 +722,7 @@ paths:
       - description: "Required. Only updates the device fields indicated by this mask.\
           \ The field mask must not be empty, and it must not contain fields that\
           \ are immutable or only set by the server. Mutable top-level fields: credentials,logLevel,\
-          \ blocked, and metadata"
+          \ blocked,policy and metadata"
         explode: true
         in: query
         name: updateMask
@@ -734,6 +734,7 @@ paths:
           - metadata
           - credentials
           - gatewayConfig.gatewayAuthMethod
+          - policy
           type: string
         style: form
       requestBody:
@@ -976,11 +977,13 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Device ID
+      - description: "The number of versions to list. Versions are listed in decreasing\
+          \ order of the version number. The maximum number of versions retained is\
+          \ 10. If this value is zero, it will return all the versions available."
         explode: true
         in: query
         name: numVersions
-        required: true
+        required: false
         schema:
           type: integer
         style: form
@@ -1280,6 +1283,17 @@ components:
         gatewayConfig:
           gatewayType: NON_GATEWAY
           gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+        policy:
+          PublishEvents: true
+          SubscribeCommandRegex: SubscribeCommandRegex
+          SubscribeBroadcastRegex: SubscribeBroadcastRegex
+          SubscribeCommand: true
+          SubscribeConfig: true
+          Connect: true
+          PublishLoopback: true
+          SubscribeBroadcast: true
+          PublishEventsRegex: PublishEventsRegex
+          PublishState: true
         registry: registry
         updatedOn: updatedOn
         lastConfigAckTime: lastConfigAckTime
@@ -1374,6 +1388,8 @@ components:
           $ref: '#/components/schemas/DeviceConfig'
         state:
           $ref: '#/components/schemas/DeviceState'
+        policy:
+          $ref: '#/components/schemas/policy'
       required:
       - id
       type: object
@@ -1797,6 +1813,17 @@ components:
           gatewayConfig:
             gatewayType: NON_GATEWAY
             gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+          policy:
+            PublishEvents: true
+            SubscribeCommandRegex: SubscribeCommandRegex
+            SubscribeBroadcastRegex: SubscribeBroadcastRegex
+            SubscribeCommand: true
+            SubscribeConfig: true
+            Connect: true
+            PublishLoopback: true
+            SubscribeBroadcast: true
+            PublishEventsRegex: PublishEventsRegex
+            PublishState: true
           registry: registry
           updatedOn: updatedOn
           lastConfigAckTime: lastConfigAckTime
@@ -1847,6 +1874,17 @@ components:
           gatewayConfig:
             gatewayType: NON_GATEWAY
             gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+          policy:
+            PublishEvents: true
+            SubscribeCommandRegex: SubscribeCommandRegex
+            SubscribeBroadcastRegex: SubscribeBroadcastRegex
+            SubscribeCommand: true
+            SubscribeConfig: true
+            Connect: true
+            PublishLoopback: true
+            SubscribeBroadcast: true
+            PublishEventsRegex: PublishEventsRegex
+            PublishState: true
           registry: registry
           updatedOn: updatedOn
           lastConfigAckTime: lastConfigAckTime
@@ -2050,6 +2088,51 @@ components:
       required:
       - deviceIds
       - gatewayId
+      type: object
+    policy:
+      example:
+        PublishEvents: true
+        SubscribeCommandRegex: SubscribeCommandRegex
+        SubscribeBroadcastRegex: SubscribeBroadcastRegex
+        SubscribeCommand: true
+        SubscribeConfig: true
+        Connect: true
+        PublishLoopback: true
+        SubscribeBroadcast: true
+        PublishEventsRegex: PublishEventsRegex
+        PublishState: true
+      properties:
+        Connect:
+          type: boolean
+        PublishState:
+          type: boolean
+        PublishEvents:
+          type: boolean
+        PublishEventsRegex:
+          type: string
+        PublishLoopback:
+          type: boolean
+        SubscribeCommand:
+          type: boolean
+        SubscribeCommandRegex:
+          type: string
+        SubscribeBroadcast:
+          type: boolean
+        SubscribeBroadcastRegex:
+          type: string
+        SubscribeConfig:
+          type: boolean
+      required:
+      - Connect
+      - PublishEvents
+      - PublishEventsRegex
+      - PublishLoopback
+      - PublishState
+      - SubscribeBroadcast
+      - SubscribeBroadcastRegex
+      - SubscribeCommand
+      - SubscribeCommandRegex
+      - SubscribeConfig
       type: object
     LogLevel:
       enum:

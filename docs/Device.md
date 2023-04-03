@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Config** | Pointer to [**DeviceConfig**](DeviceConfig.md) |  | [optional] 
 **State** | Pointer to [**DeviceState**](DeviceState.md) |  | [optional] 
+**Policy** | Pointer to [**Policy**](Policy.md) |  | [optional] 
 
 ## Methods
 
@@ -720,6 +721,31 @@ SetState sets State field to given value.
 `func (o *Device) HasState() bool`
 
 HasState returns a boolean if a field has been set.
+
+### GetPolicy
+
+`func (o *Device) GetPolicy() Policy`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *Device) GetPolicyOk() (*Policy, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPolicy
+
+`func (o *Device) SetPolicy(v Policy)`
+
+SetPolicy sets Policy field to given value.
+
+### HasPolicy
+
+`func (o *Device) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

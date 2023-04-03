@@ -53,6 +53,7 @@ type Device struct {
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Config *DeviceConfig `json:"config,omitempty"`
 	State *DeviceState `json:"state,omitempty"`
+	Policy *Policy `json:"policy,omitempty"`
 }
 
 // NewDevice instantiates a new Device object
@@ -929,6 +930,38 @@ func (o *Device) SetState(v DeviceState) {
 	o.State = &v
 }
 
+// GetPolicy returns the Policy field value if set, zero value otherwise.
+func (o *Device) GetPolicy() Policy {
+	if o == nil || IsNil(o.Policy) {
+		var ret Policy
+		return ret
+	}
+	return *o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetPolicyOk() (*Policy, bool) {
+	if o == nil || IsNil(o.Policy) {
+		return nil, false
+	}
+	return o.Policy, true
+}
+
+// HasPolicy returns a boolean if a field has been set.
+func (o *Device) HasPolicy() bool {
+	if o != nil && !IsNil(o.Policy) {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicy gets a reference to the given Policy and assigns it to the Policy field.
+func (o *Device) SetPolicy(v Policy) {
+	o.Policy = &v
+}
+
 func (o Device) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -985,6 +1018,9 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.Policy) {
+		toSerialize["policy"] = o.Policy
 	}
 	return toSerialize, nil
 }

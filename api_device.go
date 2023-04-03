@@ -860,7 +860,7 @@ type ApiGetConfigRequest struct {
 	numVersions *int32
 }
 
-// Device ID
+// The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
 func (r ApiGetConfigRequest) NumVersions(numVersions int32) ApiGetConfigRequest {
 	r.numVersions = &numVersions
 	return r
@@ -914,11 +914,10 @@ func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceC
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.numVersions == nil {
-		return localVarReturnValue, nil, reportError("numVersions is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "numVersions", r.numVersions, "")
+	if r.numVersions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "numVersions", r.numVersions, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2254,7 +2253,7 @@ type ApiUpdateDeviceRequest struct {
 	device *Device
 }
 
-// Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked, and metadata
+// Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked,policy and metadata
 func (r ApiUpdateDeviceRequest) UpdateMask(updateMask string) ApiUpdateDeviceRequest {
 	r.updateMask = &updateMask
 	return r

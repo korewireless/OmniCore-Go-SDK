@@ -424,7 +424,7 @@ func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    numVersions := int32(56) // int32 | Device ID
+    numVersions := int32(56) // int32 | The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -458,7 +458,7 @@ Name | Type | Description  | Notes
 
 
 
- **numVersions** | **int32** | Device ID | 
+ **numVersions** | **int32** | The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available. | 
 
 ### Return type
 
@@ -1051,7 +1051,7 @@ func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    updateMask := "updateMask_example" // string | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked, and metadata
+    updateMask := "updateMask_example" // string | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked,policy and metadata
     device := *openapiclient.NewDevice("Id_example") // Device | application/json
 
     configuration := openapiclient.NewConfiguration()
@@ -1086,7 +1086,7 @@ Name | Type | Description  | Notes
 
 
 
- **updateMask** | **string** | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked, and metadata | 
+ **updateMask** | **string** | Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked,policy and metadata | 
  **device** | [**Device**](Device.md) | application/json | 
 
 ### Return type
