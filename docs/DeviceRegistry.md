@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **EventNotificationConfigs** | Pointer to [**[]EventNotificationConfig**](EventNotificationConfig.md) |  | [optional] 
 **LogNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
 **StateNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
+**JitrNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
 **NumberOfDevices** | Pointer to **int32** |  | [optional] [readonly] 
 **NumberOfGateways** | Pointer to **int32** |  | [optional] [readonly] 
 
@@ -332,6 +333,31 @@ SetStateNotificationConfig sets StateNotificationConfig field to given value.
 `func (o *DeviceRegistry) HasStateNotificationConfig() bool`
 
 HasStateNotificationConfig returns a boolean if a field has been set.
+
+### GetJitrNotificationConfig
+
+`func (o *DeviceRegistry) GetJitrNotificationConfig() NotificationConfig`
+
+GetJitrNotificationConfig returns the JitrNotificationConfig field if non-nil, zero value otherwise.
+
+### GetJitrNotificationConfigOk
+
+`func (o *DeviceRegistry) GetJitrNotificationConfigOk() (*NotificationConfig, bool)`
+
+GetJitrNotificationConfigOk returns a tuple with the JitrNotificationConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetJitrNotificationConfig
+
+`func (o *DeviceRegistry) SetJitrNotificationConfig(v NotificationConfig)`
+
+SetJitrNotificationConfig sets JitrNotificationConfig field to given value.
+
+### HasJitrNotificationConfig
+
+`func (o *DeviceRegistry) HasJitrNotificationConfig() bool`
+
+HasJitrNotificationConfig returns a boolean if a field has been set.
 
 ### GetNumberOfDevices
 

@@ -38,6 +38,7 @@ type DeviceRegistry struct {
 	EventNotificationConfigs []EventNotificationConfig `json:"eventNotificationConfigs,omitempty"`
 	LogNotificationConfig *NotificationConfig `json:"logNotificationConfig,omitempty"`
 	StateNotificationConfig *NotificationConfig `json:"stateNotificationConfig,omitempty"`
+	JitrNotificationConfig *NotificationConfig `json:"jitrNotificationConfig,omitempty"`
 	NumberOfDevices *int32 `json:"numberOfDevices,omitempty"`
 	NumberOfGateways *int32 `json:"numberOfGateways,omitempty"`
 }
@@ -436,6 +437,38 @@ func (o *DeviceRegistry) SetStateNotificationConfig(v NotificationConfig) {
 	o.StateNotificationConfig = &v
 }
 
+// GetJitrNotificationConfig returns the JitrNotificationConfig field value if set, zero value otherwise.
+func (o *DeviceRegistry) GetJitrNotificationConfig() NotificationConfig {
+	if o == nil || IsNil(o.JitrNotificationConfig) {
+		var ret NotificationConfig
+		return ret
+	}
+	return *o.JitrNotificationConfig
+}
+
+// GetJitrNotificationConfigOk returns a tuple with the JitrNotificationConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceRegistry) GetJitrNotificationConfigOk() (*NotificationConfig, bool) {
+	if o == nil || IsNil(o.JitrNotificationConfig) {
+		return nil, false
+	}
+	return o.JitrNotificationConfig, true
+}
+
+// HasJitrNotificationConfig returns a boolean if a field has been set.
+func (o *DeviceRegistry) HasJitrNotificationConfig() bool {
+	if o != nil && !IsNil(o.JitrNotificationConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetJitrNotificationConfig gets a reference to the given NotificationConfig and assigns it to the JitrNotificationConfig field.
+func (o *DeviceRegistry) SetJitrNotificationConfig(v NotificationConfig) {
+	o.JitrNotificationConfig = &v
+}
+
 // GetNumberOfDevices returns the NumberOfDevices field value if set, zero value otherwise.
 func (o *DeviceRegistry) GetNumberOfDevices() int32 {
 	if o == nil || IsNil(o.NumberOfDevices) {
@@ -535,6 +568,9 @@ func (o DeviceRegistry) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.StateNotificationConfig) {
 		toSerialize["stateNotificationConfig"] = o.StateNotificationConfig
+	}
+	if !IsNil(o.JitrNotificationConfig) {
+		toSerialize["jitrNotificationConfig"] = o.JitrNotificationConfig
 	}
 	// skip: numberOfDevices is readOnly
 	// skip: numberOfGateways is readOnly
