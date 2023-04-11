@@ -82,7 +82,7 @@ func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*Info, *ht
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -247,7 +247,7 @@ func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*Info, *
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -415,7 +415,7 @@ func (a *DeviceApiService) BlockDeviceCommuncationExecute(r ApiBlockDeviceCommun
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
@@ -581,7 +581,7 @@ func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Devic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/devices"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -742,7 +742,7 @@ func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*Info,
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
@@ -906,7 +906,7 @@ func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceC
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
@@ -1066,7 +1066,7 @@ func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *ht
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
@@ -1276,7 +1276,7 @@ func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/devices"
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
@@ -1463,7 +1463,7 @@ func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceS
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
@@ -1630,7 +1630,7 @@ func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
@@ -1796,7 +1796,7 @@ func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*Info,
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -1961,7 +1961,7 @@ func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*Inf
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -2129,7 +2129,7 @@ func (a *DeviceApiService) UpdateConfigurationToDeviceExecute(r ApiUpdateConfigu
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
@@ -2305,7 +2305,7 @@ func (a *DeviceApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Devic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)

@@ -9,14 +9,14 @@ info:
   version: "1.0"
 servers:
 - description: Production Server
-  url: https://api.omnicore.korewireless.com
+  url: https://api.omnicore.korewireless.com/model-state-management
 - description: Demo Server
-  url: https://demo-api.omnicore.cloud.korewireless.com
+  url: https://demo-api.omnicore.cloud.korewireless.com/model-state-management
 security:
 - bearerAuth: []
   apiKey: []
 paths:
-  /model-state-management/subscriptions/{subscriptionId}/registries:
+  /subscriptions/{subscriptionId}/registries:
     get:
       description: Get all registries under a subscription
       operationId: getRegistries
@@ -44,6 +44,17 @@ paths:
         required: false
         schema:
           type: integer
+        style: form
+      - description: "A list of registry string IDs. For example, ['registry0', 'registry12'].\
+          \ If empty, this field is ignored. Maximum IDs: 10,000"
+        explode: false
+        in: query
+        name: registryIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
         style: form
       responses:
         "200":
@@ -118,7 +129,7 @@ paths:
       tags:
       - registry
       x-codegen-request-body-name: Registry
-  /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}:
+  /subscriptions/{subscriptionId}/registries/{registryId}:
     delete:
       description: Delete a registry
       operationId: deleteRegistry
@@ -284,7 +295,7 @@ paths:
       tags:
       - registry
       x-codegen-request-body-name: Registry
-  /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway:
+  /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway:
     post:
       description: Bind  a device to a gateway under a registry
       operationId: bindDevice
@@ -340,7 +351,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway:
+  /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway:
     post:
       description: Bind devices to a gateway under a registry
       operationId: bindDevices
@@ -396,7 +407,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices:
+  /subscriptions/{subscriptionId}/registries/{registryId}/devices:
     get:
       description: Get all devices under a registry
       operationId: getDevices
@@ -581,7 +592,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}:
+  /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}:
     delete:
       description: Delete a device under a registry
       operationId: deleteDevice
@@ -773,7 +784,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway:
+  /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway:
     post:
       description: UnBind  a device from a gateway under a registry
       operationId: unBindDevice
@@ -829,7 +840,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway:
+  /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway:
     post:
       description: UnBind devices from a gateway under a registry
       operationId: unBindDevices
@@ -885,7 +896,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication:
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication:
     put:
       description: Blocks All Communication From A Device
       operationId: blockDeviceCommuncation
@@ -949,7 +960,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions:
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions:
     get:
       description: Get Configs Of Devices
       operationId: getConfig
@@ -1015,7 +1026,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-  /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice:
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice:
     post:
       description: Update A Configuration Of A Device
       operationId: updateConfigurationToDevice
@@ -1079,7 +1090,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice:
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice:
     post:
       description: Send A Command To A Device
       operationId: sendCommandToDevice
@@ -1143,7 +1154,63 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /model-state-management/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states:
+  /subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice:
+    post:
+      description: Send  Broadcast To Devices
+      operationId: sendBroadcastToDevices
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceCommand'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericEmptyResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - registry
+      x-codegen-request-body-name: Registry
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states:
     get:
       description: Get States Of Devices
       operationId: getStates

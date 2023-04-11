@@ -79,7 +79,7 @@ func (a *RegistryApiService) CreateRegistryExecute(r ApiCreateRegistryRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -233,7 +233,7 @@ func (a *RegistryApiService) DeleteRegistryExecute(r ApiDeleteRegistryRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -347,6 +347,7 @@ type ApiGetRegistriesRequest struct {
 	subscriptionId string
 	pageNumber *int32
 	pageSize *int32
+	registryIds *[]string
 }
 
 // Page Number
@@ -358,6 +359,12 @@ func (r ApiGetRegistriesRequest) PageNumber(pageNumber int32) ApiGetRegistriesRe
 // Page Size
 func (r ApiGetRegistriesRequest) PageSize(pageSize int32) ApiGetRegistriesRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// A list of registry string IDs. For example, [&#39;registry0&#39;, &#39;registry12&#39;]. If empty, this field is ignored. Maximum IDs: 10,000
+func (r ApiGetRegistriesRequest) RegistryIds(registryIds []string) ApiGetRegistriesRequest {
+	r.registryIds = &registryIds
 	return r
 }
 
@@ -397,7 +404,7 @@ func (a *RegistryApiService) GetRegistriesExecute(r ApiGetRegistriesRequest) (*L
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -409,6 +416,9 @@ func (a *RegistryApiService) GetRegistriesExecute(r ApiGetRegistriesRequest) (*L
 	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.registryIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "registryIds", r.registryIds, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -555,7 +565,7 @@ func (a *RegistryApiService) GetRegistryExecute(r ApiGetRegistryRequest) (*Devic
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
@@ -580,6 +590,171 @@ func (a *RegistryApiService) GetRegistryExecute(r ApiGetRegistryRequest) (*Devic
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSendBroadcastToDevicesRequest struct {
+	ctx context.Context
+	ApiService *RegistryApiService
+	subscriptionid string
+	registryId string
+	registry *DeviceCommand
+}
+
+// application/json
+func (r ApiSendBroadcastToDevicesRequest) Registry(registry DeviceCommand) ApiSendBroadcastToDevicesRequest {
+	r.registry = &registry
+	return r
+}
+
+func (r ApiSendBroadcastToDevicesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.SendBroadcastToDevicesExecute(r)
+}
+
+/*
+SendBroadcastToDevices Method for SendBroadcastToDevices
+
+Send  Broadcast To Devices
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionid Subscription ID
+ @param registryId Registry ID
+ @return ApiSendBroadcastToDevicesRequest
+*/
+func (a *RegistryApiService) SendBroadcastToDevices(ctx context.Context, subscriptionid string, registryId string) ApiSendBroadcastToDevicesRequest {
+	return ApiSendBroadcastToDevicesRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionid: subscriptionid,
+		registryId: registryId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *RegistryApiService) SendBroadcastToDevicesExecute(r ApiSendBroadcastToDevicesRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegistryApiService.SendBroadcastToDevices")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.registry == nil {
+		return localVarReturnValue, nil, reportError("registry is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.registry
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -722,7 +897,7 @@ func (a *RegistryApiService) UpdateRegistryExecute(r ApiUpdateRegistryRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/model-state-management/subscriptions/{subscriptionId}/registries/{registryId}"
+	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
