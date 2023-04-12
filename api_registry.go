@@ -847,7 +847,7 @@ type ApiUpdateRegistryRequest struct {
 	registry *DeviceRegistry
 }
 
-// values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,jitrNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials
+// values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,customOnboardNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials,customOnboardEnabled
 func (r ApiUpdateRegistryRequest) UpdateMask(updateMask string) ApiUpdateRegistryRequest {
 	r.updateMask = &updateMask
 	return r

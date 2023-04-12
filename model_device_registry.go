@@ -38,7 +38,8 @@ type DeviceRegistry struct {
 	EventNotificationConfigs []EventNotificationConfig `json:"eventNotificationConfigs,omitempty"`
 	LogNotificationConfig *NotificationConfig `json:"logNotificationConfig,omitempty"`
 	StateNotificationConfig *NotificationConfig `json:"stateNotificationConfig,omitempty"`
-	JitrNotificationConfig *NotificationConfig `json:"jitrNotificationConfig,omitempty"`
+	CustomOnboardNotificationConfig *NotificationConfig `json:"customOnboardNotificationConfig,omitempty"`
+	CustomOnboardEnabled *bool `json:"customOnboardEnabled,omitempty"`
 	NumberOfDevices *int32 `json:"numberOfDevices,omitempty"`
 	NumberOfGateways *int32 `json:"numberOfGateways,omitempty"`
 }
@@ -437,36 +438,68 @@ func (o *DeviceRegistry) SetStateNotificationConfig(v NotificationConfig) {
 	o.StateNotificationConfig = &v
 }
 
-// GetJitrNotificationConfig returns the JitrNotificationConfig field value if set, zero value otherwise.
-func (o *DeviceRegistry) GetJitrNotificationConfig() NotificationConfig {
-	if o == nil || IsNil(o.JitrNotificationConfig) {
+// GetCustomOnboardNotificationConfig returns the CustomOnboardNotificationConfig field value if set, zero value otherwise.
+func (o *DeviceRegistry) GetCustomOnboardNotificationConfig() NotificationConfig {
+	if o == nil || IsNil(o.CustomOnboardNotificationConfig) {
 		var ret NotificationConfig
 		return ret
 	}
-	return *o.JitrNotificationConfig
+	return *o.CustomOnboardNotificationConfig
 }
 
-// GetJitrNotificationConfigOk returns a tuple with the JitrNotificationConfig field value if set, nil otherwise
+// GetCustomOnboardNotificationConfigOk returns a tuple with the CustomOnboardNotificationConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeviceRegistry) GetJitrNotificationConfigOk() (*NotificationConfig, bool) {
-	if o == nil || IsNil(o.JitrNotificationConfig) {
+func (o *DeviceRegistry) GetCustomOnboardNotificationConfigOk() (*NotificationConfig, bool) {
+	if o == nil || IsNil(o.CustomOnboardNotificationConfig) {
 		return nil, false
 	}
-	return o.JitrNotificationConfig, true
+	return o.CustomOnboardNotificationConfig, true
 }
 
-// HasJitrNotificationConfig returns a boolean if a field has been set.
-func (o *DeviceRegistry) HasJitrNotificationConfig() bool {
-	if o != nil && !IsNil(o.JitrNotificationConfig) {
+// HasCustomOnboardNotificationConfig returns a boolean if a field has been set.
+func (o *DeviceRegistry) HasCustomOnboardNotificationConfig() bool {
+	if o != nil && !IsNil(o.CustomOnboardNotificationConfig) {
 		return true
 	}
 
 	return false
 }
 
-// SetJitrNotificationConfig gets a reference to the given NotificationConfig and assigns it to the JitrNotificationConfig field.
-func (o *DeviceRegistry) SetJitrNotificationConfig(v NotificationConfig) {
-	o.JitrNotificationConfig = &v
+// SetCustomOnboardNotificationConfig gets a reference to the given NotificationConfig and assigns it to the CustomOnboardNotificationConfig field.
+func (o *DeviceRegistry) SetCustomOnboardNotificationConfig(v NotificationConfig) {
+	o.CustomOnboardNotificationConfig = &v
+}
+
+// GetCustomOnboardEnabled returns the CustomOnboardEnabled field value if set, zero value otherwise.
+func (o *DeviceRegistry) GetCustomOnboardEnabled() bool {
+	if o == nil || IsNil(o.CustomOnboardEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.CustomOnboardEnabled
+}
+
+// GetCustomOnboardEnabledOk returns a tuple with the CustomOnboardEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceRegistry) GetCustomOnboardEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.CustomOnboardEnabled) {
+		return nil, false
+	}
+	return o.CustomOnboardEnabled, true
+}
+
+// HasCustomOnboardEnabled returns a boolean if a field has been set.
+func (o *DeviceRegistry) HasCustomOnboardEnabled() bool {
+	if o != nil && !IsNil(o.CustomOnboardEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomOnboardEnabled gets a reference to the given bool and assigns it to the CustomOnboardEnabled field.
+func (o *DeviceRegistry) SetCustomOnboardEnabled(v bool) {
+	o.CustomOnboardEnabled = &v
 }
 
 // GetNumberOfDevices returns the NumberOfDevices field value if set, zero value otherwise.
@@ -569,8 +602,11 @@ func (o DeviceRegistry) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StateNotificationConfig) {
 		toSerialize["stateNotificationConfig"] = o.StateNotificationConfig
 	}
-	if !IsNil(o.JitrNotificationConfig) {
-		toSerialize["jitrNotificationConfig"] = o.JitrNotificationConfig
+	if !IsNil(o.CustomOnboardNotificationConfig) {
+		toSerialize["customOnboardNotificationConfig"] = o.CustomOnboardNotificationConfig
+	}
+	if !IsNil(o.CustomOnboardEnabled) {
+		toSerialize["customOnboardEnabled"] = o.CustomOnboardEnabled
 	}
 	// skip: numberOfDevices is readOnly
 	// skip: numberOfGateways is readOnly

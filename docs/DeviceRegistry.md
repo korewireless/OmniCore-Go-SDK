@@ -16,7 +16,8 @@ Name | Type | Description | Notes
 **EventNotificationConfigs** | Pointer to [**[]EventNotificationConfig**](EventNotificationConfig.md) |  | [optional] 
 **LogNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
 **StateNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
-**JitrNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
+**CustomOnboardNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
+**CustomOnboardEnabled** | Pointer to **bool** |  | [optional] 
 **NumberOfDevices** | Pointer to **int32** |  | [optional] [readonly] 
 **NumberOfGateways** | Pointer to **int32** |  | [optional] [readonly] 
 
@@ -334,30 +335,55 @@ SetStateNotificationConfig sets StateNotificationConfig field to given value.
 
 HasStateNotificationConfig returns a boolean if a field has been set.
 
-### GetJitrNotificationConfig
+### GetCustomOnboardNotificationConfig
 
-`func (o *DeviceRegistry) GetJitrNotificationConfig() NotificationConfig`
+`func (o *DeviceRegistry) GetCustomOnboardNotificationConfig() NotificationConfig`
 
-GetJitrNotificationConfig returns the JitrNotificationConfig field if non-nil, zero value otherwise.
+GetCustomOnboardNotificationConfig returns the CustomOnboardNotificationConfig field if non-nil, zero value otherwise.
 
-### GetJitrNotificationConfigOk
+### GetCustomOnboardNotificationConfigOk
 
-`func (o *DeviceRegistry) GetJitrNotificationConfigOk() (*NotificationConfig, bool)`
+`func (o *DeviceRegistry) GetCustomOnboardNotificationConfigOk() (*NotificationConfig, bool)`
 
-GetJitrNotificationConfigOk returns a tuple with the JitrNotificationConfig field if it's non-nil, zero value otherwise
+GetCustomOnboardNotificationConfigOk returns a tuple with the CustomOnboardNotificationConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetJitrNotificationConfig
+### SetCustomOnboardNotificationConfig
 
-`func (o *DeviceRegistry) SetJitrNotificationConfig(v NotificationConfig)`
+`func (o *DeviceRegistry) SetCustomOnboardNotificationConfig(v NotificationConfig)`
 
-SetJitrNotificationConfig sets JitrNotificationConfig field to given value.
+SetCustomOnboardNotificationConfig sets CustomOnboardNotificationConfig field to given value.
 
-### HasJitrNotificationConfig
+### HasCustomOnboardNotificationConfig
 
-`func (o *DeviceRegistry) HasJitrNotificationConfig() bool`
+`func (o *DeviceRegistry) HasCustomOnboardNotificationConfig() bool`
 
-HasJitrNotificationConfig returns a boolean if a field has been set.
+HasCustomOnboardNotificationConfig returns a boolean if a field has been set.
+
+### GetCustomOnboardEnabled
+
+`func (o *DeviceRegistry) GetCustomOnboardEnabled() bool`
+
+GetCustomOnboardEnabled returns the CustomOnboardEnabled field if non-nil, zero value otherwise.
+
+### GetCustomOnboardEnabledOk
+
+`func (o *DeviceRegistry) GetCustomOnboardEnabledOk() (*bool, bool)`
+
+GetCustomOnboardEnabledOk returns a tuple with the CustomOnboardEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomOnboardEnabled
+
+`func (o *DeviceRegistry) SetCustomOnboardEnabled(v bool)`
+
+SetCustomOnboardEnabled sets CustomOnboardEnabled field to given value.
+
+### HasCustomOnboardEnabled
+
+`func (o *DeviceRegistry) HasCustomOnboardEnabled() bool`
+
+HasCustomOnboardEnabled returns a boolean if a field has been set.
 
 ### GetNumberOfDevices
 

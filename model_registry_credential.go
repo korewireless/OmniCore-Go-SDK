@@ -27,6 +27,7 @@ var _ MappedNullable = &RegistryCredential{}
 // RegistryCredential struct for RegistryCredential
 type RegistryCredential struct {
 	PublicKeyCertificate *PublicKeyCertificate `json:"publicKeyCertificate,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // NewRegistryCredential instantiates a new RegistryCredential object
@@ -78,6 +79,38 @@ func (o *RegistryCredential) SetPublicKeyCertificate(v PublicKeyCertificate) {
 	o.PublicKeyCertificate = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *RegistryCredential) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegistryCredential) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *RegistryCredential) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *RegistryCredential) SetId(v string) {
+	o.Id = &v
+}
+
 func (o RegistryCredential) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -91,6 +124,7 @@ func (o RegistryCredential) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PublicKeyCertificate) {
 		toSerialize["publicKeyCertificate"] = o.PublicKeyCertificate
 	}
+	// skip: id is readOnly
 	return toSerialize, nil
 }
 

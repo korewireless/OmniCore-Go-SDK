@@ -28,6 +28,7 @@ var _ MappedNullable = &DeviceCredential{}
 type DeviceCredential struct {
 	// ExpirationTime: [Optional] The time at which this credential becomes invalid. This credential will be ignored for new client authentication requests after this timestamp; however, it will not be automatically deleted.
 	ExpirationTime *string `json:"expirationTime,omitempty"`
+	Id *string `json:"id,omitempty"`
 	PublicKey *PublicKeyCredential `json:"publicKey,omitempty"`
 }
 
@@ -80,6 +81,38 @@ func (o *DeviceCredential) SetExpirationTime(v string) {
 	o.ExpirationTime = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *DeviceCredential) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceCredential) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *DeviceCredential) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *DeviceCredential) SetId(v string) {
+	o.Id = &v
+}
+
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *DeviceCredential) GetPublicKey() PublicKeyCredential {
 	if o == nil || IsNil(o.PublicKey) {
@@ -125,6 +158,7 @@ func (o DeviceCredential) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExpirationTime) {
 		toSerialize["expirationTime"] = o.ExpirationTime
 	}
+	// skip: id is readOnly
 	if !IsNil(o.PublicKey) {
 		toSerialize["publicKey"] = o.PublicKey
 	}

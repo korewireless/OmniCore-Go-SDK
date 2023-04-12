@@ -244,7 +244,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: "values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,jitrNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials"
+      - description: "values to be updated: eventNotificationConfigs,stateNotificationConfig.pubsub_topic_name,logNotificationConfig.pubsub_topic_name,customOnboardNotificationConfig.pubsub_topic_name,mqttConfig.mqtt_enabled_state,httpConfig.http_enabled_state,logLevel,credentials,customOnboardEnabled"
         explode: true
         in: query
         name: updateMask
@@ -254,7 +254,8 @@ paths:
           - eventNotificationConfigs
           - stateNotificationConfig.pubsub_topic_name
           - logNotificationConfig.pubsub_topic_name
-          - jitrNotificationConfig.pubsub_topic_name
+          - customOnboardNotificationConfig.pubsub_topic_name
+          - customOnboardEnabled
           - mqttConfig.mqtt_enabled_state
           - httpConfig.http_enabled_state
           - logLevel
@@ -1322,10 +1323,12 @@ components:
         numId: numId
         credentials:
         - expirationTime: expirationTime
+          id: id
           publicKey:
             format: RSA_PEM
             key: key
         - expirationTime: expirationTime
+          id: id
           publicKey:
             format: RSA_PEM
             key: key
@@ -1484,6 +1487,7 @@ components:
     DeviceCredential:
       example:
         expirationTime: expirationTime
+        id: id
         publicKey:
           format: RSA_PEM
           key: key
@@ -1494,6 +1498,9 @@ components:
             invalid. This credential will be ignored for new client
             authentication requests after this timestamp; however, it will not be
             automatically deleted.
+          type: string
+        id:
+          readOnly: true
           type: string
         publicKey:
           $ref: '#/components/schemas/PublicKeyCredential'
@@ -1514,6 +1521,7 @@ components:
               issuer: issuer
               signatureAlgorithm: signatureAlgorithm
               publicKeyType: publicKeyType
+          id: id
         - publicKeyCertificate:
             certificate: certificate
             format: X509_CERTIFICATE_PEM
@@ -1524,12 +1532,13 @@ components:
               issuer: issuer
               signatureAlgorithm: signatureAlgorithm
               publicKeyType: publicKeyType
+          id: id
         stateNotificationConfig:
           pubsubTopicName: pubsubTopicName
         updatedOn: updatedOn
-        createdOn: createdOn
-        jitrNotificationConfig:
+        customOnboardNotificationConfig:
           pubsubTopicName: pubsubTopicName
+        createdOn: createdOn
         httpConfig:
           httpEnabledState: HTTP_ENABLED
         logLevel: null
@@ -1544,6 +1553,7 @@ components:
         numberOfGateways: 6
         mqttConfig:
           mqttEnabledState: MQTT_ENABLED
+        customOnboardEnabled: true
       properties:
         id:
           maxLength: 256
@@ -1579,8 +1589,10 @@ components:
           $ref: '#/components/schemas/NotificationConfig'
         stateNotificationConfig:
           $ref: '#/components/schemas/NotificationConfig'
-        jitrNotificationConfig:
+        customOnboardNotificationConfig:
           $ref: '#/components/schemas/NotificationConfig'
+        customOnboardEnabled:
+          type: boolean
         numberOfDevices:
           readOnly: true
           type: integer
@@ -1747,6 +1759,7 @@ components:
                 issuer: issuer
                 signatureAlgorithm: signatureAlgorithm
                 publicKeyType: publicKeyType
+            id: id
           - publicKeyCertificate:
               certificate: certificate
               format: X509_CERTIFICATE_PEM
@@ -1757,12 +1770,13 @@ components:
                 issuer: issuer
                 signatureAlgorithm: signatureAlgorithm
                 publicKeyType: publicKeyType
+            id: id
           stateNotificationConfig:
             pubsubTopicName: pubsubTopicName
           updatedOn: updatedOn
-          createdOn: createdOn
-          jitrNotificationConfig:
+          customOnboardNotificationConfig:
             pubsubTopicName: pubsubTopicName
+          createdOn: createdOn
           httpConfig:
             httpEnabledState: HTTP_ENABLED
           logLevel: null
@@ -1777,6 +1791,7 @@ components:
           numberOfGateways: 6
           mqttConfig:
             mqttEnabledState: MQTT_ENABLED
+          customOnboardEnabled: true
         - parent: parent
           logNotificationConfig:
             pubsubTopicName: pubsubTopicName
@@ -1791,6 +1806,7 @@ components:
                 issuer: issuer
                 signatureAlgorithm: signatureAlgorithm
                 publicKeyType: publicKeyType
+            id: id
           - publicKeyCertificate:
               certificate: certificate
               format: X509_CERTIFICATE_PEM
@@ -1801,12 +1817,13 @@ components:
                 issuer: issuer
                 signatureAlgorithm: signatureAlgorithm
                 publicKeyType: publicKeyType
+            id: id
           stateNotificationConfig:
             pubsubTopicName: pubsubTopicName
           updatedOn: updatedOn
-          createdOn: createdOn
-          jitrNotificationConfig:
+          customOnboardNotificationConfig:
             pubsubTopicName: pubsubTopicName
+          createdOn: createdOn
           httpConfig:
             httpEnabledState: HTTP_ENABLED
           logLevel: null
@@ -1821,6 +1838,7 @@ components:
           numberOfGateways: 6
           mqttConfig:
             mqttEnabledState: MQTT_ENABLED
+          customOnboardEnabled: true
         pageSize: 5
         totalCount: 5
       properties:
@@ -1860,10 +1878,12 @@ components:
           numId: numId
           credentials:
           - expirationTime: expirationTime
+            id: id
             publicKey:
               format: RSA_PEM
               key: key
           - expirationTime: expirationTime
+            id: id
             publicKey:
               format: RSA_PEM
               key: key
@@ -1921,10 +1941,12 @@ components:
           numId: numId
           credentials:
           - expirationTime: expirationTime
+            id: id
             publicKey:
               format: RSA_PEM
               key: key
           - expirationTime: expirationTime
+            id: id
             publicKey:
               format: RSA_PEM
               key: key
@@ -2100,9 +2122,13 @@ components:
             issuer: issuer
             signatureAlgorithm: signatureAlgorithm
             publicKeyType: publicKeyType
+        id: id
       properties:
         publicKeyCertificate:
           $ref: '#/components/schemas/PublicKeyCertificate'
+        id:
+          readOnly: true
+          type: string
       type: object
     NotificationConfig:
       example:
