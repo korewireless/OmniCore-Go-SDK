@@ -9,6 +9,7 @@ configuration.go
 docs/BindRequest.md
 docs/BindRequestIdsGateway.md
 docs/BlockCommunicationBody.md
+docs/CustomOnboard.md
 docs/Device.md
 docs/DeviceApi.md
 docs/DeviceCommand.md
@@ -43,6 +44,7 @@ go.sum
 model_bind_request.go
 model_bind_request_ids_gateway.go
 model_block_communication_body.go
+model_custom_onboard.go
 model_device.go
 model_device_command.go
 model_device_config.go

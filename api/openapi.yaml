@@ -9,9 +9,9 @@ info:
   version: "1.0"
 servers:
 - description: Production Server
-  url: https://api.omnicore.korewireless.com/model-state-management
+  url: https://api.korewireless.com/omnicore
 - description: Demo Server
-  url: https://demo-api.omnicore.cloud.korewireless.com/model-state-management
+  url: https://demo.api.korewireless.com/omnicore
 security:
 - bearerAuth: []
   apiKey: []
@@ -1091,6 +1091,70 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
+  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateCustomOnboardRequest:
+    post:
+      description: Approve/Reject a Custom Onboard Request
+      operationId: updateCustomOnboardRequest
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomOnboard'
+        description: application/json
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Info'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - device
+      x-codegen-request-body-name: Device
   /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice:
     post:
       description: Send A Command To A Device
@@ -1314,6 +1378,161 @@ components:
           type: string
       required:
       - binaryData
+      type: object
+    CustomOnboard:
+      example:
+        parent: parent
+        metadata:
+          key: metadata
+        numId: numId
+        credentials:
+        - expirationTime: expirationTime
+          id: id
+          publicKey:
+            format: RSA_PEM
+            key: key
+        - expirationTime: expirationTime
+          id: id
+          publicKey:
+            format: RSA_PEM
+            key: key
+        lastConfigSendTime: lastConfigSendTime
+        lastErrorStatus:
+          code: 0
+          details: details
+          message: message
+        subscription: subscription
+        capresent: true
+        createdOn: createdOn
+        deviceErrors: deviceErrors
+        clientOnline: true
+        lastErrorTime: lastErrorTime
+        isGateway: true
+        blocked: true
+        logLevel: null
+        lastHeartbeatTime: lastHeartbeatTime
+        id: id
+        state:
+          binaryData: binaryData
+          updateTime: updateTime
+        gatewayConfig:
+          gatewayType: NON_GATEWAY
+          gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
+        policy:
+          PublishEvents: true
+          SubscribeCommandRegex: SubscribeCommandRegex
+          SubscribeBroadcastRegex: SubscribeBroadcastRegex
+          SubscribeCommand: true
+          SubscribeConfig: true
+          Connect: true
+          PublishLoopback: true
+          SubscribeBroadcast: true
+          PublishEventsRegex: PublishEventsRegex
+          PublishState: true
+        registry: registry
+        updatedOn: updatedOn
+        lastConfigAckTime: lastConfigAckTime
+        isApprove: true
+        name: name
+        lastEventTime: lastEventTime
+        customOnboardData: customOnboardData
+        config:
+          acknowledged: true
+          cloudUpdateTime: cloudUpdateTime
+          binaryData: binaryData
+          deviceAckTime: deviceAckTime
+          version: 6
+        gateway:
+        - gateway
+        - gateway
+        lastStateTime: lastStateTime
+      properties:
+        id:
+          maxLength: 256
+          minLength: 3
+          type: string
+        name:
+          readOnly: true
+          type: string
+        numId:
+          readOnly: true
+          type: string
+        parent:
+          readOnly: true
+          type: string
+        registry:
+          readOnly: true
+          type: string
+        blocked:
+          type: boolean
+        capresent:
+          readOnly: true
+          type: boolean
+        subscription:
+          readOnly: true
+          type: string
+        createdOn:
+          readOnly: true
+          type: string
+        updatedOn:
+          readOnly: true
+          type: string
+        credentials:
+          items:
+            $ref: '#/components/schemas/DeviceCredential'
+          type: array
+        gateway:
+          items:
+            type: string
+          type: array
+        gatewayConfig:
+          $ref: '#/components/schemas/GatewayConfig'
+        isGateway:
+          type: boolean
+        deviceErrors:
+          readOnly: true
+          type: string
+        clientOnline:
+          readOnly: true
+          type: boolean
+        lastConfigAckTime:
+          readOnly: true
+          type: string
+        lastConfigSendTime:
+          readOnly: true
+          type: string
+        lastErrorStatus:
+          $ref: '#/components/schemas/ErrorStatus'
+        lastErrorTime:
+          readOnly: true
+          type: string
+        lastEventTime:
+          readOnly: true
+          type: string
+        lastHeartbeatTime:
+          readOnly: true
+          type: string
+        lastStateTime:
+          readOnly: true
+          type: string
+        logLevel:
+          $ref: '#/components/schemas/LogLevel'
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        config:
+          $ref: '#/components/schemas/DeviceConfig'
+        state:
+          $ref: '#/components/schemas/DeviceState'
+        policy:
+          $ref: '#/components/schemas/policy'
+        customOnboardData:
+          type: string
+        isApprove:
+          type: boolean
+      required:
+      - id
       type: object
     Device:
       example:

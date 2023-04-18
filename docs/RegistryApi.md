@@ -1,6 +1,6 @@
 # \RegistryApi
 
-All URIs are relative to *https://api.omnicore.korewireless.com/model-state-management*
+All URIs are relative to *https://api.korewireless.com/omnicore*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
