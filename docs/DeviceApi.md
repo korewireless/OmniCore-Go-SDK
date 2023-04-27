@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 ## BindDevice
 
-> Info BindDevice(ctx, subscriptionId, registryId).Device(device).Execute()
+> Info BindDevice(ctx, subscriptionId, registryId).Bind(bind).Execute()
 
 
 
@@ -45,11 +45,11 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewBindRequest("DeviceId_example", "GatewayId_example") // BindRequest | application/json
+    bind := *openapiclient.NewBindRequest("DeviceId_example", "GatewayId_example") // BindRequest | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.BindDevice(context.Background(), subscriptionId, registryId).Device(device).Execute()
+    resp, r, err := apiClient.DeviceApi.BindDevice(context.Background(), subscriptionId, registryId).Bind(bind).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.BindDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**BindRequest**](BindRequest.md) | application/json | 
+ **bind** | [**BindRequest**](BindRequest.md) | application/json | 
 
 ### Return type
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ## BindDevices
 
-> Info BindDevices(ctx, subscriptionId, registryId).Device(device).Execute()
+> Info BindDevices(ctx, subscriptionId, registryId).Bind(bind).Execute()
 
 
 
@@ -120,11 +120,11 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewBindRequestIdsGateway([]string{"DeviceIds_example"}, "GatewayId_example") // BindRequestIdsGateway | application/json
+    bind := *openapiclient.NewBindRequestIdsGateway([]string{"DeviceIds_example"}, "GatewayId_example") // BindRequestIdsGateway | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.BindDevices(context.Background(), subscriptionId, registryId).Device(device).Execute()
+    resp, r, err := apiClient.DeviceApi.BindDevices(context.Background(), subscriptionId, registryId).Bind(bind).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.BindDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**BindRequestIdsGateway**](BindRequestIdsGateway.md) | application/json | 
+ **bind** | [**BindRequestIdsGateway**](BindRequestIdsGateway.md) | application/json | 
 
 ### Return type
 
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 ## BlockDeviceCommuncation
 
-> map[string]interface{} BlockDeviceCommuncation(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
+> map[string]interface{} BlockDeviceCommuncation(ctx, subscriptionid, registryId, deviceId).Block(block).Execute()
 
 
 
@@ -196,11 +196,11 @@ func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    device := *openapiclient.NewBlockCommunicationBody() // BlockCommunicationBody | application/json
+    block := *openapiclient.NewBlockCommunicationBody() // BlockCommunicationBody | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.BlockDeviceCommuncation(context.Background(), subscriptionid, registryId, deviceId).Device(device).Execute()
+    resp, r, err := apiClient.DeviceApi.BlockDeviceCommuncation(context.Background(), subscriptionid, registryId, deviceId).Block(block).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.BlockDeviceCommuncation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 
 
- **device** | [**BlockCommunicationBody**](BlockCommunicationBody.md) | application/json | 
+ **block** | [**BlockCommunicationBody**](BlockCommunicationBody.md) | application/json | 
 
 ### Return type
 
@@ -724,7 +724,7 @@ Name | Type | Description  | Notes
 
 ## SendCommandToDevice
 
-> map[string]interface{} SendCommandToDevice(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
+> map[string]interface{} SendCommandToDevice(ctx, subscriptionid, registryId, deviceId).Command(command).Execute()
 
 
 
@@ -746,11 +746,11 @@ func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    device := *openapiclient.NewDeviceCommand("BinaryData_example") // DeviceCommand | application/json
+    command := *openapiclient.NewDeviceCommand("BinaryData_example") // DeviceCommand | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.SendCommandToDevice(context.Background(), subscriptionid, registryId, deviceId).Device(device).Execute()
+    resp, r, err := apiClient.DeviceApi.SendCommandToDevice(context.Background(), subscriptionid, registryId, deviceId).Command(command).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.SendCommandToDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -780,7 +780,7 @@ Name | Type | Description  | Notes
 
 
 
- **device** | [**DeviceCommand**](DeviceCommand.md) | application/json | 
+ **command** | [**DeviceCommand**](DeviceCommand.md) | application/json | 
 
 ### Return type
 
@@ -802,7 +802,7 @@ Name | Type | Description  | Notes
 
 ## UnBindDevice
 
-> Info UnBindDevice(ctx, subscriptionId, registryId).Device(device).Execute()
+> Info UnBindDevice(ctx, subscriptionId, registryId).Unbind(unbind).Execute()
 
 
 
@@ -823,11 +823,11 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewBindRequest("DeviceId_example", "GatewayId_example") // BindRequest | application/json
+    unbind := *openapiclient.NewBindRequest("DeviceId_example", "GatewayId_example") // BindRequest | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.UnBindDevice(context.Background(), subscriptionId, registryId).Device(device).Execute()
+    resp, r, err := apiClient.DeviceApi.UnBindDevice(context.Background(), subscriptionId, registryId).Unbind(unbind).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UnBindDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -855,7 +855,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**BindRequest**](BindRequest.md) | application/json | 
+ **unbind** | [**BindRequest**](BindRequest.md) | application/json | 
 
 ### Return type
 
@@ -877,7 +877,7 @@ Name | Type | Description  | Notes
 
 ## UnBindDevices
 
-> Info UnBindDevices(ctx, subscriptionId, registryId).Device(device).Execute()
+> Info UnBindDevices(ctx, subscriptionId, registryId).Unbind(unbind).Execute()
 
 
 
@@ -898,11 +898,11 @@ import (
 func main() {
     subscriptionId := "subscriptionId_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    device := *openapiclient.NewBindRequestIdsGateway([]string{"DeviceIds_example"}, "GatewayId_example") // BindRequestIdsGateway | application/json
+    unbind := *openapiclient.NewBindRequestIdsGateway([]string{"DeviceIds_example"}, "GatewayId_example") // BindRequestIdsGateway | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.UnBindDevices(context.Background(), subscriptionId, registryId).Device(device).Execute()
+    resp, r, err := apiClient.DeviceApi.UnBindDevices(context.Background(), subscriptionId, registryId).Unbind(unbind).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UnBindDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -930,7 +930,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **device** | [**BindRequestIdsGateway**](BindRequestIdsGateway.md) | application/json | 
+ **unbind** | [**BindRequestIdsGateway**](BindRequestIdsGateway.md) | application/json | 
 
 ### Return type
 
@@ -952,7 +952,7 @@ Name | Type | Description  | Notes
 
 ## UpdateConfigurationToDevice
 
-> DeviceConfig UpdateConfigurationToDevice(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
+> DeviceConfig UpdateConfigurationToDevice(ctx, subscriptionid, registryId, deviceId).Configuration(configuration).Execute()
 
 
 
@@ -974,11 +974,11 @@ func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    device := *openapiclient.NewDeviceConfiguration("BinaryData_example") // DeviceConfiguration | application/json
+    configuration := *openapiclient.NewDeviceConfiguration("BinaryData_example") // DeviceConfiguration | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.UpdateConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Device(device).Execute()
+    resp, r, err := apiClient.DeviceApi.UpdateConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Configuration(configuration).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UpdateConfigurationToDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1008,7 +1008,7 @@ Name | Type | Description  | Notes
 
 
 
- **device** | [**DeviceConfiguration**](DeviceConfiguration.md) | application/json | 
+ **configuration** | [**DeviceConfiguration**](DeviceConfiguration.md) | application/json | 
 
 ### Return type
 
@@ -1030,7 +1030,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomOnboardRequest
 
-> Info UpdateCustomOnboardRequest(ctx, subscriptionid, registryId, deviceId).Device(device).Execute()
+> Info UpdateCustomOnboardRequest(ctx, subscriptionid, registryId, deviceId).CustomOnboard(customOnboard).Execute()
 
 
 
@@ -1052,11 +1052,11 @@ func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
-    device := *openapiclient.NewCustomOnboard("Id_example") // CustomOnboard | application/json
+    customOnboard := *openapiclient.NewCustomOnboard("Id_example") // CustomOnboard | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.UpdateCustomOnboardRequest(context.Background(), subscriptionid, registryId, deviceId).Device(device).Execute()
+    resp, r, err := apiClient.DeviceApi.UpdateCustomOnboardRequest(context.Background(), subscriptionid, registryId, deviceId).CustomOnboard(customOnboard).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.UpdateCustomOnboardRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1086,7 +1086,7 @@ Name | Type | Description  | Notes
 
 
 
- **device** | [**CustomOnboard**](CustomOnboard.md) | application/json | 
+ **customOnboard** | [**CustomOnboard**](CustomOnboard.md) | application/json | 
 
 ### Return type
 

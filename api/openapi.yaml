@@ -351,7 +351,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-      x-codegen-request-body-name: Device
+      x-codegen-request-body-name: Bind
   /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway:
     post:
       description: Bind devices to a gateway under a registry
@@ -407,7 +407,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-      x-codegen-request-body-name: Device
+      x-codegen-request-body-name: Bind
   /subscriptions/{subscriptionId}/registries/{registryId}/devices:
     get:
       description: Get all devices under a registry
@@ -840,7 +840,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-      x-codegen-request-body-name: Device
+      x-codegen-request-body-name: Unbind
   /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway:
     post:
       description: UnBind devices from a gateway under a registry
@@ -896,7 +896,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-      x-codegen-request-body-name: Device
+      x-codegen-request-body-name: Unbind
   /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication:
     put:
       description: Blocks All Communication From A Device
@@ -960,7 +960,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-      x-codegen-request-body-name: Device
+      x-codegen-request-body-name: Block
   /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions:
     get:
       description: Get Configs Of Devices
@@ -1090,7 +1090,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-      x-codegen-request-body-name: Device
+      x-codegen-request-body-name: Configuration
   /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateCustomOnboardRequest:
     post:
       description: Approve/Reject a Custom Onboard Request
@@ -1154,7 +1154,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-      x-codegen-request-body-name: Device
+      x-codegen-request-body-name: CustomOnboard
   /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice:
     post:
       description: Send A Command To A Device
@@ -1218,7 +1218,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-      x-codegen-request-body-name: Device
+      x-codegen-request-body-name: Command
   /subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice:
     post:
       description: Send  Broadcast To Devices
@@ -1274,7 +1274,7 @@ paths:
           description: Internal Server Error
       tags:
       - registry
-      x-codegen-request-body-name: Registry
+      x-codegen-request-body-name: Broadcast
   /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states:
     get:
       description: Get States Of Devices

@@ -35,12 +35,12 @@ type ApiBindDeviceRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *BindRequest
+	bind *BindRequest
 }
 
 // application/json
-func (r ApiBindDeviceRequest) Device(device BindRequest) ApiBindDeviceRequest {
-	r.device = &device
+func (r ApiBindDeviceRequest) Bind(bind BindRequest) ApiBindDeviceRequest {
+	r.bind = &bind
 	return r
 }
 
@@ -89,8 +89,8 @@ func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*Info, *ht
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	if r.bind == nil {
+		return localVarReturnValue, nil, reportError("bind is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -111,7 +111,7 @@ func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*Info, *ht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.bind
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -200,12 +200,12 @@ type ApiBindDevicesRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *BindRequestIdsGateway
+	bind *BindRequestIdsGateway
 }
 
 // application/json
-func (r ApiBindDevicesRequest) Device(device BindRequestIdsGateway) ApiBindDevicesRequest {
-	r.device = &device
+func (r ApiBindDevicesRequest) Bind(bind BindRequestIdsGateway) ApiBindDevicesRequest {
+	r.bind = &bind
 	return r
 }
 
@@ -254,8 +254,8 @@ func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*Info, *
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	if r.bind == nil {
+		return localVarReturnValue, nil, reportError("bind is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -276,7 +276,7 @@ func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*Info, *
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.bind
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -366,12 +366,12 @@ type ApiBlockDeviceCommuncationRequest struct {
 	subscriptionid string
 	registryId string
 	deviceId string
-	device *BlockCommunicationBody
+	block *BlockCommunicationBody
 }
 
 // application/json
-func (r ApiBlockDeviceCommuncationRequest) Device(device BlockCommunicationBody) ApiBlockDeviceCommuncationRequest {
-	r.device = &device
+func (r ApiBlockDeviceCommuncationRequest) Block(block BlockCommunicationBody) ApiBlockDeviceCommuncationRequest {
+	r.block = &block
 	return r
 }
 
@@ -423,8 +423,8 @@ func (a *DeviceApiService) BlockDeviceCommuncationExecute(r ApiBlockDeviceCommun
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	if r.block == nil {
+		return localVarReturnValue, nil, reportError("block is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -445,7 +445,7 @@ func (a *DeviceApiService) BlockDeviceCommuncationExecute(r ApiBlockDeviceCommun
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.block
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1581,12 +1581,12 @@ type ApiSendCommandToDeviceRequest struct {
 	subscriptionid string
 	registryId string
 	deviceId string
-	device *DeviceCommand
+	command *DeviceCommand
 }
 
 // application/json
-func (r ApiSendCommandToDeviceRequest) Device(device DeviceCommand) ApiSendCommandToDeviceRequest {
-	r.device = &device
+func (r ApiSendCommandToDeviceRequest) Command(command DeviceCommand) ApiSendCommandToDeviceRequest {
+	r.command = &command
 	return r
 }
 
@@ -1638,8 +1638,8 @@ func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	if r.command == nil {
+		return localVarReturnValue, nil, reportError("command is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1660,7 +1660,7 @@ func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.command
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1749,12 +1749,12 @@ type ApiUnBindDeviceRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *BindRequest
+	unbind *BindRequest
 }
 
 // application/json
-func (r ApiUnBindDeviceRequest) Device(device BindRequest) ApiUnBindDeviceRequest {
-	r.device = &device
+func (r ApiUnBindDeviceRequest) Unbind(unbind BindRequest) ApiUnBindDeviceRequest {
+	r.unbind = &unbind
 	return r
 }
 
@@ -1803,8 +1803,8 @@ func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*Info,
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	if r.unbind == nil {
+		return localVarReturnValue, nil, reportError("unbind is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1825,7 +1825,7 @@ func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*Info,
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.unbind
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1914,12 +1914,12 @@ type ApiUnBindDevicesRequest struct {
 	ApiService *DeviceApiService
 	subscriptionId string
 	registryId string
-	device *BindRequestIdsGateway
+	unbind *BindRequestIdsGateway
 }
 
 // application/json
-func (r ApiUnBindDevicesRequest) Device(device BindRequestIdsGateway) ApiUnBindDevicesRequest {
-	r.device = &device
+func (r ApiUnBindDevicesRequest) Unbind(unbind BindRequestIdsGateway) ApiUnBindDevicesRequest {
+	r.unbind = &unbind
 	return r
 }
 
@@ -1968,8 +1968,8 @@ func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*Inf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	if r.unbind == nil {
+		return localVarReturnValue, nil, reportError("unbind is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1990,7 +1990,7 @@ func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*Inf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.unbind
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2080,12 +2080,12 @@ type ApiUpdateConfigurationToDeviceRequest struct {
 	subscriptionid string
 	registryId string
 	deviceId string
-	device *DeviceConfiguration
+	configuration *DeviceConfiguration
 }
 
 // application/json
-func (r ApiUpdateConfigurationToDeviceRequest) Device(device DeviceConfiguration) ApiUpdateConfigurationToDeviceRequest {
-	r.device = &device
+func (r ApiUpdateConfigurationToDeviceRequest) Configuration(configuration DeviceConfiguration) ApiUpdateConfigurationToDeviceRequest {
+	r.configuration = &configuration
 	return r
 }
 
@@ -2137,8 +2137,8 @@ func (a *DeviceApiService) UpdateConfigurationToDeviceExecute(r ApiUpdateConfigu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	if r.configuration == nil {
+		return localVarReturnValue, nil, reportError("configuration is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2159,7 +2159,7 @@ func (a *DeviceApiService) UpdateConfigurationToDeviceExecute(r ApiUpdateConfigu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.configuration
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2249,12 +2249,12 @@ type ApiUpdateCustomOnboardRequestRequest struct {
 	subscriptionid string
 	registryId string
 	deviceId string
-	device *CustomOnboard
+	customOnboard *CustomOnboard
 }
 
 // application/json
-func (r ApiUpdateCustomOnboardRequestRequest) Device(device CustomOnboard) ApiUpdateCustomOnboardRequestRequest {
-	r.device = &device
+func (r ApiUpdateCustomOnboardRequestRequest) CustomOnboard(customOnboard CustomOnboard) ApiUpdateCustomOnboardRequestRequest {
+	r.customOnboard = &customOnboard
 	return r
 }
 
@@ -2306,8 +2306,8 @@ func (a *DeviceApiService) UpdateCustomOnboardRequestExecute(r ApiUpdateCustomOn
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
+	if r.customOnboard == nil {
+		return localVarReturnValue, nil, reportError("customOnboard is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2328,7 +2328,7 @@ func (a *DeviceApiService) UpdateCustomOnboardRequestExecute(r ApiUpdateCustomOn
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.customOnboard
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

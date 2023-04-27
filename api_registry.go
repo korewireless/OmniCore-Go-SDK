@@ -678,12 +678,12 @@ type ApiSendBroadcastToDevicesRequest struct {
 	ApiService *RegistryApiService
 	subscriptionid string
 	registryId string
-	registry *DeviceCommand
+	broadcast *DeviceCommand
 }
 
 // application/json
-func (r ApiSendBroadcastToDevicesRequest) Registry(registry DeviceCommand) ApiSendBroadcastToDevicesRequest {
-	r.registry = &registry
+func (r ApiSendBroadcastToDevicesRequest) Broadcast(broadcast DeviceCommand) ApiSendBroadcastToDevicesRequest {
+	r.broadcast = &broadcast
 	return r
 }
 
@@ -732,8 +732,8 @@ func (a *RegistryApiService) SendBroadcastToDevicesExecute(r ApiSendBroadcastToD
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.registry == nil {
-		return localVarReturnValue, nil, reportError("registry is required and must be specified")
+	if r.broadcast == nil {
+		return localVarReturnValue, nil, reportError("broadcast is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -754,7 +754,7 @@ func (a *RegistryApiService) SendBroadcastToDevicesExecute(r ApiSendBroadcastToD
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.registry
+	localVarPostBody = r.broadcast
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

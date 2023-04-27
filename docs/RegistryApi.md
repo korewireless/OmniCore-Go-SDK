@@ -309,7 +309,7 @@ Name | Type | Description  | Notes
 
 ## SendBroadcastToDevices
 
-> map[string]interface{} SendBroadcastToDevices(ctx, subscriptionid, registryId).Registry(registry).Execute()
+> map[string]interface{} SendBroadcastToDevices(ctx, subscriptionid, registryId).Broadcast(broadcast).Execute()
 
 
 
@@ -330,11 +330,11 @@ import (
 func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
     registryId := "registryId_example" // string | Registry ID
-    registry := *openapiclient.NewDeviceCommand("BinaryData_example") // DeviceCommand | application/json
+    broadcast := *openapiclient.NewDeviceCommand("BinaryData_example") // DeviceCommand | application/json
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RegistryApi.SendBroadcastToDevices(context.Background(), subscriptionid, registryId).Registry(registry).Execute()
+    resp, r, err := apiClient.RegistryApi.SendBroadcastToDevices(context.Background(), subscriptionid, registryId).Broadcast(broadcast).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RegistryApi.SendBroadcastToDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -362,7 +362,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **registry** | [**DeviceCommand**](DeviceCommand.md) | application/json | 
+ **broadcast** | [**DeviceCommand**](DeviceCommand.md) | application/json | 
 
 ### Return type
 
