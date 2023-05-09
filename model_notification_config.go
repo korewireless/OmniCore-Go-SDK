@@ -26,8 +26,10 @@ var _ MappedNullable = &NotificationConfig{}
 
 // NotificationConfig struct for NotificationConfig
 type NotificationConfig struct {
-	// PubsubTopicName: A Cloud Pub/Sub topic name. For example, `projects/myProject/topics/deviceEvents`.
+	// PubsubTopicName: A Topic name. For example, `projects/myProject/topics/deviceEvents`.
 	PubsubTopicName *string `json:"pubsubTopicName,omitempty"`
+	// Describe whether the topic is Gcp pubsub topic or Omni topic
+	IsGcpPubSub *bool `json:"isGcpPubSub,omitempty"`
 }
 
 // NewNotificationConfig instantiates a new NotificationConfig object
@@ -79,6 +81,38 @@ func (o *NotificationConfig) SetPubsubTopicName(v string) {
 	o.PubsubTopicName = &v
 }
 
+// GetIsGcpPubSub returns the IsGcpPubSub field value if set, zero value otherwise.
+func (o *NotificationConfig) GetIsGcpPubSub() bool {
+	if o == nil || IsNil(o.IsGcpPubSub) {
+		var ret bool
+		return ret
+	}
+	return *o.IsGcpPubSub
+}
+
+// GetIsGcpPubSubOk returns a tuple with the IsGcpPubSub field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationConfig) GetIsGcpPubSubOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsGcpPubSub) {
+		return nil, false
+	}
+	return o.IsGcpPubSub, true
+}
+
+// HasIsGcpPubSub returns a boolean if a field has been set.
+func (o *NotificationConfig) HasIsGcpPubSub() bool {
+	if o != nil && !IsNil(o.IsGcpPubSub) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGcpPubSub gets a reference to the given bool and assigns it to the IsGcpPubSub field.
+func (o *NotificationConfig) SetIsGcpPubSub(v bool) {
+	o.IsGcpPubSub = &v
+}
+
 func (o NotificationConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -91,6 +125,9 @@ func (o NotificationConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.PubsubTopicName) {
 		toSerialize["pubsubTopicName"] = o.PubsubTopicName
+	}
+	if !IsNil(o.IsGcpPubSub) {
+		toSerialize["isGcpPubSub"] = o.IsGcpPubSub
 	}
 	return toSerialize, nil
 }

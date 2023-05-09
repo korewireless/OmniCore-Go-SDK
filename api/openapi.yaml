@@ -1728,6 +1728,7 @@ components:
       example:
         parent: parent
         logNotificationConfig:
+          isGcpPubSub: ""
           pubsubTopicName: pubsubTopicName
         credentials:
         - publicKeyCertificate:
@@ -1753,18 +1754,22 @@ components:
               publicKeyType: publicKeyType
           id: id
         stateNotificationConfig:
+          isGcpPubSub: ""
           pubsubTopicName: pubsubTopicName
         updatedOn: updatedOn
         customOnboardNotificationConfig:
+          isGcpPubSub: ""
           pubsubTopicName: pubsubTopicName
         createdOn: createdOn
         httpConfig:
           httpEnabledState: HTTP_ENABLED
         logLevel: null
         eventNotificationConfigs:
-        - subfolderMatches: subfolderMatches
+        - isGcpPubSub: ""
+          subfolderMatches: subfolderMatches
           pubsubTopicName: pubsubTopicName
-        - subfolderMatches: subfolderMatches
+        - isGcpPubSub: ""
+          subfolderMatches: subfolderMatches
           pubsubTopicName: pubsubTopicName
         name: name
         id: id
@@ -1867,14 +1872,18 @@ components:
       type: object
     EventNotificationConfig:
       example:
+        isGcpPubSub: ""
         subfolderMatches: subfolderMatches
         pubsubTopicName: pubsubTopicName
       properties:
         pubsubTopicName:
           description: |-
-            PubsubTopicName: A Cloud Pub/Sub topic name. For example,
+            PubsubTopicName: A Topic name. For example,
             `projects/myProject/topics/deviceEvents`.
           type: string
+        isGcpPubSub:
+          description: Describe whether the topic is Gcp pubsub topic or Omni topic
+          type: bool
         subfolderMatches:
           description: |-
             SubfolderMatches: If the subfolder name matches this string exactly,
@@ -1966,6 +1975,7 @@ components:
         deviceRegistries:
         - parent: parent
           logNotificationConfig:
+            isGcpPubSub: ""
             pubsubTopicName: pubsubTopicName
           credentials:
           - publicKeyCertificate:
@@ -1991,18 +2001,22 @@ components:
                 publicKeyType: publicKeyType
             id: id
           stateNotificationConfig:
+            isGcpPubSub: ""
             pubsubTopicName: pubsubTopicName
           updatedOn: updatedOn
           customOnboardNotificationConfig:
+            isGcpPubSub: ""
             pubsubTopicName: pubsubTopicName
           createdOn: createdOn
           httpConfig:
             httpEnabledState: HTTP_ENABLED
           logLevel: null
           eventNotificationConfigs:
-          - subfolderMatches: subfolderMatches
+          - isGcpPubSub: ""
+            subfolderMatches: subfolderMatches
             pubsubTopicName: pubsubTopicName
-          - subfolderMatches: subfolderMatches
+          - isGcpPubSub: ""
+            subfolderMatches: subfolderMatches
             pubsubTopicName: pubsubTopicName
           name: name
           id: id
@@ -2013,6 +2027,7 @@ components:
           customOnboardEnabled: true
         - parent: parent
           logNotificationConfig:
+            isGcpPubSub: ""
             pubsubTopicName: pubsubTopicName
           credentials:
           - publicKeyCertificate:
@@ -2038,18 +2053,22 @@ components:
                 publicKeyType: publicKeyType
             id: id
           stateNotificationConfig:
+            isGcpPubSub: ""
             pubsubTopicName: pubsubTopicName
           updatedOn: updatedOn
           customOnboardNotificationConfig:
+            isGcpPubSub: ""
             pubsubTopicName: pubsubTopicName
           createdOn: createdOn
           httpConfig:
             httpEnabledState: HTTP_ENABLED
           logLevel: null
           eventNotificationConfigs:
-          - subfolderMatches: subfolderMatches
+          - isGcpPubSub: ""
+            subfolderMatches: subfolderMatches
             pubsubTopicName: pubsubTopicName
-          - subfolderMatches: subfolderMatches
+          - isGcpPubSub: ""
+            subfolderMatches: subfolderMatches
             pubsubTopicName: pubsubTopicName
           name: name
           id: id
@@ -2351,13 +2370,17 @@ components:
       type: object
     NotificationConfig:
       example:
+        isGcpPubSub: ""
         pubsubTopicName: pubsubTopicName
       properties:
         pubsubTopicName:
           description: |-
-            PubsubTopicName: A Cloud Pub/Sub topic name. For example,
+            PubsubTopicName: A Topic name. For example,
             `projects/myProject/topics/deviceEvents`.
           type: string
+        isGcpPubSub:
+          description: Describe whether the topic is Gcp pubsub topic or Omni topic
+          type: bool
       type: object
     X509CertificateDetails:
       example:

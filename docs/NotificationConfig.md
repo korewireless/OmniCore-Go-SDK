@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PubsubTopicName** | Pointer to **string** | PubsubTopicName: A Cloud Pub/Sub topic name. For example, &#x60;projects/myProject/topics/deviceEvents&#x60;. | [optional] 
+**PubsubTopicName** | Pointer to **string** | PubsubTopicName: A Topic name. For example, &#x60;projects/myProject/topics/deviceEvents&#x60;. | [optional] 
+**IsGcpPubSub** | Pointer to **bool** | Describe whether the topic is Gcp pubsub topic or Omni topic | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetPubsubTopicName sets PubsubTopicName field to given value.
 `func (o *NotificationConfig) HasPubsubTopicName() bool`
 
 HasPubsubTopicName returns a boolean if a field has been set.
+
+### GetIsGcpPubSub
+
+`func (o *NotificationConfig) GetIsGcpPubSub() bool`
+
+GetIsGcpPubSub returns the IsGcpPubSub field if non-nil, zero value otherwise.
+
+### GetIsGcpPubSubOk
+
+`func (o *NotificationConfig) GetIsGcpPubSubOk() (*bool, bool)`
+
+GetIsGcpPubSubOk returns a tuple with the IsGcpPubSub field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsGcpPubSub
+
+`func (o *NotificationConfig) SetIsGcpPubSub(v bool)`
+
+SetIsGcpPubSub sets IsGcpPubSub field to given value.
+
+### HasIsGcpPubSub
+
+`func (o *NotificationConfig) HasIsGcpPubSub() bool`
+
+HasIsGcpPubSub returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
