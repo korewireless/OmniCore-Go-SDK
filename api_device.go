@@ -1021,8 +1021,8 @@ func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceC
 type ApiGetDeviceRequest struct {
 	ctx context.Context
 	ApiService *DeviceApiService
-	registryId string
 	subscriptionId string
+	registryId string
 	deviceId string
 }
 
@@ -1036,17 +1036,17 @@ GetDevice Method for GetDevice
 Get a device under a registry
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param registryId Registry ID
  @param subscriptionId Subscription ID
+ @param registryId Registry ID
  @param deviceId Device ID
  @return ApiGetDeviceRequest
 */
-func (a *DeviceApiService) GetDevice(ctx context.Context, registryId string, subscriptionId string, deviceId string) ApiGetDeviceRequest {
+func (a *DeviceApiService) GetDevice(ctx context.Context, subscriptionId string, registryId string, deviceId string) ApiGetDeviceRequest {
 	return ApiGetDeviceRequest{
 		ApiService: a,
 		ctx: ctx,
-		registryId: registryId,
 		subscriptionId: subscriptionId,
+		registryId: registryId,
 		deviceId: deviceId,
 	}
 }
@@ -1067,8 +1067,8 @@ func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *ht
 	}
 
 	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1178,8 +1178,8 @@ func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *ht
 type ApiGetDevicesRequest struct {
 	ctx context.Context
 	ApiService *DeviceApiService
-	registryId string
 	subscriptionId string
+	registryId string
 	pageNumber *int32
 	pageSize *int32
 	fieldMask *string
@@ -1248,16 +1248,16 @@ GetDevices Method for GetDevices
 Get all devices under a registry
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param registryId Registry ID
  @param subscriptionId Subscription ID
+ @param registryId Registry ID
  @return ApiGetDevicesRequest
 */
-func (a *DeviceApiService) GetDevices(ctx context.Context, registryId string, subscriptionId string) ApiGetDevicesRequest {
+func (a *DeviceApiService) GetDevices(ctx context.Context, subscriptionId string, registryId string) ApiGetDevicesRequest {
 	return ApiGetDevicesRequest{
 		ApiService: a,
 		ctx: ctx,
-		registryId: registryId,
 		subscriptionId: subscriptionId,
+		registryId: registryId,
 	}
 }
 
@@ -1277,8 +1277,8 @@ func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevic
 	}
 
 	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/registries/{registryId}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -413,18 +413,18 @@ paths:
       description: Get all devices under a registry
       operationId: getDevices
       parameters:
-      - description: Registry ID
-        explode: false
-        in: path
-        name: registryId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Subscription ID
         explode: false
         in: path
         name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
         required: true
         schema:
           type: string
@@ -653,18 +653,18 @@ paths:
       description: Get a device under a registry
       operationId: getDevice
       parameters:
-      - description: Registry ID
-        explode: false
-        in: path
-        name: registryId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Subscription ID
         explode: false
         in: path
         name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Registry ID
+        explode: false
+        in: path
+        name: registryId
         required: true
         schema:
           type: string

@@ -481,7 +481,7 @@ Name | Type | Description  | Notes
 
 ## GetDevice
 
-> Device GetDevice(ctx, registryId, subscriptionId, deviceId).Execute()
+> Device GetDevice(ctx, subscriptionId, registryId, deviceId).Execute()
 
 
 
@@ -500,13 +500,13 @@ import (
 )
 
 func main() {
-    registryId := "registryId_example" // string | Registry ID
     subscriptionId := "subscriptionId_example" // string | Subscription ID
+    registryId := "registryId_example" // string | Registry ID
     deviceId := "deviceId_example" // string | Device ID
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.GetDevice(context.Background(), registryId, subscriptionId, deviceId).Execute()
+    resp, r, err := apiClient.DeviceApi.GetDevice(context.Background(), subscriptionId, registryId, deviceId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.GetDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -522,8 +522,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**registryId** | **string** | Registry ID | 
 **subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 **deviceId** | **string** | Device ID | 
 
 ### Other Parameters
@@ -557,7 +557,7 @@ Name | Type | Description  | Notes
 
 ## GetDevices
 
-> ListDevicesResponse GetDevices(ctx, registryId, subscriptionId).PageNumber(pageNumber).PageSize(pageSize).FieldMask(fieldMask).DeviceIds(deviceIds).DeviceNumIds(deviceNumIds).GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId).GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId).GatewayListOptionsGatewayType(gatewayListOptionsGatewayType).Execute()
+> ListDevicesResponse GetDevices(ctx, subscriptionId, registryId).PageNumber(pageNumber).PageSize(pageSize).FieldMask(fieldMask).DeviceIds(deviceIds).DeviceNumIds(deviceNumIds).GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId).GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId).GatewayListOptionsGatewayType(gatewayListOptionsGatewayType).Execute()
 
 
 
@@ -576,8 +576,8 @@ import (
 )
 
 func main() {
-    registryId := "registryId_example" // string | Registry ID
     subscriptionId := "subscriptionId_example" // string | Subscription ID
+    registryId := "registryId_example" // string | Registry ID
     pageNumber := int32(56) // int32 | Page Number (optional)
     pageSize := int32(56) // int32 | The maximum number of devices to return in the response. If this value is zero, the service will select a default size.  (optional)
     fieldMask := "fieldMask_example" // string | The fields of the Device resource to be returned to the response. The fields id and numId are always returned, along with any other fields specified. A comma-separated list of fully qualified names of fields. Example:  (optional)
@@ -589,7 +589,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeviceApi.GetDevices(context.Background(), registryId, subscriptionId).PageNumber(pageNumber).PageSize(pageSize).FieldMask(fieldMask).DeviceIds(deviceIds).DeviceNumIds(deviceNumIds).GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId).GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId).GatewayListOptionsGatewayType(gatewayListOptionsGatewayType).Execute()
+    resp, r, err := apiClient.DeviceApi.GetDevices(context.Background(), subscriptionId, registryId).PageNumber(pageNumber).PageSize(pageSize).FieldMask(fieldMask).DeviceIds(deviceIds).DeviceNumIds(deviceNumIds).GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId).GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId).GatewayListOptionsGatewayType(gatewayListOptionsGatewayType).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.GetDevices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -605,8 +605,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**registryId** | **string** | Registry ID | 
 **subscriptionId** | **string** | Subscription ID | 
+**registryId** | **string** | Registry ID | 
 
 ### Other Parameters
 
