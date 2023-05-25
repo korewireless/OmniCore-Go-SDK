@@ -28,8 +28,6 @@ var _ MappedNullable = &EventNotificationConfig{}
 type EventNotificationConfig struct {
 	// PubsubTopicName: A Topic name. For example, `projects/myProject/topics/deviceEvents`.
 	PubsubTopicName *string `json:"pubsubTopicName,omitempty"`
-	// Describe whether the topic is Gcp pubsub topic or Omni topic
-	IsGcpPubSub *bool `json:"isGcpPubSub,omitempty"`
 	// SubfolderMatches: If the subfolder name matches this string exactly, this configuration will be used. The string must not include the leading '/' character. If empty, all strings are matched. This field is used only for telemetry events; subfolders are not supported for state changes.
 	SubfolderMatches *string `json:"subfolderMatches,omitempty"`
 }
@@ -83,38 +81,6 @@ func (o *EventNotificationConfig) SetPubsubTopicName(v string) {
 	o.PubsubTopicName = &v
 }
 
-// GetIsGcpPubSub returns the IsGcpPubSub field value if set, zero value otherwise.
-func (o *EventNotificationConfig) GetIsGcpPubSub() bool {
-	if o == nil || IsNil(o.IsGcpPubSub) {
-		var ret bool
-		return ret
-	}
-	return *o.IsGcpPubSub
-}
-
-// GetIsGcpPubSubOk returns a tuple with the IsGcpPubSub field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventNotificationConfig) GetIsGcpPubSubOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsGcpPubSub) {
-		return nil, false
-	}
-	return o.IsGcpPubSub, true
-}
-
-// HasIsGcpPubSub returns a boolean if a field has been set.
-func (o *EventNotificationConfig) HasIsGcpPubSub() bool {
-	if o != nil && !IsNil(o.IsGcpPubSub) {
-		return true
-	}
-
-	return false
-}
-
-// SetIsGcpPubSub gets a reference to the given bool and assigns it to the IsGcpPubSub field.
-func (o *EventNotificationConfig) SetIsGcpPubSub(v bool) {
-	o.IsGcpPubSub = &v
-}
-
 // GetSubfolderMatches returns the SubfolderMatches field value if set, zero value otherwise.
 func (o *EventNotificationConfig) GetSubfolderMatches() string {
 	if o == nil || IsNil(o.SubfolderMatches) {
@@ -159,9 +125,6 @@ func (o EventNotificationConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.PubsubTopicName) {
 		toSerialize["pubsubTopicName"] = o.PubsubTopicName
-	}
-	if !IsNil(o.IsGcpPubSub) {
-		toSerialize["isGcpPubSub"] = o.IsGcpPubSub
 	}
 	if !IsNil(o.SubfolderMatches) {
 		toSerialize["subfolderMatches"] = o.SubfolderMatches

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **HttpConfig** | Pointer to [**HttpConfig**](HttpConfig.md) |  | [optional] 
 **MqttConfig** | Pointer to [**MqttConfig**](MqttConfig.md) |  | [optional] 
 **LogLevel** | Pointer to [**LogLevel**](LogLevel.md) |  | [optional] 
+**IsNatsRoute** | Pointer to **bool** |  | [optional] 
 **EventNotificationConfigs** | Pointer to [**[]EventNotificationConfig**](EventNotificationConfig.md) |  | [optional] 
 **LogNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
 **StateNotificationConfig** | Pointer to [**NotificationConfig**](NotificationConfig.md) |  | [optional] 
@@ -259,6 +260,31 @@ SetLogLevel sets LogLevel field to given value.
 `func (o *DeviceRegistry) HasLogLevel() bool`
 
 HasLogLevel returns a boolean if a field has been set.
+
+### GetIsNatsRoute
+
+`func (o *DeviceRegistry) GetIsNatsRoute() bool`
+
+GetIsNatsRoute returns the IsNatsRoute field if non-nil, zero value otherwise.
+
+### GetIsNatsRouteOk
+
+`func (o *DeviceRegistry) GetIsNatsRouteOk() (*bool, bool)`
+
+GetIsNatsRouteOk returns a tuple with the IsNatsRoute field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsNatsRoute
+
+`func (o *DeviceRegistry) SetIsNatsRoute(v bool)`
+
+SetIsNatsRoute sets IsNatsRoute field to given value.
+
+### HasIsNatsRoute
+
+`func (o *DeviceRegistry) HasIsNatsRoute() bool`
+
+HasIsNatsRoute returns a boolean if a field has been set.
 
 ### GetEventNotificationConfigs
 

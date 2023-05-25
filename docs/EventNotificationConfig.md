@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PubsubTopicName** | Pointer to **string** | PubsubTopicName: A Topic name. For example, &#x60;projects/myProject/topics/deviceEvents&#x60;. | [optional] 
-**IsGcpPubSub** | Pointer to **bool** | Describe whether the topic is Gcp pubsub topic or Omni topic | [optional] 
 **SubfolderMatches** | Pointer to **string** | SubfolderMatches: If the subfolder name matches this string exactly, this configuration will be used. The string must not include the leading &#39;/&#39; character. If empty, all strings are matched. This field is used only for telemetry events; subfolders are not supported for state changes. | [optional] 
 
 ## Methods
@@ -51,31 +50,6 @@ SetPubsubTopicName sets PubsubTopicName field to given value.
 `func (o *EventNotificationConfig) HasPubsubTopicName() bool`
 
 HasPubsubTopicName returns a boolean if a field has been set.
-
-### GetIsGcpPubSub
-
-`func (o *EventNotificationConfig) GetIsGcpPubSub() bool`
-
-GetIsGcpPubSub returns the IsGcpPubSub field if non-nil, zero value otherwise.
-
-### GetIsGcpPubSubOk
-
-`func (o *EventNotificationConfig) GetIsGcpPubSubOk() (*bool, bool)`
-
-GetIsGcpPubSubOk returns a tuple with the IsGcpPubSub field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsGcpPubSub
-
-`func (o *EventNotificationConfig) SetIsGcpPubSub(v bool)`
-
-SetIsGcpPubSub sets IsGcpPubSub field to given value.
-
-### HasIsGcpPubSub
-
-`func (o *EventNotificationConfig) HasIsGcpPubSub() bool`
-
-HasIsGcpPubSub returns a boolean if a field has been set.
 
 ### GetSubfolderMatches
 

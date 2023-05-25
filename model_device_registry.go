@@ -35,6 +35,7 @@ type DeviceRegistry struct {
 	HttpConfig *HttpConfig `json:"httpConfig,omitempty"`
 	MqttConfig *MqttConfig `json:"mqttConfig,omitempty"`
 	LogLevel *LogLevel `json:"logLevel,omitempty"`
+	IsNatsRoute *bool `json:"isNatsRoute,omitempty"`
 	EventNotificationConfigs []EventNotificationConfig `json:"eventNotificationConfigs,omitempty"`
 	LogNotificationConfig *NotificationConfig `json:"logNotificationConfig,omitempty"`
 	StateNotificationConfig *NotificationConfig `json:"stateNotificationConfig,omitempty"`
@@ -342,6 +343,38 @@ func (o *DeviceRegistry) SetLogLevel(v LogLevel) {
 	o.LogLevel = &v
 }
 
+// GetIsNatsRoute returns the IsNatsRoute field value if set, zero value otherwise.
+func (o *DeviceRegistry) GetIsNatsRoute() bool {
+	if o == nil || IsNil(o.IsNatsRoute) {
+		var ret bool
+		return ret
+	}
+	return *o.IsNatsRoute
+}
+
+// GetIsNatsRouteOk returns a tuple with the IsNatsRoute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceRegistry) GetIsNatsRouteOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsNatsRoute) {
+		return nil, false
+	}
+	return o.IsNatsRoute, true
+}
+
+// HasIsNatsRoute returns a boolean if a field has been set.
+func (o *DeviceRegistry) HasIsNatsRoute() bool {
+	if o != nil && !IsNil(o.IsNatsRoute) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsNatsRoute gets a reference to the given bool and assigns it to the IsNatsRoute field.
+func (o *DeviceRegistry) SetIsNatsRoute(v bool) {
+	o.IsNatsRoute = &v
+}
+
 // GetEventNotificationConfigs returns the EventNotificationConfigs field value if set, zero value otherwise.
 func (o *DeviceRegistry) GetEventNotificationConfigs() []EventNotificationConfig {
 	if o == nil || IsNil(o.EventNotificationConfigs) {
@@ -592,6 +625,9 @@ func (o DeviceRegistry) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LogLevel) {
 		toSerialize["logLevel"] = o.LogLevel
+	}
+	if !IsNil(o.IsNatsRoute) {
+		toSerialize["isNatsRoute"] = o.IsNatsRoute
 	}
 	if !IsNil(o.EventNotificationConfigs) {
 		toSerialize["eventNotificationConfigs"] = o.EventNotificationConfigs
