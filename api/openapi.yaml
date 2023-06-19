@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: "1.0"
+  version: 1.8.1
 servers:
 - description: Production Server
   url: https://api.korewireless.com/omnicore
@@ -3112,6 +3112,13 @@ components:
       - INFO
       - ERROR
       type: string
+    Config:
+      example:
+        connectionParameter: connectionParameter
+      properties:
+        connectionParameter:
+          type: string
+      type: object
     ListSinks:
       example:
         sinks:
@@ -3134,7 +3141,7 @@ components:
       properties:
         sinks:
           items:
-            $ref: '#/components/schemas/ListSinks_sinks_inner'
+            $ref: '#/components/schemas/Sink'
           type: array
       type: object
     Sink:
@@ -3159,7 +3166,7 @@ components:
           - pubsub
           type: string
         config:
-          $ref: '#/components/schemas/ListSinks_sinks_inner_config'
+          $ref: '#/components/schemas/Config'
         status:
           readOnly: true
           type: boolean
@@ -3206,46 +3213,6 @@ components:
       properties:
         details:
           $ref: '#/components/schemas/Metrics_details'
-      type: object
-    ListSinks_sinks_inner_config:
-      example:
-        connectionParameter: connectionParameter
-      properties:
-        connectionParameter:
-          type: string
-      type: object
-    ListSinks_sinks_inner:
-      example:
-        sink: pubsub
-        id: id
-        subscription: subscription
-        updatedon: updatedon
-        config:
-          connectionParameter: connectionParameter
-        createdon: createdon
-        status: true
-      properties:
-        id:
-          readOnly: true
-          type: string
-        subscription:
-          readOnly: true
-          type: string
-        sink:
-          enum:
-          - pubsub
-          type: string
-        config:
-          $ref: '#/components/schemas/ListSinks_sinks_inner_config'
-        status:
-          readOnly: true
-          type: boolean
-        createdon:
-          readOnly: true
-          type: string
-        updatedon:
-          readOnly: true
-          type: string
       type: object
     Metrics_details:
       example:

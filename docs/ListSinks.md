@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Sinks** | Pointer to [**[]ListSinksSinksInner**](ListSinksSinksInner.md) |  | [optional] 
+**Sinks** | Pointer to [**[]Sink**](Sink.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSinks
 
-`func (o *ListSinks) GetSinks() []ListSinksSinksInner`
+`func (o *ListSinks) GetSinks() []Sink`
 
 GetSinks returns the Sinks field if non-nil, zero value otherwise.
 
 ### GetSinksOk
 
-`func (o *ListSinks) GetSinksOk() (*[]ListSinksSinksInner, bool)`
+`func (o *ListSinks) GetSinksOk() (*[]Sink, bool)`
 
 GetSinksOk returns a tuple with the Sinks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSinks
 
-`func (o *ListSinks) SetSinks(v []ListSinksSinksInner)`
+`func (o *ListSinks) SetSinks(v []Sink)`
 
 SetSinks sets Sinks field to given value.
 

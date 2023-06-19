@@ -4,8 +4,8 @@ This is an OmniCore Model and State Management server.
 
 ## Overview
 
-- API version: 1.0
-- Package version: 1.8.0
+- API version: 1.8.1
+- Package version: 1.8.1
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
 
@@ -110,6 +110,7 @@ Class | Method | HTTP request | Description
  - [BindRequest](docs/BindRequest.md)
  - [BindRequestIdsGateway](docs/BindRequestIdsGateway.md)
  - [BlockCommunicationBody](docs/BlockCommunicationBody.md)
+ - [Config](docs/Config.md)
  - [CustomOnboard](docs/CustomOnboard.md)
  - [Device](docs/Device.md)
  - [DeviceCommand](docs/DeviceCommand.md)
@@ -130,8 +131,6 @@ Class | Method | HTTP request | Description
  - [ListDeviceStatesResponse](docs/ListDeviceStatesResponse.md)
  - [ListDevicesResponse](docs/ListDevicesResponse.md)
  - [ListSinks](docs/ListSinks.md)
- - [ListSinksSinksInner](docs/ListSinksSinksInner.md)
- - [ListSinksSinksInnerConfig](docs/ListSinksSinksInnerConfig.md)
  - [LogLevel](docs/LogLevel.md)
  - [Metrics](docs/Metrics.md)
  - [MetricsDetails](docs/MetricsDetails.md)

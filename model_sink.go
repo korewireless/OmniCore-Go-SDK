@@ -29,7 +29,7 @@ type Sink struct {
 	Id *string `json:"id,omitempty"`
 	Subscription *string `json:"subscription,omitempty"`
 	Sink *string `json:"sink,omitempty"`
-	Config *ListSinksSinksInnerConfig `json:"config,omitempty"`
+	Config *Config `json:"config,omitempty"`
 	Status *bool `json:"status,omitempty"`
 	Createdon *string `json:"createdon,omitempty"`
 	Updatedon *string `json:"updatedon,omitempty"`
@@ -149,9 +149,9 @@ func (o *Sink) SetSink(v string) {
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
-func (o *Sink) GetConfig() ListSinksSinksInnerConfig {
+func (o *Sink) GetConfig() Config {
 	if o == nil || IsNil(o.Config) {
-		var ret ListSinksSinksInnerConfig
+		var ret Config
 		return ret
 	}
 	return *o.Config
@@ -159,7 +159,7 @@ func (o *Sink) GetConfig() ListSinksSinksInnerConfig {
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Sink) GetConfigOk() (*ListSinksSinksInnerConfig, bool) {
+func (o *Sink) GetConfigOk() (*Config, bool) {
 	if o == nil || IsNil(o.Config) {
 		return nil, false
 	}
@@ -175,8 +175,8 @@ func (o *Sink) HasConfig() bool {
 	return false
 }
 
-// SetConfig gets a reference to the given ListSinksSinksInnerConfig and assigns it to the Config field.
-func (o *Sink) SetConfig(v ListSinksSinksInnerConfig) {
+// SetConfig gets a reference to the given Config and assigns it to the Config field.
+func (o *Sink) SetConfig(v Config) {
 	o.Config = &v
 }
 

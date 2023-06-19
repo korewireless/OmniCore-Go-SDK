@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] [readonly] 
 **Subscription** | Pointer to **string** |  | [optional] [readonly] 
 **Sink** | Pointer to **string** |  | [optional] 
-**Config** | Pointer to [**ListSinksSinksInnerConfig**](ListSinksSinksInnerConfig.md) |  | [optional] 
+**Config** | Pointer to [**Config**](Config.md) |  | [optional] 
 **Status** | Pointer to **bool** |  | [optional] [readonly] 
 **Createdon** | Pointer to **string** |  | [optional] [readonly] 
 **Updatedon** | Pointer to **string** |  | [optional] [readonly] 
@@ -108,20 +108,20 @@ HasSink returns a boolean if a field has been set.
 
 ### GetConfig
 
-`func (o *Sink) GetConfig() ListSinksSinksInnerConfig`
+`func (o *Sink) GetConfig() Config`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *Sink) GetConfigOk() (*ListSinksSinksInnerConfig, bool)`
+`func (o *Sink) GetConfigOk() (*Config, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *Sink) SetConfig(v ListSinksSinksInnerConfig)`
+`func (o *Sink) SetConfig(v Config)`
 
 SetConfig sets Config field to given value.
 

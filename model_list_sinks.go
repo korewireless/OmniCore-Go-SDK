@@ -26,7 +26,7 @@ var _ MappedNullable = &ListSinks{}
 
 // ListSinks struct for ListSinks
 type ListSinks struct {
-	Sinks []ListSinksSinksInner `json:"sinks,omitempty"`
+	Sinks []Sink `json:"sinks,omitempty"`
 }
 
 // NewListSinks instantiates a new ListSinks object
@@ -47,9 +47,9 @@ func NewListSinksWithDefaults() *ListSinks {
 }
 
 // GetSinks returns the Sinks field value if set, zero value otherwise.
-func (o *ListSinks) GetSinks() []ListSinksSinksInner {
+func (o *ListSinks) GetSinks() []Sink {
 	if o == nil || IsNil(o.Sinks) {
-		var ret []ListSinksSinksInner
+		var ret []Sink
 		return ret
 	}
 	return o.Sinks
@@ -57,7 +57,7 @@ func (o *ListSinks) GetSinks() []ListSinksSinksInner {
 
 // GetSinksOk returns a tuple with the Sinks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListSinks) GetSinksOk() ([]ListSinksSinksInner, bool) {
+func (o *ListSinks) GetSinksOk() ([]Sink, bool) {
 	if o == nil || IsNil(o.Sinks) {
 		return nil, false
 	}
@@ -73,8 +73,8 @@ func (o *ListSinks) HasSinks() bool {
 	return false
 }
 
-// SetSinks gets a reference to the given []ListSinksSinksInner and assigns it to the Sinks field.
-func (o *ListSinks) SetSinks(v []ListSinksSinksInner) {
+// SetSinks gets a reference to the given []Sink and assigns it to the Sinks field.
+func (o *ListSinks) SetSinks(v []Sink) {
 	o.Sinks = v
 }
 
