@@ -702,7 +702,7 @@ type ApiDeleteDeviceRequest struct {
 	deviceId string
 }
 
-func (r ApiDeleteDeviceRequest) Execute() (*Info, *http.Response, error) {
+func (r ApiDeleteDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
 	return r.ApiService.DeleteDeviceExecute(r)
 }
 
@@ -728,13 +728,13 @@ func (a *DeviceApiService) DeleteDevice(ctx context.Context, subscriptionId stri
 }
 
 // Execute executes the request
-//  @return Info
-func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (*Info, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Info
+		localVarReturnValue  map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.DeleteDevice")

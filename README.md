@@ -5,7 +5,7 @@ This is an OmniCore Model and State Management server.
 ## Overview
 
 - API version: 1.0
-- Package version: 1.7.4
+- Package version: 1.8.0
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
 
@@ -92,12 +92,17 @@ Class | Method | HTTP request | Description
 *DeviceApi* | [**UpdateConfigurationToDevice**](docs/DeviceApi.md#updateconfigurationtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice | 
 *DeviceApi* | [**UpdateCustomOnboardRequest**](docs/DeviceApi.md#updatecustomonboardrequest) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateCustomOnboardRequest | 
 *DeviceApi* | [**UpdateDevice**](docs/DeviceApi.md#updatedevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /subscriptions/{subscriptionId}/metrics | 
 *RegistryApi* | [**CreateRegistry**](docs/RegistryApi.md#createregistry) | **Post** /subscriptions/{subscriptionId}/registries | 
 *RegistryApi* | [**DeleteRegistry**](docs/RegistryApi.md#deleteregistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | 
 *RegistryApi* | [**GetRegistries**](docs/RegistryApi.md#getregistries) | **Get** /subscriptions/{subscriptionId}/registries | 
 *RegistryApi* | [**GetRegistry**](docs/RegistryApi.md#getregistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | 
 *RegistryApi* | [**SendBroadcastToDevices**](docs/RegistryApi.md#sendbroadcasttodevices) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice | 
 *RegistryApi* | [**UpdateRegistry**](docs/RegistryApi.md#updateregistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | 
+*SinkApi* | [**CreateSink**](docs/SinkApi.md#createsink) | **Post** /subscriptions/{subscriptionId}/sinks | 
+*SinkApi* | [**DeleteSink**](docs/SinkApi.md#deletesink) | **Delete** /subscriptions/{subscriptionId}/sinks/{sinkId} | 
+*SinkApi* | [**GetASink**](docs/SinkApi.md#getasink) | **Get** /subscriptions/{subscriptionId}/sinks/{sinkId} | 
+*SinkApi* | [**GetSinks**](docs/SinkApi.md#getsinks) | **Get** /subscriptions/{subscriptionId}/sinks | Get All Sinks
 
 
 ## Documentation For Models
@@ -124,13 +129,19 @@ Class | Method | HTTP request | Description
  - [ListDeviceRegistries](docs/ListDeviceRegistries.md)
  - [ListDeviceStatesResponse](docs/ListDeviceStatesResponse.md)
  - [ListDevicesResponse](docs/ListDevicesResponse.md)
+ - [ListSinks](docs/ListSinks.md)
+ - [ListSinksSinksInner](docs/ListSinksSinksInner.md)
+ - [ListSinksSinksInnerConfig](docs/ListSinksSinksInnerConfig.md)
  - [LogLevel](docs/LogLevel.md)
+ - [Metrics](docs/Metrics.md)
+ - [MetricsDetails](docs/MetricsDetails.md)
  - [MqttConfig](docs/MqttConfig.md)
  - [NotificationConfig](docs/NotificationConfig.md)
  - [Policy](docs/Policy.md)
  - [PublicKeyCertificate](docs/PublicKeyCertificate.md)
  - [PublicKeyCredential](docs/PublicKeyCredential.md)
  - [RegistryCredential](docs/RegistryCredential.md)
+ - [Sink](docs/Sink.md)
  - [X509CertificateDetails](docs/X509CertificateDetails.md)
 
 

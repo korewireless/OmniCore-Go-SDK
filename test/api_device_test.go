@@ -119,11 +119,11 @@ func Test_OmniCore_DeviceApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var registryId string
 		var subscriptionId string
+		var registryId string
 		var deviceId string
 
-		resp, httpRes, err := apiClient.DeviceApi.GetDevice(context.Background(), registryId, subscriptionId, deviceId).Execute()
+		resp, httpRes, err := apiClient.DeviceApi.GetDevice(context.Background(), subscriptionId, registryId, deviceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -135,10 +135,10 @@ func Test_OmniCore_DeviceApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var registryId string
 		var subscriptionId string
+		var registryId string
 
-		resp, httpRes, err := apiClient.DeviceApi.GetDevices(context.Background(), registryId, subscriptionId).Execute()
+		resp, httpRes, err := apiClient.DeviceApi.GetDevices(context.Background(), subscriptionId, registryId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -217,6 +217,22 @@ func Test_OmniCore_DeviceApiService(t *testing.T) {
 		var deviceId string
 
 		resp, httpRes, err := apiClient.DeviceApi.UpdateConfigurationToDevice(context.Background(), subscriptionid, registryId, deviceId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DeviceApiService UpdateCustomOnboardRequest", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionid string
+		var registryId string
+		var deviceId string
+
+		resp, httpRes, err := apiClient.DeviceApi.UpdateCustomOnboardRequest(context.Background(), subscriptionid, registryId, deviceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

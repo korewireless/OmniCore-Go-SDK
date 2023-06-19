@@ -627,7 +627,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Info'
+                $ref: '#/components/schemas/Empty'
           description: OK
         "400":
           content:
@@ -1341,6 +1341,651 @@ paths:
           description: Internal Server Error
       tags:
       - device
+  /subscriptions/{subscriptionId}/sinks:
+    get:
+      description: Get Sinks
+      operationId: getSinks
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSinks'
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      summary: Get All Sinks
+      tags:
+      - sink
+      x-codegen-request-body-name: Sink
+    post:
+      description: Create a Sink
+      operationId: createSink
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sink'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sink'
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      tags:
+      - sink
+      x-codegen-request-body-name: Sink
+  /subscriptions/{subscriptionId}/sinks/{sinkId}:
+    delete:
+      description: Delete a Sink
+      operationId: deleteSink
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Sink ID
+        explode: false
+        in: path
+        name: sinkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empty'
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      tags:
+      - sink
+      x-codegen-request-body-name: Sink
+    get:
+      description: Get A Sink
+      operationId: getASink
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Sink ID
+        explode: false
+        in: path
+        name: sinkId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sink'
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      tags:
+      - sink
+      x-codegen-request-body-name: Sink
+  /subscriptions/{subscriptionId}/metrics:
+    get:
+      description: get metrics
+      operationId: getMetrics
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metrics'
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      tags:
+      - metrics
+      x-codegen-request-body-name: Metrics
 components:
   schemas:
     BlockCommunicationBody:
@@ -1834,6 +2479,8 @@ components:
           type: string
         updateTime:
           type: string
+      type: object
+    Empty:
       type: object
     ErrorFrame:
       properties:
@@ -2465,6 +3112,231 @@ components:
       - INFO
       - ERROR
       type: string
+    ListSinks:
+      example:
+        sinks:
+        - sink: pubsub
+          id: id
+          subscription: subscription
+          updatedon: updatedon
+          config:
+            connectionParameter: connectionParameter
+          createdon: createdon
+          status: true
+        - sink: pubsub
+          id: id
+          subscription: subscription
+          updatedon: updatedon
+          config:
+            connectionParameter: connectionParameter
+          createdon: createdon
+          status: true
+      properties:
+        sinks:
+          items:
+            $ref: '#/components/schemas/ListSinks_sinks_inner'
+          type: array
+      type: object
+    Sink:
+      example:
+        sink: pubsub
+        id: id
+        subscription: subscription
+        updatedon: updatedon
+        config:
+          connectionParameter: connectionParameter
+        createdon: createdon
+        status: true
+      properties:
+        id:
+          readOnly: true
+          type: string
+        subscription:
+          readOnly: true
+          type: string
+        sink:
+          enum:
+          - pubsub
+          type: string
+        config:
+          $ref: '#/components/schemas/ListSinks_sinks_inner_config'
+        status:
+          readOnly: true
+          type: boolean
+        createdon:
+          readOnly: true
+          type: string
+        updatedon:
+          readOnly: true
+          type: string
+      type: object
+    Metrics:
+      example:
+        details:
+          noOfRegistries: 4
+          noOfConfigMessages: 3
+          billableMessageSize: 1
+          noOfDisConnections: 7
+          billableBytesSent: 6
+          noOfUnSubscribe: 6
+          noOfGateways: 1
+          noOfGatewayConnectionsFailed: 1
+          billableBytesReceived: 0
+          noOfAckMessages: 7
+          noOfMessages: 7
+          noOfCommandMessages: 9
+          messageSize: 2
+          NoOfMessagesFor48Hours:
+          - "{}"
+          - "{}"
+          noOfDevices: 4
+          noOfSuccessfulConnections: 9
+          NoOfMessagesFor30Minutes:
+          - "{}"
+          - "{}"
+          bytesSent: 5
+          noOfStateMessages: 5
+          noOfEventMessages: 1
+          bytesReceived: 5
+          noOfPublishErrors: 1
+          noOfDeviceConnectionsFailed: 2
+          noOfSubscribe: 9
+          subscriptionId: subscriptionId
+          noOfLoopBackMessages: 6
+      properties:
+        details:
+          $ref: '#/components/schemas/Metrics_details'
+      type: object
+    ListSinks_sinks_inner_config:
+      example:
+        connectionParameter: connectionParameter
+      properties:
+        connectionParameter:
+          type: string
+      type: object
+    ListSinks_sinks_inner:
+      example:
+        sink: pubsub
+        id: id
+        subscription: subscription
+        updatedon: updatedon
+        config:
+          connectionParameter: connectionParameter
+        createdon: createdon
+        status: true
+      properties:
+        id:
+          readOnly: true
+          type: string
+        subscription:
+          readOnly: true
+          type: string
+        sink:
+          enum:
+          - pubsub
+          type: string
+        config:
+          $ref: '#/components/schemas/ListSinks_sinks_inner_config'
+        status:
+          readOnly: true
+          type: boolean
+        createdon:
+          readOnly: true
+          type: string
+        updatedon:
+          readOnly: true
+          type: string
+      type: object
+    Metrics_details:
+      example:
+        noOfRegistries: 4
+        noOfConfigMessages: 3
+        billableMessageSize: 1
+        noOfDisConnections: 7
+        billableBytesSent: 6
+        noOfUnSubscribe: 6
+        noOfGateways: 1
+        noOfGatewayConnectionsFailed: 1
+        billableBytesReceived: 0
+        noOfAckMessages: 7
+        noOfMessages: 7
+        noOfCommandMessages: 9
+        messageSize: 2
+        NoOfMessagesFor48Hours:
+        - "{}"
+        - "{}"
+        noOfDevices: 4
+        noOfSuccessfulConnections: 9
+        NoOfMessagesFor30Minutes:
+        - "{}"
+        - "{}"
+        bytesSent: 5
+        noOfStateMessages: 5
+        noOfEventMessages: 1
+        bytesReceived: 5
+        noOfPublishErrors: 1
+        noOfDeviceConnectionsFailed: 2
+        noOfSubscribe: 9
+        subscriptionId: subscriptionId
+        noOfLoopBackMessages: 6
+      properties:
+        NoOfMessagesFor30Minutes:
+          items:
+            type: object
+          type: array
+        NoOfMessagesFor48Hours:
+          items:
+            type: object
+          type: array
+        billableBytesReceived:
+          type: integer
+        billableBytesSent:
+          type: integer
+        billableMessageSize:
+          type: integer
+        bytesReceived:
+          type: integer
+        bytesSent:
+          type: integer
+        messageSize:
+          type: integer
+        noOfAckMessages:
+          type: integer
+        noOfCommandMessages:
+          type: integer
+        noOfConfigMessages:
+          type: integer
+        noOfDeviceConnectionsFailed:
+          type: integer
+        noOfDevices:
+          type: integer
+        noOfDisConnections:
+          type: integer
+        noOfEventMessages:
+          type: integer
+        noOfGatewayConnectionsFailed:
+          type: integer
+        noOfGateways:
+          type: integer
+        noOfLoopBackMessages:
+          type: integer
+        noOfMessages:
+          type: integer
+        noOfPublishErrors:
+          type: integer
+        noOfRegistries:
+          type: integer
+        noOfStateMessages:
+          type: integer
+        noOfSubscribe:
+          type: integer
+        noOfSuccessfulConnections:
+          type: integer
+        noOfUnSubscribe:
+          type: integer
+        subscriptionId:
+          type: string
+      type: object
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

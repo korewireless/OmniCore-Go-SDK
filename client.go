@@ -58,7 +58,11 @@ type APIClient struct {
 
 	DeviceApi *DeviceApiService
 
+	MetricsApi *MetricsApiService
+
 	RegistryApi *RegistryApiService
+
+	SinkApi *SinkApiService
 }
 
 type service struct {
@@ -78,7 +82,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.DeviceApi = (*DeviceApiService)(&c.common)
+	c.MetricsApi = (*MetricsApiService)(&c.common)
 	c.RegistryApi = (*RegistryApiService)(&c.common)
+	c.SinkApi = (*SinkApiService)(&c.common)
 
 	return c
 }

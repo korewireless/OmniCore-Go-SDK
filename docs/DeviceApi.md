@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDevice
 
-> Info DeleteDevice(ctx, subscriptionId, registryId, deviceId).Execute()
+> map[string]interface{} DeleteDevice(ctx, subscriptionId, registryId, deviceId).Execute()
 
 
 
@@ -357,7 +357,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.DeleteDevice``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteDevice`: Info
+    // response from `DeleteDevice`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `DeviceApi.DeleteDevice`: %v\n", resp)
 }
 ```
@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Info**](Info.md)
+**map[string]interface{}**
 
 ### Authorization
 

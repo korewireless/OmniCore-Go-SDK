@@ -80,6 +80,21 @@ func Test_OmniCore_RegistryApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test RegistryApiService SendBroadcastToDevices", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionid string
+		var registryId string
+
+		resp, httpRes, err := apiClient.RegistryApi.SendBroadcastToDevices(context.Background(), subscriptionid, registryId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test RegistryApiService UpdateRegistry", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
