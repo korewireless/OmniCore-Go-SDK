@@ -3968,10 +3968,10 @@ components:
       properties:
         Details:
           items:
-            $ref: '#/components/schemas/Configuration'
+            $ref: '#/components/schemas/VaultConfiguration'
           type: array
       type: object
-    Configuration:
+    VaultConfiguration:
       example:
         data: data
         id: 0

@@ -26,7 +26,7 @@ var _ MappedNullable = &Configurations{}
 
 // Configurations struct for Configurations
 type Configurations struct {
-	Details []Configuration `json:"Details,omitempty"`
+	Details []VaultConfiguration `json:"Details,omitempty"`
 }
 
 // NewConfigurations instantiates a new Configurations object
@@ -47,9 +47,9 @@ func NewConfigurationsWithDefaults() *Configurations {
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
-func (o *Configurations) GetDetails() []Configuration {
+func (o *Configurations) GetDetails() []VaultConfiguration {
 	if o == nil || IsNil(o.Details) {
-		var ret []Configuration
+		var ret []VaultConfiguration
 		return ret
 	}
 	return o.Details
@@ -57,7 +57,7 @@ func (o *Configurations) GetDetails() []Configuration {
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Configurations) GetDetailsOk() ([]Configuration, bool) {
+func (o *Configurations) GetDetailsOk() ([]VaultConfiguration, bool) {
 	if o == nil || IsNil(o.Details) {
 		return nil, false
 	}
@@ -73,8 +73,8 @@ func (o *Configurations) HasDetails() bool {
 	return false
 }
 
-// SetDetails gets a reference to the given []Configuration and assigns it to the Details field.
-func (o *Configurations) SetDetails(v []Configuration) {
+// SetDetails gets a reference to the given []VaultConfiguration and assigns it to the Details field.
+func (o *Configurations) SetDetails(v []VaultConfiguration) {
 	o.Details = v
 }
 

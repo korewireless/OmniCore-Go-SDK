@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Details** | Pointer to [**[]Configuration**](Configuration.md) |  | [optional] 
+**Details** | Pointer to [**[]VaultConfiguration**](VaultConfiguration.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDetails
 
-`func (o *Configurations) GetDetails() []Configuration`
+`func (o *Configurations) GetDetails() []VaultConfiguration`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *Configurations) GetDetailsOk() (*[]Configuration, bool)`
+`func (o *Configurations) GetDetailsOk() (*[]VaultConfiguration, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetails
 
-`func (o *Configurations) SetDetails(v []Configuration)`
+`func (o *Configurations) SetDetails(v []VaultConfiguration)`
 
 SetDetails sets Details field to given value.
 
