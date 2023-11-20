@@ -1,15 +1,15 @@
 # \RegistryApi
 
-All URIs are relative to *https://api.korewireless.com/omnicore*
+All URIs are relative to *https://api.korewireless.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateRegistry**](RegistryApi.md#CreateRegistry) | **Post** /subscriptions/{subscriptionId}/registries | 
-[**DeleteRegistry**](RegistryApi.md#DeleteRegistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | 
-[**GetRegistries**](RegistryApi.md#GetRegistries) | **Get** /subscriptions/{subscriptionId}/registries | 
-[**GetRegistry**](RegistryApi.md#GetRegistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | 
-[**SendBroadcastToDevices**](RegistryApi.md#SendBroadcastToDevices) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice | 
-[**UpdateRegistry**](RegistryApi.md#UpdateRegistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | 
+[**CreateRegistry**](RegistryApi.md#CreateRegistry) | **Post** /omnicore/subscriptions/{subscriptionId}/registries | 
+[**DeleteRegistry**](RegistryApi.md#DeleteRegistry) | **Delete** /omnicore/subscriptions/{subscriptionId}/registries/{registryId} | 
+[**GetRegistries**](RegistryApi.md#GetRegistries) | **Get** /omnicore/subscriptions/{subscriptionId}/registries | 
+[**GetRegistry**](RegistryApi.md#GetRegistry) | **Get** /omnicore/subscriptions/{subscriptionId}/registries/{registryId} | 
+[**SendBroadcastToDevices**](RegistryApi.md#SendBroadcastToDevices) | **Post** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice | 
+[**UpdateRegistry**](RegistryApi.md#UpdateRegistry) | **Patch** /omnicore/subscriptions/{subscriptionId}/registries/{registryId} | 
 
 
 

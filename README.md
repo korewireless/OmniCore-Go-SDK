@@ -4,7 +4,7 @@ This is an OmniCore Model and State Management server.
 
 ## Overview
 
-- API version: 1.8.1
+- API version: 1.8.2
 - Package version: 1.8.1
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
@@ -73,45 +73,64 @@ ctx = context.WithValue(context.Background(), OmniCore.ContextOperationServerVar
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.korewireless.com/omnicore*
+All URIs are relative to *https://api.korewireless.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DeviceApi* | [**BindDevice**](docs/DeviceApi.md#binddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
-*DeviceApi* | [**BindDevices**](docs/DeviceApi.md#binddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
-*DeviceApi* | [**BlockDeviceCommuncation**](docs/DeviceApi.md#blockdevicecommuncation) | **Put** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
-*DeviceApi* | [**CreateDevice**](docs/DeviceApi.md#createdevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
-*DeviceApi* | [**DeleteDevice**](docs/DeviceApi.md#deletedevice) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
-*DeviceApi* | [**GetConfig**](docs/DeviceApi.md#getconfig) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
-*DeviceApi* | [**GetDevice**](docs/DeviceApi.md#getdevice) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
-*DeviceApi* | [**GetDevices**](docs/DeviceApi.md#getdevices) | **Get** /subscriptions/{subscriptionId}/registries/{registryId}/devices | 
-*DeviceApi* | [**GetStates**](docs/DeviceApi.md#getstates) | **Get** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
-*DeviceApi* | [**SendCommandToDevice**](docs/DeviceApi.md#sendcommandtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
-*DeviceApi* | [**UnBindDevice**](docs/DeviceApi.md#unbinddevice) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
-*DeviceApi* | [**UnBindDevices**](docs/DeviceApi.md#unbinddevices) | **Post** /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
-*DeviceApi* | [**UpdateConfigurationToDevice**](docs/DeviceApi.md#updateconfigurationtodevice) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice | 
-*DeviceApi* | [**UpdateCustomOnboardRequest**](docs/DeviceApi.md#updatecustomonboardrequest) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateCustomOnboardRequest | 
-*DeviceApi* | [**UpdateDevice**](docs/DeviceApi.md#updatedevice) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
-*MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /subscriptions/{subscriptionId}/metrics | 
-*RegistryApi* | [**CreateRegistry**](docs/RegistryApi.md#createregistry) | **Post** /subscriptions/{subscriptionId}/registries | 
-*RegistryApi* | [**DeleteRegistry**](docs/RegistryApi.md#deleteregistry) | **Delete** /subscriptions/{subscriptionId}/registries/{registryId} | 
-*RegistryApi* | [**GetRegistries**](docs/RegistryApi.md#getregistries) | **Get** /subscriptions/{subscriptionId}/registries | 
-*RegistryApi* | [**GetRegistry**](docs/RegistryApi.md#getregistry) | **Get** /subscriptions/{subscriptionId}/registries/{registryId} | 
-*RegistryApi* | [**SendBroadcastToDevices**](docs/RegistryApi.md#sendbroadcasttodevices) | **Post** /subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice | 
-*RegistryApi* | [**UpdateRegistry**](docs/RegistryApi.md#updateregistry) | **Patch** /subscriptions/{subscriptionId}/registries/{registryId} | 
-*SinkApi* | [**CreateSink**](docs/SinkApi.md#createsink) | **Post** /subscriptions/{subscriptionId}/sinks | 
-*SinkApi* | [**DeleteSink**](docs/SinkApi.md#deletesink) | **Delete** /subscriptions/{subscriptionId}/sinks/{sinkId} | 
-*SinkApi* | [**GetASink**](docs/SinkApi.md#getasink) | **Get** /subscriptions/{subscriptionId}/sinks/{sinkId} | 
-*SinkApi* | [**GetSinks**](docs/SinkApi.md#getsinks) | **Get** /subscriptions/{subscriptionId}/sinks | Get All Sinks
+*DeviceApi* | [**BindDevice**](docs/DeviceApi.md#binddevice) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway | 
+*DeviceApi* | [**BindDevices**](docs/DeviceApi.md#binddevices) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway | 
+*DeviceApi* | [**BlockDeviceCommuncation**](docs/DeviceApi.md#blockdevicecommuncation) | **Put** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication | 
+*DeviceApi* | [**CreateDevice**](docs/DeviceApi.md#createdevice) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+*DeviceApi* | [**DeleteDevice**](docs/DeviceApi.md#deletedevice) | **Delete** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*DeviceApi* | [**GetConfig**](docs/DeviceApi.md#getconfig) | **Get** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions | 
+*DeviceApi* | [**GetDevice**](docs/DeviceApi.md#getdevice) | **Get** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*DeviceApi* | [**GetDevices**](docs/DeviceApi.md#getdevices) | **Get** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices | 
+*DeviceApi* | [**GetStates**](docs/DeviceApi.md#getstates) | **Get** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
+*DeviceApi* | [**SendCommandToDevice**](docs/DeviceApi.md#sendcommandtodevice) | **Post** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
+*DeviceApi* | [**UnBindDevice**](docs/DeviceApi.md#unbinddevice) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
+*DeviceApi* | [**UnBindDevices**](docs/DeviceApi.md#unbinddevices) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
+*DeviceApi* | [**UpdateConfigurationToDevice**](docs/DeviceApi.md#updateconfigurationtodevice) | **Post** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice | 
+*DeviceApi* | [**UpdateCustomOnboardRequest**](docs/DeviceApi.md#updatecustomonboardrequest) | **Post** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateCustomOnboardRequest | 
+*DeviceApi* | [**UpdateDevice**](docs/DeviceApi.md#updatedevice) | **Patch** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
+*MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /omnicore/subscriptions/{subscriptionId}/metrics | 
+*RegistryApi* | [**CreateRegistry**](docs/RegistryApi.md#createregistry) | **Post** /omnicore/subscriptions/{subscriptionId}/registries | 
+*RegistryApi* | [**DeleteRegistry**](docs/RegistryApi.md#deleteregistry) | **Delete** /omnicore/subscriptions/{subscriptionId}/registries/{registryId} | 
+*RegistryApi* | [**GetRegistries**](docs/RegistryApi.md#getregistries) | **Get** /omnicore/subscriptions/{subscriptionId}/registries | 
+*RegistryApi* | [**GetRegistry**](docs/RegistryApi.md#getregistry) | **Get** /omnicore/subscriptions/{subscriptionId}/registries/{registryId} | 
+*RegistryApi* | [**SendBroadcastToDevices**](docs/RegistryApi.md#sendbroadcasttodevices) | **Post** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice | 
+*RegistryApi* | [**UpdateRegistry**](docs/RegistryApi.md#updateregistry) | **Patch** /omnicore/subscriptions/{subscriptionId}/registries/{registryId} | 
+*SinkApi* | [**CreateSink**](docs/SinkApi.md#createsink) | **Post** /omnicore/subscriptions/{subscriptionId}/sinks | 
+*SinkApi* | [**DeleteSink**](docs/SinkApi.md#deletesink) | **Delete** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
+*SinkApi* | [**GetASink**](docs/SinkApi.md#getasink) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
+*SinkApi* | [**GetSinks**](docs/SinkApi.md#getsinks) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks | Get All Sinks
+*VaultApi* | [**CreateVaultConfiguration**](docs/VaultApi.md#createvaultconfiguration) | **Post** /vault/subscriptions/{subscriptionid}/configurations | 
+*VaultApi* | [**DeleteConfiguration**](docs/VaultApi.md#deleteconfiguration) | **Delete** /vault/subscriptions/{subscriptionid}/configurations/{configid} | 
+*VaultApi* | [**EnableVault**](docs/VaultApi.md#enablevault) | **Post** /vault/subscriptions/{subscriptionid}/enable-vault | 
+*VaultApi* | [**GetExports**](docs/VaultApi.md#getexports) | **Get** /vault/subscriptions/{subscriptionid}/exports | 
+*VaultApi* | [**GetRegistryData**](docs/VaultApi.md#getregistrydata) | **Get** /vault/subscriptions/{subscriptionid}/folders | 
+*VaultApi* | [**GetReplays**](docs/VaultApi.md#getreplays) | **Get** /vault/subscriptions/{subscriptionid}/replays | 
+*VaultApi* | [**GetVaultAudit**](docs/VaultApi.md#getvaultaudit) | **Get** /vault/subscriptions/{subscriptionid}/audit | 
+*VaultApi* | [**GetVaultConfigurations**](docs/VaultApi.md#getvaultconfigurations) | **Get** /vault/subscriptions/{subscriptionid}/configurations | 
+*VaultApi* | [**GetVaultFiles**](docs/VaultApi.md#getvaultfiles) | **Get** /vault/subscriptions/{subscriptionid}/registry/{registryid}/files | 
+*VaultApi* | [**GetVaultMetrics**](docs/VaultApi.md#getvaultmetrics) | **Get** /vault/subscriptions/{subscriptionid}/metrics | 
+*VaultApi* | [**GetVaultStatus**](docs/VaultApi.md#getvaultstatus) | **Get** /vault/subscriptions/{subscriptionid}/status | 
+*VaultApi* | [**StartExport**](docs/VaultApi.md#startexport) | **Post** /vault/subscriptions/{subscriptionid}/exports | 
+*VaultApi* | [**StartReplay**](docs/VaultApi.md#startreplay) | **Post** /vault/subscriptions/{subscriptionid}/replays | 
 
 
 ## Documentation For Models
 
+ - [Audit](docs/Audit.md)
+ - [AuditResult](docs/AuditResult.md)
  - [BindRequest](docs/BindRequest.md)
  - [BindRequestIdsGateway](docs/BindRequestIdsGateway.md)
  - [BlockCommunicationBody](docs/BlockCommunicationBody.md)
  - [Config](docs/Config.md)
+ - [Configuration](docs/Configuration.md)
+ - [Configurations](docs/Configurations.md)
+ - [CreateConfiguration](docs/CreateConfiguration.md)
  - [CustomOnboard](docs/CustomOnboard.md)
+ - [Details](docs/Details.md)
  - [Device](docs/Device.md)
  - [DeviceCommand](docs/DeviceCommand.md)
  - [DeviceConfig](docs/DeviceConfig.md)
@@ -119,11 +138,20 @@ Class | Method | HTTP request | Description
  - [DeviceCredential](docs/DeviceCredential.md)
  - [DeviceRegistry](docs/DeviceRegistry.md)
  - [DeviceState](docs/DeviceState.md)
+ - [EnableVault](docs/EnableVault.md)
  - [ErrorFrame](docs/ErrorFrame.md)
  - [ErrorStatus](docs/ErrorStatus.md)
  - [EventNotificationConfig](docs/EventNotificationConfig.md)
+ - [ExportDetail](docs/ExportDetail.md)
+ - [FileDetail](docs/FileDetail.md)
+ - [FileDetails](docs/FileDetails.md)
+ - [Folder](docs/Folder.md)
+ - [FolderData](docs/FolderData.md)
+ - [Frame](docs/Frame.md)
  - [GatewayConfig](docs/GatewayConfig.md)
  - [GenericErrorResponse](docs/GenericErrorResponse.md)
+ - [GetExportsResponse](docs/GetExportsResponse.md)
+ - [GetReplaysResponse](docs/GetReplaysResponse.md)
  - [HttpConfig](docs/HttpConfig.md)
  - [Info](docs/Info.md)
  - [ListDeviceConfigVersionsResponse](docs/ListDeviceConfigVersionsResponse.md)
@@ -133,14 +161,24 @@ Class | Method | HTTP request | Description
  - [ListSinks](docs/ListSinks.md)
  - [LogLevel](docs/LogLevel.md)
  - [Metrics](docs/Metrics.md)
+ - [MetricsData](docs/MetricsData.md)
  - [MetricsDetails](docs/MetricsDetails.md)
+ - [MetricsLogs](docs/MetricsLogs.md)
+ - [MetricsResponse](docs/MetricsResponse.md)
+ - [MetricsResponseDetails](docs/MetricsResponseDetails.md)
  - [MqttConfig](docs/MqttConfig.md)
  - [NotificationConfig](docs/NotificationConfig.md)
+ - [OperationMetrics](docs/OperationMetrics.md)
  - [Policy](docs/Policy.md)
  - [PublicKeyCertificate](docs/PublicKeyCertificate.md)
  - [PublicKeyCredential](docs/PublicKeyCredential.md)
  - [RegistryCredential](docs/RegistryCredential.md)
+ - [Replay](docs/Replay.md)
+ - [ReplayBody](docs/ReplayBody.md)
  - [Sink](docs/Sink.md)
+ - [StartExportBody](docs/StartExportBody.md)
+ - [VaultStatus](docs/VaultStatus.md)
+ - [VaultStatusDetails](docs/VaultStatusDetails.md)
  - [X509CertificateDetails](docs/X509CertificateDetails.md)
 
 

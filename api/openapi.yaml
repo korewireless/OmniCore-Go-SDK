@@ -6,17 +6,17 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.1
+  version: 1.8.2
 servers:
 - description: Production Server
-  url: https://api.korewireless.com/omnicore
+  url: https://api.korewireless.com
 - description: Demo Server
-  url: https://demo.api.korewireless.com/omnicore
+  url: https://demo.api.korewireless.com
 security:
 - bearerAuth: []
   apiKey: []
 paths:
-  /subscriptions/{subscriptionId}/registries:
+  /omnicore/subscriptions/{subscriptionId}/registries:
     get:
       description: Get all registries under a subscription
       operationId: getRegistries
@@ -129,7 +129,7 @@ paths:
       tags:
       - registry
       x-codegen-request-body-name: Registry
-  /subscriptions/{subscriptionId}/registries/{registryId}:
+  /omnicore/subscriptions/{subscriptionId}/registries/{registryId}:
     delete:
       description: Delete a registry
       operationId: deleteRegistry
@@ -296,7 +296,7 @@ paths:
       tags:
       - registry
       x-codegen-request-body-name: Registry
-  /subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway:
+  /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway:
     post:
       description: Bind  a device to a gateway under a registry
       operationId: bindDevice
@@ -352,7 +352,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Bind
-  /subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway:
+  /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway:
     post:
       description: Bind devices to a gateway under a registry
       operationId: bindDevices
@@ -408,7 +408,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Bind
-  /subscriptions/{subscriptionId}/registries/{registryId}/devices:
+  /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices:
     get:
       description: Get all devices under a registry
       operationId: getDevices
@@ -593,7 +593,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}:
+  /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}:
     delete:
       description: Delete a device under a registry
       operationId: deleteDevice
@@ -785,7 +785,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Device
-  /subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway:
+  /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway:
     post:
       description: UnBind  a device from a gateway under a registry
       operationId: unBindDevice
@@ -841,7 +841,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Unbind
-  /subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway:
+  /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway:
     post:
       description: UnBind devices from a gateway under a registry
       operationId: unBindDevices
@@ -897,7 +897,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Unbind
-  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication:
+  /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication:
     put:
       description: Blocks All Communication From A Device
       operationId: blockDeviceCommuncation
@@ -961,7 +961,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Block
-  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions:
+  /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions:
     get:
       description: Get Configs Of Devices
       operationId: getConfig
@@ -1027,7 +1027,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice:
+  /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice:
     post:
       description: Update A Configuration Of A Device
       operationId: updateConfigurationToDevice
@@ -1091,7 +1091,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Configuration
-  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateCustomOnboardRequest:
+  /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateCustomOnboardRequest:
     post:
       description: Approve/Reject a Custom Onboard Request
       operationId: updateCustomOnboardRequest
@@ -1155,7 +1155,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: CustomOnboard
-  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice:
+  /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice:
     post:
       description: Send A Command To A Device
       operationId: sendCommandToDevice
@@ -1219,7 +1219,7 @@ paths:
       tags:
       - device
       x-codegen-request-body-name: Command
-  /subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice:
+  /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/sendBroadcastToDevice:
     post:
       description: Send  Broadcast To Devices
       operationId: sendBroadcastToDevices
@@ -1275,7 +1275,7 @@ paths:
       tags:
       - registry
       x-codegen-request-body-name: Broadcast
-  /subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states:
+  /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states:
     get:
       description: Get States Of Devices
       operationId: getStates
@@ -1341,7 +1341,7 @@ paths:
           description: Internal Server Error
       tags:
       - device
-  /subscriptions/{subscriptionId}/sinks:
+  /omnicore/subscriptions/{subscriptionId}/sinks:
     get:
       description: Get Sinks
       operationId: getSinks
@@ -1596,7 +1596,7 @@ paths:
       tags:
       - sink
       x-codegen-request-body-name: Sink
-  /subscriptions/{subscriptionId}/sinks/{sinkId}:
+  /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId}:
     delete:
       description: Delete a Sink
       operationId: deleteSink
@@ -1861,7 +1861,7 @@ paths:
       tags:
       - sink
       x-codegen-request-body-name: Sink
-  /subscriptions/{subscriptionId}/metrics:
+  /omnicore/subscriptions/{subscriptionId}/metrics:
     get:
       description: get metrics
       operationId: getMetrics
@@ -1985,7 +1985,605 @@ paths:
               style: simple
       tags:
       - metrics
-      x-codegen-request-body-name: Metrics
+      x-codegen-request-body-name: Vault
+  /vault/subscriptions/{subscriptionid}/enable-vault:
+    post:
+      description: Enable/Disable vault for a subscription
+      operationId: enableVault
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableVault'
+        description: application/json
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Details'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/audit:
+    get:
+      description: Get vault Audit
+      operationId: getVaultAudit
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page Number
+        explode: true
+        in: query
+        name: pageNumber
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Page Size
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditResult'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/status:
+    get:
+      description: Get vault status
+      operationId: getVaultStatus
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultStatus'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/metrics:
+    get:
+      description: Get vault metrics
+      operationId: getVaultMetrics
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: start time
+        explode: true
+        in: query
+        name: startTime
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: end time
+        explode: true
+        in: query
+        name: endTime
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/folders:
+    get:
+      description: Get vault folder data
+      operationId: GetRegistryData
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderData'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/registry/{registryid}/files:
+    get:
+      description: Get vault files
+      operationId: GetVaultFiles
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: registry ID
+        explode: false
+        in: path
+        name: registryid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: file type
+        explode: true
+        in: query
+        name: fileType
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDetails'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/configurations:
+    get:
+      description: Get vault configurations
+      operationId: GetVaultConfigurations
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configurations'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+    post:
+      description: create vault configuration
+      operationId: CreateVaultConfiguration
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConfiguration'
+        description: application/json
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Frame'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/configurations/{configid}:
+    delete:
+      description: Delete Configuration
+      operationId: DeleteConfiguration
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: config id
+        explode: false
+        in: path
+        name: configid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Frame'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/replays:
+    get:
+      description: Get Replays
+      operationId: GetReplays
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetReplaysResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+    post:
+      description: Start Replay
+      operationId: StartReplay
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplayBody'
+        description: application/json
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                example: success
+                type: string
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/exports:
+    get:
+      description: Get Exports
+      operationId: GetExports
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetExportsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+    post:
+      description: Start Export
+      operationId: StartExport
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartExportBody'
+        description: application/json
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Frame'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
 components:
   schemas:
     BlockCommunicationBody:
@@ -3214,6 +3812,482 @@ components:
         details:
           $ref: '#/components/schemas/Metrics_details'
       type: object
+    EnableVault:
+      example:
+        action: enable
+        type: GCS
+      properties:
+        type:
+          enum:
+          - GCS
+          type: string
+        action:
+          enum:
+          - enable
+          - disable
+          type: string
+      required:
+      - action
+      - type
+      type: object
+    Details:
+      example:
+        details: details
+      properties:
+        details:
+          type: string
+      type: object
+    AuditResult:
+      example:
+        pageNumber: 6
+        audit:
+        - actor: actor
+          updatedon: updatedon
+          subscriptionId: subscriptionId
+          operation: operation
+        - actor: actor
+          updatedon: updatedon
+          subscriptionId: subscriptionId
+          operation: operation
+        pageSize: 1
+        totalCount: 0
+      properties:
+        audit:
+          items:
+            $ref: '#/components/schemas/Audit'
+          type: array
+        totalCount:
+          type: integer
+        pageNumber:
+          type: integer
+        pageSize:
+          type: integer
+      type: object
+    Audit:
+      example:
+        actor: actor
+        updatedon: updatedon
+        subscriptionId: subscriptionId
+        operation: operation
+      properties:
+        subscriptionId:
+          type: string
+        operation:
+          type: string
+        actor:
+          type: string
+        updatedon:
+          type: string
+      type: object
+    VaultStatus:
+      example:
+        details:
+          isCreated: true
+          isEnabled: true
+          storageType: storageType
+          updatedon: updatedon
+          subscriptionId: subscriptionId
+          MqttId: MqttId
+          createdOn: createdOn
+      properties:
+        details:
+          $ref: '#/components/schemas/VaultStatus_details'
+      type: object
+    FolderData:
+      example:
+        details:
+        - fileSize: 6.027456183070403
+          noofoperations: 1
+          registryid: registryid
+          updatedon: updatedon
+          noOfFiles: 0
+        - fileSize: 6.027456183070403
+          noofoperations: 1
+          registryid: registryid
+          updatedon: updatedon
+          noOfFiles: 0
+      properties:
+        details:
+          items:
+            $ref: '#/components/schemas/Folder'
+          type: array
+      type: object
+    Folder:
+      example:
+        fileSize: 6.027456183070403
+        noofoperations: 1
+        registryid: registryid
+        updatedon: updatedon
+        noOfFiles: 0
+      properties:
+        noOfFiles:
+          type: integer
+        fileSize:
+          type: number
+        noofoperations:
+          type: integer
+        updatedon:
+          type: string
+        registryid:
+          type: string
+      type: object
+    FileDetails:
+      example:
+        details:
+        - name: name
+          url: url
+        - name: name
+          url: url
+      properties:
+        details:
+          items:
+            $ref: '#/components/schemas/FileDetail'
+          type: array
+      type: object
+    FileDetail:
+      example:
+        name: name
+        url: url
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+      type: object
+    Configurations:
+      example:
+        Details:
+        - data: data
+          id: 0
+          subscription: subscription
+          type: type
+        - data: data
+          id: 0
+          subscription: subscription
+          type: type
+      properties:
+        Details:
+          items:
+            $ref: '#/components/schemas/Configuration'
+          type: array
+      type: object
+    Configuration:
+      example:
+        data: data
+        id: 0
+        subscription: subscription
+        type: type
+      properties:
+        id:
+          type: integer
+        subscription:
+          type: string
+        type:
+          type: string
+        data:
+          type: string
+      type: object
+    MetricsResponse:
+      example:
+        details:
+          fileSize: 6.027456183070403
+          noofoperations: 1
+          subscriptionId: subscriptionId
+          Operations:
+          - fileSize: 5.637376656633329
+            noofoperations: 2
+            registryid: registryid
+            updatedon: updatedon
+            operation: operation
+            noOfFiles: 5
+          - fileSize: 5.637376656633329
+            noofoperations: 2
+            registryid: registryid
+            updatedon: updatedon
+            operation: operation
+            noOfFiles: 5
+          detailsForTimePeriod:
+          - TotalExports: 7
+            data:
+            - noOfExports: 4
+              fileSize: 9.301444243932576
+              noofoperations: 3
+              updatedon: updatedon
+              noOfReplays: 2
+              noOfFiles: 7
+            - noOfExports: 4
+              fileSize: 9.301444243932576
+              noofoperations: 3
+              updatedon: updatedon
+              noOfReplays: 2
+              noOfFiles: 7
+            TotalReplays: 1
+          - TotalExports: 7
+            data:
+            - noOfExports: 4
+              fileSize: 9.301444243932576
+              noofoperations: 3
+              updatedon: updatedon
+              noOfReplays: 2
+              noOfFiles: 7
+            - noOfExports: 4
+              fileSize: 9.301444243932576
+              noofoperations: 3
+              updatedon: updatedon
+              noOfReplays: 2
+              noOfFiles: 7
+            TotalReplays: 1
+          noOfFiles: 0
+      properties:
+        details:
+          $ref: '#/components/schemas/MetricsResponse_details'
+      type: object
+    OperationMetrics:
+      example:
+        fileSize: 5.637376656633329
+        noofoperations: 2
+        registryid: registryid
+        updatedon: updatedon
+        operation: operation
+        noOfFiles: 5
+      properties:
+        noOfFiles:
+          type: integer
+        fileSize:
+          type: number
+        operation:
+          type: string
+        noofoperations:
+          type: integer
+        updatedon:
+          type: string
+        registryid:
+          type: string
+      type: object
+    MetricsData:
+      example:
+        TotalExports: 7
+        data:
+        - noOfExports: 4
+          fileSize: 9.301444243932576
+          noofoperations: 3
+          updatedon: updatedon
+          noOfReplays: 2
+          noOfFiles: 7
+        - noOfExports: 4
+          fileSize: 9.301444243932576
+          noofoperations: 3
+          updatedon: updatedon
+          noOfReplays: 2
+          noOfFiles: 7
+        TotalReplays: 1
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/MetricsLogs'
+          type: array
+        TotalExports:
+          type: integer
+        TotalReplays:
+          type: integer
+      type: object
+    MetricsLogs:
+      example:
+        noOfExports: 4
+        fileSize: 9.301444243932576
+        noofoperations: 3
+        updatedon: updatedon
+        noOfReplays: 2
+        noOfFiles: 7
+      properties:
+        noOfFiles:
+          type: integer
+        fileSize:
+          type: number
+        noofoperations:
+          type: integer
+        updatedon:
+          type: string
+        noOfReplays:
+          type: integer
+        noOfExports:
+          type: integer
+      type: object
+    CreateConfiguration:
+      example:
+        data: data
+        type: type
+      properties:
+        data:
+          type: string
+        type:
+          type: string
+      type: object
+    Frame:
+      example:
+        details: details
+      properties:
+        details:
+          type: string
+      type: object
+    GetReplaysResponse:
+      example:
+        details:
+        - registry: registry
+          size: 5
+          destination: destination
+          count: 5
+          startTime: 6
+          id: 0
+          endTime: 1
+          subscription: subscription
+          source: source
+          status: status
+        - registry: registry
+          size: 5
+          destination: destination
+          count: 5
+          startTime: 6
+          id: 0
+          endTime: 1
+          subscription: subscription
+          source: source
+          status: status
+      properties:
+        details:
+          items:
+            $ref: '#/components/schemas/Replay'
+          type: array
+      type: object
+    Replays:
+      items:
+        $ref: '#/components/schemas/Replay'
+      type: array
+    Replay:
+      example:
+        registry: registry
+        size: 5
+        destination: destination
+        count: 5
+        startTime: 6
+        id: 0
+        endTime: 1
+        subscription: subscription
+        source: source
+        status: status
+      properties:
+        id:
+          type: integer
+        registry:
+          type: string
+        startTime:
+          type: integer
+        endTime:
+          type: integer
+        subscription:
+          type: string
+        destination:
+          type: string
+        source:
+          type: string
+        status:
+          type: string
+        size:
+          type: integer
+        count:
+          type: integer
+      type: object
+    ReplayBody:
+      example:
+        registry: registry
+        destination: destination
+        startTime: 0
+        endTime: 6
+        source: source
+      properties:
+        registry:
+          type: string
+        startTime:
+          type: integer
+        endTime:
+          type: integer
+        destination:
+          type: string
+        source:
+          type: string
+      type: object
+    GetExportsResponse:
+      example:
+        details:
+        - nooffiles: 0
+          fileSize: 6.027456183070403
+          name: name
+          destination: destination
+          subscription: subscription
+          source: source
+          createdOn: createdOn
+          done: true
+          status: status
+        - nooffiles: 0
+          fileSize: 6.027456183070403
+          name: name
+          destination: destination
+          subscription: subscription
+          source: source
+          createdOn: createdOn
+          done: true
+          status: status
+      properties:
+        details:
+          items:
+            $ref: '#/components/schemas/ExportDetail'
+          type: array
+      type: object
+    ExportDetails:
+      items:
+        $ref: '#/components/schemas/ExportDetail'
+      type: array
+    ExportDetail:
+      example:
+        nooffiles: 0
+        fileSize: 6.027456183070403
+        name: name
+        destination: destination
+        subscription: subscription
+        source: source
+        createdOn: createdOn
+        done: true
+        status: status
+      properties:
+        subscription:
+          type: string
+        name:
+          type: string
+        source:
+          type: string
+        status:
+          type: string
+        destination:
+          type: string
+        createdOn:
+          type: string
+        nooffiles:
+          type: integer
+        fileSize:
+          type: number
+        done:
+          type: boolean
+      type: object
+    StartExportBody:
+      example:
+        destination: destination
+        source: source
+      properties:
+        source:
+          type: string
+        destination:
+          type: string
+      type: object
     Metrics_details:
       example:
         noOfRegistries: 4
@@ -3303,6 +4377,99 @@ components:
           type: integer
         subscriptionId:
           type: string
+      type: object
+    VaultStatus_details:
+      example:
+        isCreated: true
+        isEnabled: true
+        storageType: storageType
+        updatedon: updatedon
+        subscriptionId: subscriptionId
+        MqttId: MqttId
+        createdOn: createdOn
+      properties:
+        subscriptionId:
+          type: string
+        storageType:
+          type: string
+        isEnabled:
+          type: boolean
+        isCreated:
+          type: boolean
+        updatedon:
+          type: string
+        createdOn:
+          type: string
+        MqttId:
+          type: string
+      type: object
+    MetricsResponse_details:
+      example:
+        fileSize: 6.027456183070403
+        noofoperations: 1
+        subscriptionId: subscriptionId
+        Operations:
+        - fileSize: 5.637376656633329
+          noofoperations: 2
+          registryid: registryid
+          updatedon: updatedon
+          operation: operation
+          noOfFiles: 5
+        - fileSize: 5.637376656633329
+          noofoperations: 2
+          registryid: registryid
+          updatedon: updatedon
+          operation: operation
+          noOfFiles: 5
+        detailsForTimePeriod:
+        - TotalExports: 7
+          data:
+          - noOfExports: 4
+            fileSize: 9.301444243932576
+            noofoperations: 3
+            updatedon: updatedon
+            noOfReplays: 2
+            noOfFiles: 7
+          - noOfExports: 4
+            fileSize: 9.301444243932576
+            noofoperations: 3
+            updatedon: updatedon
+            noOfReplays: 2
+            noOfFiles: 7
+          TotalReplays: 1
+        - TotalExports: 7
+          data:
+          - noOfExports: 4
+            fileSize: 9.301444243932576
+            noofoperations: 3
+            updatedon: updatedon
+            noOfReplays: 2
+            noOfFiles: 7
+          - noOfExports: 4
+            fileSize: 9.301444243932576
+            noofoperations: 3
+            updatedon: updatedon
+            noOfReplays: 2
+            noOfFiles: 7
+          TotalReplays: 1
+        noOfFiles: 0
+      properties:
+        subscriptionId:
+          type: string
+        noOfFiles:
+          type: integer
+        fileSize:
+          type: number
+        noofoperations:
+          type: integer
+        Operations:
+          items:
+            $ref: '#/components/schemas/OperationMetrics'
+          type: array
+        detailsForTimePeriod:
+          items:
+            $ref: '#/components/schemas/MetricsData'
+          type: array
       type: object
   securitySchemes:
     bearerAuth:

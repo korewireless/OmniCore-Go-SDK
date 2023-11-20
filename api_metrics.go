@@ -72,7 +72,7 @@ func (a *MetricsApiService) GetMetricsExecute(r ApiGetMetricsRequest) (*Metrics,
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/metrics"
+	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/metrics"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

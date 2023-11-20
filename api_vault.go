@@ -27,570 +27,64 @@ import (
 )
 
 
-// DeviceApiService DeviceApi service
-type DeviceApiService service
+// VaultApiService VaultApi service
+type VaultApiService service
 
-type ApiBindDeviceRequest struct {
+type ApiCreateVaultConfigurationRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
-	bind *BindRequest
-}
-
-// application/json
-func (r ApiBindDeviceRequest) Bind(bind BindRequest) ApiBindDeviceRequest {
-	r.bind = &bind
-	return r
-}
-
-func (r ApiBindDeviceRequest) Execute() (*Info, *http.Response, error) {
-	return r.ApiService.BindDeviceExecute(r)
-}
-
-/*
-BindDevice Method for BindDevice
-
-Bind  a device to a gateway under a registry
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @return ApiBindDeviceRequest
-*/
-func (a *DeviceApiService) BindDevice(ctx context.Context, subscriptionId string, registryId string) ApiBindDeviceRequest {
-	return ApiBindDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
-	}
-}
-
-// Execute executes the request
-//  @return Info
-func (a *DeviceApiService) BindDeviceExecute(r ApiBindDeviceRequest) (*Info, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Info
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.BindDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/bindDeviceToGateway"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.bind == nil {
-		return localVarReturnValue, nil, reportError("bind is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.bind
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiBindDevicesRequest struct {
-	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
-	bind *BindRequestIdsGateway
-}
-
-// application/json
-func (r ApiBindDevicesRequest) Bind(bind BindRequestIdsGateway) ApiBindDevicesRequest {
-	r.bind = &bind
-	return r
-}
-
-func (r ApiBindDevicesRequest) Execute() (*Info, *http.Response, error) {
-	return r.ApiService.BindDevicesExecute(r)
-}
-
-/*
-BindDevices Method for BindDevices
-
-Bind devices to a gateway under a registry
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @return ApiBindDevicesRequest
-*/
-func (a *DeviceApiService) BindDevices(ctx context.Context, subscriptionId string, registryId string) ApiBindDevicesRequest {
-	return ApiBindDevicesRequest{
-		ApiService: a,
-		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
-	}
-}
-
-// Execute executes the request
-//  @return Info
-func (a *DeviceApiService) BindDevicesExecute(r ApiBindDevicesRequest) (*Info, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Info
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.BindDevices")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/bindDevicesToGateway"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.bind == nil {
-		return localVarReturnValue, nil, reportError("bind is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.bind
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiBlockDeviceCommuncationRequest struct {
-	ctx context.Context
-	ApiService *DeviceApiService
+	ApiService *VaultApiService
 	subscriptionid string
-	registryId string
-	deviceId string
-	block *BlockCommunicationBody
+	createConfiguration *CreateConfiguration
 }
 
 // application/json
-func (r ApiBlockDeviceCommuncationRequest) Block(block BlockCommunicationBody) ApiBlockDeviceCommuncationRequest {
-	r.block = &block
+func (r ApiCreateVaultConfigurationRequest) CreateConfiguration(createConfiguration CreateConfiguration) ApiCreateVaultConfigurationRequest {
+	r.createConfiguration = &createConfiguration
 	return r
 }
 
-func (r ApiBlockDeviceCommuncationRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.BlockDeviceCommuncationExecute(r)
+func (r ApiCreateVaultConfigurationRequest) Execute() (*Frame, *http.Response, error) {
+	return r.ApiService.CreateVaultConfigurationExecute(r)
 }
 
 /*
-BlockDeviceCommuncation Method for BlockDeviceCommuncation
+CreateVaultConfiguration Method for CreateVaultConfiguration
 
-Blocks All Communication From A Device
+create vault configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionid Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiBlockDeviceCommuncationRequest
+ @return ApiCreateVaultConfigurationRequest
 */
-func (a *DeviceApiService) BlockDeviceCommuncation(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiBlockDeviceCommuncationRequest {
-	return ApiBlockDeviceCommuncationRequest{
+func (a *VaultApiService) CreateVaultConfiguration(ctx context.Context, subscriptionid string) ApiCreateVaultConfigurationRequest {
+	return ApiCreateVaultConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionid: subscriptionid,
-		registryId: registryId,
-		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *DeviceApiService) BlockDeviceCommuncationExecute(r ApiBlockDeviceCommuncationRequest) (map[string]interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.BlockDeviceCommuncation")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/communication"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.block == nil {
-		return localVarReturnValue, nil, reportError("block is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.block
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateDeviceRequest struct {
-	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
-	device *Device
-}
-
-// application/json
-func (r ApiCreateDeviceRequest) Device(device Device) ApiCreateDeviceRequest {
-	r.device = &device
-	return r
-}
-
-func (r ApiCreateDeviceRequest) Execute() (*Device, *http.Response, error) {
-	return r.ApiService.CreateDeviceExecute(r)
-}
-
-/*
-CreateDevice Method for CreateDevice
-
-Create a device under a registry
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @return ApiCreateDeviceRequest
-*/
-func (a *DeviceApiService) CreateDevice(ctx context.Context, subscriptionId string, registryId string) ApiCreateDeviceRequest {
-	return ApiCreateDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
-	}
-}
-
-// Execute executes the request
-//  @return Device
-func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Device, *http.Response, error) {
+//  @return Frame
+func (a *VaultApiService) CreateVaultConfigurationExecute(r ApiCreateVaultConfigurationRequest) (*Frame, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Device
+		localVarReturnValue  *Frame
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.CreateDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.CreateVaultConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/configurations"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -610,7 +104,7 @@ func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Devic
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.createConfiguration
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -694,58 +188,54 @@ func (a *DeviceApiService) CreateDeviceExecute(r ApiCreateDeviceRequest) (*Devic
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteDeviceRequest struct {
+type ApiDeleteConfigurationRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
-	deviceId string
+	ApiService *VaultApiService
+	subscriptionid string
+	configid string
 }
 
-func (r ApiDeleteDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.DeleteDeviceExecute(r)
+func (r ApiDeleteConfigurationRequest) Execute() (*Frame, *http.Response, error) {
+	return r.ApiService.DeleteConfigurationExecute(r)
 }
 
 /*
-DeleteDevice Method for DeleteDevice
+DeleteConfiguration Method for DeleteConfiguration
 
-Delete a device under a registry
+Delete Configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiDeleteDeviceRequest
+ @param subscriptionid Subscription ID
+ @param configid config id
+ @return ApiDeleteConfigurationRequest
 */
-func (a *DeviceApiService) DeleteDevice(ctx context.Context, subscriptionId string, registryId string, deviceId string) ApiDeleteDeviceRequest {
-	return ApiDeleteDeviceRequest{
+func (a *VaultApiService) DeleteConfiguration(ctx context.Context, subscriptionid string, configid string) ApiDeleteConfigurationRequest {
+	return ApiDeleteConfigurationRequest{
 		ApiService: a,
 		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
-		deviceId: deviceId,
+		subscriptionid: subscriptionid,
+		configid: configid,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (map[string]interface{}, *http.Response, error) {
+//  @return Frame
+func (a *VaultApiService) DeleteConfigurationExecute(r ApiDeleteConfigurationRequest) (*Frame, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *Frame
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.DeleteDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.DeleteConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/configurations/{configid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"configid"+"}", url.PathEscape(parameterValueToString(r.configid, "configid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -851,75 +341,64 @@ func (a *DeviceApiService) DeleteDeviceExecute(r ApiDeleteDeviceRequest) (map[st
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetConfigRequest struct {
+type ApiEnableVaultRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
+	ApiService *VaultApiService
 	subscriptionid string
-	registryId string
-	deviceId string
-	numVersions *int32
+	enableVault *EnableVault
 }
 
-// The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
-func (r ApiGetConfigRequest) NumVersions(numVersions int32) ApiGetConfigRequest {
-	r.numVersions = &numVersions
+// application/json
+func (r ApiEnableVaultRequest) EnableVault(enableVault EnableVault) ApiEnableVaultRequest {
+	r.enableVault = &enableVault
 	return r
 }
 
-func (r ApiGetConfigRequest) Execute() (*ListDeviceConfigVersionsResponse, *http.Response, error) {
-	return r.ApiService.GetConfigExecute(r)
+func (r ApiEnableVaultRequest) Execute() (*Details, *http.Response, error) {
+	return r.ApiService.EnableVaultExecute(r)
 }
 
 /*
-GetConfig Method for GetConfig
+EnableVault Method for EnableVault
 
-Get Configs Of Devices
+Enable/Disable vault for a subscription
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionid Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiGetConfigRequest
+ @return ApiEnableVaultRequest
 */
-func (a *DeviceApiService) GetConfig(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiGetConfigRequest {
-	return ApiGetConfigRequest{
+func (a *VaultApiService) EnableVault(ctx context.Context, subscriptionid string) ApiEnableVaultRequest {
+	return ApiEnableVaultRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionid: subscriptionid,
-		registryId: registryId,
-		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//  @return ListDeviceConfigVersionsResponse
-func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceConfigVersionsResponse, *http.Response, error) {
+//  @return Details
+func (a *VaultApiService) EnableVaultExecute(r ApiEnableVaultRequest) (*Details, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDeviceConfigVersionsResponse
+		localVarReturnValue  *Details
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.EnableVault")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/configVersions"
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/enable-vault"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.numVersions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "numVersions", r.numVersions, "")
-	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -935,6 +414,8 @@ func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceC
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.enableVault
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1018,58 +499,50 @@ func (a *DeviceApiService) GetConfigExecute(r ApiGetConfigRequest) (*ListDeviceC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetDeviceRequest struct {
+type ApiGetExportsRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
-	deviceId string
+	ApiService *VaultApiService
+	subscriptionid string
 }
 
-func (r ApiGetDeviceRequest) Execute() (*Device, *http.Response, error) {
-	return r.ApiService.GetDeviceExecute(r)
+func (r ApiGetExportsRequest) Execute() (*GetExportsResponse, *http.Response, error) {
+	return r.ApiService.GetExportsExecute(r)
 }
 
 /*
-GetDevice Method for GetDevice
+GetExports Method for GetExports
 
-Get a device under a registry
+Get Exports
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiGetDeviceRequest
+ @param subscriptionid Subscription ID
+ @return ApiGetExportsRequest
 */
-func (a *DeviceApiService) GetDevice(ctx context.Context, subscriptionId string, registryId string, deviceId string) ApiGetDeviceRequest {
-	return ApiGetDeviceRequest{
+func (a *VaultApiService) GetExports(ctx context.Context, subscriptionid string) ApiGetExportsRequest {
+	return ApiGetExportsRequest{
 		ApiService: a,
 		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
-		deviceId: deviceId,
+		subscriptionid: subscriptionid,
 	}
 }
 
 // Execute executes the request
-//  @return Device
-func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *http.Response, error) {
+//  @return GetExportsResponse
+func (a *VaultApiService) GetExportsExecute(r ApiGetExportsRequest) (*GetExportsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Device
+		localVarReturnValue  *GetExportsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetExports")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/exports"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1175,110 +648,362 @@ func (a *DeviceApiService) GetDeviceExecute(r ApiGetDeviceRequest) (*Device, *ht
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetDevicesRequest struct {
+type ApiGetRegistryDataRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
+	ApiService *VaultApiService
+	subscriptionid string
+}
+
+func (r ApiGetRegistryDataRequest) Execute() (*FolderData, *http.Response, error) {
+	return r.ApiService.GetRegistryDataExecute(r)
+}
+
+/*
+GetRegistryData Method for GetRegistryData
+
+Get vault folder data
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionid Subscription ID
+ @return ApiGetRegistryDataRequest
+*/
+func (a *VaultApiService) GetRegistryData(ctx context.Context, subscriptionid string) ApiGetRegistryDataRequest {
+	return ApiGetRegistryDataRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionid: subscriptionid,
+	}
+}
+
+// Execute executes the request
+//  @return FolderData
+func (a *VaultApiService) GetRegistryDataExecute(r ApiGetRegistryDataRequest) (*FolderData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FolderData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetRegistryData")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/folders"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetReplaysRequest struct {
+	ctx context.Context
+	ApiService *VaultApiService
+	subscriptionid string
+}
+
+func (r ApiGetReplaysRequest) Execute() (*GetReplaysResponse, *http.Response, error) {
+	return r.ApiService.GetReplaysExecute(r)
+}
+
+/*
+GetReplays Method for GetReplays
+
+Get Replays
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionid Subscription ID
+ @return ApiGetReplaysRequest
+*/
+func (a *VaultApiService) GetReplays(ctx context.Context, subscriptionid string) ApiGetReplaysRequest {
+	return ApiGetReplaysRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionid: subscriptionid,
+	}
+}
+
+// Execute executes the request
+//  @return GetReplaysResponse
+func (a *VaultApiService) GetReplaysExecute(r ApiGetReplaysRequest) (*GetReplaysResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetReplaysResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetReplays")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/replays"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetVaultAuditRequest struct {
+	ctx context.Context
+	ApiService *VaultApiService
+	subscriptionid string
 	pageNumber *int32
 	pageSize *int32
-	fieldMask *string
-	deviceIds *[]string
-	deviceNumIds *[]string
-	gatewayListOptionsAssociationsDeviceId *string
-	gatewayListOptionsAssociationsGatewayId *string
-	gatewayListOptionsGatewayType *string
 }
 
 // Page Number
-func (r ApiGetDevicesRequest) PageNumber(pageNumber int32) ApiGetDevicesRequest {
+func (r ApiGetVaultAuditRequest) PageNumber(pageNumber int32) ApiGetVaultAuditRequest {
 	r.pageNumber = &pageNumber
 	return r
 }
 
-// The maximum number of devices to return in the response. If this value is zero, the service will select a default size. 
-func (r ApiGetDevicesRequest) PageSize(pageSize int32) ApiGetDevicesRequest {
+// Page Size
+func (r ApiGetVaultAuditRequest) PageSize(pageSize int32) ApiGetVaultAuditRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// The fields of the Device resource to be returned to the response. The fields id and numId are always returned, along with any other fields specified. A comma-separated list of fully qualified names of fields. Example: 
-func (r ApiGetDevicesRequest) FieldMask(fieldMask string) ApiGetDevicesRequest {
-	r.fieldMask = &fieldMask
-	return r
-}
-
-// A list of device string IDs. For example, [&#39;device0&#39;, &#39;device12&#39;]. If empty, this field is ignored. Maximum IDs: 10,000
-func (r ApiGetDevicesRequest) DeviceIds(deviceIds []string) ApiGetDevicesRequest {
-	r.deviceIds = &deviceIds
-	return r
-}
-
-// A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
-func (r ApiGetDevicesRequest) DeviceNumIds(deviceNumIds []string) ApiGetDevicesRequest {
-	r.deviceNumIds = &deviceNumIds
-	return r
-}
-
-// If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (num_id) or the user-defined string (id). For example, if 456 is specified, returns only the gateways to which the device with num_id 456 is bound.
-func (r ApiGetDevicesRequest) GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId string) ApiGetDevicesRequest {
-	r.gatewayListOptionsAssociationsDeviceId = &gatewayListOptionsAssociationsDeviceId
-	return r
-}
-
-// If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (num_id) or the user-defined string (id). For example, if 123 is specified, only devices bound to the gateway with num_id 123 are returned
-func (r ApiGetDevicesRequest) GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId string) ApiGetDevicesRequest {
-	r.gatewayListOptionsAssociationsGatewayId = &gatewayListOptionsAssociationsGatewayId
-	return r
-}
-
-// If GATEWAY is specified, only gateways are returned. If NON_GATEWAY is specified, only non-gateway devices are returned. If GATEWAY_TYPE_UNSPECIFIED is specified, all devices are returned.
-func (r ApiGetDevicesRequest) GatewayListOptionsGatewayType(gatewayListOptionsGatewayType string) ApiGetDevicesRequest {
-	r.gatewayListOptionsGatewayType = &gatewayListOptionsGatewayType
-	return r
-}
-
-func (r ApiGetDevicesRequest) Execute() (*ListDevicesResponse, *http.Response, error) {
-	return r.ApiService.GetDevicesExecute(r)
+func (r ApiGetVaultAuditRequest) Execute() (*AuditResult, *http.Response, error) {
+	return r.ApiService.GetVaultAuditExecute(r)
 }
 
 /*
-GetDevices Method for GetDevices
+GetVaultAudit Method for GetVaultAudit
 
-Get all devices under a registry
+Get vault Audit
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @return ApiGetDevicesRequest
+ @param subscriptionid Subscription ID
+ @return ApiGetVaultAuditRequest
 */
-func (a *DeviceApiService) GetDevices(ctx context.Context, subscriptionId string, registryId string) ApiGetDevicesRequest {
-	return ApiGetDevicesRequest{
+func (a *VaultApiService) GetVaultAudit(ctx context.Context, subscriptionid string) ApiGetVaultAuditRequest {
+	return ApiGetVaultAuditRequest{
 		ApiService: a,
 		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
+		subscriptionid: subscriptionid,
 	}
 }
 
 // Execute executes the request
-//  @return ListDevicesResponse
-func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevicesResponse, *http.Response, error) {
+//  @return AuditResult
+func (a *VaultApiService) GetVaultAuditExecute(r ApiGetVaultAuditRequest) (*AuditResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDevicesResponse
+		localVarReturnValue  *AuditResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetDevices")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetVaultAudit")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/audit"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1290,24 +1015,6 @@ func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevic
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
 	}
-	if r.fieldMask != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fieldMask", r.fieldMask, "")
-	}
-	if r.deviceIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceIds", r.deviceIds, "csv")
-	}
-	if r.deviceNumIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceNumIds", r.deviceNumIds, "csv")
-	}
-	if r.gatewayListOptionsAssociationsDeviceId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.associationsDeviceId", r.gatewayListOptionsAssociationsDeviceId, "")
-	}
-	if r.gatewayListOptionsAssociationsGatewayId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.associationsGatewayId", r.gatewayListOptionsAssociationsGatewayId, "")
-	}
-	if r.gatewayListOptionsGatewayType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.gatewayType", r.gatewayListOptionsGatewayType, "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1408,72 +1115,217 @@ func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevic
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetStatesRequest struct {
+type ApiGetVaultConfigurationsRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
+	ApiService *VaultApiService
 	subscriptionid string
-	registryId string
-	deviceId string
-	numStates *int32
 }
 
-// The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
-func (r ApiGetStatesRequest) NumStates(numStates int32) ApiGetStatesRequest {
-	r.numStates = &numStates
-	return r
-}
-
-func (r ApiGetStatesRequest) Execute() (*ListDeviceStatesResponse, *http.Response, error) {
-	return r.ApiService.GetStatesExecute(r)
+func (r ApiGetVaultConfigurationsRequest) Execute() (*Configurations, *http.Response, error) {
+	return r.ApiService.GetVaultConfigurationsExecute(r)
 }
 
 /*
-GetStates Method for GetStates
+GetVaultConfigurations Method for GetVaultConfigurations
 
-Get States Of Devices
+Get vault configurations
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionid Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiGetStatesRequest
+ @return ApiGetVaultConfigurationsRequest
 */
-func (a *DeviceApiService) GetStates(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiGetStatesRequest {
-	return ApiGetStatesRequest{
+func (a *VaultApiService) GetVaultConfigurations(ctx context.Context, subscriptionid string) ApiGetVaultConfigurationsRequest {
+	return ApiGetVaultConfigurationsRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionid: subscriptionid,
-		registryId: registryId,
-		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//  @return ListDeviceStatesResponse
-func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceStatesResponse, *http.Response, error) {
+//  @return Configurations
+func (a *VaultApiService) GetVaultConfigurationsExecute(r ApiGetVaultConfigurationsRequest) (*Configurations, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDeviceStatesResponse
+		localVarReturnValue  *Configurations
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetStates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetVaultConfigurations")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states"
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/configurations"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.numStates != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "numStates", r.numStates, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetVaultFilesRequest struct {
+	ctx context.Context
+	ApiService *VaultApiService
+	subscriptionid string
+	registryid string
+	fileType *string
+}
+
+// file type
+func (r ApiGetVaultFilesRequest) FileType(fileType string) ApiGetVaultFilesRequest {
+	r.fileType = &fileType
+	return r
+}
+
+func (r ApiGetVaultFilesRequest) Execute() (*FileDetails, *http.Response, error) {
+	return r.ApiService.GetVaultFilesExecute(r)
+}
+
+/*
+GetVaultFiles Method for GetVaultFiles
+
+Get vault files
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionid Subscription ID
+ @param registryid registry ID
+ @return ApiGetVaultFilesRequest
+*/
+func (a *VaultApiService) GetVaultFiles(ctx context.Context, subscriptionid string, registryid string) ApiGetVaultFilesRequest {
+	return ApiGetVaultFilesRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionid: subscriptionid,
+		registryid: registryid,
+	}
+}
+
+// Execute executes the request
+//  @return FileDetails
+func (a *VaultApiService) GetVaultFilesExecute(r ApiGetVaultFilesRequest) (*FileDetails, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *FileDetails
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetVaultFiles")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/registry/{registryid}/files"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"registryid"+"}", url.PathEscape(parameterValueToString(r.registryid, "registryid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.fileType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fileType", r.fileType, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1575,75 +1427,77 @@ func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSendCommandToDeviceRequest struct {
+type ApiGetVaultMetricsRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
+	ApiService *VaultApiService
 	subscriptionid string
-	registryId string
-	deviceId string
-	command *DeviceCommand
+	startTime *string
+	endTime *string
 }
 
-// application/json
-func (r ApiSendCommandToDeviceRequest) Command(command DeviceCommand) ApiSendCommandToDeviceRequest {
-	r.command = &command
+// start time
+func (r ApiGetVaultMetricsRequest) StartTime(startTime string) ApiGetVaultMetricsRequest {
+	r.startTime = &startTime
 	return r
 }
 
-func (r ApiSendCommandToDeviceRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.SendCommandToDeviceExecute(r)
+// end time
+func (r ApiGetVaultMetricsRequest) EndTime(endTime string) ApiGetVaultMetricsRequest {
+	r.endTime = &endTime
+	return r
+}
+
+func (r ApiGetVaultMetricsRequest) Execute() (*MetricsResponse, *http.Response, error) {
+	return r.ApiService.GetVaultMetricsExecute(r)
 }
 
 /*
-SendCommandToDevice Method for SendCommandToDevice
+GetVaultMetrics Method for GetVaultMetrics
 
-Send A Command To A Device
+Get vault metrics
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionid Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiSendCommandToDeviceRequest
+ @return ApiGetVaultMetricsRequest
 */
-func (a *DeviceApiService) SendCommandToDevice(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiSendCommandToDeviceRequest {
-	return ApiSendCommandToDeviceRequest{
+func (a *VaultApiService) GetVaultMetrics(ctx context.Context, subscriptionid string) ApiGetVaultMetricsRequest {
+	return ApiGetVaultMetricsRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionid: subscriptionid,
-		registryId: registryId,
-		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRequest) (map[string]interface{}, *http.Response, error) {
+//  @return MetricsResponse
+func (a *VaultApiService) GetVaultMetricsExecute(r ApiGetVaultMetricsRequest) (*MetricsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *MetricsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.SendCommandToDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetVaultMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice"
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/metrics"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.command == nil {
-		return localVarReturnValue, nil, reportError("command is required and must be specified")
-	}
 
+	if r.startTime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startTime", r.startTime, "")
+	}
+	if r.endTime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endTime", r.endTime, "")
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1659,8 +1513,6 @@ func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.command
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1744,405 +1596,57 @@ func (a *DeviceApiService) SendCommandToDeviceExecute(r ApiSendCommandToDeviceRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUnBindDeviceRequest struct {
+type ApiGetVaultStatusRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
-	unbind *BindRequest
-}
-
-// application/json
-func (r ApiUnBindDeviceRequest) Unbind(unbind BindRequest) ApiUnBindDeviceRequest {
-	r.unbind = &unbind
-	return r
-}
-
-func (r ApiUnBindDeviceRequest) Execute() (*Info, *http.Response, error) {
-	return r.ApiService.UnBindDeviceExecute(r)
-}
-
-/*
-UnBindDevice Method for UnBindDevice
-
-UnBind  a device from a gateway under a registry
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @return ApiUnBindDeviceRequest
-*/
-func (a *DeviceApiService) UnBindDevice(ctx context.Context, subscriptionId string, registryId string) ApiUnBindDeviceRequest {
-	return ApiUnBindDeviceRequest{
-		ApiService: a,
-		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
-	}
-}
-
-// Execute executes the request
-//  @return Info
-func (a *DeviceApiService) UnBindDeviceExecute(r ApiUnBindDeviceRequest) (*Info, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Info
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UnBindDevice")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.unbind == nil {
-		return localVarReturnValue, nil, reportError("unbind is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.unbind
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUnBindDevicesRequest struct {
-	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
-	unbind *BindRequestIdsGateway
-}
-
-// application/json
-func (r ApiUnBindDevicesRequest) Unbind(unbind BindRequestIdsGateway) ApiUnBindDevicesRequest {
-	r.unbind = &unbind
-	return r
-}
-
-func (r ApiUnBindDevicesRequest) Execute() (*Info, *http.Response, error) {
-	return r.ApiService.UnBindDevicesExecute(r)
-}
-
-/*
-UnBindDevices Method for UnBindDevices
-
-UnBind devices from a gateway under a registry
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @return ApiUnBindDevicesRequest
-*/
-func (a *DeviceApiService) UnBindDevices(ctx context.Context, subscriptionId string, registryId string) ApiUnBindDevicesRequest {
-	return ApiUnBindDevicesRequest{
-		ApiService: a,
-		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
-	}
-}
-
-// Execute executes the request
-//  @return Info
-func (a *DeviceApiService) UnBindDevicesExecute(r ApiUnBindDevicesRequest) (*Info, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Info
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UnBindDevices")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.unbind == nil {
-		return localVarReturnValue, nil, reportError("unbind is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.unbind
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v GenericErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateConfigurationToDeviceRequest struct {
-	ctx context.Context
-	ApiService *DeviceApiService
+	ApiService *VaultApiService
 	subscriptionid string
-	registryId string
-	deviceId string
-	configuration *DeviceConfiguration
 }
 
-// application/json
-func (r ApiUpdateConfigurationToDeviceRequest) Configuration(configuration DeviceConfiguration) ApiUpdateConfigurationToDeviceRequest {
-	r.configuration = &configuration
-	return r
-}
-
-func (r ApiUpdateConfigurationToDeviceRequest) Execute() (*DeviceConfig, *http.Response, error) {
-	return r.ApiService.UpdateConfigurationToDeviceExecute(r)
+func (r ApiGetVaultStatusRequest) Execute() (*VaultStatus, *http.Response, error) {
+	return r.ApiService.GetVaultStatusExecute(r)
 }
 
 /*
-UpdateConfigurationToDevice Method for UpdateConfigurationToDevice
+GetVaultStatus Method for GetVaultStatus
 
-Update A Configuration Of A Device
+Get vault status
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionid Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiUpdateConfigurationToDeviceRequest
+ @return ApiGetVaultStatusRequest
 */
-func (a *DeviceApiService) UpdateConfigurationToDevice(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiUpdateConfigurationToDeviceRequest {
-	return ApiUpdateConfigurationToDeviceRequest{
+func (a *VaultApiService) GetVaultStatus(ctx context.Context, subscriptionid string) ApiGetVaultStatusRequest {
+	return ApiGetVaultStatusRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionid: subscriptionid,
-		registryId: registryId,
-		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//  @return DeviceConfig
-func (a *DeviceApiService) UpdateConfigurationToDeviceExecute(r ApiUpdateConfigurationToDeviceRequest) (*DeviceConfig, *http.Response, error) {
+//  @return VaultStatus
+func (a *VaultApiService) GetVaultStatusExecute(r ApiGetVaultStatusRequest) (*VaultStatus, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeviceConfig
+		localVarReturnValue  *VaultStatus
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UpdateConfigurationToDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetVaultStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateConfigurationToDevice"
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/status"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.configuration == nil {
-		return localVarReturnValue, nil, reportError("configuration is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2158,8 +1662,6 @@ func (a *DeviceApiService) UpdateConfigurationToDeviceExecute(r ApiUpdateConfigu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.configuration
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2243,72 +1745,61 @@ func (a *DeviceApiService) UpdateConfigurationToDeviceExecute(r ApiUpdateConfigu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateCustomOnboardRequestRequest struct {
+type ApiStartExportRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
+	ApiService *VaultApiService
 	subscriptionid string
-	registryId string
-	deviceId string
-	customOnboard *CustomOnboard
+	startExportBody *StartExportBody
 }
 
 // application/json
-func (r ApiUpdateCustomOnboardRequestRequest) CustomOnboard(customOnboard CustomOnboard) ApiUpdateCustomOnboardRequestRequest {
-	r.customOnboard = &customOnboard
+func (r ApiStartExportRequest) StartExportBody(startExportBody StartExportBody) ApiStartExportRequest {
+	r.startExportBody = &startExportBody
 	return r
 }
 
-func (r ApiUpdateCustomOnboardRequestRequest) Execute() (*Info, *http.Response, error) {
-	return r.ApiService.UpdateCustomOnboardRequestExecute(r)
+func (r ApiStartExportRequest) Execute() (*Frame, *http.Response, error) {
+	return r.ApiService.StartExportExecute(r)
 }
 
 /*
-UpdateCustomOnboardRequest Method for UpdateCustomOnboardRequest
+StartExport Method for StartExport
 
-Approve/Reject a Custom Onboard Request
+Start Export
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionid Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiUpdateCustomOnboardRequestRequest
+ @return ApiStartExportRequest
 */
-func (a *DeviceApiService) UpdateCustomOnboardRequest(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiUpdateCustomOnboardRequestRequest {
-	return ApiUpdateCustomOnboardRequestRequest{
+func (a *VaultApiService) StartExport(ctx context.Context, subscriptionid string) ApiStartExportRequest {
+	return ApiStartExportRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionid: subscriptionid,
-		registryId: registryId,
-		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//  @return Info
-func (a *DeviceApiService) UpdateCustomOnboardRequestExecute(r ApiUpdateCustomOnboardRequestRequest) (*Info, *http.Response, error) {
+//  @return Frame
+func (a *VaultApiService) StartExportExecute(r ApiStartExportRequest) (*Frame, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Info
+		localVarReturnValue  *Frame
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UpdateCustomOnboardRequest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.StartExport")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/updateCustomOnboardRequest"
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/exports"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.customOnboard == nil {
-		return localVarReturnValue, nil, reportError("customOnboard is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -2328,7 +1819,7 @@ func (a *DeviceApiService) UpdateCustomOnboardRequestExecute(r ApiUpdateCustomOn
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.customOnboard
+	localVarPostBody = r.startExportBody
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2412,84 +1903,62 @@ func (a *DeviceApiService) UpdateCustomOnboardRequestExecute(r ApiUpdateCustomOn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateDeviceRequest struct {
+type ApiStartReplayRequest struct {
 	ctx context.Context
-	ApiService *DeviceApiService
-	subscriptionId string
-	registryId string
-	deviceId string
-	updateMask *string
-	device *Device
-}
-
-// Required. Only updates the device fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: credentials,logLevel, blocked,policy and metadata
-func (r ApiUpdateDeviceRequest) UpdateMask(updateMask string) ApiUpdateDeviceRequest {
-	r.updateMask = &updateMask
-	return r
+	ApiService *VaultApiService
+	subscriptionid string
+	replayBody *ReplayBody
 }
 
 // application/json
-func (r ApiUpdateDeviceRequest) Device(device Device) ApiUpdateDeviceRequest {
-	r.device = &device
+func (r ApiStartReplayRequest) ReplayBody(replayBody ReplayBody) ApiStartReplayRequest {
+	r.replayBody = &replayBody
 	return r
 }
 
-func (r ApiUpdateDeviceRequest) Execute() (*Device, *http.Response, error) {
-	return r.ApiService.UpdateDeviceExecute(r)
+func (r ApiStartReplayRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.StartReplayExecute(r)
 }
 
 /*
-UpdateDevice Method for UpdateDevice
+StartReplay Method for StartReplay
 
-Modify device under a registry
+Start Replay
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiUpdateDeviceRequest
+ @param subscriptionid Subscription ID
+ @return ApiStartReplayRequest
 */
-func (a *DeviceApiService) UpdateDevice(ctx context.Context, subscriptionId string, registryId string, deviceId string) ApiUpdateDeviceRequest {
-	return ApiUpdateDeviceRequest{
+func (a *VaultApiService) StartReplay(ctx context.Context, subscriptionid string) ApiStartReplayRequest {
+	return ApiStartReplayRequest{
 		ApiService: a,
 		ctx: ctx,
-		subscriptionId: subscriptionId,
-		registryId: registryId,
-		deviceId: deviceId,
+		subscriptionid: subscriptionid,
 	}
 }
 
 // Execute executes the request
-//  @return Device
-func (a *DeviceApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Device, *http.Response, error) {
+//  @return string
+func (a *VaultApiService) StartReplayExecute(r ApiStartReplayRequest) (string, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Device
+		localVarReturnValue  string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.UpdateDevice")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.StartReplay")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/replays"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateMask == nil {
-		return localVarReturnValue, nil, reportError("updateMask is required and must be specified")
-	}
-	if r.device == nil {
-		return localVarReturnValue, nil, reportError("device is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "updateMask", r.updateMask, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -2508,7 +1977,7 @@ func (a *DeviceApiService) UpdateDeviceExecute(r ApiUpdateDeviceRequest) (*Devic
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.device
+	localVarPostBody = r.replayBody
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

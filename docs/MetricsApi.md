@@ -1,10 +1,10 @@
 # \MetricsApi
 
-All URIs are relative to *https://api.korewireless.com/omnicore*
+All URIs are relative to *https://api.korewireless.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetMetrics**](MetricsApi.md#GetMetrics) | **Get** /subscriptions/{subscriptionId}/metrics | 
+[**GetMetrics**](MetricsApi.md#GetMetrics) | **Get** /omnicore/subscriptions/{subscriptionId}/metrics | 
 
 
 

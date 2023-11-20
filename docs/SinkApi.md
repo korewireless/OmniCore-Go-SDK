@@ -1,13 +1,13 @@
 # \SinkApi
 
-All URIs are relative to *https://api.korewireless.com/omnicore*
+All URIs are relative to *https://api.korewireless.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateSink**](SinkApi.md#CreateSink) | **Post** /subscriptions/{subscriptionId}/sinks | 
-[**DeleteSink**](SinkApi.md#DeleteSink) | **Delete** /subscriptions/{subscriptionId}/sinks/{sinkId} | 
-[**GetASink**](SinkApi.md#GetASink) | **Get** /subscriptions/{subscriptionId}/sinks/{sinkId} | 
-[**GetSinks**](SinkApi.md#GetSinks) | **Get** /subscriptions/{subscriptionId}/sinks | Get All Sinks
+[**CreateSink**](SinkApi.md#CreateSink) | **Post** /omnicore/subscriptions/{subscriptionId}/sinks | 
+[**DeleteSink**](SinkApi.md#DeleteSink) | **Delete** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
+[**GetASink**](SinkApi.md#GetASink) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
+[**GetSinks**](SinkApi.md#GetSinks) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks | Get All Sinks
 
 
 

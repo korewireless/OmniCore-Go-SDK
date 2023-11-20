@@ -48,7 +48,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the OmniCore Model and State Management API API v1.8.1
+// APIClient manages communication with the OmniCore Model and State Management API API v1.8.2
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -63,6 +63,8 @@ type APIClient struct {
 	RegistryApi *RegistryApiService
 
 	SinkApi *SinkApiService
+
+	VaultApi *VaultApiService
 }
 
 type service struct {
@@ -85,6 +87,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.MetricsApi = (*MetricsApiService)(&c.common)
 	c.RegistryApi = (*RegistryApiService)(&c.common)
 	c.SinkApi = (*SinkApiService)(&c.common)
+	c.VaultApi = (*VaultApiService)(&c.common)
 
 	return c
 }

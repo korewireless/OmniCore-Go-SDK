@@ -78,7 +78,7 @@ func (a *SinkApiService) CreateSinkExecute(r ApiCreateSinkRequest) (*Sink, *http
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/sinks"
+	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/sinks"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -232,7 +232,7 @@ func (a *SinkApiService) DeleteSinkExecute(r ApiDeleteSinkRequest) (map[string]i
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/sinks/{sinkId}"
+	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/sinks/{sinkId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"sinkId"+"}", url.PathEscape(parameterValueToString(r.sinkId, "sinkId")), -1)
 
@@ -385,7 +385,7 @@ func (a *SinkApiService) GetASinkExecute(r ApiGetASinkRequest) (*Sink, *http.Res
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/sinks/{sinkId}"
+	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/sinks/{sinkId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"sinkId"+"}", url.PathEscape(parameterValueToString(r.sinkId, "sinkId")), -1)
 
@@ -535,7 +535,7 @@ func (a *SinkApiService) GetSinksExecute(r ApiGetSinksRequest) (*ListSinks, *htt
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/subscriptions/{subscriptionId}/sinks"
+	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/sinks"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
