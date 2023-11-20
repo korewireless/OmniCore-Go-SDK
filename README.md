@@ -5,7 +5,7 @@ This is an OmniCore Model and State Management server.
 ## Overview
 
 - API version: 1.8.3
-- Package version: 1.8.2
+- Package version: 1.8.3
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
 
