@@ -36,6 +36,20 @@ func Test_OmniCore_VaultApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test VaultApiService CreateVaultKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionid string
+
+		resp, httpRes, err := apiClient.VaultApi.CreateVaultKey(context.Background(), subscriptionid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VaultApiService DeleteConfiguration", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -51,13 +65,14 @@ func Test_OmniCore_VaultApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test VaultApiService EnableVault", func(t *testing.T) {
+	t.Run("Test VaultApiService DeleteVaultKey", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionid string
+		var keyid string
 
-		resp, httpRes, err := apiClient.VaultApi.EnableVault(context.Background(), subscriptionid).Execute()
+		resp, httpRes, err := apiClient.VaultApi.DeleteVaultKey(context.Background(), subscriptionid, keyid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -143,6 +158,20 @@ func Test_OmniCore_VaultApiService(t *testing.T) {
 		var registryid string
 
 		resp, httpRes, err := apiClient.VaultApi.GetVaultFiles(context.Background(), subscriptionid, registryid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VaultApiService GetVaultKeys", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionid string
+
+		resp, httpRes, err := apiClient.VaultApi.GetVaultKeys(context.Background(), subscriptionid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

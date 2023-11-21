@@ -5,14 +5,16 @@ All URIs are relative to *https://api.korewireless.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateVaultConfiguration**](VaultApi.md#CreateVaultConfiguration) | **Post** /vault/subscriptions/{subscriptionid}/configurations | 
+[**CreateVaultKey**](VaultApi.md#CreateVaultKey) | **Post** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
 [**DeleteConfiguration**](VaultApi.md#DeleteConfiguration) | **Delete** /vault/subscriptions/{subscriptionid}/configurations/{configid} | 
-[**EnableVault**](VaultApi.md#EnableVault) | **Post** /vault/subscriptions/{subscriptionid}/enable-vault | 
+[**DeleteVaultKey**](VaultApi.md#DeleteVaultKey) | **Delete** /vault/subscriptions/{subscriptionid}/encryptionkeys/{keyid} | 
 [**GetExports**](VaultApi.md#GetExports) | **Get** /vault/subscriptions/{subscriptionid}/exports | 
 [**GetRegistryData**](VaultApi.md#GetRegistryData) | **Get** /vault/subscriptions/{subscriptionid}/folders | 
 [**GetReplays**](VaultApi.md#GetReplays) | **Get** /vault/subscriptions/{subscriptionid}/replays | 
 [**GetVaultAudit**](VaultApi.md#GetVaultAudit) | **Get** /vault/subscriptions/{subscriptionid}/audit | 
 [**GetVaultConfigurations**](VaultApi.md#GetVaultConfigurations) | **Get** /vault/subscriptions/{subscriptionid}/configurations | 
 [**GetVaultFiles**](VaultApi.md#GetVaultFiles) | **Get** /vault/subscriptions/{subscriptionid}/registry/{registryid}/files | 
+[**GetVaultKeys**](VaultApi.md#GetVaultKeys) | **Get** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
 [**GetVaultMetrics**](VaultApi.md#GetVaultMetrics) | **Get** /vault/subscriptions/{subscriptionid}/metrics | 
 [**GetVaultStatus**](VaultApi.md#GetVaultStatus) | **Get** /vault/subscriptions/{subscriptionid}/status | 
 [**StartExport**](VaultApi.md#StartExport) | **Post** /vault/subscriptions/{subscriptionid}/exports | 
@@ -73,6 +75,78 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **createConfiguration** | [**CreateConfiguration**](CreateConfiguration.md) | application/json | 
+
+### Return type
+
+[**Frame**](Frame.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateVaultKey
+
+> Frame CreateVaultKey(ctx, subscriptionid).CreateVaultKeyBody(createVaultKeyBody).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
+)
+
+func main() {
+    subscriptionid := "subscriptionid_example" // string | Subscription ID
+    createVaultKeyBody := *openapiclient.NewCreateVaultKeyBody() // CreateVaultKeyBody | application/json (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultApi.CreateVaultKey(context.Background(), subscriptionid).CreateVaultKeyBody(createVaultKeyBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultApi.CreateVaultKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVaultKey`: Frame
+    fmt.Fprintf(os.Stdout, "Response from `VaultApi.CreateVaultKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateVaultKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createVaultKeyBody** | [**CreateVaultKeyBody**](CreateVaultKeyBody.md) | application/json | 
 
 ### Return type
 
@@ -165,9 +239,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## EnableVault
+## DeleteVaultKey
 
-> Details EnableVault(ctx, subscriptionid).EnableVault(enableVault).Execute()
+> Frame DeleteVaultKey(ctx, subscriptionid, keyid).Execute()
 
 
 
@@ -187,17 +261,17 @@ import (
 
 func main() {
     subscriptionid := "subscriptionid_example" // string | Subscription ID
-    enableVault := *openapiclient.NewEnableVault("Type_example", "Action_example") // EnableVault | application/json (optional)
+    keyid := "keyid_example" // string | key id
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VaultApi.EnableVault(context.Background(), subscriptionid).EnableVault(enableVault).Execute()
+    resp, r, err := apiClient.VaultApi.DeleteVaultKey(context.Background(), subscriptionid, keyid).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VaultApi.EnableVault``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultApi.DeleteVaultKey``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `EnableVault`: Details
-    fmt.Fprintf(os.Stdout, "Response from `VaultApi.EnableVault`: %v\n", resp)
+    // response from `DeleteVaultKey`: Frame
+    fmt.Fprintf(os.Stdout, "Response from `VaultApi.DeleteVaultKey`: %v\n", resp)
 }
 ```
 
@@ -208,20 +282,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **subscriptionid** | **string** | Subscription ID | 
+**keyid** | **string** | key id | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiEnableVaultRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteVaultKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **enableVault** | [**EnableVault**](EnableVault.md) | application/json | 
+
 
 ### Return type
 
-[**Details**](Details.md)
+[**Frame**](Frame.md)
 
 ### Authorization
 
@@ -229,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -651,6 +726,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FileDetails**](FileDetails.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVaultKeys
+
+> GetKeysResponse GetVaultKeys(ctx, subscriptionid).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
+)
+
+func main() {
+    subscriptionid := "subscriptionid_example" // string | Subscription ID
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultApi.GetVaultKeys(context.Background(), subscriptionid).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultApi.GetVaultKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetVaultKeys`: GetKeysResponse
+    fmt.Fprintf(os.Stdout, "Response from `VaultApi.GetVaultKeys`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVaultKeysRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GetKeysResponse**](GetKeysResponse.md)
 
 ### Authorization
 

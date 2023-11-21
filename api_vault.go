@@ -188,6 +188,164 @@ func (a *VaultApiService) CreateVaultConfigurationExecute(r ApiCreateVaultConfig
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiCreateVaultKeyRequest struct {
+	ctx context.Context
+	ApiService *VaultApiService
+	subscriptionid string
+	createVaultKeyBody *CreateVaultKeyBody
+}
+
+// application/json
+func (r ApiCreateVaultKeyRequest) CreateVaultKeyBody(createVaultKeyBody CreateVaultKeyBody) ApiCreateVaultKeyRequest {
+	r.createVaultKeyBody = &createVaultKeyBody
+	return r
+}
+
+func (r ApiCreateVaultKeyRequest) Execute() (*Frame, *http.Response, error) {
+	return r.ApiService.CreateVaultKeyExecute(r)
+}
+
+/*
+CreateVaultKey Method for CreateVaultKey
+
+Create Vault Key
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionid Subscription ID
+ @return ApiCreateVaultKeyRequest
+*/
+func (a *VaultApiService) CreateVaultKey(ctx context.Context, subscriptionid string) ApiCreateVaultKeyRequest {
+	return ApiCreateVaultKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionid: subscriptionid,
+	}
+}
+
+// Execute executes the request
+//  @return Frame
+func (a *VaultApiService) CreateVaultKeyExecute(r ApiCreateVaultKeyRequest) (*Frame, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Frame
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.CreateVaultKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/encryptionkeys"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createVaultKeyBody
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDeleteConfigurationRequest struct {
 	ctx context.Context
 	ApiService *VaultApiService
@@ -341,64 +499,61 @@ func (a *VaultApiService) DeleteConfigurationExecute(r ApiDeleteConfigurationReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEnableVaultRequest struct {
+type ApiDeleteVaultKeyRequest struct {
 	ctx context.Context
 	ApiService *VaultApiService
 	subscriptionid string
-	enableVault *EnableVault
+	keyid string
 }
 
-// application/json
-func (r ApiEnableVaultRequest) EnableVault(enableVault EnableVault) ApiEnableVaultRequest {
-	r.enableVault = &enableVault
-	return r
-}
-
-func (r ApiEnableVaultRequest) Execute() (*Details, *http.Response, error) {
-	return r.ApiService.EnableVaultExecute(r)
+func (r ApiDeleteVaultKeyRequest) Execute() (*Frame, *http.Response, error) {
+	return r.ApiService.DeleteVaultKeyExecute(r)
 }
 
 /*
-EnableVault Method for EnableVault
+DeleteVaultKey Method for DeleteVaultKey
 
-Enable/Disable vault for a subscription
+Delete Vault Key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionid Subscription ID
- @return ApiEnableVaultRequest
+ @param keyid key id
+ @return ApiDeleteVaultKeyRequest
 */
-func (a *VaultApiService) EnableVault(ctx context.Context, subscriptionid string) ApiEnableVaultRequest {
-	return ApiEnableVaultRequest{
+func (a *VaultApiService) DeleteVaultKey(ctx context.Context, subscriptionid string, keyid string) ApiDeleteVaultKeyRequest {
+	return ApiDeleteVaultKeyRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionid: subscriptionid,
+		keyid: keyid,
 	}
 }
 
 // Execute executes the request
-//  @return Details
-func (a *VaultApiService) EnableVaultExecute(r ApiEnableVaultRequest) (*Details, *http.Response, error) {
+//  @return Frame
+func (a *VaultApiService) DeleteVaultKeyExecute(r ApiDeleteVaultKeyRequest) (*Frame, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Details
+		localVarReturnValue  *Frame
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.EnableVault")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.DeleteVaultKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/enable-vault"
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/encryptionkeys/{keyid}"
 	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"keyid"+"}", url.PathEscape(parameterValueToString(r.keyid, "keyid")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -414,8 +569,6 @@ func (a *VaultApiService) EnableVaultExecute(r ApiEnableVaultRequest) (*Details,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.enableVault
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1327,6 +1480,155 @@ func (a *VaultApiService) GetVaultFilesExecute(r ApiGetVaultFilesRequest) (*File
 	if r.fileType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fileType", r.fileType, "")
 	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetVaultKeysRequest struct {
+	ctx context.Context
+	ApiService *VaultApiService
+	subscriptionid string
+}
+
+func (r ApiGetVaultKeysRequest) Execute() (*GetKeysResponse, *http.Response, error) {
+	return r.ApiService.GetVaultKeysExecute(r)
+}
+
+/*
+GetVaultKeys Method for GetVaultKeys
+
+Get Vault Keys
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionid Subscription ID
+ @return ApiGetVaultKeysRequest
+*/
+func (a *VaultApiService) GetVaultKeys(ctx context.Context, subscriptionid string) ApiGetVaultKeysRequest {
+	return ApiGetVaultKeysRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionid: subscriptionid,
+	}
+}
+
+// Execute executes the request
+//  @return GetKeysResponse
+func (a *VaultApiService) GetVaultKeysExecute(r ApiGetVaultKeysRequest) (*GetKeysResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetKeysResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VaultApiService.GetVaultKeys")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/vault/subscriptions/{subscriptionid}/encryptionkeys"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

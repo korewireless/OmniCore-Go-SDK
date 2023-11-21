@@ -4,8 +4,8 @@ This is an OmniCore Model and State Management server.
 
 ## Overview
 
-- API version: 1.8.3
-- Package version: 1.8.3
+- API version: 1.8.4
+- Package version: 1.8.4
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
 
@@ -104,14 +104,16 @@ Class | Method | HTTP request | Description
 *SinkApi* | [**GetASink**](docs/SinkApi.md#getasink) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
 *SinkApi* | [**GetSinks**](docs/SinkApi.md#getsinks) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks | Get All Sinks
 *VaultApi* | [**CreateVaultConfiguration**](docs/VaultApi.md#createvaultconfiguration) | **Post** /vault/subscriptions/{subscriptionid}/configurations | 
+*VaultApi* | [**CreateVaultKey**](docs/VaultApi.md#createvaultkey) | **Post** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
 *VaultApi* | [**DeleteConfiguration**](docs/VaultApi.md#deleteconfiguration) | **Delete** /vault/subscriptions/{subscriptionid}/configurations/{configid} | 
-*VaultApi* | [**EnableVault**](docs/VaultApi.md#enablevault) | **Post** /vault/subscriptions/{subscriptionid}/enable-vault | 
+*VaultApi* | [**DeleteVaultKey**](docs/VaultApi.md#deletevaultkey) | **Delete** /vault/subscriptions/{subscriptionid}/encryptionkeys/{keyid} | 
 *VaultApi* | [**GetExports**](docs/VaultApi.md#getexports) | **Get** /vault/subscriptions/{subscriptionid}/exports | 
 *VaultApi* | [**GetRegistryData**](docs/VaultApi.md#getregistrydata) | **Get** /vault/subscriptions/{subscriptionid}/folders | 
 *VaultApi* | [**GetReplays**](docs/VaultApi.md#getreplays) | **Get** /vault/subscriptions/{subscriptionid}/replays | 
 *VaultApi* | [**GetVaultAudit**](docs/VaultApi.md#getvaultaudit) | **Get** /vault/subscriptions/{subscriptionid}/audit | 
 *VaultApi* | [**GetVaultConfigurations**](docs/VaultApi.md#getvaultconfigurations) | **Get** /vault/subscriptions/{subscriptionid}/configurations | 
 *VaultApi* | [**GetVaultFiles**](docs/VaultApi.md#getvaultfiles) | **Get** /vault/subscriptions/{subscriptionid}/registry/{registryid}/files | 
+*VaultApi* | [**GetVaultKeys**](docs/VaultApi.md#getvaultkeys) | **Get** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
 *VaultApi* | [**GetVaultMetrics**](docs/VaultApi.md#getvaultmetrics) | **Get** /vault/subscriptions/{subscriptionid}/metrics | 
 *VaultApi* | [**GetVaultStatus**](docs/VaultApi.md#getvaultstatus) | **Get** /vault/subscriptions/{subscriptionid}/status | 
 *VaultApi* | [**StartExport**](docs/VaultApi.md#startexport) | **Post** /vault/subscriptions/{subscriptionid}/exports | 
@@ -128,8 +130,8 @@ Class | Method | HTTP request | Description
  - [Config](docs/Config.md)
  - [Configurations](docs/Configurations.md)
  - [CreateConfiguration](docs/CreateConfiguration.md)
+ - [CreateVaultKeyBody](docs/CreateVaultKeyBody.md)
  - [CustomOnboard](docs/CustomOnboard.md)
- - [Details](docs/Details.md)
  - [Device](docs/Device.md)
  - [DeviceCommand](docs/DeviceCommand.md)
  - [DeviceConfig](docs/DeviceConfig.md)
@@ -137,7 +139,6 @@ Class | Method | HTTP request | Description
  - [DeviceCredential](docs/DeviceCredential.md)
  - [DeviceRegistry](docs/DeviceRegistry.md)
  - [DeviceState](docs/DeviceState.md)
- - [EnableVault](docs/EnableVault.md)
  - [ErrorFrame](docs/ErrorFrame.md)
  - [ErrorStatus](docs/ErrorStatus.md)
  - [EventNotificationConfig](docs/EventNotificationConfig.md)
@@ -150,6 +151,7 @@ Class | Method | HTTP request | Description
  - [GatewayConfig](docs/GatewayConfig.md)
  - [GenericErrorResponse](docs/GenericErrorResponse.md)
  - [GetExportsResponse](docs/GetExportsResponse.md)
+ - [GetKeysResponse](docs/GetKeysResponse.md)
  - [GetReplaysResponse](docs/GetReplaysResponse.md)
  - [HttpConfig](docs/HttpConfig.md)
  - [Info](docs/Info.md)
@@ -177,6 +179,7 @@ Class | Method | HTTP request | Description
  - [Sink](docs/Sink.md)
  - [StartExportBody](docs/StartExportBody.md)
  - [VaultConfiguration](docs/VaultConfiguration.md)
+ - [VaultEncryptionKey](docs/VaultEncryptionKey.md)
  - [VaultStatus](docs/VaultStatus.md)
  - [VaultStatusDetails](docs/VaultStatusDetails.md)
  - [X509CertificateDetails](docs/X509CertificateDetails.md)

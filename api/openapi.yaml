@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.3
+  version: 1.8.4
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -1986,52 +1986,6 @@ paths:
       tags:
       - metrics
       x-codegen-request-body-name: Vault
-  /vault/subscriptions/{subscriptionid}/enable-vault:
-    post:
-      description: Enable/Disable vault for a subscription
-      operationId: enableVault
-      parameters:
-      - description: Subscription ID
-        explode: false
-        in: path
-        name: subscriptionid
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EnableVault'
-        description: application/json
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Details'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
-          description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorResponse'
-          description: Internal Server Error
-      tags:
-      - vault
   /vault/subscriptions/{subscriptionid}/audit:
     get:
       description: Get vault Audit
@@ -2564,6 +2518,139 @@ paths:
               schema:
                 $ref: '#/components/schemas/Frame'
           description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/encryptionkeys:
+    get:
+      description: Get Vault Keys
+      operationId: GetVaultKeys
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetKeysResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+    post:
+      description: Create Vault Key
+      operationId: CreateVaultKey
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVaultKeyBody'
+        description: application/json
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Frame'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/encryptionkeys/{keyid}:
+    delete:
+      description: Delete Vault Key
+      operationId: DeleteVaultKey
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: key id
+        explode: false
+        in: path
+        name: keyid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Frame'
+          description: OK
         "400":
           content:
             application/json:
@@ -3812,31 +3899,6 @@ components:
         details:
           $ref: '#/components/schemas/Metrics_details'
       type: object
-    EnableVault:
-      example:
-        action: enable
-        type: GCS
-      properties:
-        type:
-          enum:
-          - GCS
-          type: string
-        action:
-          enum:
-          - enable
-          - disable
-          type: string
-      required:
-      - action
-      - type
-      type: object
-    Details:
-      example:
-        details: details
-      properties:
-        details:
-          type: string
-      type: object
     AuditResult:
       example:
         pageNumber: 6
@@ -4286,6 +4348,53 @@ components:
         source:
           type: string
         destination:
+          type: string
+      type: object
+    GetKeysResponse:
+      example:
+        details:
+        - name: name
+          subscription: subscription
+          id: id
+          key: key
+        - name: name
+          subscription: subscription
+          id: id
+          key: key
+      properties:
+        details:
+          items:
+            $ref: '#/components/schemas/VaultEncryptionKey'
+          type: array
+      type: object
+    VaultEncryptionKeys:
+      items:
+        $ref: '#/components/schemas/VaultEncryptionKey'
+      type: array
+    VaultEncryptionKey:
+      example:
+        name: name
+        subscription: subscription
+        id: id
+        key: key
+      properties:
+        subscription:
+          type: string
+        name:
+          type: string
+        id:
+          type: string
+        key:
+          type: string
+      type: object
+    CreateVaultKeyBody:
+      example:
+        name: name
+        key: key
+      properties:
+        name:
+          type: string
+        key:
           type: string
       type: object
     Metrics_details:
