@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Subscription** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
 **Key** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetId
 
-`func (o *VaultEncryptionKey) GetId() string`
+`func (o *VaultEncryptionKey) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *VaultEncryptionKey) GetIdOk() (*string, bool)`
+`func (o *VaultEncryptionKey) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *VaultEncryptionKey) SetId(v string)`
+`func (o *VaultEncryptionKey) SetId(v int32)`
 
 SetId sets Id field to given value.
 

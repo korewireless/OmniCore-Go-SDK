@@ -27,8 +27,8 @@ var _ MappedNullable = &MetricsData{}
 // MetricsData struct for MetricsData
 type MetricsData struct {
 	Data []MetricsLogs `json:"data,omitempty"`
-	TotalExports *int32 `json:"TotalExports,omitempty"`
-	TotalReplays *int32 `json:"TotalReplays,omitempty"`
+	TotalExportSize *float32 `json:"TotalExportSize,omitempty"`
+	TotalReplaySize *float32 `json:"TotalReplaySize,omitempty"`
 }
 
 // NewMetricsData instantiates a new MetricsData object
@@ -80,68 +80,68 @@ func (o *MetricsData) SetData(v []MetricsLogs) {
 	o.Data = v
 }
 
-// GetTotalExports returns the TotalExports field value if set, zero value otherwise.
-func (o *MetricsData) GetTotalExports() int32 {
-	if o == nil || IsNil(o.TotalExports) {
-		var ret int32
+// GetTotalExportSize returns the TotalExportSize field value if set, zero value otherwise.
+func (o *MetricsData) GetTotalExportSize() float32 {
+	if o == nil || IsNil(o.TotalExportSize) {
+		var ret float32
 		return ret
 	}
-	return *o.TotalExports
+	return *o.TotalExportSize
 }
 
-// GetTotalExportsOk returns a tuple with the TotalExports field value if set, nil otherwise
+// GetTotalExportSizeOk returns a tuple with the TotalExportSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsData) GetTotalExportsOk() (*int32, bool) {
-	if o == nil || IsNil(o.TotalExports) {
+func (o *MetricsData) GetTotalExportSizeOk() (*float32, bool) {
+	if o == nil || IsNil(o.TotalExportSize) {
 		return nil, false
 	}
-	return o.TotalExports, true
+	return o.TotalExportSize, true
 }
 
-// HasTotalExports returns a boolean if a field has been set.
-func (o *MetricsData) HasTotalExports() bool {
-	if o != nil && !IsNil(o.TotalExports) {
+// HasTotalExportSize returns a boolean if a field has been set.
+func (o *MetricsData) HasTotalExportSize() bool {
+	if o != nil && !IsNil(o.TotalExportSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetTotalExports gets a reference to the given int32 and assigns it to the TotalExports field.
-func (o *MetricsData) SetTotalExports(v int32) {
-	o.TotalExports = &v
+// SetTotalExportSize gets a reference to the given float32 and assigns it to the TotalExportSize field.
+func (o *MetricsData) SetTotalExportSize(v float32) {
+	o.TotalExportSize = &v
 }
 
-// GetTotalReplays returns the TotalReplays field value if set, zero value otherwise.
-func (o *MetricsData) GetTotalReplays() int32 {
-	if o == nil || IsNil(o.TotalReplays) {
-		var ret int32
+// GetTotalReplaySize returns the TotalReplaySize field value if set, zero value otherwise.
+func (o *MetricsData) GetTotalReplaySize() float32 {
+	if o == nil || IsNil(o.TotalReplaySize) {
+		var ret float32
 		return ret
 	}
-	return *o.TotalReplays
+	return *o.TotalReplaySize
 }
 
-// GetTotalReplaysOk returns a tuple with the TotalReplays field value if set, nil otherwise
+// GetTotalReplaySizeOk returns a tuple with the TotalReplaySize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsData) GetTotalReplaysOk() (*int32, bool) {
-	if o == nil || IsNil(o.TotalReplays) {
+func (o *MetricsData) GetTotalReplaySizeOk() (*float32, bool) {
+	if o == nil || IsNil(o.TotalReplaySize) {
 		return nil, false
 	}
-	return o.TotalReplays, true
+	return o.TotalReplaySize, true
 }
 
-// HasTotalReplays returns a boolean if a field has been set.
-func (o *MetricsData) HasTotalReplays() bool {
-	if o != nil && !IsNil(o.TotalReplays) {
+// HasTotalReplaySize returns a boolean if a field has been set.
+func (o *MetricsData) HasTotalReplaySize() bool {
+	if o != nil && !IsNil(o.TotalReplaySize) {
 		return true
 	}
 
 	return false
 }
 
-// SetTotalReplays gets a reference to the given int32 and assigns it to the TotalReplays field.
-func (o *MetricsData) SetTotalReplays(v int32) {
-	o.TotalReplays = &v
+// SetTotalReplaySize gets a reference to the given float32 and assigns it to the TotalReplaySize field.
+func (o *MetricsData) SetTotalReplaySize(v float32) {
+	o.TotalReplaySize = &v
 }
 
 func (o MetricsData) MarshalJSON() ([]byte, error) {
@@ -157,11 +157,11 @@ func (o MetricsData) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	if !IsNil(o.TotalExports) {
-		toSerialize["TotalExports"] = o.TotalExports
+	if !IsNil(o.TotalExportSize) {
+		toSerialize["TotalExportSize"] = o.TotalExportSize
 	}
-	if !IsNil(o.TotalReplays) {
-		toSerialize["TotalReplays"] = o.TotalReplays
+	if !IsNil(o.TotalReplaySize) {
+		toSerialize["TotalReplaySize"] = o.TotalReplaySize
 	}
 	return toSerialize, nil
 }

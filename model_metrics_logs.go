@@ -30,8 +30,8 @@ type MetricsLogs struct {
 	FileSize *float32 `json:"fileSize,omitempty"`
 	Noofoperations *int32 `json:"noofoperations,omitempty"`
 	Updatedon *string `json:"updatedon,omitempty"`
-	NoOfReplays *int32 `json:"noOfReplays,omitempty"`
-	NoOfExports *int32 `json:"noOfExports,omitempty"`
+	ReplayFileSize *float32 `json:"replayFileSize,omitempty"`
+	ExportFileSize *float32 `json:"exportFileSize,omitempty"`
 }
 
 // NewMetricsLogs instantiates a new MetricsLogs object
@@ -179,68 +179,68 @@ func (o *MetricsLogs) SetUpdatedon(v string) {
 	o.Updatedon = &v
 }
 
-// GetNoOfReplays returns the NoOfReplays field value if set, zero value otherwise.
-func (o *MetricsLogs) GetNoOfReplays() int32 {
-	if o == nil || IsNil(o.NoOfReplays) {
-		var ret int32
+// GetReplayFileSize returns the ReplayFileSize field value if set, zero value otherwise.
+func (o *MetricsLogs) GetReplayFileSize() float32 {
+	if o == nil || IsNil(o.ReplayFileSize) {
+		var ret float32
 		return ret
 	}
-	return *o.NoOfReplays
+	return *o.ReplayFileSize
 }
 
-// GetNoOfReplaysOk returns a tuple with the NoOfReplays field value if set, nil otherwise
+// GetReplayFileSizeOk returns a tuple with the ReplayFileSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsLogs) GetNoOfReplaysOk() (*int32, bool) {
-	if o == nil || IsNil(o.NoOfReplays) {
+func (o *MetricsLogs) GetReplayFileSizeOk() (*float32, bool) {
+	if o == nil || IsNil(o.ReplayFileSize) {
 		return nil, false
 	}
-	return o.NoOfReplays, true
+	return o.ReplayFileSize, true
 }
 
-// HasNoOfReplays returns a boolean if a field has been set.
-func (o *MetricsLogs) HasNoOfReplays() bool {
-	if o != nil && !IsNil(o.NoOfReplays) {
+// HasReplayFileSize returns a boolean if a field has been set.
+func (o *MetricsLogs) HasReplayFileSize() bool {
+	if o != nil && !IsNil(o.ReplayFileSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetNoOfReplays gets a reference to the given int32 and assigns it to the NoOfReplays field.
-func (o *MetricsLogs) SetNoOfReplays(v int32) {
-	o.NoOfReplays = &v
+// SetReplayFileSize gets a reference to the given float32 and assigns it to the ReplayFileSize field.
+func (o *MetricsLogs) SetReplayFileSize(v float32) {
+	o.ReplayFileSize = &v
 }
 
-// GetNoOfExports returns the NoOfExports field value if set, zero value otherwise.
-func (o *MetricsLogs) GetNoOfExports() int32 {
-	if o == nil || IsNil(o.NoOfExports) {
-		var ret int32
+// GetExportFileSize returns the ExportFileSize field value if set, zero value otherwise.
+func (o *MetricsLogs) GetExportFileSize() float32 {
+	if o == nil || IsNil(o.ExportFileSize) {
+		var ret float32
 		return ret
 	}
-	return *o.NoOfExports
+	return *o.ExportFileSize
 }
 
-// GetNoOfExportsOk returns a tuple with the NoOfExports field value if set, nil otherwise
+// GetExportFileSizeOk returns a tuple with the ExportFileSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsLogs) GetNoOfExportsOk() (*int32, bool) {
-	if o == nil || IsNil(o.NoOfExports) {
+func (o *MetricsLogs) GetExportFileSizeOk() (*float32, bool) {
+	if o == nil || IsNil(o.ExportFileSize) {
 		return nil, false
 	}
-	return o.NoOfExports, true
+	return o.ExportFileSize, true
 }
 
-// HasNoOfExports returns a boolean if a field has been set.
-func (o *MetricsLogs) HasNoOfExports() bool {
-	if o != nil && !IsNil(o.NoOfExports) {
+// HasExportFileSize returns a boolean if a field has been set.
+func (o *MetricsLogs) HasExportFileSize() bool {
+	if o != nil && !IsNil(o.ExportFileSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetNoOfExports gets a reference to the given int32 and assigns it to the NoOfExports field.
-func (o *MetricsLogs) SetNoOfExports(v int32) {
-	o.NoOfExports = &v
+// SetExportFileSize gets a reference to the given float32 and assigns it to the ExportFileSize field.
+func (o *MetricsLogs) SetExportFileSize(v float32) {
+	o.ExportFileSize = &v
 }
 
 func (o MetricsLogs) MarshalJSON() ([]byte, error) {
@@ -265,11 +265,11 @@ func (o MetricsLogs) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Updatedon) {
 		toSerialize["updatedon"] = o.Updatedon
 	}
-	if !IsNil(o.NoOfReplays) {
-		toSerialize["noOfReplays"] = o.NoOfReplays
+	if !IsNil(o.ReplayFileSize) {
+		toSerialize["replayFileSize"] = o.ReplayFileSize
 	}
-	if !IsNil(o.NoOfExports) {
-		toSerialize["noOfExports"] = o.NoOfExports
+	if !IsNil(o.ExportFileSize) {
+		toSerialize["exportFileSize"] = o.ExportFileSize
 	}
 	return toSerialize, nil
 }

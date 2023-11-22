@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | Pointer to [**[]MetricsLogs**](MetricsLogs.md) |  | [optional] 
-**TotalExports** | Pointer to **int32** |  | [optional] 
-**TotalReplays** | Pointer to **int32** |  | [optional] 
+**TotalExportSize** | Pointer to **float32** |  | [optional] 
+**TotalReplaySize** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 
@@ -52,55 +52,55 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
-### GetTotalExports
+### GetTotalExportSize
 
-`func (o *MetricsData) GetTotalExports() int32`
+`func (o *MetricsData) GetTotalExportSize() float32`
 
-GetTotalExports returns the TotalExports field if non-nil, zero value otherwise.
+GetTotalExportSize returns the TotalExportSize field if non-nil, zero value otherwise.
 
-### GetTotalExportsOk
+### GetTotalExportSizeOk
 
-`func (o *MetricsData) GetTotalExportsOk() (*int32, bool)`
+`func (o *MetricsData) GetTotalExportSizeOk() (*float32, bool)`
 
-GetTotalExportsOk returns a tuple with the TotalExports field if it's non-nil, zero value otherwise
+GetTotalExportSizeOk returns a tuple with the TotalExportSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotalExports
+### SetTotalExportSize
 
-`func (o *MetricsData) SetTotalExports(v int32)`
+`func (o *MetricsData) SetTotalExportSize(v float32)`
 
-SetTotalExports sets TotalExports field to given value.
+SetTotalExportSize sets TotalExportSize field to given value.
 
-### HasTotalExports
+### HasTotalExportSize
 
-`func (o *MetricsData) HasTotalExports() bool`
+`func (o *MetricsData) HasTotalExportSize() bool`
 
-HasTotalExports returns a boolean if a field has been set.
+HasTotalExportSize returns a boolean if a field has been set.
 
-### GetTotalReplays
+### GetTotalReplaySize
 
-`func (o *MetricsData) GetTotalReplays() int32`
+`func (o *MetricsData) GetTotalReplaySize() float32`
 
-GetTotalReplays returns the TotalReplays field if non-nil, zero value otherwise.
+GetTotalReplaySize returns the TotalReplaySize field if non-nil, zero value otherwise.
 
-### GetTotalReplaysOk
+### GetTotalReplaySizeOk
 
-`func (o *MetricsData) GetTotalReplaysOk() (*int32, bool)`
+`func (o *MetricsData) GetTotalReplaySizeOk() (*float32, bool)`
 
-GetTotalReplaysOk returns a tuple with the TotalReplays field if it's non-nil, zero value otherwise
+GetTotalReplaySizeOk returns a tuple with the TotalReplaySize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotalReplays
+### SetTotalReplaySize
 
-`func (o *MetricsData) SetTotalReplays(v int32)`
+`func (o *MetricsData) SetTotalReplaySize(v float32)`
 
-SetTotalReplays sets TotalReplays field to given value.
+SetTotalReplaySize sets TotalReplaySize field to given value.
 
-### HasTotalReplays
+### HasTotalReplaySize
 
-`func (o *MetricsData) HasTotalReplays() bool`
+`func (o *MetricsData) HasTotalReplaySize() bool`
 
-HasTotalReplays returns a boolean if a field has been set.
+HasTotalReplaySize returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **FileSize** | Pointer to **float32** |  | [optional] 
 **Noofoperations** | Pointer to **int32** |  | [optional] 
 **Updatedon** | Pointer to **string** |  | [optional] 
-**NoOfReplays** | Pointer to **int32** |  | [optional] 
-**NoOfExports** | Pointer to **int32** |  | [optional] 
+**ReplayFileSize** | Pointer to **float32** |  | [optional] 
+**ExportFileSize** | Pointer to **float32** |  | [optional] 
 
 ## Methods
 
@@ -130,55 +130,55 @@ SetUpdatedon sets Updatedon field to given value.
 
 HasUpdatedon returns a boolean if a field has been set.
 
-### GetNoOfReplays
+### GetReplayFileSize
 
-`func (o *MetricsLogs) GetNoOfReplays() int32`
+`func (o *MetricsLogs) GetReplayFileSize() float32`
 
-GetNoOfReplays returns the NoOfReplays field if non-nil, zero value otherwise.
+GetReplayFileSize returns the ReplayFileSize field if non-nil, zero value otherwise.
 
-### GetNoOfReplaysOk
+### GetReplayFileSizeOk
 
-`func (o *MetricsLogs) GetNoOfReplaysOk() (*int32, bool)`
+`func (o *MetricsLogs) GetReplayFileSizeOk() (*float32, bool)`
 
-GetNoOfReplaysOk returns a tuple with the NoOfReplays field if it's non-nil, zero value otherwise
+GetReplayFileSizeOk returns a tuple with the ReplayFileSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNoOfReplays
+### SetReplayFileSize
 
-`func (o *MetricsLogs) SetNoOfReplays(v int32)`
+`func (o *MetricsLogs) SetReplayFileSize(v float32)`
 
-SetNoOfReplays sets NoOfReplays field to given value.
+SetReplayFileSize sets ReplayFileSize field to given value.
 
-### HasNoOfReplays
+### HasReplayFileSize
 
-`func (o *MetricsLogs) HasNoOfReplays() bool`
+`func (o *MetricsLogs) HasReplayFileSize() bool`
 
-HasNoOfReplays returns a boolean if a field has been set.
+HasReplayFileSize returns a boolean if a field has been set.
 
-### GetNoOfExports
+### GetExportFileSize
 
-`func (o *MetricsLogs) GetNoOfExports() int32`
+`func (o *MetricsLogs) GetExportFileSize() float32`
 
-GetNoOfExports returns the NoOfExports field if non-nil, zero value otherwise.
+GetExportFileSize returns the ExportFileSize field if non-nil, zero value otherwise.
 
-### GetNoOfExportsOk
+### GetExportFileSizeOk
 
-`func (o *MetricsLogs) GetNoOfExportsOk() (*int32, bool)`
+`func (o *MetricsLogs) GetExportFileSizeOk() (*float32, bool)`
 
-GetNoOfExportsOk returns a tuple with the NoOfExports field if it's non-nil, zero value otherwise
+GetExportFileSizeOk returns a tuple with the ExportFileSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNoOfExports
+### SetExportFileSize
 
-`func (o *MetricsLogs) SetNoOfExports(v int32)`
+`func (o *MetricsLogs) SetExportFileSize(v float32)`
 
-SetNoOfExports sets NoOfExports field to given value.
+SetExportFileSize sets ExportFileSize field to given value.
 
-### HasNoOfExports
+### HasExportFileSize
 
-`func (o *MetricsLogs) HasNoOfExports() bool`
+`func (o *MetricsLogs) HasExportFileSize() bool`
 
-HasNoOfExports returns a boolean if a field has been set.
+HasExportFileSize returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

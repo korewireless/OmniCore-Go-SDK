@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.5
+  version: 1.8.6
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -4071,21 +4071,21 @@ components:
             operation: operation
             noOfFiles: 2
           detailsForTimePeriod:
-            TotalExports: 1
             data:
-            - noOfExports: 1
-              fileSize: 2.027123023002322
+            - fileSize: 2.027123023002322
               noofoperations: 4
+              exportFileSize: 1.2315135367772556
               updatedon: updatedon
-              noOfReplays: 7
+              replayFileSize: 7.386281948385884
               noOfFiles: 3
-            - noOfExports: 1
-              fileSize: 2.027123023002322
+            - fileSize: 2.027123023002322
               noofoperations: 4
+              exportFileSize: 1.2315135367772556
               updatedon: updatedon
-              noOfReplays: 7
+              replayFileSize: 7.386281948385884
               noOfFiles: 3
-            TotalReplays: 1
+            TotalExportSize: 1.0246457001441578
+            TotalReplaySize: 1.4894159098541704
           noOfFiles: 0
       properties:
         details:
@@ -4115,38 +4115,38 @@ components:
       type: object
     MetricsData:
       example:
-        TotalExports: 1
         data:
-        - noOfExports: 1
-          fileSize: 2.027123023002322
+        - fileSize: 2.027123023002322
           noofoperations: 4
+          exportFileSize: 1.2315135367772556
           updatedon: updatedon
-          noOfReplays: 7
+          replayFileSize: 7.386281948385884
           noOfFiles: 3
-        - noOfExports: 1
-          fileSize: 2.027123023002322
+        - fileSize: 2.027123023002322
           noofoperations: 4
+          exportFileSize: 1.2315135367772556
           updatedon: updatedon
-          noOfReplays: 7
+          replayFileSize: 7.386281948385884
           noOfFiles: 3
-        TotalReplays: 1
+        TotalExportSize: 1.0246457001441578
+        TotalReplaySize: 1.4894159098541704
       properties:
         data:
           items:
             $ref: '#/components/schemas/MetricsLogs'
           type: array
-        TotalExports:
-          type: integer
-        TotalReplays:
-          type: integer
+        TotalExportSize:
+          type: number
+        TotalReplaySize:
+          type: number
       type: object
     MetricsLogs:
       example:
-        noOfExports: 1
         fileSize: 2.027123023002322
         noofoperations: 4
+        exportFileSize: 1.2315135367772556
         updatedon: updatedon
-        noOfReplays: 7
+        replayFileSize: 7.386281948385884
         noOfFiles: 3
       properties:
         noOfFiles:
@@ -4157,10 +4157,10 @@ components:
           type: integer
         updatedon:
           type: string
-        noOfReplays:
-          type: integer
-        noOfExports:
-          type: integer
+        replayFileSize:
+          type: number
+        exportFileSize:
+          type: number
       type: object
     CreateConfiguration:
       example:
@@ -4342,11 +4342,11 @@ components:
         details:
         - name: name
           subscription: subscription
-          id: id
+          id: 0
           key: key
         - name: name
           subscription: subscription
-          id: id
+          id: 0
           key: key
       properties:
         details:
@@ -4362,7 +4362,7 @@ components:
       example:
         name: name
         subscription: subscription
-        id: id
+        id: 0
         key: key
       properties:
         subscription:
@@ -4370,7 +4370,7 @@ components:
         name:
           type: string
         id:
-          type: string
+          type: integer
         key:
           type: string
       type: object
@@ -4520,21 +4520,21 @@ components:
           operation: operation
           noOfFiles: 2
         detailsForTimePeriod:
-          TotalExports: 1
           data:
-          - noOfExports: 1
-            fileSize: 2.027123023002322
+          - fileSize: 2.027123023002322
             noofoperations: 4
+            exportFileSize: 1.2315135367772556
             updatedon: updatedon
-            noOfReplays: 7
+            replayFileSize: 7.386281948385884
             noOfFiles: 3
-          - noOfExports: 1
-            fileSize: 2.027123023002322
+          - fileSize: 2.027123023002322
             noofoperations: 4
+            exportFileSize: 1.2315135367772556
             updatedon: updatedon
-            noOfReplays: 7
+            replayFileSize: 7.386281948385884
             noOfFiles: 3
-          TotalReplays: 1
+          TotalExportSize: 1.0246457001441578
+          TotalReplaySize: 1.4894159098541704
         noOfFiles: 0
       properties:
         subscriptionId:

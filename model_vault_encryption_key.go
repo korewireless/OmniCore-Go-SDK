@@ -28,7 +28,7 @@ var _ MappedNullable = &VaultEncryptionKey{}
 type VaultEncryptionKey struct {
 	Subscription *string `json:"subscription,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id *int32 `json:"id,omitempty"`
 	Key *string `json:"key,omitempty"`
 }
 
@@ -114,9 +114,9 @@ func (o *VaultEncryptionKey) SetName(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *VaultEncryptionKey) GetId() string {
+func (o *VaultEncryptionKey) GetId() int32 {
 	if o == nil || IsNil(o.Id) {
-		var ret string
+		var ret int32
 		return ret
 	}
 	return *o.Id
@@ -124,7 +124,7 @@ func (o *VaultEncryptionKey) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VaultEncryptionKey) GetIdOk() (*string, bool) {
+func (o *VaultEncryptionKey) GetIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -140,8 +140,8 @@ func (o *VaultEncryptionKey) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *VaultEncryptionKey) SetId(v string) {
+// SetId gets a reference to the given int32 and assigns it to the Id field.
+func (o *VaultEncryptionKey) SetId(v int32) {
 	o.Id = &v
 }
 
