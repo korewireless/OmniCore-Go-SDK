@@ -8,8 +8,10 @@ Name | Type | Description | Notes
 **NoOfFiles** | Pointer to **int32** |  | [optional] 
 **FileSize** | Pointer to **float32** |  | [optional] 
 **Noofoperations** | Pointer to **int32** |  | [optional] 
+**NoOfReplays** | Pointer to **float32** |  | [optional] 
+**NoOfExports** | Pointer to **float32** |  | [optional] 
 **Operations** | Pointer to [**[]OperationMetrics**](OperationMetrics.md) |  | [optional] 
-**DetailsForTimePeriod** | Pointer to [**[]MetricsData**](MetricsData.md) |  | [optional] 
+**DetailsForTimePeriod** | Pointer to [**MetricsData**](MetricsData.md) |  | [optional] 
 
 ## Methods
 
@@ -130,6 +132,56 @@ SetNoofoperations sets Noofoperations field to given value.
 
 HasNoofoperations returns a boolean if a field has been set.
 
+### GetNoOfReplays
+
+`func (o *MetricsResponseDetails) GetNoOfReplays() float32`
+
+GetNoOfReplays returns the NoOfReplays field if non-nil, zero value otherwise.
+
+### GetNoOfReplaysOk
+
+`func (o *MetricsResponseDetails) GetNoOfReplaysOk() (*float32, bool)`
+
+GetNoOfReplaysOk returns a tuple with the NoOfReplays field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoOfReplays
+
+`func (o *MetricsResponseDetails) SetNoOfReplays(v float32)`
+
+SetNoOfReplays sets NoOfReplays field to given value.
+
+### HasNoOfReplays
+
+`func (o *MetricsResponseDetails) HasNoOfReplays() bool`
+
+HasNoOfReplays returns a boolean if a field has been set.
+
+### GetNoOfExports
+
+`func (o *MetricsResponseDetails) GetNoOfExports() float32`
+
+GetNoOfExports returns the NoOfExports field if non-nil, zero value otherwise.
+
+### GetNoOfExportsOk
+
+`func (o *MetricsResponseDetails) GetNoOfExportsOk() (*float32, bool)`
+
+GetNoOfExportsOk returns a tuple with the NoOfExports field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoOfExports
+
+`func (o *MetricsResponseDetails) SetNoOfExports(v float32)`
+
+SetNoOfExports sets NoOfExports field to given value.
+
+### HasNoOfExports
+
+`func (o *MetricsResponseDetails) HasNoOfExports() bool`
+
+HasNoOfExports returns a boolean if a field has been set.
+
 ### GetOperations
 
 `func (o *MetricsResponseDetails) GetOperations() []OperationMetrics`
@@ -157,20 +209,20 @@ HasOperations returns a boolean if a field has been set.
 
 ### GetDetailsForTimePeriod
 
-`func (o *MetricsResponseDetails) GetDetailsForTimePeriod() []MetricsData`
+`func (o *MetricsResponseDetails) GetDetailsForTimePeriod() MetricsData`
 
 GetDetailsForTimePeriod returns the DetailsForTimePeriod field if non-nil, zero value otherwise.
 
 ### GetDetailsForTimePeriodOk
 
-`func (o *MetricsResponseDetails) GetDetailsForTimePeriodOk() (*[]MetricsData, bool)`
+`func (o *MetricsResponseDetails) GetDetailsForTimePeriodOk() (*MetricsData, bool)`
 
 GetDetailsForTimePeriodOk returns a tuple with the DetailsForTimePeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDetailsForTimePeriod
 
-`func (o *MetricsResponseDetails) SetDetailsForTimePeriod(v []MetricsData)`
+`func (o *MetricsResponseDetails) SetDetailsForTimePeriod(v MetricsData)`
 
 SetDetailsForTimePeriod sets DetailsForTimePeriod field to given value.
 

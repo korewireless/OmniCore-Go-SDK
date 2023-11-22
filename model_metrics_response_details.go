@@ -30,8 +30,10 @@ type MetricsResponseDetails struct {
 	NoOfFiles *int32 `json:"noOfFiles,omitempty"`
 	FileSize *float32 `json:"fileSize,omitempty"`
 	Noofoperations *int32 `json:"noofoperations,omitempty"`
+	NoOfReplays *float32 `json:"noOfReplays,omitempty"`
+	NoOfExports *float32 `json:"noOfExports,omitempty"`
 	Operations []OperationMetrics `json:"Operations,omitempty"`
-	DetailsForTimePeriod []MetricsData `json:"detailsForTimePeriod,omitempty"`
+	DetailsForTimePeriod *MetricsData `json:"detailsForTimePeriod,omitempty"`
 }
 
 // NewMetricsResponseDetails instantiates a new MetricsResponseDetails object
@@ -179,6 +181,70 @@ func (o *MetricsResponseDetails) SetNoofoperations(v int32) {
 	o.Noofoperations = &v
 }
 
+// GetNoOfReplays returns the NoOfReplays field value if set, zero value otherwise.
+func (o *MetricsResponseDetails) GetNoOfReplays() float32 {
+	if o == nil || IsNil(o.NoOfReplays) {
+		var ret float32
+		return ret
+	}
+	return *o.NoOfReplays
+}
+
+// GetNoOfReplaysOk returns a tuple with the NoOfReplays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsResponseDetails) GetNoOfReplaysOk() (*float32, bool) {
+	if o == nil || IsNil(o.NoOfReplays) {
+		return nil, false
+	}
+	return o.NoOfReplays, true
+}
+
+// HasNoOfReplays returns a boolean if a field has been set.
+func (o *MetricsResponseDetails) HasNoOfReplays() bool {
+	if o != nil && !IsNil(o.NoOfReplays) {
+		return true
+	}
+
+	return false
+}
+
+// SetNoOfReplays gets a reference to the given float32 and assigns it to the NoOfReplays field.
+func (o *MetricsResponseDetails) SetNoOfReplays(v float32) {
+	o.NoOfReplays = &v
+}
+
+// GetNoOfExports returns the NoOfExports field value if set, zero value otherwise.
+func (o *MetricsResponseDetails) GetNoOfExports() float32 {
+	if o == nil || IsNil(o.NoOfExports) {
+		var ret float32
+		return ret
+	}
+	return *o.NoOfExports
+}
+
+// GetNoOfExportsOk returns a tuple with the NoOfExports field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricsResponseDetails) GetNoOfExportsOk() (*float32, bool) {
+	if o == nil || IsNil(o.NoOfExports) {
+		return nil, false
+	}
+	return o.NoOfExports, true
+}
+
+// HasNoOfExports returns a boolean if a field has been set.
+func (o *MetricsResponseDetails) HasNoOfExports() bool {
+	if o != nil && !IsNil(o.NoOfExports) {
+		return true
+	}
+
+	return false
+}
+
+// SetNoOfExports gets a reference to the given float32 and assigns it to the NoOfExports field.
+func (o *MetricsResponseDetails) SetNoOfExports(v float32) {
+	o.NoOfExports = &v
+}
+
 // GetOperations returns the Operations field value if set, zero value otherwise.
 func (o *MetricsResponseDetails) GetOperations() []OperationMetrics {
 	if o == nil || IsNil(o.Operations) {
@@ -212,17 +278,17 @@ func (o *MetricsResponseDetails) SetOperations(v []OperationMetrics) {
 }
 
 // GetDetailsForTimePeriod returns the DetailsForTimePeriod field value if set, zero value otherwise.
-func (o *MetricsResponseDetails) GetDetailsForTimePeriod() []MetricsData {
+func (o *MetricsResponseDetails) GetDetailsForTimePeriod() MetricsData {
 	if o == nil || IsNil(o.DetailsForTimePeriod) {
-		var ret []MetricsData
+		var ret MetricsData
 		return ret
 	}
-	return o.DetailsForTimePeriod
+	return *o.DetailsForTimePeriod
 }
 
 // GetDetailsForTimePeriodOk returns a tuple with the DetailsForTimePeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsResponseDetails) GetDetailsForTimePeriodOk() ([]MetricsData, bool) {
+func (o *MetricsResponseDetails) GetDetailsForTimePeriodOk() (*MetricsData, bool) {
 	if o == nil || IsNil(o.DetailsForTimePeriod) {
 		return nil, false
 	}
@@ -238,9 +304,9 @@ func (o *MetricsResponseDetails) HasDetailsForTimePeriod() bool {
 	return false
 }
 
-// SetDetailsForTimePeriod gets a reference to the given []MetricsData and assigns it to the DetailsForTimePeriod field.
-func (o *MetricsResponseDetails) SetDetailsForTimePeriod(v []MetricsData) {
-	o.DetailsForTimePeriod = v
+// SetDetailsForTimePeriod gets a reference to the given MetricsData and assigns it to the DetailsForTimePeriod field.
+func (o *MetricsResponseDetails) SetDetailsForTimePeriod(v MetricsData) {
+	o.DetailsForTimePeriod = &v
 }
 
 func (o MetricsResponseDetails) MarshalJSON() ([]byte, error) {
@@ -264,6 +330,12 @@ func (o MetricsResponseDetails) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Noofoperations) {
 		toSerialize["noofoperations"] = o.Noofoperations
+	}
+	if !IsNil(o.NoOfReplays) {
+		toSerialize["noOfReplays"] = o.NoOfReplays
+	}
+	if !IsNil(o.NoOfExports) {
+		toSerialize["noOfExports"] = o.NoOfExports
 	}
 	if !IsNil(o.Operations) {
 		toSerialize["Operations"] = o.Operations

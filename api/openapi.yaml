@@ -4052,52 +4052,39 @@ components:
     MetricsResponse:
       example:
         details:
+          noOfExports: 5.637376656633329
           fileSize: 6.027456183070403
           noofoperations: 1
           subscriptionId: subscriptionId
+          noOfReplays: 5.962133916683182
           Operations:
-          - fileSize: 5.637376656633329
-            noofoperations: 2
+          - fileSize: 7.061401241503109
+            noofoperations: 9
             registryid: registryid
             updatedon: updatedon
             operation: operation
-            noOfFiles: 5
-          - fileSize: 5.637376656633329
-            noofoperations: 2
+            noOfFiles: 2
+          - fileSize: 7.061401241503109
+            noofoperations: 9
             registryid: registryid
             updatedon: updatedon
             operation: operation
-            noOfFiles: 5
+            noOfFiles: 2
           detailsForTimePeriod:
-          - TotalExports: 7
+            TotalExports: 1
             data:
-            - noOfExports: 4
-              fileSize: 9.301444243932576
-              noofoperations: 3
+            - noOfExports: 1
+              fileSize: 2.027123023002322
+              noofoperations: 4
               updatedon: updatedon
-              noOfReplays: 2
-              noOfFiles: 7
-            - noOfExports: 4
-              fileSize: 9.301444243932576
-              noofoperations: 3
+              noOfReplays: 7
+              noOfFiles: 3
+            - noOfExports: 1
+              fileSize: 2.027123023002322
+              noofoperations: 4
               updatedon: updatedon
-              noOfReplays: 2
-              noOfFiles: 7
-            TotalReplays: 1
-          - TotalExports: 7
-            data:
-            - noOfExports: 4
-              fileSize: 9.301444243932576
-              noofoperations: 3
-              updatedon: updatedon
-              noOfReplays: 2
-              noOfFiles: 7
-            - noOfExports: 4
-              fileSize: 9.301444243932576
-              noofoperations: 3
-              updatedon: updatedon
-              noOfReplays: 2
-              noOfFiles: 7
+              noOfReplays: 7
+              noOfFiles: 3
             TotalReplays: 1
           noOfFiles: 0
       properties:
@@ -4106,12 +4093,12 @@ components:
       type: object
     OperationMetrics:
       example:
-        fileSize: 5.637376656633329
-        noofoperations: 2
+        fileSize: 7.061401241503109
+        noofoperations: 9
         registryid: registryid
         updatedon: updatedon
         operation: operation
-        noOfFiles: 5
+        noOfFiles: 2
       properties:
         noOfFiles:
           type: integer
@@ -4128,20 +4115,20 @@ components:
       type: object
     MetricsData:
       example:
-        TotalExports: 7
+        TotalExports: 1
         data:
-        - noOfExports: 4
-          fileSize: 9.301444243932576
-          noofoperations: 3
+        - noOfExports: 1
+          fileSize: 2.027123023002322
+          noofoperations: 4
           updatedon: updatedon
-          noOfReplays: 2
-          noOfFiles: 7
-        - noOfExports: 4
-          fileSize: 9.301444243932576
-          noofoperations: 3
+          noOfReplays: 7
+          noOfFiles: 3
+        - noOfExports: 1
+          fileSize: 2.027123023002322
+          noofoperations: 4
           updatedon: updatedon
-          noOfReplays: 2
-          noOfFiles: 7
+          noOfReplays: 7
+          noOfFiles: 3
         TotalReplays: 1
       properties:
         data:
@@ -4155,12 +4142,12 @@ components:
       type: object
     MetricsLogs:
       example:
-        noOfExports: 4
-        fileSize: 9.301444243932576
-        noofoperations: 3
+        noOfExports: 1
+        fileSize: 2.027123023002322
+        noofoperations: 4
         updatedon: updatedon
-        noOfReplays: 2
-        noOfFiles: 7
+        noOfReplays: 7
+        noOfFiles: 3
       properties:
         noOfFiles:
           type: integer
@@ -4514,52 +4501,39 @@ components:
       type: object
     MetricsResponse_details:
       example:
+        noOfExports: 5.637376656633329
         fileSize: 6.027456183070403
         noofoperations: 1
         subscriptionId: subscriptionId
+        noOfReplays: 5.962133916683182
         Operations:
-        - fileSize: 5.637376656633329
-          noofoperations: 2
+        - fileSize: 7.061401241503109
+          noofoperations: 9
           registryid: registryid
           updatedon: updatedon
           operation: operation
-          noOfFiles: 5
-        - fileSize: 5.637376656633329
-          noofoperations: 2
+          noOfFiles: 2
+        - fileSize: 7.061401241503109
+          noofoperations: 9
           registryid: registryid
           updatedon: updatedon
           operation: operation
-          noOfFiles: 5
+          noOfFiles: 2
         detailsForTimePeriod:
-        - TotalExports: 7
+          TotalExports: 1
           data:
-          - noOfExports: 4
-            fileSize: 9.301444243932576
-            noofoperations: 3
+          - noOfExports: 1
+            fileSize: 2.027123023002322
+            noofoperations: 4
             updatedon: updatedon
-            noOfReplays: 2
-            noOfFiles: 7
-          - noOfExports: 4
-            fileSize: 9.301444243932576
-            noofoperations: 3
+            noOfReplays: 7
+            noOfFiles: 3
+          - noOfExports: 1
+            fileSize: 2.027123023002322
+            noofoperations: 4
             updatedon: updatedon
-            noOfReplays: 2
-            noOfFiles: 7
-          TotalReplays: 1
-        - TotalExports: 7
-          data:
-          - noOfExports: 4
-            fileSize: 9.301444243932576
-            noofoperations: 3
-            updatedon: updatedon
-            noOfReplays: 2
-            noOfFiles: 7
-          - noOfExports: 4
-            fileSize: 9.301444243932576
-            noofoperations: 3
-            updatedon: updatedon
-            noOfReplays: 2
-            noOfFiles: 7
+            noOfReplays: 7
+            noOfFiles: 3
           TotalReplays: 1
         noOfFiles: 0
       properties:
@@ -4571,14 +4545,16 @@ components:
           type: number
         noofoperations:
           type: integer
+        noOfReplays:
+          type: number
+        noOfExports:
+          type: number
         Operations:
           items:
             $ref: '#/components/schemas/OperationMetrics'
           type: array
         detailsForTimePeriod:
-          items:
-            $ref: '#/components/schemas/MetricsData'
-          type: array
+          $ref: '#/components/schemas/MetricsData'
       type: object
   securitySchemes:
     bearerAuth:
