@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.4
+  version: 1.8.5
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -4052,11 +4052,11 @@ components:
     MetricsResponse:
       example:
         details:
-          noOfExports: 5.637376656633329
+          noOfExports: 5
           fileSize: 6.027456183070403
           noofoperations: 1
           subscriptionId: subscriptionId
-          noOfReplays: 5.962133916683182
+          noOfReplays: 5
           Operations:
           - fileSize: 7.061401241503109
             noofoperations: 9
@@ -4501,11 +4501,11 @@ components:
       type: object
     MetricsResponse_details:
       example:
-        noOfExports: 5.637376656633329
+        noOfExports: 5
         fileSize: 6.027456183070403
         noofoperations: 1
         subscriptionId: subscriptionId
-        noOfReplays: 5.962133916683182
+        noOfReplays: 5
         Operations:
         - fileSize: 7.061401241503109
           noofoperations: 9
@@ -4546,9 +4546,9 @@ components:
         noofoperations:
           type: integer
         noOfReplays:
-          type: number
+          type: integer
         noOfExports:
-          type: number
+          type: integer
         Operations:
           items:
             $ref: '#/components/schemas/OperationMetrics'

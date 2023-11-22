@@ -30,8 +30,8 @@ type MetricsResponseDetails struct {
 	NoOfFiles *int32 `json:"noOfFiles,omitempty"`
 	FileSize *float32 `json:"fileSize,omitempty"`
 	Noofoperations *int32 `json:"noofoperations,omitempty"`
-	NoOfReplays *float32 `json:"noOfReplays,omitempty"`
-	NoOfExports *float32 `json:"noOfExports,omitempty"`
+	NoOfReplays *int32 `json:"noOfReplays,omitempty"`
+	NoOfExports *int32 `json:"noOfExports,omitempty"`
 	Operations []OperationMetrics `json:"Operations,omitempty"`
 	DetailsForTimePeriod *MetricsData `json:"detailsForTimePeriod,omitempty"`
 }
@@ -182,9 +182,9 @@ func (o *MetricsResponseDetails) SetNoofoperations(v int32) {
 }
 
 // GetNoOfReplays returns the NoOfReplays field value if set, zero value otherwise.
-func (o *MetricsResponseDetails) GetNoOfReplays() float32 {
+func (o *MetricsResponseDetails) GetNoOfReplays() int32 {
 	if o == nil || IsNil(o.NoOfReplays) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.NoOfReplays
@@ -192,7 +192,7 @@ func (o *MetricsResponseDetails) GetNoOfReplays() float32 {
 
 // GetNoOfReplaysOk returns a tuple with the NoOfReplays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsResponseDetails) GetNoOfReplaysOk() (*float32, bool) {
+func (o *MetricsResponseDetails) GetNoOfReplaysOk() (*int32, bool) {
 	if o == nil || IsNil(o.NoOfReplays) {
 		return nil, false
 	}
@@ -208,15 +208,15 @@ func (o *MetricsResponseDetails) HasNoOfReplays() bool {
 	return false
 }
 
-// SetNoOfReplays gets a reference to the given float32 and assigns it to the NoOfReplays field.
-func (o *MetricsResponseDetails) SetNoOfReplays(v float32) {
+// SetNoOfReplays gets a reference to the given int32 and assigns it to the NoOfReplays field.
+func (o *MetricsResponseDetails) SetNoOfReplays(v int32) {
 	o.NoOfReplays = &v
 }
 
 // GetNoOfExports returns the NoOfExports field value if set, zero value otherwise.
-func (o *MetricsResponseDetails) GetNoOfExports() float32 {
+func (o *MetricsResponseDetails) GetNoOfExports() int32 {
 	if o == nil || IsNil(o.NoOfExports) {
-		var ret float32
+		var ret int32
 		return ret
 	}
 	return *o.NoOfExports
@@ -224,7 +224,7 @@ func (o *MetricsResponseDetails) GetNoOfExports() float32 {
 
 // GetNoOfExportsOk returns a tuple with the NoOfExports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsResponseDetails) GetNoOfExportsOk() (*float32, bool) {
+func (o *MetricsResponseDetails) GetNoOfExportsOk() (*int32, bool) {
 	if o == nil || IsNil(o.NoOfExports) {
 		return nil, false
 	}
@@ -240,8 +240,8 @@ func (o *MetricsResponseDetails) HasNoOfExports() bool {
 	return false
 }
 
-// SetNoOfExports gets a reference to the given float32 and assigns it to the NoOfExports field.
-func (o *MetricsResponseDetails) SetNoOfExports(v float32) {
+// SetNoOfExports gets a reference to the given int32 and assigns it to the NoOfExports field.
+func (o *MetricsResponseDetails) SetNoOfExports(v int32) {
 	o.NoOfExports = &v
 }
 

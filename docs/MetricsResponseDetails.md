@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **NoOfFiles** | Pointer to **int32** |  | [optional] 
 **FileSize** | Pointer to **float32** |  | [optional] 
 **Noofoperations** | Pointer to **int32** |  | [optional] 
-**NoOfReplays** | Pointer to **float32** |  | [optional] 
-**NoOfExports** | Pointer to **float32** |  | [optional] 
+**NoOfReplays** | Pointer to **int32** |  | [optional] 
+**NoOfExports** | Pointer to **int32** |  | [optional] 
 **Operations** | Pointer to [**[]OperationMetrics**](OperationMetrics.md) |  | [optional] 
 **DetailsForTimePeriod** | Pointer to [**MetricsData**](MetricsData.md) |  | [optional] 
 
@@ -134,20 +134,20 @@ HasNoofoperations returns a boolean if a field has been set.
 
 ### GetNoOfReplays
 
-`func (o *MetricsResponseDetails) GetNoOfReplays() float32`
+`func (o *MetricsResponseDetails) GetNoOfReplays() int32`
 
 GetNoOfReplays returns the NoOfReplays field if non-nil, zero value otherwise.
 
 ### GetNoOfReplaysOk
 
-`func (o *MetricsResponseDetails) GetNoOfReplaysOk() (*float32, bool)`
+`func (o *MetricsResponseDetails) GetNoOfReplaysOk() (*int32, bool)`
 
 GetNoOfReplaysOk returns a tuple with the NoOfReplays field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNoOfReplays
 
-`func (o *MetricsResponseDetails) SetNoOfReplays(v float32)`
+`func (o *MetricsResponseDetails) SetNoOfReplays(v int32)`
 
 SetNoOfReplays sets NoOfReplays field to given value.
 
@@ -159,20 +159,20 @@ HasNoOfReplays returns a boolean if a field has been set.
 
 ### GetNoOfExports
 
-`func (o *MetricsResponseDetails) GetNoOfExports() float32`
+`func (o *MetricsResponseDetails) GetNoOfExports() int32`
 
 GetNoOfExports returns the NoOfExports field if non-nil, zero value otherwise.
 
 ### GetNoOfExportsOk
 
-`func (o *MetricsResponseDetails) GetNoOfExportsOk() (*float32, bool)`
+`func (o *MetricsResponseDetails) GetNoOfExportsOk() (*int32, bool)`
 
 GetNoOfExportsOk returns a tuple with the NoOfExports field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNoOfExports
 
-`func (o *MetricsResponseDetails) SetNoOfExports(v float32)`
+`func (o *MetricsResponseDetails) SetNoOfExports(v int32)`
 
 SetNoOfExports sets NoOfExports field to given value.
 
