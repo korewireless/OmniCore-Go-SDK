@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**CreateVaultKey**](VaultApi.md#CreateVaultKey) | **Post** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
 [**DeleteConfiguration**](VaultApi.md#DeleteConfiguration) | **Delete** /vault/subscriptions/{subscriptionid}/configurations/{configid} | 
 [**DeleteVaultKey**](VaultApi.md#DeleteVaultKey) | **Delete** /vault/subscriptions/{subscriptionid}/encryptionkeys/{keyid} | 
+[**EnableEncryption**](VaultApi.md#EnableEncryption) | **Post** /vault/subscriptions/{subscriptionid}/encryption | 
 [**GetExports**](VaultApi.md#GetExports) | **Get** /vault/subscriptions/{subscriptionid}/exports | 
 [**GetRegistryData**](VaultApi.md#GetRegistryData) | **Get** /vault/subscriptions/{subscriptionid}/folders | 
 [**GetReplays**](VaultApi.md#GetReplays) | **Get** /vault/subscriptions/{subscriptionid}/replays | 
@@ -17,6 +18,7 @@ Method | HTTP request | Description
 [**GetVaultKeys**](VaultApi.md#GetVaultKeys) | **Get** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
 [**GetVaultMetrics**](VaultApi.md#GetVaultMetrics) | **Get** /vault/subscriptions/{subscriptionid}/metrics | 
 [**GetVaultStatus**](VaultApi.md#GetVaultStatus) | **Get** /vault/subscriptions/{subscriptionid}/status | 
+[**SetRetention**](VaultApi.md#SetRetention) | **Post** /vault/subscriptions/{subscriptionid}/retention | 
 [**StartExport**](VaultApi.md#StartExport) | **Post** /vault/subscriptions/{subscriptionid}/exports | 
 [**StartReplay**](VaultApi.md#StartReplay) | **Post** /vault/subscriptions/{subscriptionid}/replays | 
 
@@ -305,6 +307,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EnableEncryption
+
+> Frame EnableEncryption(ctx, subscriptionid).EnableEncryptionBody(enableEncryptionBody).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
+)
+
+func main() {
+    subscriptionid := "subscriptionid_example" // string | Subscription ID
+    enableEncryptionBody := *openapiclient.NewEnableEncryptionBody() // EnableEncryptionBody | application/json (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultApi.EnableEncryption(context.Background(), subscriptionid).EnableEncryptionBody(enableEncryptionBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultApi.EnableEncryption``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EnableEncryption`: Frame
+    fmt.Fprintf(os.Stdout, "Response from `VaultApi.EnableEncryption`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnableEncryptionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **enableEncryptionBody** | [**EnableEncryptionBody**](EnableEncryptionBody.md) | application/json | 
+
+### Return type
+
+[**Frame**](Frame.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -948,6 +1022,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetRetention
+
+> Frame SetRetention(ctx, subscriptionid).SetRetentionBody(setRetentionBody).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
+)
+
+func main() {
+    subscriptionid := "subscriptionid_example" // string | Subscription ID
+    setRetentionBody := *openapiclient.NewSetRetentionBody() // SetRetentionBody | application/json (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VaultApi.SetRetention(context.Background(), subscriptionid).SetRetentionBody(setRetentionBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VaultApi.SetRetention``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SetRetention`: Frame
+    fmt.Fprintf(os.Stdout, "Response from `VaultApi.SetRetention`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionid** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetRetentionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setRetentionBody** | [**SetRetentionBody**](SetRetentionBody.md) | application/json | 
+
+### Return type
+
+[**Frame**](Frame.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -4,8 +4,8 @@ This is an OmniCore Model and State Management server.
 
 ## Overview
 
-- API version: 1.8.6
-- Package version: 1.8.6
+- API version: 1.8.7
+- Package version: 1.8.7
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
 
@@ -107,6 +107,7 @@ Class | Method | HTTP request | Description
 *VaultApi* | [**CreateVaultKey**](docs/VaultApi.md#createvaultkey) | **Post** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
 *VaultApi* | [**DeleteConfiguration**](docs/VaultApi.md#deleteconfiguration) | **Delete** /vault/subscriptions/{subscriptionid}/configurations/{configid} | 
 *VaultApi* | [**DeleteVaultKey**](docs/VaultApi.md#deletevaultkey) | **Delete** /vault/subscriptions/{subscriptionid}/encryptionkeys/{keyid} | 
+*VaultApi* | [**EnableEncryption**](docs/VaultApi.md#enableencryption) | **Post** /vault/subscriptions/{subscriptionid}/encryption | 
 *VaultApi* | [**GetExports**](docs/VaultApi.md#getexports) | **Get** /vault/subscriptions/{subscriptionid}/exports | 
 *VaultApi* | [**GetRegistryData**](docs/VaultApi.md#getregistrydata) | **Get** /vault/subscriptions/{subscriptionid}/folders | 
 *VaultApi* | [**GetReplays**](docs/VaultApi.md#getreplays) | **Get** /vault/subscriptions/{subscriptionid}/replays | 
@@ -116,6 +117,7 @@ Class | Method | HTTP request | Description
 *VaultApi* | [**GetVaultKeys**](docs/VaultApi.md#getvaultkeys) | **Get** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
 *VaultApi* | [**GetVaultMetrics**](docs/VaultApi.md#getvaultmetrics) | **Get** /vault/subscriptions/{subscriptionid}/metrics | 
 *VaultApi* | [**GetVaultStatus**](docs/VaultApi.md#getvaultstatus) | **Get** /vault/subscriptions/{subscriptionid}/status | 
+*VaultApi* | [**SetRetention**](docs/VaultApi.md#setretention) | **Post** /vault/subscriptions/{subscriptionid}/retention | 
 *VaultApi* | [**StartExport**](docs/VaultApi.md#startexport) | **Post** /vault/subscriptions/{subscriptionid}/exports | 
 *VaultApi* | [**StartReplay**](docs/VaultApi.md#startreplay) | **Post** /vault/subscriptions/{subscriptionid}/replays | 
 
@@ -139,6 +141,7 @@ Class | Method | HTTP request | Description
  - [DeviceCredential](docs/DeviceCredential.md)
  - [DeviceRegistry](docs/DeviceRegistry.md)
  - [DeviceState](docs/DeviceState.md)
+ - [EnableEncryptionBody](docs/EnableEncryptionBody.md)
  - [ErrorFrame](docs/ErrorFrame.md)
  - [ErrorStatus](docs/ErrorStatus.md)
  - [EventNotificationConfig](docs/EventNotificationConfig.md)
@@ -176,6 +179,7 @@ Class | Method | HTTP request | Description
  - [RegistryCredential](docs/RegistryCredential.md)
  - [Replay](docs/Replay.md)
  - [ReplayBody](docs/ReplayBody.md)
+ - [SetRetentionBody](docs/SetRetentionBody.md)
  - [Sink](docs/Sink.md)
  - [StartExportBody](docs/StartExportBody.md)
  - [VaultConfiguration](docs/VaultConfiguration.md)

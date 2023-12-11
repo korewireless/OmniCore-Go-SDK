@@ -33,6 +33,9 @@ type VaultStatusDetails struct {
 	Updatedon *string `json:"updatedon,omitempty"`
 	CreatedOn *string `json:"createdOn,omitempty"`
 	MqttId *string `json:"MqttId,omitempty"`
+	RetentionPeriod *int32 `json:"retentionPeriod,omitempty"`
+	EncryptionKeyId *int32 `json:"encryptionKeyId,omitempty"`
+	IsEncrypted *bool `json:"isEncrypted,omitempty"`
 }
 
 // NewVaultStatusDetails instantiates a new VaultStatusDetails object
@@ -276,6 +279,102 @@ func (o *VaultStatusDetails) SetMqttId(v string) {
 	o.MqttId = &v
 }
 
+// GetRetentionPeriod returns the RetentionPeriod field value if set, zero value otherwise.
+func (o *VaultStatusDetails) GetRetentionPeriod() int32 {
+	if o == nil || IsNil(o.RetentionPeriod) {
+		var ret int32
+		return ret
+	}
+	return *o.RetentionPeriod
+}
+
+// GetRetentionPeriodOk returns a tuple with the RetentionPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VaultStatusDetails) GetRetentionPeriodOk() (*int32, bool) {
+	if o == nil || IsNil(o.RetentionPeriod) {
+		return nil, false
+	}
+	return o.RetentionPeriod, true
+}
+
+// HasRetentionPeriod returns a boolean if a field has been set.
+func (o *VaultStatusDetails) HasRetentionPeriod() bool {
+	if o != nil && !IsNil(o.RetentionPeriod) {
+		return true
+	}
+
+	return false
+}
+
+// SetRetentionPeriod gets a reference to the given int32 and assigns it to the RetentionPeriod field.
+func (o *VaultStatusDetails) SetRetentionPeriod(v int32) {
+	o.RetentionPeriod = &v
+}
+
+// GetEncryptionKeyId returns the EncryptionKeyId field value if set, zero value otherwise.
+func (o *VaultStatusDetails) GetEncryptionKeyId() int32 {
+	if o == nil || IsNil(o.EncryptionKeyId) {
+		var ret int32
+		return ret
+	}
+	return *o.EncryptionKeyId
+}
+
+// GetEncryptionKeyIdOk returns a tuple with the EncryptionKeyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VaultStatusDetails) GetEncryptionKeyIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.EncryptionKeyId) {
+		return nil, false
+	}
+	return o.EncryptionKeyId, true
+}
+
+// HasEncryptionKeyId returns a boolean if a field has been set.
+func (o *VaultStatusDetails) HasEncryptionKeyId() bool {
+	if o != nil && !IsNil(o.EncryptionKeyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEncryptionKeyId gets a reference to the given int32 and assigns it to the EncryptionKeyId field.
+func (o *VaultStatusDetails) SetEncryptionKeyId(v int32) {
+	o.EncryptionKeyId = &v
+}
+
+// GetIsEncrypted returns the IsEncrypted field value if set, zero value otherwise.
+func (o *VaultStatusDetails) GetIsEncrypted() bool {
+	if o == nil || IsNil(o.IsEncrypted) {
+		var ret bool
+		return ret
+	}
+	return *o.IsEncrypted
+}
+
+// GetIsEncryptedOk returns a tuple with the IsEncrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VaultStatusDetails) GetIsEncryptedOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsEncrypted) {
+		return nil, false
+	}
+	return o.IsEncrypted, true
+}
+
+// HasIsEncrypted returns a boolean if a field has been set.
+func (o *VaultStatusDetails) HasIsEncrypted() bool {
+	if o != nil && !IsNil(o.IsEncrypted) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsEncrypted gets a reference to the given bool and assigns it to the IsEncrypted field.
+func (o *VaultStatusDetails) SetIsEncrypted(v bool) {
+	o.IsEncrypted = &v
+}
+
 func (o VaultStatusDetails) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -306,6 +405,15 @@ func (o VaultStatusDetails) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.MqttId) {
 		toSerialize["MqttId"] = o.MqttId
+	}
+	if !IsNil(o.RetentionPeriod) {
+		toSerialize["retentionPeriod"] = o.RetentionPeriod
+	}
+	if !IsNil(o.EncryptionKeyId) {
+		toSerialize["encryptionKeyId"] = o.EncryptionKeyId
+	}
+	if !IsNil(o.IsEncrypted) {
+		toSerialize["isEncrypted"] = o.IsEncrypted
 	}
 	return toSerialize, nil
 }

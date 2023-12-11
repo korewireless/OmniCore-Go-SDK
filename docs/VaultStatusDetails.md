@@ -11,6 +11,9 @@ Name | Type | Description | Notes
 **Updatedon** | Pointer to **string** |  | [optional] 
 **CreatedOn** | Pointer to **string** |  | [optional] 
 **MqttId** | Pointer to **string** |  | [optional] 
+**RetentionPeriod** | Pointer to **int32** |  | [optional] 
+**EncryptionKeyId** | Pointer to **int32** |  | [optional] 
+**IsEncrypted** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -205,6 +208,81 @@ SetMqttId sets MqttId field to given value.
 `func (o *VaultStatusDetails) HasMqttId() bool`
 
 HasMqttId returns a boolean if a field has been set.
+
+### GetRetentionPeriod
+
+`func (o *VaultStatusDetails) GetRetentionPeriod() int32`
+
+GetRetentionPeriod returns the RetentionPeriod field if non-nil, zero value otherwise.
+
+### GetRetentionPeriodOk
+
+`func (o *VaultStatusDetails) GetRetentionPeriodOk() (*int32, bool)`
+
+GetRetentionPeriodOk returns a tuple with the RetentionPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetentionPeriod
+
+`func (o *VaultStatusDetails) SetRetentionPeriod(v int32)`
+
+SetRetentionPeriod sets RetentionPeriod field to given value.
+
+### HasRetentionPeriod
+
+`func (o *VaultStatusDetails) HasRetentionPeriod() bool`
+
+HasRetentionPeriod returns a boolean if a field has been set.
+
+### GetEncryptionKeyId
+
+`func (o *VaultStatusDetails) GetEncryptionKeyId() int32`
+
+GetEncryptionKeyId returns the EncryptionKeyId field if non-nil, zero value otherwise.
+
+### GetEncryptionKeyIdOk
+
+`func (o *VaultStatusDetails) GetEncryptionKeyIdOk() (*int32, bool)`
+
+GetEncryptionKeyIdOk returns a tuple with the EncryptionKeyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEncryptionKeyId
+
+`func (o *VaultStatusDetails) SetEncryptionKeyId(v int32)`
+
+SetEncryptionKeyId sets EncryptionKeyId field to given value.
+
+### HasEncryptionKeyId
+
+`func (o *VaultStatusDetails) HasEncryptionKeyId() bool`
+
+HasEncryptionKeyId returns a boolean if a field has been set.
+
+### GetIsEncrypted
+
+`func (o *VaultStatusDetails) GetIsEncrypted() bool`
+
+GetIsEncrypted returns the IsEncrypted field if non-nil, zero value otherwise.
+
+### GetIsEncryptedOk
+
+`func (o *VaultStatusDetails) GetIsEncryptedOk() (*bool, bool)`
+
+GetIsEncryptedOk returns a tuple with the IsEncrypted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEncrypted
+
+`func (o *VaultStatusDetails) SetIsEncrypted(v bool)`
+
+SetIsEncrypted sets IsEncrypted field to given value.
+
+### HasIsEncrypted
+
+`func (o *VaultStatusDetails) HasIsEncrypted() bool`
+
+HasIsEncrypted returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

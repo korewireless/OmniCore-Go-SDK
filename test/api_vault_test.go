@@ -80,6 +80,20 @@ func Test_OmniCore_VaultApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test VaultApiService EnableEncryption", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionid string
+
+		resp, httpRes, err := apiClient.VaultApi.EnableEncryption(context.Background(), subscriptionid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test VaultApiService GetExports", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -200,6 +214,20 @@ func Test_OmniCore_VaultApiService(t *testing.T) {
 		var subscriptionid string
 
 		resp, httpRes, err := apiClient.VaultApi.GetVaultStatus(context.Background(), subscriptionid).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test VaultApiService SetRetention", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionid string
+
+		resp, httpRes, err := apiClient.VaultApi.SetRetention(context.Background(), subscriptionid).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.6
+  version: 1.8.7
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -2671,6 +2671,98 @@ paths:
           description: Internal Server Error
       tags:
       - vault
+  /vault/subscriptions/{subscriptionid}/encryption:
+    post:
+      description: Enable Encryption
+      operationId: EnableEncryption
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableEncryptionBody'
+        description: application/json
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Frame'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
+  /vault/subscriptions/{subscriptionid}/retention:
+    post:
+      description: Set Retention Period
+      operationId: SetRetention
+      parameters:
+      - description: Subscription ID
+        explode: false
+        in: path
+        name: subscriptionid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetRetentionBody'
+        description: application/json
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Frame'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericErrorResponse'
+          description: Internal Server Error
+      tags:
+      - vault
 components:
   schemas:
     BlockCommunicationBody:
@@ -3945,12 +4037,15 @@ components:
       example:
         details:
           isCreated: true
+          encryptionKeyId: 6
           isEnabled: true
+          isEncrypted: true
           storageType: storageType
           updatedon: updatedon
           subscriptionId: subscriptionId
           MqttId: MqttId
           createdOn: createdOn
+          retentionPeriod: 0
       properties:
         details:
           $ref: '#/components/schemas/VaultStatus_details'
@@ -4384,6 +4479,26 @@ components:
         key:
           type: string
       type: object
+    EnableEncryptionBody:
+      example:
+        encryptionKeyId: 0
+        isEncrypted: true
+        action: action
+      properties:
+        action:
+          type: string
+        isEncrypted:
+          type: boolean
+        encryptionKeyId:
+          type: integer
+      type: object
+    SetRetentionBody:
+      example:
+        retentionPeriod: retentionPeriod
+      properties:
+        retentionPeriod:
+          type: string
+      type: object
     Metrics_details:
       example:
         noOfRegistries: 4
@@ -4477,12 +4592,15 @@ components:
     VaultStatus_details:
       example:
         isCreated: true
+        encryptionKeyId: 6
         isEnabled: true
+        isEncrypted: true
         storageType: storageType
         updatedon: updatedon
         subscriptionId: subscriptionId
         MqttId: MqttId
         createdOn: createdOn
+        retentionPeriod: 0
       properties:
         subscriptionId:
           type: string
@@ -4498,6 +4616,12 @@ components:
           type: string
         MqttId:
           type: string
+        retentionPeriod:
+          type: integer
+        encryptionKeyId:
+          type: integer
+        isEncrypted:
+          type: boolean
       type: object
     MetricsResponse_details:
       example:
