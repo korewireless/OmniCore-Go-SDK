@@ -1575,6 +1575,245 @@ func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetSubscriptionDevicesRequest struct {
+	ctx context.Context
+	ApiService *DeviceApiService
+	subscriptionId string
+	pageNumber *int32
+	pageSize *int32
+	fieldMask *string
+	sortByClientOnline *bool
+	deviceIds *[]string
+	deviceNumIds *[]string
+	gatewayListOptionsAssociationsDeviceId *string
+	gatewayListOptionsAssociationsGatewayId *string
+	gatewayListOptionsGatewayType *string
+}
+
+// Page Number
+func (r ApiGetSubscriptionDevicesRequest) PageNumber(pageNumber int32) ApiGetSubscriptionDevicesRequest {
+	r.pageNumber = &pageNumber
+	return r
+}
+
+// The maximum number of devices to return in the response. If this value is zero, the service will select a default size. 
+func (r ApiGetSubscriptionDevicesRequest) PageSize(pageSize int32) ApiGetSubscriptionDevicesRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// The fields of the Device resource to be returned to the response. The fields id and numId are always returned, along with any other fields specified. A comma-separated list of fully qualified names of fields. Example: 
+func (r ApiGetSubscriptionDevicesRequest) FieldMask(fieldMask string) ApiGetSubscriptionDevicesRequest {
+	r.fieldMask = &fieldMask
+	return r
+}
+
+// Set to true to return devices sorted by last heartbeat 
+func (r ApiGetSubscriptionDevicesRequest) SortByClientOnline(sortByClientOnline bool) ApiGetSubscriptionDevicesRequest {
+	r.sortByClientOnline = &sortByClientOnline
+	return r
+}
+
+// A list of device string IDs. For example, [&#39;device0&#39;, &#39;device12&#39;]. If empty, this field is ignored. Maximum IDs: 10,000
+func (r ApiGetSubscriptionDevicesRequest) DeviceIds(deviceIds []string) ApiGetSubscriptionDevicesRequest {
+	r.deviceIds = &deviceIds
+	return r
+}
+
+// A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
+func (r ApiGetSubscriptionDevicesRequest) DeviceNumIds(deviceNumIds []string) ApiGetSubscriptionDevicesRequest {
+	r.deviceNumIds = &deviceNumIds
+	return r
+}
+
+// If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (num_id) or the user-defined string (id). For example, if 456 is specified, returns only the gateways to which the device with num_id 456 is bound.
+func (r ApiGetSubscriptionDevicesRequest) GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId string) ApiGetSubscriptionDevicesRequest {
+	r.gatewayListOptionsAssociationsDeviceId = &gatewayListOptionsAssociationsDeviceId
+	return r
+}
+
+// If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (num_id) or the user-defined string (id). For example, if 123 is specified, only devices bound to the gateway with num_id 123 are returned
+func (r ApiGetSubscriptionDevicesRequest) GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId string) ApiGetSubscriptionDevicesRequest {
+	r.gatewayListOptionsAssociationsGatewayId = &gatewayListOptionsAssociationsGatewayId
+	return r
+}
+
+// If GATEWAY is specified, only gateways are returned. If NON_GATEWAY is specified, only non-gateway devices are returned. If GATEWAY_TYPE_UNSPECIFIED is specified, all devices are returned.
+func (r ApiGetSubscriptionDevicesRequest) GatewayListOptionsGatewayType(gatewayListOptionsGatewayType string) ApiGetSubscriptionDevicesRequest {
+	r.gatewayListOptionsGatewayType = &gatewayListOptionsGatewayType
+	return r
+}
+
+func (r ApiGetSubscriptionDevicesRequest) Execute() (*ListDevicesOnlineResponse, *http.Response, error) {
+	return r.ApiService.GetSubscriptionDevicesExecute(r)
+}
+
+/*
+GetSubscriptionDevices Method for GetSubscriptionDevices
+
+Get all devices under a subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionId Subscription ID
+ @return ApiGetSubscriptionDevicesRequest
+*/
+func (a *DeviceApiService) GetSubscriptionDevices(ctx context.Context, subscriptionId string) ApiGetSubscriptionDevicesRequest {
+	return ApiGetSubscriptionDevicesRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionId: subscriptionId,
+	}
+}
+
+// Execute executes the request
+//  @return ListDevicesOnlineResponse
+func (a *DeviceApiService) GetSubscriptionDevicesExecute(r ApiGetSubscriptionDevicesRequest) (*ListDevicesOnlineResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ListDevicesOnlineResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetSubscriptionDevices")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/devices"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.pageNumber != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNumber", r.pageNumber, "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.fieldMask != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fieldMask", r.fieldMask, "")
+	}
+	if r.sortByClientOnline != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortByClientOnline", r.sortByClientOnline, "")
+	}
+	if r.deviceIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceIds", r.deviceIds, "csv")
+	}
+	if r.deviceNumIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceNumIds", r.deviceNumIds, "csv")
+	}
+	if r.gatewayListOptionsAssociationsDeviceId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.associationsDeviceId", r.gatewayListOptionsAssociationsDeviceId, "")
+	}
+	if r.gatewayListOptionsAssociationsGatewayId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.associationsGatewayId", r.gatewayListOptionsAssociationsGatewayId, "")
+	}
+	if r.gatewayListOptionsGatewayType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.gatewayType", r.gatewayListOptionsGatewayType, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSendCommandToDeviceRequest struct {
 	ctx context.Context
 	ApiService *DeviceApiService

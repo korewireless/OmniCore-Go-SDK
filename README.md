@@ -4,8 +4,8 @@ This is an OmniCore Model and State Management server.
 
 ## Overview
 
-- API version: 1.8.7
-- Package version: 1.8.7
+- API version: 1.8.10
+- Package version: 1.8.10
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
 
@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
 *DeviceApi* | [**GetDevice**](docs/DeviceApi.md#getdevice) | **Get** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
 *DeviceApi* | [**GetDevices**](docs/DeviceApi.md#getdevices) | **Get** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices | 
 *DeviceApi* | [**GetStates**](docs/DeviceApi.md#getstates) | **Get** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
+*DeviceApi* | [**GetSubscriptionDevices**](docs/DeviceApi.md#getsubscriptiondevices) | **Get** /omnicore/subscriptions/{subscriptionId}/devices | 
 *DeviceApi* | [**SendCommandToDevice**](docs/DeviceApi.md#sendcommandtodevice) | **Post** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
 *DeviceApi* | [**UnBindDevice**](docs/DeviceApi.md#unbinddevice) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
 *DeviceApi* | [**UnBindDevices**](docs/DeviceApi.md#unbinddevices) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
@@ -139,6 +140,7 @@ Class | Method | HTTP request | Description
  - [DeviceConfig](docs/DeviceConfig.md)
  - [DeviceConfiguration](docs/DeviceConfiguration.md)
  - [DeviceCredential](docs/DeviceCredential.md)
+ - [DeviceOnline](docs/DeviceOnline.md)
  - [DeviceRegistry](docs/DeviceRegistry.md)
  - [DeviceState](docs/DeviceState.md)
  - [EnableEncryptionBody](docs/EnableEncryptionBody.md)
@@ -161,6 +163,7 @@ Class | Method | HTTP request | Description
  - [ListDeviceConfigVersionsResponse](docs/ListDeviceConfigVersionsResponse.md)
  - [ListDeviceRegistries](docs/ListDeviceRegistries.md)
  - [ListDeviceStatesResponse](docs/ListDeviceStatesResponse.md)
+ - [ListDevicesOnlineResponse](docs/ListDevicesOnlineResponse.md)
  - [ListDevicesResponse](docs/ListDevicesResponse.md)
  - [ListSinks](docs/ListSinks.md)
  - [LogLevel](docs/LogLevel.md)

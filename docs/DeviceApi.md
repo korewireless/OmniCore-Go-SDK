@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**GetDevice**](DeviceApi.md#GetDevice) | **Get** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices/{deviceId} | 
 [**GetDevices**](DeviceApi.md#GetDevices) | **Get** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/devices | 
 [**GetStates**](DeviceApi.md#GetStates) | **Get** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states | 
+[**GetSubscriptionDevices**](DeviceApi.md#GetSubscriptionDevices) | **Get** /omnicore/subscriptions/{subscriptionId}/devices | 
 [**SendCommandToDevice**](DeviceApi.md#SendCommandToDevice) | **Post** /omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/sendCommandToDevice | 
 [**UnBindDevice**](DeviceApi.md#UnBindDevice) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDeviceFromGateway | 
 [**UnBindDevices**](DeviceApi.md#UnBindDevices) | **Post** /omnicore/subscriptions/{subscriptionId}/registries/{registryId}/unbindDevicesFromGateway | 
@@ -707,6 +708,94 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListDeviceStatesResponse**](ListDeviceStatesResponse.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSubscriptionDevices
+
+> ListDevicesOnlineResponse GetSubscriptionDevices(ctx, subscriptionId).PageNumber(pageNumber).PageSize(pageSize).FieldMask(fieldMask).SortByClientOnline(sortByClientOnline).DeviceIds(deviceIds).DeviceNumIds(deviceNumIds).GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId).GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId).GatewayListOptionsGatewayType(gatewayListOptionsGatewayType).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/korewireless/OmniCore-Go-SDK"
+)
+
+func main() {
+    subscriptionId := "subscriptionId_example" // string | Subscription ID
+    pageNumber := int32(56) // int32 | Page Number (optional)
+    pageSize := int32(56) // int32 | The maximum number of devices to return in the response. If this value is zero, the service will select a default size.  (optional)
+    fieldMask := "fieldMask_example" // string | The fields of the Device resource to be returned to the response. The fields id and numId are always returned, along with any other fields specified. A comma-separated list of fully qualified names of fields. Example:  (optional)
+    sortByClientOnline := true // bool | Set to true to return devices sorted by last heartbeat  (optional)
+    deviceIds := []string{"Inner_example"} // []string | A list of device string IDs. For example, ['device0', 'device12']. If empty, this field is ignored. Maximum IDs: 10,000 (optional)
+    deviceNumIds := []string{"Inner_example"} // []string | A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000. (optional)
+    gatewayListOptionsAssociationsDeviceId := "gatewayListOptionsAssociationsDeviceId_example" // string | If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (num_id) or the user-defined string (id). For example, if 456 is specified, returns only the gateways to which the device with num_id 456 is bound. (optional)
+    gatewayListOptionsAssociationsGatewayId := "gatewayListOptionsAssociationsGatewayId_example" // string | If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (num_id) or the user-defined string (id). For example, if 123 is specified, only devices bound to the gateway with num_id 123 are returned (optional)
+    gatewayListOptionsGatewayType := "gatewayListOptionsGatewayType_example" // string | If GATEWAY is specified, only gateways are returned. If NON_GATEWAY is specified, only non-gateway devices are returned. If GATEWAY_TYPE_UNSPECIFIED is specified, all devices are returned. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DeviceApi.GetSubscriptionDevices(context.Background(), subscriptionId).PageNumber(pageNumber).PageSize(pageSize).FieldMask(fieldMask).SortByClientOnline(sortByClientOnline).DeviceIds(deviceIds).DeviceNumIds(deviceNumIds).GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId).GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId).GatewayListOptionsGatewayType(gatewayListOptionsGatewayType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceApi.GetSubscriptionDevices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSubscriptionDevices`: ListDevicesOnlineResponse
+    fmt.Fprintf(os.Stdout, "Response from `DeviceApi.GetSubscriptionDevices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSubscriptionDevicesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **pageNumber** | **int32** | Page Number | 
+ **pageSize** | **int32** | The maximum number of devices to return in the response. If this value is zero, the service will select a default size.  | 
+ **fieldMask** | **string** | The fields of the Device resource to be returned to the response. The fields id and numId are always returned, along with any other fields specified. A comma-separated list of fully qualified names of fields. Example:  | 
+ **sortByClientOnline** | **bool** | Set to true to return devices sorted by last heartbeat  | 
+ **deviceIds** | **[]string** | A list of device string IDs. For example, [&#39;device0&#39;, &#39;device12&#39;]. If empty, this field is ignored. Maximum IDs: 10,000 | 
+ **deviceNumIds** | **[]string** | A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000. | 
+ **gatewayListOptionsAssociationsDeviceId** | **string** | If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (num_id) or the user-defined string (id). For example, if 456 is specified, returns only the gateways to which the device with num_id 456 is bound. | 
+ **gatewayListOptionsAssociationsGatewayId** | **string** | If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (num_id) or the user-defined string (id). For example, if 123 is specified, only devices bound to the gateway with num_id 123 are returned | 
+ **gatewayListOptionsGatewayType** | **string** | If GATEWAY is specified, only gateways are returned. If NON_GATEWAY is specified, only non-gateway devices are returned. If GATEWAY_TYPE_UNSPECIFIED is specified, all devices are returned. | 
+
+### Return type
+
+[**ListDevicesOnlineResponse**](ListDevicesOnlineResponse.md)
 
 ### Authorization
 
