@@ -4,13 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConnectionParameter** | Pointer to **string** |  | [optional] 
+**ConnectionParameter** | **string** |  | 
+**Region** | Pointer to **string** |  | [optional] 
+**ExternalId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewConfig
 
-`func NewConfig() *Config`
+`func NewConfig(connectionParameter string, ) *Config`
 
 NewConfig instantiates a new Config object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +46,56 @@ and a boolean to check if the value has been set.
 
 SetConnectionParameter sets ConnectionParameter field to given value.
 
-### HasConnectionParameter
 
-`func (o *Config) HasConnectionParameter() bool`
+### GetRegion
 
-HasConnectionParameter returns a boolean if a field has been set.
+`func (o *Config) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### GetRegionOk
+
+`func (o *Config) GetRegionOk() (*string, bool)`
+
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegion
+
+`func (o *Config) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
+
+### HasRegion
+
+`func (o *Config) HasRegion() bool`
+
+HasRegion returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *Config) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *Config) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *Config) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *Config) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

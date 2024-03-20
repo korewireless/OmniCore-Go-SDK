@@ -26,15 +26,18 @@ var _ MappedNullable = &Config{}
 
 // Config struct for Config
 type Config struct {
-	ConnectionParameter *string `json:"connectionParameter,omitempty"`
+	ConnectionParameter string `json:"connectionParameter"`
+	Region *string `json:"region,omitempty"`
+	ExternalId *string `json:"externalId,omitempty"`
 }
 
 // NewConfig instantiates a new Config object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConfig() *Config {
+func NewConfig(connectionParameter string) *Config {
 	this := Config{}
+	this.ConnectionParameter = connectionParameter
 	return &this
 }
 
@@ -46,36 +49,92 @@ func NewConfigWithDefaults() *Config {
 	return &this
 }
 
-// GetConnectionParameter returns the ConnectionParameter field value if set, zero value otherwise.
+// GetConnectionParameter returns the ConnectionParameter field value
 func (o *Config) GetConnectionParameter() string {
-	if o == nil || IsNil(o.ConnectionParameter) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ConnectionParameter
+
+	return o.ConnectionParameter
 }
 
-// GetConnectionParameterOk returns a tuple with the ConnectionParameter field value if set, nil otherwise
+// GetConnectionParameterOk returns a tuple with the ConnectionParameter field value
 // and a boolean to check if the value has been set.
 func (o *Config) GetConnectionParameterOk() (*string, bool) {
-	if o == nil || IsNil(o.ConnectionParameter) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ConnectionParameter, true
+	return &o.ConnectionParameter, true
 }
 
-// HasConnectionParameter returns a boolean if a field has been set.
-func (o *Config) HasConnectionParameter() bool {
-	if o != nil && !IsNil(o.ConnectionParameter) {
+// SetConnectionParameter sets field value
+func (o *Config) SetConnectionParameter(v string) {
+	o.ConnectionParameter = v
+}
+
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *Config) GetRegion() string {
+	if o == nil || IsNil(o.Region) {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Config) GetRegionOk() (*string, bool) {
+	if o == nil || IsNil(o.Region) {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *Config) HasRegion() bool {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// SetConnectionParameter gets a reference to the given string and assigns it to the ConnectionParameter field.
-func (o *Config) SetConnectionParameter(v string) {
-	o.ConnectionParameter = &v
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *Config) SetRegion(v string) {
+	o.Region = &v
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *Config) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Config) GetExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalId) {
+		return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *Config) HasExternalId() bool {
+	if o != nil && !IsNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *Config) SetExternalId(v string) {
+	o.ExternalId = &v
 }
 
 func (o Config) MarshalJSON() ([]byte, error) {
@@ -88,8 +147,12 @@ func (o Config) MarshalJSON() ([]byte, error) {
 
 func (o Config) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ConnectionParameter) {
-		toSerialize["connectionParameter"] = o.ConnectionParameter
+	toSerialize["connectionParameter"] = o.ConnectionParameter
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.ExternalId) {
+		toSerialize["externalId"] = o.ExternalId
 	}
 	return toSerialize, nil
 }

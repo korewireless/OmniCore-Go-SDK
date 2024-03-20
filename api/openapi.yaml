@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.15
+  version: 1.8.16
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -4178,9 +4178,17 @@ components:
     Config:
       example:
         connectionParameter: connectionParameter
+        externalId: externalId
+        region: region
       properties:
         connectionParameter:
           type: string
+        region:
+          type: string
+        externalId:
+          type: string
+      required:
+      - connectionParameter
       type: object
     ListSinks:
       example:
@@ -4191,6 +4199,8 @@ components:
           updatedon: updatedon
           config:
             connectionParameter: connectionParameter
+            externalId: externalId
+            region: region
           createdon: createdon
           status: true
         - sink: pubsub
@@ -4199,6 +4209,8 @@ components:
           updatedon: updatedon
           config:
             connectionParameter: connectionParameter
+            externalId: externalId
+            region: region
           createdon: createdon
           status: true
       properties:
@@ -4215,6 +4227,8 @@ components:
         updatedon: updatedon
         config:
           connectionParameter: connectionParameter
+          externalId: externalId
+          region: region
         createdon: createdon
         status: true
       properties:
@@ -4227,6 +4241,7 @@ components:
         sink:
           enum:
           - pubsub
+          - kinesis
           type: string
         config:
           $ref: '#/components/schemas/Config'
