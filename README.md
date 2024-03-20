@@ -4,8 +4,8 @@ This is an OmniCore Model and State Management server.
 
 ## Overview
 
-- API version: 1.8.14
-- Package version: 1.8.14
+- API version: 1.8.15
+- Package version: 1.8.15
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
 
@@ -135,6 +135,7 @@ Class | Method | HTTP request | Description
  - [CreateConfiguration](docs/CreateConfiguration.md)
  - [CreateVaultKeyBody](docs/CreateVaultKeyBody.md)
  - [CustomOnboard](docs/CustomOnboard.md)
+ - [CustomOnboardTcpUdpModelDetails](docs/CustomOnboardTcpUdpModelDetails.md)
  - [Device](docs/Device.md)
  - [DeviceCommand](docs/DeviceCommand.md)
  - [DeviceConfig](docs/DeviceConfig.md)

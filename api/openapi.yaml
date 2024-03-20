@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.14
+  version: 1.8.15
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -3106,7 +3106,7 @@ components:
         isApprove:
           type: boolean
         tcpUdpModelDetails:
-          $ref: '#/components/schemas/TcpUdpModel'
+          $ref: '#/components/schemas/CustomOnboard_tcpUdpModelDetails'
         tcpUdpModelId:
           type: number
         isTcpUdpDevice:
@@ -4786,25 +4786,6 @@ components:
           type: string
       type: object
     TcpUdpModel:
-      example:
-        udpDetails:
-          port: 6
-          enabled: true
-        modelName: modelName
-        image:
-          valid: true
-          data: ""
-          link: link
-          contentType: contentType
-          storageKey: storageKey
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        tcpDetails:
-          port: 6
-          enabled: true
-        metadata: "{}"
-        id: 0
-        manufacturer: manufacturer
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           description: The ID of the TCP/UDP model
@@ -4883,6 +4864,62 @@ components:
           type: string
       required:
       - valid
+      type: object
+    CustomOnboard_tcpUdpModelDetails:
+      example:
+        udpDetails:
+          port: 6
+          enabled: true
+        modelName: modelName
+        image:
+          valid: true
+          data: ""
+          link: link
+          contentType: contentType
+          storageKey: storageKey
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        tcpDetails:
+          port: 6
+          enabled: true
+        metadata: "{}"
+        id: 0
+        manufacturer: manufacturer
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The ID of the TCP/UDP model
+          format: uint32
+          readOnly: true
+          type: integer
+        modelName:
+          description: The name of the model
+          type: string
+        manufacturer:
+          description: The manufacturer of the model
+          type: string
+        image:
+          $ref: '#/components/schemas/TcpUdpImage'
+        tcpDetails:
+          $ref: '#/components/schemas/TcpUdpPortDetail'
+        udpDetails:
+          $ref: '#/components/schemas/TcpUdpPortDetail'
+        metadata:
+          description: Additional metadata in raw JSON format
+          type: object
+        createdAt:
+          description: The creation timestamp of the model
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The last update timestamp of the model
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - image
+      - tcpDetails
+      - udpDetails
       type: object
     Metrics_details:
       example:
