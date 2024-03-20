@@ -34,8 +34,8 @@ Name | Type | Description | Notes
 **Policy** | Pointer to [**Policy**](Policy.md) |  | [optional] 
 **CustomOnboardData** | Pointer to **string** |  | [optional] 
 **IsApprove** | Pointer to **bool** |  | [optional] 
-**TcpUdpModelDetails** | Pointer to [**ComponentsSchemasTcpUdpModel**](#/components/schemas/TcpUdpModel.md) |  | [optional] 
-**TcpUdpModelId** | Pointer to **uint32** |  | [optional] 
+**TcpUdpModelDetails** | Pointer to [**TcpUdpModel**](TcpUdpModel.md) |  | [optional] 
+**TcpUdpModelId** | Pointer to **float32** |  | [optional] 
 **IsTcpUdpDevice** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -804,20 +804,20 @@ HasIsApprove returns a boolean if a field has been set.
 
 ### GetTcpUdpModelDetails
 
-`func (o *CustomOnboard) GetTcpUdpModelDetails() ComponentsSchemasTcpUdpModel`
+`func (o *CustomOnboard) GetTcpUdpModelDetails() TcpUdpModel`
 
 GetTcpUdpModelDetails returns the TcpUdpModelDetails field if non-nil, zero value otherwise.
 
 ### GetTcpUdpModelDetailsOk
 
-`func (o *CustomOnboard) GetTcpUdpModelDetailsOk() (*ComponentsSchemasTcpUdpModel, bool)`
+`func (o *CustomOnboard) GetTcpUdpModelDetailsOk() (*TcpUdpModel, bool)`
 
 GetTcpUdpModelDetailsOk returns a tuple with the TcpUdpModelDetails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTcpUdpModelDetails
 
-`func (o *CustomOnboard) SetTcpUdpModelDetails(v ComponentsSchemasTcpUdpModel)`
+`func (o *CustomOnboard) SetTcpUdpModelDetails(v TcpUdpModel)`
 
 SetTcpUdpModelDetails sets TcpUdpModelDetails field to given value.
 
@@ -829,20 +829,20 @@ HasTcpUdpModelDetails returns a boolean if a field has been set.
 
 ### GetTcpUdpModelId
 
-`func (o *CustomOnboard) GetTcpUdpModelId() uint32`
+`func (o *CustomOnboard) GetTcpUdpModelId() float32`
 
 GetTcpUdpModelId returns the TcpUdpModelId field if non-nil, zero value otherwise.
 
 ### GetTcpUdpModelIdOk
 
-`func (o *CustomOnboard) GetTcpUdpModelIdOk() (*uint32, bool)`
+`func (o *CustomOnboard) GetTcpUdpModelIdOk() (*float32, bool)`
 
 GetTcpUdpModelIdOk returns a tuple with the TcpUdpModelId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTcpUdpModelId
 
-`func (o *CustomOnboard) SetTcpUdpModelId(v uint32)`
+`func (o *CustomOnboard) SetTcpUdpModelId(v float32)`
 
 SetTcpUdpModelId sets TcpUdpModelId field to given value.
 

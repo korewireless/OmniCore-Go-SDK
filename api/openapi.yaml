@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.13
+  version: 1.8.14
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -2969,7 +2969,25 @@ components:
         state:
           binaryData: binaryData
           updateTime: updateTime
-        tcpUdpModelDetails: ""
+        tcpUdpModelDetails:
+          udpDetails:
+            port: 6
+            enabled: true
+          modelName: modelName
+          image:
+            valid: true
+            data: ""
+            link: link
+            contentType: contentType
+            storageKey: storageKey
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          tcpDetails:
+            port: 6
+            enabled: true
+          metadata: "{}"
+          id: 0
+          manufacturer: manufacturer
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         gatewayConfig:
           gatewayType: NON_GATEWAY
           gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
@@ -2989,7 +3007,7 @@ components:
         lastConfigAckTime: lastConfigAckTime
         isApprove: true
         name: name
-        tcpUdpModelId: ""
+        tcpUdpModelId: 1.4658129805029452
         lastEventTime: lastEventTime
         customOnboardData: customOnboardData
         config:
@@ -3088,9 +3106,9 @@ components:
         isApprove:
           type: boolean
         tcpUdpModelDetails:
-          type: '#/components/schemas/TcpUdpModel'
+          $ref: '#/components/schemas/TcpUdpModel'
         tcpUdpModelId:
-          type: uint32
+          type: number
         isTcpUdpDevice:
           type: boolean
       required:
@@ -4768,6 +4786,25 @@ components:
           type: string
       type: object
     TcpUdpModel:
+      example:
+        udpDetails:
+          port: 6
+          enabled: true
+        modelName: modelName
+        image:
+          valid: true
+          data: ""
+          link: link
+          contentType: contentType
+          storageKey: storageKey
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        tcpDetails:
+          port: 6
+          enabled: true
+        metadata: "{}"
+        id: 0
+        manufacturer: manufacturer
+        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           description: The ID of the TCP/UDP model
@@ -4805,6 +4842,9 @@ components:
       - udpDetails
       type: object
     TcpUdpPortDetail:
+      example:
+        port: 6
+        enabled: true
       properties:
         enabled:
           description: Indicates if the port is enabled
@@ -4817,6 +4857,12 @@ components:
       - enabled
       type: object
     TcpUdpImage:
+      example:
+        valid: true
+        data: ""
+        link: link
+        contentType: contentType
+        storageKey: storageKey
       properties:
         valid:
           description: Indicates if the image is valid

@@ -56,8 +56,8 @@ type CustomOnboard struct {
 	Policy *Policy `json:"policy,omitempty"`
 	CustomOnboardData *string `json:"customOnboardData,omitempty"`
 	IsApprove *bool `json:"isApprove,omitempty"`
-	TcpUdpModelDetails *ComponentsSchemasTcpUdpModel `json:"tcpUdpModelDetails,omitempty"`
-	TcpUdpModelId *uint32 `json:"tcpUdpModelId,omitempty"`
+	TcpUdpModelDetails *TcpUdpModel `json:"tcpUdpModelDetails,omitempty"`
+	TcpUdpModelId *float32 `json:"tcpUdpModelId,omitempty"`
 	IsTcpUdpDevice *bool `json:"isTcpUdpDevice,omitempty"`
 }
 
@@ -1032,9 +1032,9 @@ func (o *CustomOnboard) SetIsApprove(v bool) {
 }
 
 // GetTcpUdpModelDetails returns the TcpUdpModelDetails field value if set, zero value otherwise.
-func (o *CustomOnboard) GetTcpUdpModelDetails() ComponentsSchemasTcpUdpModel {
+func (o *CustomOnboard) GetTcpUdpModelDetails() TcpUdpModel {
 	if o == nil || IsNil(o.TcpUdpModelDetails) {
-		var ret ComponentsSchemasTcpUdpModel
+		var ret TcpUdpModel
 		return ret
 	}
 	return *o.TcpUdpModelDetails
@@ -1042,7 +1042,7 @@ func (o *CustomOnboard) GetTcpUdpModelDetails() ComponentsSchemasTcpUdpModel {
 
 // GetTcpUdpModelDetailsOk returns a tuple with the TcpUdpModelDetails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomOnboard) GetTcpUdpModelDetailsOk() (*ComponentsSchemasTcpUdpModel, bool) {
+func (o *CustomOnboard) GetTcpUdpModelDetailsOk() (*TcpUdpModel, bool) {
 	if o == nil || IsNil(o.TcpUdpModelDetails) {
 		return nil, false
 	}
@@ -1058,15 +1058,15 @@ func (o *CustomOnboard) HasTcpUdpModelDetails() bool {
 	return false
 }
 
-// SetTcpUdpModelDetails gets a reference to the given ComponentsSchemasTcpUdpModel and assigns it to the TcpUdpModelDetails field.
-func (o *CustomOnboard) SetTcpUdpModelDetails(v ComponentsSchemasTcpUdpModel) {
+// SetTcpUdpModelDetails gets a reference to the given TcpUdpModel and assigns it to the TcpUdpModelDetails field.
+func (o *CustomOnboard) SetTcpUdpModelDetails(v TcpUdpModel) {
 	o.TcpUdpModelDetails = &v
 }
 
 // GetTcpUdpModelId returns the TcpUdpModelId field value if set, zero value otherwise.
-func (o *CustomOnboard) GetTcpUdpModelId() uint32 {
+func (o *CustomOnboard) GetTcpUdpModelId() float32 {
 	if o == nil || IsNil(o.TcpUdpModelId) {
-		var ret uint32
+		var ret float32
 		return ret
 	}
 	return *o.TcpUdpModelId
@@ -1074,7 +1074,7 @@ func (o *CustomOnboard) GetTcpUdpModelId() uint32 {
 
 // GetTcpUdpModelIdOk returns a tuple with the TcpUdpModelId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomOnboard) GetTcpUdpModelIdOk() (*uint32, bool) {
+func (o *CustomOnboard) GetTcpUdpModelIdOk() (*float32, bool) {
 	if o == nil || IsNil(o.TcpUdpModelId) {
 		return nil, false
 	}
@@ -1090,8 +1090,8 @@ func (o *CustomOnboard) HasTcpUdpModelId() bool {
 	return false
 }
 
-// SetTcpUdpModelId gets a reference to the given uint32 and assigns it to the TcpUdpModelId field.
-func (o *CustomOnboard) SetTcpUdpModelId(v uint32) {
+// SetTcpUdpModelId gets a reference to the given float32 and assigns it to the TcpUdpModelId field.
+func (o *CustomOnboard) SetTcpUdpModelId(v float32) {
 	o.TcpUdpModelId = &v
 }
 
