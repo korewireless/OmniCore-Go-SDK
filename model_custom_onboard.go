@@ -56,9 +56,6 @@ type CustomOnboard struct {
 	Policy *Policy `json:"policy,omitempty"`
 	CustomOnboardData *string `json:"customOnboardData,omitempty"`
 	IsApprove *bool `json:"isApprove,omitempty"`
-	TcpUdpModelDetails *CustomOnboardTcpUdpModelDetails `json:"tcpUdpModelDetails,omitempty"`
-	TcpUdpModelId *float32 `json:"tcpUdpModelId,omitempty"`
-	IsTcpUdpDevice *bool `json:"isTcpUdpDevice,omitempty"`
 }
 
 // NewCustomOnboard instantiates a new CustomOnboard object
@@ -1031,102 +1028,6 @@ func (o *CustomOnboard) SetIsApprove(v bool) {
 	o.IsApprove = &v
 }
 
-// GetTcpUdpModelDetails returns the TcpUdpModelDetails field value if set, zero value otherwise.
-func (o *CustomOnboard) GetTcpUdpModelDetails() CustomOnboardTcpUdpModelDetails {
-	if o == nil || IsNil(o.TcpUdpModelDetails) {
-		var ret CustomOnboardTcpUdpModelDetails
-		return ret
-	}
-	return *o.TcpUdpModelDetails
-}
-
-// GetTcpUdpModelDetailsOk returns a tuple with the TcpUdpModelDetails field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CustomOnboard) GetTcpUdpModelDetailsOk() (*CustomOnboardTcpUdpModelDetails, bool) {
-	if o == nil || IsNil(o.TcpUdpModelDetails) {
-		return nil, false
-	}
-	return o.TcpUdpModelDetails, true
-}
-
-// HasTcpUdpModelDetails returns a boolean if a field has been set.
-func (o *CustomOnboard) HasTcpUdpModelDetails() bool {
-	if o != nil && !IsNil(o.TcpUdpModelDetails) {
-		return true
-	}
-
-	return false
-}
-
-// SetTcpUdpModelDetails gets a reference to the given CustomOnboardTcpUdpModelDetails and assigns it to the TcpUdpModelDetails field.
-func (o *CustomOnboard) SetTcpUdpModelDetails(v CustomOnboardTcpUdpModelDetails) {
-	o.TcpUdpModelDetails = &v
-}
-
-// GetTcpUdpModelId returns the TcpUdpModelId field value if set, zero value otherwise.
-func (o *CustomOnboard) GetTcpUdpModelId() float32 {
-	if o == nil || IsNil(o.TcpUdpModelId) {
-		var ret float32
-		return ret
-	}
-	return *o.TcpUdpModelId
-}
-
-// GetTcpUdpModelIdOk returns a tuple with the TcpUdpModelId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CustomOnboard) GetTcpUdpModelIdOk() (*float32, bool) {
-	if o == nil || IsNil(o.TcpUdpModelId) {
-		return nil, false
-	}
-	return o.TcpUdpModelId, true
-}
-
-// HasTcpUdpModelId returns a boolean if a field has been set.
-func (o *CustomOnboard) HasTcpUdpModelId() bool {
-	if o != nil && !IsNil(o.TcpUdpModelId) {
-		return true
-	}
-
-	return false
-}
-
-// SetTcpUdpModelId gets a reference to the given float32 and assigns it to the TcpUdpModelId field.
-func (o *CustomOnboard) SetTcpUdpModelId(v float32) {
-	o.TcpUdpModelId = &v
-}
-
-// GetIsTcpUdpDevice returns the IsTcpUdpDevice field value if set, zero value otherwise.
-func (o *CustomOnboard) GetIsTcpUdpDevice() bool {
-	if o == nil || IsNil(o.IsTcpUdpDevice) {
-		var ret bool
-		return ret
-	}
-	return *o.IsTcpUdpDevice
-}
-
-// GetIsTcpUdpDeviceOk returns a tuple with the IsTcpUdpDevice field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CustomOnboard) GetIsTcpUdpDeviceOk() (*bool, bool) {
-	if o == nil || IsNil(o.IsTcpUdpDevice) {
-		return nil, false
-	}
-	return o.IsTcpUdpDevice, true
-}
-
-// HasIsTcpUdpDevice returns a boolean if a field has been set.
-func (o *CustomOnboard) HasIsTcpUdpDevice() bool {
-	if o != nil && !IsNil(o.IsTcpUdpDevice) {
-		return true
-	}
-
-	return false
-}
-
-// SetIsTcpUdpDevice gets a reference to the given bool and assigns it to the IsTcpUdpDevice field.
-func (o *CustomOnboard) SetIsTcpUdpDevice(v bool) {
-	o.IsTcpUdpDevice = &v
-}
-
 func (o CustomOnboard) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1192,15 +1093,6 @@ func (o CustomOnboard) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IsApprove) {
 		toSerialize["isApprove"] = o.IsApprove
-	}
-	if !IsNil(o.TcpUdpModelDetails) {
-		toSerialize["tcpUdpModelDetails"] = o.TcpUdpModelDetails
-	}
-	if !IsNil(o.TcpUdpModelId) {
-		toSerialize["tcpUdpModelId"] = o.TcpUdpModelId
-	}
-	if !IsNil(o.IsTcpUdpDevice) {
-		toSerialize["isTcpUdpDevice"] = o.IsTcpUdpDevice
 	}
 	return toSerialize, nil
 }

@@ -32,6 +32,9 @@ Name | Type | Description | Notes
 **Config** | Pointer to [**DeviceConfig**](DeviceConfig.md) |  | [optional] 
 **State** | Pointer to [**DeviceState**](DeviceState.md) |  | [optional] 
 **Policy** | Pointer to [**Policy**](Policy.md) |  | [optional] 
+**TcpUdpModelDetails** | Pointer to [**DeviceTcpUdpModelDetails**](DeviceTcpUdpModelDetails.md) |  | [optional] 
+**TcpUdpModelId** | Pointer to **float32** |  | [optional] 
+**IsTcpUdpDevice** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -746,6 +749,81 @@ SetPolicy sets Policy field to given value.
 `func (o *Device) HasPolicy() bool`
 
 HasPolicy returns a boolean if a field has been set.
+
+### GetTcpUdpModelDetails
+
+`func (o *Device) GetTcpUdpModelDetails() DeviceTcpUdpModelDetails`
+
+GetTcpUdpModelDetails returns the TcpUdpModelDetails field if non-nil, zero value otherwise.
+
+### GetTcpUdpModelDetailsOk
+
+`func (o *Device) GetTcpUdpModelDetailsOk() (*DeviceTcpUdpModelDetails, bool)`
+
+GetTcpUdpModelDetailsOk returns a tuple with the TcpUdpModelDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTcpUdpModelDetails
+
+`func (o *Device) SetTcpUdpModelDetails(v DeviceTcpUdpModelDetails)`
+
+SetTcpUdpModelDetails sets TcpUdpModelDetails field to given value.
+
+### HasTcpUdpModelDetails
+
+`func (o *Device) HasTcpUdpModelDetails() bool`
+
+HasTcpUdpModelDetails returns a boolean if a field has been set.
+
+### GetTcpUdpModelId
+
+`func (o *Device) GetTcpUdpModelId() float32`
+
+GetTcpUdpModelId returns the TcpUdpModelId field if non-nil, zero value otherwise.
+
+### GetTcpUdpModelIdOk
+
+`func (o *Device) GetTcpUdpModelIdOk() (*float32, bool)`
+
+GetTcpUdpModelIdOk returns a tuple with the TcpUdpModelId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTcpUdpModelId
+
+`func (o *Device) SetTcpUdpModelId(v float32)`
+
+SetTcpUdpModelId sets TcpUdpModelId field to given value.
+
+### HasTcpUdpModelId
+
+`func (o *Device) HasTcpUdpModelId() bool`
+
+HasTcpUdpModelId returns a boolean if a field has been set.
+
+### GetIsTcpUdpDevice
+
+`func (o *Device) GetIsTcpUdpDevice() bool`
+
+GetIsTcpUdpDevice returns the IsTcpUdpDevice field if non-nil, zero value otherwise.
+
+### GetIsTcpUdpDeviceOk
+
+`func (o *Device) GetIsTcpUdpDeviceOk() (*bool, bool)`
+
+GetIsTcpUdpDeviceOk returns a tuple with the IsTcpUdpDevice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsTcpUdpDevice
+
+`func (o *Device) SetIsTcpUdpDevice(v bool)`
+
+SetIsTcpUdpDevice sets IsTcpUdpDevice field to given value.
+
+### HasIsTcpUdpDevice
+
+`func (o *Device) HasIsTcpUdpDevice() bool`
+
+HasIsTcpUdpDevice returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

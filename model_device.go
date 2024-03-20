@@ -54,6 +54,9 @@ type Device struct {
 	Config *DeviceConfig `json:"config,omitempty"`
 	State *DeviceState `json:"state,omitempty"`
 	Policy *Policy `json:"policy,omitempty"`
+	TcpUdpModelDetails *DeviceTcpUdpModelDetails `json:"tcpUdpModelDetails,omitempty"`
+	TcpUdpModelId *float32 `json:"tcpUdpModelId,omitempty"`
+	IsTcpUdpDevice *bool `json:"isTcpUdpDevice,omitempty"`
 }
 
 // NewDevice instantiates a new Device object
@@ -962,6 +965,102 @@ func (o *Device) SetPolicy(v Policy) {
 	o.Policy = &v
 }
 
+// GetTcpUdpModelDetails returns the TcpUdpModelDetails field value if set, zero value otherwise.
+func (o *Device) GetTcpUdpModelDetails() DeviceTcpUdpModelDetails {
+	if o == nil || IsNil(o.TcpUdpModelDetails) {
+		var ret DeviceTcpUdpModelDetails
+		return ret
+	}
+	return *o.TcpUdpModelDetails
+}
+
+// GetTcpUdpModelDetailsOk returns a tuple with the TcpUdpModelDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetTcpUdpModelDetailsOk() (*DeviceTcpUdpModelDetails, bool) {
+	if o == nil || IsNil(o.TcpUdpModelDetails) {
+		return nil, false
+	}
+	return o.TcpUdpModelDetails, true
+}
+
+// HasTcpUdpModelDetails returns a boolean if a field has been set.
+func (o *Device) HasTcpUdpModelDetails() bool {
+	if o != nil && !IsNil(o.TcpUdpModelDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetTcpUdpModelDetails gets a reference to the given DeviceTcpUdpModelDetails and assigns it to the TcpUdpModelDetails field.
+func (o *Device) SetTcpUdpModelDetails(v DeviceTcpUdpModelDetails) {
+	o.TcpUdpModelDetails = &v
+}
+
+// GetTcpUdpModelId returns the TcpUdpModelId field value if set, zero value otherwise.
+func (o *Device) GetTcpUdpModelId() float32 {
+	if o == nil || IsNil(o.TcpUdpModelId) {
+		var ret float32
+		return ret
+	}
+	return *o.TcpUdpModelId
+}
+
+// GetTcpUdpModelIdOk returns a tuple with the TcpUdpModelId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetTcpUdpModelIdOk() (*float32, bool) {
+	if o == nil || IsNil(o.TcpUdpModelId) {
+		return nil, false
+	}
+	return o.TcpUdpModelId, true
+}
+
+// HasTcpUdpModelId returns a boolean if a field has been set.
+func (o *Device) HasTcpUdpModelId() bool {
+	if o != nil && !IsNil(o.TcpUdpModelId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTcpUdpModelId gets a reference to the given float32 and assigns it to the TcpUdpModelId field.
+func (o *Device) SetTcpUdpModelId(v float32) {
+	o.TcpUdpModelId = &v
+}
+
+// GetIsTcpUdpDevice returns the IsTcpUdpDevice field value if set, zero value otherwise.
+func (o *Device) GetIsTcpUdpDevice() bool {
+	if o == nil || IsNil(o.IsTcpUdpDevice) {
+		var ret bool
+		return ret
+	}
+	return *o.IsTcpUdpDevice
+}
+
+// GetIsTcpUdpDeviceOk returns a tuple with the IsTcpUdpDevice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Device) GetIsTcpUdpDeviceOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsTcpUdpDevice) {
+		return nil, false
+	}
+	return o.IsTcpUdpDevice, true
+}
+
+// HasIsTcpUdpDevice returns a boolean if a field has been set.
+func (o *Device) HasIsTcpUdpDevice() bool {
+	if o != nil && !IsNil(o.IsTcpUdpDevice) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsTcpUdpDevice gets a reference to the given bool and assigns it to the IsTcpUdpDevice field.
+func (o *Device) SetIsTcpUdpDevice(v bool) {
+	o.IsTcpUdpDevice = &v
+}
+
 func (o Device) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1021,6 +1120,15 @@ func (o Device) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Policy) {
 		toSerialize["policy"] = o.Policy
+	}
+	if !IsNil(o.TcpUdpModelDetails) {
+		toSerialize["tcpUdpModelDetails"] = o.TcpUdpModelDetails
+	}
+	if !IsNil(o.TcpUdpModelId) {
+		toSerialize["tcpUdpModelId"] = o.TcpUdpModelId
+	}
+	if !IsNil(o.IsTcpUdpDevice) {
+		toSerialize["isTcpUdpDevice"] = o.IsTcpUdpDevice
 	}
 	return toSerialize, nil
 }

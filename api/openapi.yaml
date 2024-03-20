@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.16
+  version: 1.8.17
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -2954,7 +2954,6 @@ components:
           code: 0
           details: details
           message: message
-        isTcpUdpDevice: true
         subscription: subscription
         capresent: true
         createdOn: createdOn
@@ -2969,25 +2968,6 @@ components:
         state:
           binaryData: binaryData
           updateTime: updateTime
-        tcpUdpModelDetails:
-          udpDetails:
-            port: 6
-            enabled: true
-          modelName: modelName
-          image:
-            valid: true
-            data: ""
-            link: link
-            contentType: contentType
-            storageKey: storageKey
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          tcpDetails:
-            port: 6
-            enabled: true
-          metadata: "{}"
-          id: 0
-          manufacturer: manufacturer
-          updatedAt: 2000-01-23T04:56:07.000+00:00
         gatewayConfig:
           gatewayType: NON_GATEWAY
           gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
@@ -3007,7 +2987,6 @@ components:
         lastConfigAckTime: lastConfigAckTime
         isApprove: true
         name: name
-        tcpUdpModelId: 1.4658129805029452
         lastEventTime: lastEventTime
         customOnboardData: customOnboardData
         config:
@@ -3105,12 +3084,6 @@ components:
           type: string
         isApprove:
           type: boolean
-        tcpUdpModelDetails:
-          $ref: '#/components/schemas/CustomOnboard_tcpUdpModelDetails'
-        tcpUdpModelId:
-          type: number
-        isTcpUdpDevice:
-          type: boolean
       required:
       - id
       type: object
@@ -3136,6 +3109,7 @@ components:
           code: 0
           details: details
           message: message
+        isTcpUdpDevice: true
         subscription: subscription
         capresent: true
         createdOn: createdOn
@@ -3150,6 +3124,25 @@ components:
         state:
           binaryData: binaryData
           updateTime: updateTime
+        tcpUdpModelDetails:
+          udpDetails:
+            port: 5
+            enabled: true
+          modelName: modelName
+          image:
+            valid: true
+            data: ""
+            link: link
+            contentType: contentType
+            storageKey: storageKey
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          tcpDetails:
+            port: 5
+            enabled: true
+          metadata: "{}"
+          id: 1
+          manufacturer: manufacturer
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         gatewayConfig:
           gatewayType: NON_GATEWAY
           gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
@@ -3168,6 +3161,7 @@ components:
         updatedOn: updatedOn
         lastConfigAckTime: lastConfigAckTime
         name: name
+        tcpUdpModelId: 5.637376656633329
         lastEventTime: lastEventTime
         config:
           acknowledged: true
@@ -3260,6 +3254,12 @@ components:
           $ref: '#/components/schemas/DeviceState'
         policy:
           $ref: '#/components/schemas/policy'
+        tcpUdpModelDetails:
+          $ref: '#/components/schemas/Device_tcpUdpModelDetails'
+        tcpUdpModelId:
+          type: number
+        isTcpUdpDevice:
+          type: boolean
       required:
       - id
       type: object
@@ -3765,7 +3765,7 @@ components:
       type: object
     ListDevicesResponse:
       example:
-        pageNumber: 1
+        pageNumber: 2
         devices:
         - parent: parent
           metadata:
@@ -3787,6 +3787,7 @@ components:
             code: 0
             details: details
             message: message
+          isTcpUdpDevice: true
           subscription: subscription
           capresent: true
           createdOn: createdOn
@@ -3801,6 +3802,25 @@ components:
           state:
             binaryData: binaryData
             updateTime: updateTime
+          tcpUdpModelDetails:
+            udpDetails:
+              port: 5
+              enabled: true
+            modelName: modelName
+            image:
+              valid: true
+              data: ""
+              link: link
+              contentType: contentType
+              storageKey: storageKey
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            tcpDetails:
+              port: 5
+              enabled: true
+            metadata: "{}"
+            id: 1
+            manufacturer: manufacturer
+            updatedAt: 2000-01-23T04:56:07.000+00:00
           gatewayConfig:
             gatewayType: NON_GATEWAY
             gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
@@ -3819,6 +3839,7 @@ components:
           updatedOn: updatedOn
           lastConfigAckTime: lastConfigAckTime
           name: name
+          tcpUdpModelId: 5.637376656633329
           lastEventTime: lastEventTime
           config:
             acknowledged: true
@@ -3850,6 +3871,7 @@ components:
             code: 0
             details: details
             message: message
+          isTcpUdpDevice: true
           subscription: subscription
           capresent: true
           createdOn: createdOn
@@ -3864,6 +3886,25 @@ components:
           state:
             binaryData: binaryData
             updateTime: updateTime
+          tcpUdpModelDetails:
+            udpDetails:
+              port: 5
+              enabled: true
+            modelName: modelName
+            image:
+              valid: true
+              data: ""
+              link: link
+              contentType: contentType
+              storageKey: storageKey
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            tcpDetails:
+              port: 5
+              enabled: true
+            metadata: "{}"
+            id: 1
+            manufacturer: manufacturer
+            updatedAt: 2000-01-23T04:56:07.000+00:00
           gatewayConfig:
             gatewayType: NON_GATEWAY
             gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
@@ -3882,6 +3923,7 @@ components:
           updatedOn: updatedOn
           lastConfigAckTime: lastConfigAckTime
           name: name
+          tcpUdpModelId: 5.637376656633329
           lastEventTime: lastEventTime
           config:
             acknowledged: true
@@ -3893,8 +3935,8 @@ components:
           - gateway
           - gateway
           lastStateTime: lastStateTime
-        pageSize: 5
-        totalCount: 5
+        pageSize: 7
+        totalCount: 9
       properties:
         devices:
           items:
@@ -4839,7 +4881,7 @@ components:
       type: object
     TcpUdpPortDetail:
       example:
-        port: 6
+        port: 5
         enabled: true
       properties:
         enabled:
@@ -4880,10 +4922,10 @@ components:
       required:
       - valid
       type: object
-    CustomOnboard_tcpUdpModelDetails:
+    Device_tcpUdpModelDetails:
       example:
         udpDetails:
-          port: 6
+          port: 5
           enabled: true
         modelName: modelName
         image:
@@ -4894,10 +4936,10 @@ components:
           storageKey: storageKey
         createdAt: 2000-01-23T04:56:07.000+00:00
         tcpDetails:
-          port: 6
+          port: 5
           enabled: true
         metadata: "{}"
-        id: 0
+        id: 1
         manufacturer: manufacturer
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
