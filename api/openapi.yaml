@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.17
+  version: 1.8.18
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -1862,7 +1862,7 @@ paths:
       x-codegen-request-body-name: Sink
     get:
       description: Get A Sink
-      operationId: getASink
+      operationId: getSink
       parameters:
       - description: Subscription ID
         explode: false

@@ -340,29 +340,29 @@ func (a *SinkApiService) DeleteSinkExecute(r ApiDeleteSinkRequest) (map[string]i
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetASinkRequest struct {
+type ApiGetSinkRequest struct {
 	ctx context.Context
 	ApiService *SinkApiService
 	subscriptionId string
 	sinkId string
 }
 
-func (r ApiGetASinkRequest) Execute() (*Sink, *http.Response, error) {
-	return r.ApiService.GetASinkExecute(r)
+func (r ApiGetSinkRequest) Execute() (*Sink, *http.Response, error) {
+	return r.ApiService.GetSinkExecute(r)
 }
 
 /*
-GetASink Method for GetASink
+GetSink Method for GetSink
 
 Get A Sink
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionId Subscription ID
  @param sinkId Sink ID
- @return ApiGetASinkRequest
+ @return ApiGetSinkRequest
 */
-func (a *SinkApiService) GetASink(ctx context.Context, subscriptionId string, sinkId string) ApiGetASinkRequest {
-	return ApiGetASinkRequest{
+func (a *SinkApiService) GetSink(ctx context.Context, subscriptionId string, sinkId string) ApiGetSinkRequest {
+	return ApiGetSinkRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionId: subscriptionId,
@@ -372,7 +372,7 @@ func (a *SinkApiService) GetASink(ctx context.Context, subscriptionId string, si
 
 // Execute executes the request
 //  @return Sink
-func (a *SinkApiService) GetASinkExecute(r ApiGetASinkRequest) (*Sink, *http.Response, error) {
+func (a *SinkApiService) GetSinkExecute(r ApiGetSinkRequest) (*Sink, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -380,7 +380,7 @@ func (a *SinkApiService) GetASinkExecute(r ApiGetASinkRequest) (*Sink, *http.Res
 		localVarReturnValue  *Sink
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SinkApiService.GetASink")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SinkApiService.GetSink")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

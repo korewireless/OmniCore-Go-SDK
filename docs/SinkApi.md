@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateSink**](SinkApi.md#CreateSink) | **Post** /omnicore/subscriptions/{subscriptionId}/sinks | 
 [**DeleteSink**](SinkApi.md#DeleteSink) | **Delete** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
-[**GetASink**](SinkApi.md#GetASink) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
+[**GetSink**](SinkApi.md#GetSink) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
 [**GetSinks**](SinkApi.md#GetSinks) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks | Get All Sinks
 
 
@@ -156,9 +156,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetASink
+## GetSink
 
-> Sink GetASink(ctx, subscriptionId, sinkId).Execute()
+> Sink GetSink(ctx, subscriptionId, sinkId).Execute()
 
 
 
@@ -182,13 +182,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SinkApi.GetASink(context.Background(), subscriptionId, sinkId).Execute()
+    resp, r, err := apiClient.SinkApi.GetSink(context.Background(), subscriptionId, sinkId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SinkApi.GetASink``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `SinkApi.GetSink``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetASink`: Sink
-    fmt.Fprintf(os.Stdout, "Response from `SinkApi.GetASink`: %v\n", resp)
+    // response from `GetSink`: Sink
+    fmt.Fprintf(os.Stdout, "Response from `SinkApi.GetSink`: %v\n", resp)
 }
 ```
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetASinkRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetSinkRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -51,14 +51,14 @@ func Test_OmniCore_SinkApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SinkApiService GetASink", func(t *testing.T) {
+	t.Run("Test SinkApiService GetSink", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subscriptionId string
 		var sinkId string
 
-		resp, httpRes, err := apiClient.SinkApi.GetASink(context.Background(), subscriptionId, sinkId).Execute()
+		resp, httpRes, err := apiClient.SinkApi.GetSink(context.Background(), subscriptionId, sinkId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

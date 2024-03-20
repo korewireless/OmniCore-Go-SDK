@@ -4,8 +4,8 @@ This is an OmniCore Model and State Management server.
 
 ## Overview
 
-- API version: 1.8.17
-- Package version: 1.8.17
+- API version: 1.8.18
+- Package version: 1.8.18
 - Build package: org.openapitools.codegen.languages.GoClientCodegen
 For more information, please visit [http://www.korewireless.com](http://www.korewireless.com)
 
@@ -102,7 +102,7 @@ Class | Method | HTTP request | Description
 *RegistryApi* | [**UpdateRegistry**](docs/RegistryApi.md#updateregistry) | **Patch** /omnicore/subscriptions/{subscriptionId}/registries/{registryId} | 
 *SinkApi* | [**CreateSink**](docs/SinkApi.md#createsink) | **Post** /omnicore/subscriptions/{subscriptionId}/sinks | 
 *SinkApi* | [**DeleteSink**](docs/SinkApi.md#deletesink) | **Delete** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
-*SinkApi* | [**GetASink**](docs/SinkApi.md#getasink) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
+*SinkApi* | [**GetSink**](docs/SinkApi.md#getsink) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks/{sinkId} | 
 *SinkApi* | [**GetSinks**](docs/SinkApi.md#getsinks) | **Get** /omnicore/subscriptions/{subscriptionId}/sinks | Get All Sinks
 *VaultApi* | [**CreateVaultConfiguration**](docs/VaultApi.md#createvaultconfiguration) | **Post** /vault/subscriptions/{subscriptionid}/configurations | 
 *VaultApi* | [**CreateVaultKey**](docs/VaultApi.md#createvaultkey) | **Post** /vault/subscriptions/{subscriptionid}/encryptionkeys | 
