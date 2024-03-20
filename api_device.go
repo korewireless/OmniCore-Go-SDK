@@ -1408,72 +1408,144 @@ func (a *DeviceApiService) GetDevicesExecute(r ApiGetDevicesRequest) (*ListDevic
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetStatesRequest struct {
+type ApiGetDevicesLastSeenRequest struct {
 	ctx context.Context
 	ApiService *DeviceApiService
-	subscriptionid string
-	registryId string
-	deviceId string
-	numStates *int32
+	subscriptionId string
+	pageNumber *int32
+	pageSize *int32
+	fieldMask *string
+	sortByClientOnline *bool
+	deviceIds *[]string
+	deviceNumIds *[]string
+	gatewayListOptionsAssociationsDeviceId *string
+	gatewayListOptionsAssociationsGatewayId *string
+	gatewayListOptionsGatewayType *string
 }
 
-// The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
-func (r ApiGetStatesRequest) NumStates(numStates int32) ApiGetStatesRequest {
-	r.numStates = &numStates
+// Page Number
+func (r ApiGetDevicesLastSeenRequest) PageNumber(pageNumber int32) ApiGetDevicesLastSeenRequest {
+	r.pageNumber = &pageNumber
 	return r
 }
 
-func (r ApiGetStatesRequest) Execute() (*ListDeviceStatesResponse, *http.Response, error) {
-	return r.ApiService.GetStatesExecute(r)
+// The maximum number of devices to return in the response. If this value is zero, the service will select a default size. 
+func (r ApiGetDevicesLastSeenRequest) PageSize(pageSize int32) ApiGetDevicesLastSeenRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// The fields of the Device resource to be returned to the response. The fields id and numId are always returned, along with any other fields specified. A comma-separated list of fully qualified names of fields. Example: 
+func (r ApiGetDevicesLastSeenRequest) FieldMask(fieldMask string) ApiGetDevicesLastSeenRequest {
+	r.fieldMask = &fieldMask
+	return r
+}
+
+// Set to true to return devices sorted by last heartbeat 
+func (r ApiGetDevicesLastSeenRequest) SortByClientOnline(sortByClientOnline bool) ApiGetDevicesLastSeenRequest {
+	r.sortByClientOnline = &sortByClientOnline
+	return r
+}
+
+// A list of device string IDs. For example, [&#39;device0&#39;, &#39;device12&#39;]. If empty, this field is ignored. Maximum IDs: 10,000
+func (r ApiGetDevicesLastSeenRequest) DeviceIds(deviceIds []string) ApiGetDevicesLastSeenRequest {
+	r.deviceIds = &deviceIds
+	return r
+}
+
+// A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
+func (r ApiGetDevicesLastSeenRequest) DeviceNumIds(deviceNumIds []string) ApiGetDevicesLastSeenRequest {
+	r.deviceNumIds = &deviceNumIds
+	return r
+}
+
+// If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (num_id) or the user-defined string (id). For example, if 456 is specified, returns only the gateways to which the device with num_id 456 is bound.
+func (r ApiGetDevicesLastSeenRequest) GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId string) ApiGetDevicesLastSeenRequest {
+	r.gatewayListOptionsAssociationsDeviceId = &gatewayListOptionsAssociationsDeviceId
+	return r
+}
+
+// If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (num_id) or the user-defined string (id). For example, if 123 is specified, only devices bound to the gateway with num_id 123 are returned
+func (r ApiGetDevicesLastSeenRequest) GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId string) ApiGetDevicesLastSeenRequest {
+	r.gatewayListOptionsAssociationsGatewayId = &gatewayListOptionsAssociationsGatewayId
+	return r
+}
+
+// If GATEWAY is specified, only gateways are returned. If NON_GATEWAY is specified, only non-gateway devices are returned. If GATEWAY_TYPE_UNSPECIFIED is specified, all devices are returned.
+func (r ApiGetDevicesLastSeenRequest) GatewayListOptionsGatewayType(gatewayListOptionsGatewayType string) ApiGetDevicesLastSeenRequest {
+	r.gatewayListOptionsGatewayType = &gatewayListOptionsGatewayType
+	return r
+}
+
+func (r ApiGetDevicesLastSeenRequest) Execute() (*ListDevicesOnlineResponse, *http.Response, error) {
+	return r.ApiService.GetDevicesLastSeenExecute(r)
 }
 
 /*
-GetStates Method for GetStates
+GetDevicesLastSeen Method for GetDevicesLastSeen
 
-Get States Of Devices
+Get devices under a subscription sorted by last seen
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionid Subscription ID
- @param registryId Registry ID
- @param deviceId Device ID
- @return ApiGetStatesRequest
+ @param subscriptionId Subscription ID
+ @return ApiGetDevicesLastSeenRequest
 */
-func (a *DeviceApiService) GetStates(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiGetStatesRequest {
-	return ApiGetStatesRequest{
+func (a *DeviceApiService) GetDevicesLastSeen(ctx context.Context, subscriptionId string) ApiGetDevicesLastSeenRequest {
+	return ApiGetDevicesLastSeenRequest{
 		ApiService: a,
 		ctx: ctx,
-		subscriptionid: subscriptionid,
-		registryId: registryId,
-		deviceId: deviceId,
+		subscriptionId: subscriptionId,
 	}
 }
 
 // Execute executes the request
-//  @return ListDeviceStatesResponse
-func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceStatesResponse, *http.Response, error) {
+//  @return ListDevicesOnlineResponse
+func (a *DeviceApiService) GetDevicesLastSeenExecute(r ApiGetDevicesLastSeenRequest) (*ListDevicesOnlineResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDeviceStatesResponse
+		localVarReturnValue  *ListDevicesOnlineResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetStates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetDevicesLastSeen")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
+	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/devices"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.numStates != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "numStates", r.numStates, "")
+	if r.pageNumber != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNumber", r.pageNumber, "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.fieldMask != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fieldMask", r.fieldMask, "")
+	}
+	if r.sortByClientOnline != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sortByClientOnline", r.sortByClientOnline, "")
+	}
+	if r.deviceIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceIds", r.deviceIds, "csv")
+	}
+	if r.deviceNumIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceNumIds", r.deviceNumIds, "csv")
+	}
+	if r.gatewayListOptionsAssociationsDeviceId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.associationsDeviceId", r.gatewayListOptionsAssociationsDeviceId, "")
+	}
+	if r.gatewayListOptionsAssociationsGatewayId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.associationsGatewayId", r.gatewayListOptionsAssociationsGatewayId, "")
+	}
+	if r.gatewayListOptionsGatewayType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.gatewayType", r.gatewayListOptionsGatewayType, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1575,144 +1647,72 @@ func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetSubscriptionDevicesRequest struct {
+type ApiGetStatesRequest struct {
 	ctx context.Context
 	ApiService *DeviceApiService
-	subscriptionId string
-	pageNumber *int32
-	pageSize *int32
-	fieldMask *string
-	sortByClientOnline *bool
-	deviceIds *[]string
-	deviceNumIds *[]string
-	gatewayListOptionsAssociationsDeviceId *string
-	gatewayListOptionsAssociationsGatewayId *string
-	gatewayListOptionsGatewayType *string
+	subscriptionid string
+	registryId string
+	deviceId string
+	numStates *int32
 }
 
-// Page Number
-func (r ApiGetSubscriptionDevicesRequest) PageNumber(pageNumber int32) ApiGetSubscriptionDevicesRequest {
-	r.pageNumber = &pageNumber
+// The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
+func (r ApiGetStatesRequest) NumStates(numStates int32) ApiGetStatesRequest {
+	r.numStates = &numStates
 	return r
 }
 
-// The maximum number of devices to return in the response. If this value is zero, the service will select a default size. 
-func (r ApiGetSubscriptionDevicesRequest) PageSize(pageSize int32) ApiGetSubscriptionDevicesRequest {
-	r.pageSize = &pageSize
-	return r
-}
-
-// The fields of the Device resource to be returned to the response. The fields id and numId are always returned, along with any other fields specified. A comma-separated list of fully qualified names of fields. Example: 
-func (r ApiGetSubscriptionDevicesRequest) FieldMask(fieldMask string) ApiGetSubscriptionDevicesRequest {
-	r.fieldMask = &fieldMask
-	return r
-}
-
-// Set to true to return devices sorted by last heartbeat 
-func (r ApiGetSubscriptionDevicesRequest) SortByClientOnline(sortByClientOnline bool) ApiGetSubscriptionDevicesRequest {
-	r.sortByClientOnline = &sortByClientOnline
-	return r
-}
-
-// A list of device string IDs. For example, [&#39;device0&#39;, &#39;device12&#39;]. If empty, this field is ignored. Maximum IDs: 10,000
-func (r ApiGetSubscriptionDevicesRequest) DeviceIds(deviceIds []string) ApiGetSubscriptionDevicesRequest {
-	r.deviceIds = &deviceIds
-	return r
-}
-
-// A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
-func (r ApiGetSubscriptionDevicesRequest) DeviceNumIds(deviceNumIds []string) ApiGetSubscriptionDevicesRequest {
-	r.deviceNumIds = &deviceNumIds
-	return r
-}
-
-// If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (num_id) or the user-defined string (id). For example, if 456 is specified, returns only the gateways to which the device with num_id 456 is bound.
-func (r ApiGetSubscriptionDevicesRequest) GatewayListOptionsAssociationsDeviceId(gatewayListOptionsAssociationsDeviceId string) ApiGetSubscriptionDevicesRequest {
-	r.gatewayListOptionsAssociationsDeviceId = &gatewayListOptionsAssociationsDeviceId
-	return r
-}
-
-// If set, only devices associated with the specified gateway are returned. The gateway ID can be numeric (num_id) or the user-defined string (id). For example, if 123 is specified, only devices bound to the gateway with num_id 123 are returned
-func (r ApiGetSubscriptionDevicesRequest) GatewayListOptionsAssociationsGatewayId(gatewayListOptionsAssociationsGatewayId string) ApiGetSubscriptionDevicesRequest {
-	r.gatewayListOptionsAssociationsGatewayId = &gatewayListOptionsAssociationsGatewayId
-	return r
-}
-
-// If GATEWAY is specified, only gateways are returned. If NON_GATEWAY is specified, only non-gateway devices are returned. If GATEWAY_TYPE_UNSPECIFIED is specified, all devices are returned.
-func (r ApiGetSubscriptionDevicesRequest) GatewayListOptionsGatewayType(gatewayListOptionsGatewayType string) ApiGetSubscriptionDevicesRequest {
-	r.gatewayListOptionsGatewayType = &gatewayListOptionsGatewayType
-	return r
-}
-
-func (r ApiGetSubscriptionDevicesRequest) Execute() (*ListDevicesOnlineResponse, *http.Response, error) {
-	return r.ApiService.GetSubscriptionDevicesExecute(r)
+func (r ApiGetStatesRequest) Execute() (*ListDeviceStatesResponse, *http.Response, error) {
+	return r.ApiService.GetStatesExecute(r)
 }
 
 /*
-GetSubscriptionDevices Method for GetSubscriptionDevices
+GetStates Method for GetStates
 
-Get all devices under a subscription
+Get States Of Devices
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param subscriptionId Subscription ID
- @return ApiGetSubscriptionDevicesRequest
+ @param subscriptionid Subscription ID
+ @param registryId Registry ID
+ @param deviceId Device ID
+ @return ApiGetStatesRequest
 */
-func (a *DeviceApiService) GetSubscriptionDevices(ctx context.Context, subscriptionId string) ApiGetSubscriptionDevicesRequest {
-	return ApiGetSubscriptionDevicesRequest{
+func (a *DeviceApiService) GetStates(ctx context.Context, subscriptionid string, registryId string, deviceId string) ApiGetStatesRequest {
+	return ApiGetStatesRequest{
 		ApiService: a,
 		ctx: ctx,
-		subscriptionId: subscriptionId,
+		subscriptionid: subscriptionid,
+		registryId: registryId,
+		deviceId: deviceId,
 	}
 }
 
 // Execute executes the request
-//  @return ListDevicesOnlineResponse
-func (a *DeviceApiService) GetSubscriptionDevicesExecute(r ApiGetSubscriptionDevicesRequest) (*ListDevicesOnlineResponse, *http.Response, error) {
+//  @return ListDeviceStatesResponse
+func (a *DeviceApiService) GetStatesExecute(r ApiGetStatesRequest) (*ListDeviceStatesResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListDevicesOnlineResponse
+		localVarReturnValue  *ListDeviceStatesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetSubscriptionDevices")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceApiService.GetStates")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionId}/devices"
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+	localVarPath := localBasePath + "/omnicore/subscriptions/{subscriptionid}/registries/{registryId}/devices/{deviceId}/states"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionid"+"}", url.PathEscape(parameterValueToString(r.subscriptionid, "subscriptionid")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"registryId"+"}", url.PathEscape(parameterValueToString(r.registryId, "registryId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.pageNumber != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNumber", r.pageNumber, "")
-	}
-	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
-	}
-	if r.fieldMask != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fieldMask", r.fieldMask, "")
-	}
-	if r.sortByClientOnline != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sortByClientOnline", r.sortByClientOnline, "")
-	}
-	if r.deviceIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceIds", r.deviceIds, "csv")
-	}
-	if r.deviceNumIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "deviceNumIds", r.deviceNumIds, "csv")
-	}
-	if r.gatewayListOptionsAssociationsDeviceId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.associationsDeviceId", r.gatewayListOptionsAssociationsDeviceId, "")
-	}
-	if r.gatewayListOptionsAssociationsGatewayId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.associationsGatewayId", r.gatewayListOptionsAssociationsGatewayId, "")
-	}
-	if r.gatewayListOptionsGatewayType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "gatewayListOptions.gatewayType", r.gatewayListOptionsGatewayType, "")
+	if r.numStates != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "numStates", r.numStates, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

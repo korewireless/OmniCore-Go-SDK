@@ -146,6 +146,20 @@ func Test_OmniCore_DeviceApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test DeviceApiService GetDevicesLastSeen", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var subscriptionId string
+
+		resp, httpRes, err := apiClient.DeviceApi.GetDevicesLastSeen(context.Background(), subscriptionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DeviceApiService GetStates", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -155,20 +169,6 @@ func Test_OmniCore_DeviceApiService(t *testing.T) {
 		var deviceId string
 
 		resp, httpRes, err := apiClient.DeviceApi.GetStates(context.Background(), subscriptionid, registryId, deviceId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test DeviceApiService GetSubscriptionDevices", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var subscriptionId string
-
-		resp, httpRes, err := apiClient.DeviceApi.GetSubscriptionDevices(context.Background(), subscriptionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

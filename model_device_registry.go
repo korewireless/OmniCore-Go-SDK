@@ -43,6 +43,7 @@ type DeviceRegistry struct {
 	CustomOnboardEnabled *bool `json:"customOnboardEnabled,omitempty"`
 	NumberOfDevices *int32 `json:"numberOfDevices,omitempty"`
 	NumberOfGateways *int32 `json:"numberOfGateways,omitempty"`
+	RouteTarget *string `json:"routeTarget,omitempty"`
 }
 
 // NewDeviceRegistry instantiates a new DeviceRegistry object
@@ -599,6 +600,38 @@ func (o *DeviceRegistry) SetNumberOfGateways(v int32) {
 	o.NumberOfGateways = &v
 }
 
+// GetRouteTarget returns the RouteTarget field value if set, zero value otherwise.
+func (o *DeviceRegistry) GetRouteTarget() string {
+	if o == nil || IsNil(o.RouteTarget) {
+		var ret string
+		return ret
+	}
+	return *o.RouteTarget
+}
+
+// GetRouteTargetOk returns a tuple with the RouteTarget field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeviceRegistry) GetRouteTargetOk() (*string, bool) {
+	if o == nil || IsNil(o.RouteTarget) {
+		return nil, false
+	}
+	return o.RouteTarget, true
+}
+
+// HasRouteTarget returns a boolean if a field has been set.
+func (o *DeviceRegistry) HasRouteTarget() bool {
+	if o != nil && !IsNil(o.RouteTarget) {
+		return true
+	}
+
+	return false
+}
+
+// SetRouteTarget gets a reference to the given string and assigns it to the RouteTarget field.
+func (o *DeviceRegistry) SetRouteTarget(v string) {
+	o.RouteTarget = &v
+}
+
 func (o DeviceRegistry) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -646,6 +679,9 @@ func (o DeviceRegistry) ToMap() (map[string]interface{}, error) {
 	}
 	// skip: numberOfDevices is readOnly
 	// skip: numberOfGateways is readOnly
+	if !IsNil(o.RouteTarget) {
+		toSerialize["routeTarget"] = o.RouteTarget
+	}
 	return toSerialize, nil
 }
 

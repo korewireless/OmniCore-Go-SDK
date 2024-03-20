@@ -6,7 +6,7 @@ info:
     url: http://www.korewireless.com
   description: This is an OmniCore Model and State Management server.
   title: OmniCore Model and State Management API
-  version: 1.8.10
+  version: 1.8.13
 servers:
 - description: Production Server
   url: https://api.korewireless.com
@@ -298,8 +298,8 @@ paths:
       x-codegen-request-body-name: Registry
   /omnicore/subscriptions/{subscriptionId}/devices:
     get:
-      description: Get all devices under a subscription
-      operationId: getSubscriptionDevices
+      description: Get devices under a subscription sorted by last seen
+      operationId: getDevicesLastSeen
       parameters:
       - description: Subscription ID
         explode: false
@@ -2954,6 +2954,7 @@ components:
           code: 0
           details: details
           message: message
+        isTcpUdpDevice: true
         subscription: subscription
         capresent: true
         createdOn: createdOn
@@ -2968,6 +2969,7 @@ components:
         state:
           binaryData: binaryData
           updateTime: updateTime
+        tcpUdpModelDetails: ""
         gatewayConfig:
           gatewayType: NON_GATEWAY
           gatewayAuthMethod: GATEWAY_AUTH_METHOD_UNSPECIFIED
@@ -2987,6 +2989,7 @@ components:
         lastConfigAckTime: lastConfigAckTime
         isApprove: true
         name: name
+        tcpUdpModelId: ""
         lastEventTime: lastEventTime
         customOnboardData: customOnboardData
         config:
@@ -3083,6 +3086,12 @@ components:
         customOnboardData:
           type: string
         isApprove:
+          type: boolean
+        tcpUdpModelDetails:
+          type: '#/components/schemas/TcpUdpModel'
+        tcpUdpModelId:
+          type: uint32
+        isTcpUdpDevice:
           type: boolean
       required:
       - id
@@ -3308,6 +3317,9 @@ components:
       example:
         parent: parent
         logNotificationConfig:
+          stream: stream
+          roleArn: roleArn
+          region: region
           pubsubTopicName: pubsubTopicName
         credentials:
         - publicKeyCertificate:
@@ -3333,19 +3345,32 @@ components:
               publicKeyType: publicKeyType
           id: id
         stateNotificationConfig:
+          stream: stream
+          roleArn: roleArn
+          region: region
           pubsubTopicName: pubsubTopicName
         updatedOn: updatedOn
         customOnboardNotificationConfig:
+          stream: stream
+          roleArn: roleArn
+          region: region
           pubsubTopicName: pubsubTopicName
         createdOn: createdOn
+        routeTarget: pubsub
         isNatsRoute: true
         httpConfig:
           httpEnabledState: HTTP_ENABLED
         logLevel: null
         eventNotificationConfigs:
-        - subfolderMatches: subfolderMatches
+        - stream: stream
+          roleArn: roleArn
+          subfolderMatches: subfolderMatches
+          region: region
           pubsubTopicName: pubsubTopicName
-        - subfolderMatches: subfolderMatches
+        - stream: stream
+          roleArn: roleArn
+          subfolderMatches: subfolderMatches
+          region: region
           pubsubTopicName: pubsubTopicName
         name: name
         id: id
@@ -3401,6 +3426,11 @@ components:
         numberOfGateways:
           readOnly: true
           type: integer
+        routeTarget:
+          enum:
+          - pubsub
+          - kinesis
+          type: string
       required:
       - id
       type: object
@@ -3452,7 +3482,10 @@ components:
       type: object
     EventNotificationConfig:
       example:
+        stream: stream
+        roleArn: roleArn
         subfolderMatches: subfolderMatches
+        region: region
         pubsubTopicName: pubsubTopicName
       properties:
         pubsubTopicName:
@@ -3467,6 +3500,12 @@ components:
             leading '/' character. If empty, all strings are matched. This field
             is used only for telemetry events; subfolders are not supported for
             state changes.
+          type: string
+        roleArn:
+          type: string
+        region:
+          type: string
+        stream:
           type: string
       type: object
     GatewayConfig:
@@ -3551,6 +3590,9 @@ components:
         deviceRegistries:
         - parent: parent
           logNotificationConfig:
+            stream: stream
+            roleArn: roleArn
+            region: region
             pubsubTopicName: pubsubTopicName
           credentials:
           - publicKeyCertificate:
@@ -3576,19 +3618,32 @@ components:
                 publicKeyType: publicKeyType
             id: id
           stateNotificationConfig:
+            stream: stream
+            roleArn: roleArn
+            region: region
             pubsubTopicName: pubsubTopicName
           updatedOn: updatedOn
           customOnboardNotificationConfig:
+            stream: stream
+            roleArn: roleArn
+            region: region
             pubsubTopicName: pubsubTopicName
           createdOn: createdOn
+          routeTarget: pubsub
           isNatsRoute: true
           httpConfig:
             httpEnabledState: HTTP_ENABLED
           logLevel: null
           eventNotificationConfigs:
-          - subfolderMatches: subfolderMatches
+          - stream: stream
+            roleArn: roleArn
+            subfolderMatches: subfolderMatches
+            region: region
             pubsubTopicName: pubsubTopicName
-          - subfolderMatches: subfolderMatches
+          - stream: stream
+            roleArn: roleArn
+            subfolderMatches: subfolderMatches
+            region: region
             pubsubTopicName: pubsubTopicName
           name: name
           id: id
@@ -3599,6 +3654,9 @@ components:
           customOnboardEnabled: true
         - parent: parent
           logNotificationConfig:
+            stream: stream
+            roleArn: roleArn
+            region: region
             pubsubTopicName: pubsubTopicName
           credentials:
           - publicKeyCertificate:
@@ -3624,19 +3682,32 @@ components:
                 publicKeyType: publicKeyType
             id: id
           stateNotificationConfig:
+            stream: stream
+            roleArn: roleArn
+            region: region
             pubsubTopicName: pubsubTopicName
           updatedOn: updatedOn
           customOnboardNotificationConfig:
+            stream: stream
+            roleArn: roleArn
+            region: region
             pubsubTopicName: pubsubTopicName
           createdOn: createdOn
+          routeTarget: pubsub
           isNatsRoute: true
           httpConfig:
             httpEnabledState: HTTP_ENABLED
           logLevel: null
           eventNotificationConfigs:
-          - subfolderMatches: subfolderMatches
+          - stream: stream
+            roleArn: roleArn
+            subfolderMatches: subfolderMatches
+            region: region
             pubsubTopicName: pubsubTopicName
-          - subfolderMatches: subfolderMatches
+          - stream: stream
+            roleArn: roleArn
+            subfolderMatches: subfolderMatches
+            region: region
             pubsubTopicName: pubsubTopicName
           name: name
           id: id
@@ -3968,12 +4039,21 @@ components:
       type: object
     NotificationConfig:
       example:
+        stream: stream
+        roleArn: roleArn
+        region: region
         pubsubTopicName: pubsubTopicName
       properties:
         pubsubTopicName:
           description: |-
             PubsubTopicName: A Topic name. For example,
             `projects/myProject/topics/deviceEvents`.
+          type: string
+        roleArn:
+          type: string
+        region:
+          type: string
+        stream:
           type: string
       type: object
     X509CertificateDetails:
@@ -4686,6 +4766,77 @@ components:
       properties:
         retentionPeriod:
           type: string
+      type: object
+    TcpUdpModel:
+      properties:
+        id:
+          description: The ID of the TCP/UDP model
+          format: uint32
+          readOnly: true
+          type: integer
+        modelName:
+          description: The name of the model
+          type: string
+        manufacturer:
+          description: The manufacturer of the model
+          type: string
+        image:
+          $ref: '#/components/schemas/TcpUdpImage'
+        tcpDetails:
+          $ref: '#/components/schemas/TcpUdpPortDetail'
+        udpDetails:
+          $ref: '#/components/schemas/TcpUdpPortDetail'
+        metadata:
+          description: Additional metadata in raw JSON format
+          type: object
+        createdAt:
+          description: The creation timestamp of the model
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          description: The last update timestamp of the model
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - image
+      - tcpDetails
+      - udpDetails
+      type: object
+    TcpUdpPortDetail:
+      properties:
+        enabled:
+          description: Indicates if the port is enabled
+          type: boolean
+        port:
+          description: The port number
+          format: uint32
+          type: integer
+      required:
+      - enabled
+      type: object
+    TcpUdpImage:
+      properties:
+        valid:
+          description: Indicates if the image is valid
+          type: boolean
+        contentType:
+          description: The content type of the image
+          type: string
+        storageKey:
+          description: The storage key of the image
+          type: string
+        link:
+          description: The link to the image
+          readOnly: true
+          type: string
+        data:
+          description: The binary data of the image
+          format: binary
+          type: string
+      required:
+      - valid
       type: object
     Metrics_details:
       example:

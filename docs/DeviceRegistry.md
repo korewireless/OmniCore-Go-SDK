@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **CustomOnboardEnabled** | Pointer to **bool** |  | [optional] 
 **NumberOfDevices** | Pointer to **int32** |  | [optional] [readonly] 
 **NumberOfGateways** | Pointer to **int32** |  | [optional] [readonly] 
+**RouteTarget** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -460,6 +461,31 @@ SetNumberOfGateways sets NumberOfGateways field to given value.
 `func (o *DeviceRegistry) HasNumberOfGateways() bool`
 
 HasNumberOfGateways returns a boolean if a field has been set.
+
+### GetRouteTarget
+
+`func (o *DeviceRegistry) GetRouteTarget() string`
+
+GetRouteTarget returns the RouteTarget field if non-nil, zero value otherwise.
+
+### GetRouteTargetOk
+
+`func (o *DeviceRegistry) GetRouteTargetOk() (*string, bool)`
+
+GetRouteTargetOk returns a tuple with the RouteTarget field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRouteTarget
+
+`func (o *DeviceRegistry) SetRouteTarget(v string)`
+
+SetRouteTarget sets RouteTarget field to given value.
+
+### HasRouteTarget
+
+`func (o *DeviceRegistry) HasRouteTarget() bool`
+
+HasRouteTarget returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

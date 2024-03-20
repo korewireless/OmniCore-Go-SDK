@@ -30,6 +30,9 @@ type EventNotificationConfig struct {
 	PubsubTopicName *string `json:"pubsubTopicName,omitempty"`
 	// SubfolderMatches: If the subfolder name matches this string exactly, this configuration will be used. The string must not include the leading '/' character. If empty, all strings are matched. This field is used only for telemetry events; subfolders are not supported for state changes.
 	SubfolderMatches *string `json:"subfolderMatches,omitempty"`
+	RoleArn *string `json:"roleArn,omitempty"`
+	Region *string `json:"region,omitempty"`
+	Stream *string `json:"stream,omitempty"`
 }
 
 // NewEventNotificationConfig instantiates a new EventNotificationConfig object
@@ -113,6 +116,102 @@ func (o *EventNotificationConfig) SetSubfolderMatches(v string) {
 	o.SubfolderMatches = &v
 }
 
+// GetRoleArn returns the RoleArn field value if set, zero value otherwise.
+func (o *EventNotificationConfig) GetRoleArn() string {
+	if o == nil || IsNil(o.RoleArn) {
+		var ret string
+		return ret
+	}
+	return *o.RoleArn
+}
+
+// GetRoleArnOk returns a tuple with the RoleArn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventNotificationConfig) GetRoleArnOk() (*string, bool) {
+	if o == nil || IsNil(o.RoleArn) {
+		return nil, false
+	}
+	return o.RoleArn, true
+}
+
+// HasRoleArn returns a boolean if a field has been set.
+func (o *EventNotificationConfig) HasRoleArn() bool {
+	if o != nil && !IsNil(o.RoleArn) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoleArn gets a reference to the given string and assigns it to the RoleArn field.
+func (o *EventNotificationConfig) SetRoleArn(v string) {
+	o.RoleArn = &v
+}
+
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *EventNotificationConfig) GetRegion() string {
+	if o == nil || IsNil(o.Region) {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventNotificationConfig) GetRegionOk() (*string, bool) {
+	if o == nil || IsNil(o.Region) {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *EventNotificationConfig) HasRegion() bool {
+	if o != nil && !IsNil(o.Region) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *EventNotificationConfig) SetRegion(v string) {
+	o.Region = &v
+}
+
+// GetStream returns the Stream field value if set, zero value otherwise.
+func (o *EventNotificationConfig) GetStream() string {
+	if o == nil || IsNil(o.Stream) {
+		var ret string
+		return ret
+	}
+	return *o.Stream
+}
+
+// GetStreamOk returns a tuple with the Stream field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventNotificationConfig) GetStreamOk() (*string, bool) {
+	if o == nil || IsNil(o.Stream) {
+		return nil, false
+	}
+	return o.Stream, true
+}
+
+// HasStream returns a boolean if a field has been set.
+func (o *EventNotificationConfig) HasStream() bool {
+	if o != nil && !IsNil(o.Stream) {
+		return true
+	}
+
+	return false
+}
+
+// SetStream gets a reference to the given string and assigns it to the Stream field.
+func (o *EventNotificationConfig) SetStream(v string) {
+	o.Stream = &v
+}
+
 func (o EventNotificationConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -128,6 +227,15 @@ func (o EventNotificationConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SubfolderMatches) {
 		toSerialize["subfolderMatches"] = o.SubfolderMatches
+	}
+	if !IsNil(o.RoleArn) {
+		toSerialize["roleArn"] = o.RoleArn
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.Stream) {
+		toSerialize["stream"] = o.Stream
 	}
 	return toSerialize, nil
 }

@@ -34,6 +34,9 @@ Name | Type | Description | Notes
 **Policy** | Pointer to [**Policy**](Policy.md) |  | [optional] 
 **CustomOnboardData** | Pointer to **string** |  | [optional] 
 **IsApprove** | Pointer to **bool** |  | [optional] 
+**TcpUdpModelDetails** | Pointer to [**ComponentsSchemasTcpUdpModel**](#/components/schemas/TcpUdpModel.md) |  | [optional] 
+**TcpUdpModelId** | Pointer to **uint32** |  | [optional] 
+**IsTcpUdpDevice** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -798,6 +801,81 @@ SetIsApprove sets IsApprove field to given value.
 `func (o *CustomOnboard) HasIsApprove() bool`
 
 HasIsApprove returns a boolean if a field has been set.
+
+### GetTcpUdpModelDetails
+
+`func (o *CustomOnboard) GetTcpUdpModelDetails() ComponentsSchemasTcpUdpModel`
+
+GetTcpUdpModelDetails returns the TcpUdpModelDetails field if non-nil, zero value otherwise.
+
+### GetTcpUdpModelDetailsOk
+
+`func (o *CustomOnboard) GetTcpUdpModelDetailsOk() (*ComponentsSchemasTcpUdpModel, bool)`
+
+GetTcpUdpModelDetailsOk returns a tuple with the TcpUdpModelDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTcpUdpModelDetails
+
+`func (o *CustomOnboard) SetTcpUdpModelDetails(v ComponentsSchemasTcpUdpModel)`
+
+SetTcpUdpModelDetails sets TcpUdpModelDetails field to given value.
+
+### HasTcpUdpModelDetails
+
+`func (o *CustomOnboard) HasTcpUdpModelDetails() bool`
+
+HasTcpUdpModelDetails returns a boolean if a field has been set.
+
+### GetTcpUdpModelId
+
+`func (o *CustomOnboard) GetTcpUdpModelId() uint32`
+
+GetTcpUdpModelId returns the TcpUdpModelId field if non-nil, zero value otherwise.
+
+### GetTcpUdpModelIdOk
+
+`func (o *CustomOnboard) GetTcpUdpModelIdOk() (*uint32, bool)`
+
+GetTcpUdpModelIdOk returns a tuple with the TcpUdpModelId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTcpUdpModelId
+
+`func (o *CustomOnboard) SetTcpUdpModelId(v uint32)`
+
+SetTcpUdpModelId sets TcpUdpModelId field to given value.
+
+### HasTcpUdpModelId
+
+`func (o *CustomOnboard) HasTcpUdpModelId() bool`
+
+HasTcpUdpModelId returns a boolean if a field has been set.
+
+### GetIsTcpUdpDevice
+
+`func (o *CustomOnboard) GetIsTcpUdpDevice() bool`
+
+GetIsTcpUdpDevice returns the IsTcpUdpDevice field if non-nil, zero value otherwise.
+
+### GetIsTcpUdpDeviceOk
+
+`func (o *CustomOnboard) GetIsTcpUdpDeviceOk() (*bool, bool)`
+
+GetIsTcpUdpDeviceOk returns a tuple with the IsTcpUdpDevice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsTcpUdpDevice
+
+`func (o *CustomOnboard) SetIsTcpUdpDevice(v bool)`
+
+SetIsTcpUdpDevice sets IsTcpUdpDevice field to given value.
+
+### HasIsTcpUdpDevice
+
+`func (o *CustomOnboard) HasIsTcpUdpDevice() bool`
+
+HasIsTcpUdpDevice returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

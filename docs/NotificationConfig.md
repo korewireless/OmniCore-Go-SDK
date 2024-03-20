@@ -5,6 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PubsubTopicName** | Pointer to **string** | PubsubTopicName: A Topic name. For example, &#x60;projects/myProject/topics/deviceEvents&#x60;. | [optional] 
+**RoleArn** | Pointer to **string** |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
+**Stream** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -49,6 +52,81 @@ SetPubsubTopicName sets PubsubTopicName field to given value.
 `func (o *NotificationConfig) HasPubsubTopicName() bool`
 
 HasPubsubTopicName returns a boolean if a field has been set.
+
+### GetRoleArn
+
+`func (o *NotificationConfig) GetRoleArn() string`
+
+GetRoleArn returns the RoleArn field if non-nil, zero value otherwise.
+
+### GetRoleArnOk
+
+`func (o *NotificationConfig) GetRoleArnOk() (*string, bool)`
+
+GetRoleArnOk returns a tuple with the RoleArn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoleArn
+
+`func (o *NotificationConfig) SetRoleArn(v string)`
+
+SetRoleArn sets RoleArn field to given value.
+
+### HasRoleArn
+
+`func (o *NotificationConfig) HasRoleArn() bool`
+
+HasRoleArn returns a boolean if a field has been set.
+
+### GetRegion
+
+`func (o *NotificationConfig) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### GetRegionOk
+
+`func (o *NotificationConfig) GetRegionOk() (*string, bool)`
+
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegion
+
+`func (o *NotificationConfig) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
+
+### HasRegion
+
+`func (o *NotificationConfig) HasRegion() bool`
+
+HasRegion returns a boolean if a field has been set.
+
+### GetStream
+
+`func (o *NotificationConfig) GetStream() string`
+
+GetStream returns the Stream field if non-nil, zero value otherwise.
+
+### GetStreamOk
+
+`func (o *NotificationConfig) GetStreamOk() (*string, bool)`
+
+GetStreamOk returns a tuple with the Stream field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStream
+
+`func (o *NotificationConfig) SetStream(v string)`
+
+SetStream sets Stream field to given value.
+
+### HasStream
+
+`func (o *NotificationConfig) HasStream() bool`
+
+HasStream returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
